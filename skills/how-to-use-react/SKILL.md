@@ -1,7 +1,6 @@
 ---
 name: how-to-use-react
 description: React 19.3 のコンポーネント、ローダー、サーバー処理を書く・直す・レビューするときに読む。非同期の瀑布を消し、状態を Effect Atom と TanStack Query に置き分け、Effect・トランジション・Suspense・Activity・ViewTransition・useEffectEvent の使いどころとコンポーネントの props の形を決める。
-license: MIT
 metadata:
   upstream:
     - https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices
@@ -17,8 +16,8 @@ metadata:
 
 大本は次の資料で、masseater/typescript-template から作ったリポジトリ向けに読み替えてある。読み替えと原典が食い違うときは読み替えを採る。
 
-- 非同期と性能: https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices （MIT）
-- React 19 の書き方: https://github.com/adhhamdev/modern-react-guidance （MIT、`LICENSE-modern-react-guidance`）
+- 非同期と性能: https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices
+- React 19 の書き方: https://github.com/adhhamdev/modern-react-guidance
 - 宣言的 UI とトランジション: https://speakerdeck.com/uhyo/react-no-sekkeiron
 - 操作を止めないミューテーション: https://zenn.dev/uhyo/articles/async-react-action-queue
 - 重い派生の一貫性: https://zenn.dev/uhyo/articles/async-react-debounce
