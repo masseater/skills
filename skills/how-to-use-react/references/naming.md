@@ -2,7 +2,7 @@
 
 大本: https://gist.github.com/rafaelrozon/9fd6bc9efbce3e70311b364f87b89241
 
-原典は 2019 年の React/Redux 向け命名表である。Redux・`.jsx`・`*Screen` は採らない。
+原典の Redux・`.jsx`・`*Screen` は採らない。
 
 ## 識別子
 

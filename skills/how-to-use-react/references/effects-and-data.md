@@ -12,7 +12,3 @@ Effect に書いてよいのは、React が知らない外部（DOM、計測、�
 | サーバーデータを取る | TanStack Query。`queryOptions` は `api` セグメント |
 | 画面の一時状態 | Effect Atom |
 | マウント時に一度だけ何かする | まずイベントかローダーにできないか見る |
-
-`use(promise)` で取得しない。`useEffect` の中で `fetch` して state に入れない。
-
-`useEffectEvent` は、Effect の依存を増やさずに最新の props を読むときだけ使う。
