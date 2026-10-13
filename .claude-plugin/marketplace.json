@@ -1,0 +1,18 @@
+{
+  "name": "masseater",
+  "owner": {
+    "name": "masseater",
+    "url": "https://github.com/masseater"
+  },
+  "metadata": {
+    "description": "masseater のリポジトリで共通に使うエージェントスキル"
+  },
+  "plugins": [
+    {
+      "name": "masseater-skills",
+      "source": "./",
+      "description": "masseater のリポジトリで共通に使うエージェントスキル",
+      "category": "development"
+    }
+  ]
+}
