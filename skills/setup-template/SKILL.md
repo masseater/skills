@@ -1,9 +1,14 @@
 ---
-name: setup-github
-description: このテンプレートから作ったリポジトリの GitHub 側を gh で設定する。Actions の secrets、Actions による PR 作成の許可、PR を作れる人の制限と auto-merge、既定ブランチのルールセットを揃える。テンプレートから新しいリポジトリを作ったとき、GitHub の設定を揃え直すときに使う。
+name: setup-template
+description: masseater/typescript-template から作ったリポジトリの GitHub 側を gh で設定する。Actions の secrets、Actions による PR 作成の許可、PR を作れる人の制限と auto-merge、既定ブランチのルールセットを揃える。テンプレートから新しいリポジトリを作ったとき、GitHub の設定を揃え直すときに使う。ほかのリポジトリでも使えるが、その場合は適用する手順をユーザーに確認する。
 ---
 
-# GitHub の設定
+# テンプレートから作ったリポジトリの設定
+
+[masseater/typescript-template](https://github.com/masseater/typescript-template) から作ったリポジトリで使う前提で書いている。
+それ以外のリポジトリで使ってもよい。
+ただしその場合は、手順を始める前に、どの手順を適用するかをユーザーに確認する。
+アプリ名、secrets、必須チェック名のように、テンプレートの構成を前提にした手順がそのまま当てはまるとは限らないためである。
 
 設定はすべて `gh` で行う。対象リポジトリを `REPO=<owner>/<name>` とする。
 どの手順も、同じ値で何度実行しても結果が変わらない。
