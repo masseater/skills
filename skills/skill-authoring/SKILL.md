@@ -7,11 +7,9 @@ metadata:
 
 # skill の作成・変更
 
-大本は https://github.com/cursor/plugins/blob/main/pstack/skills/poteto-mode/playbooks/authoring-a-skill.md 。
-
 **skill の書きぶりはあなたが責任を持つ。**
 
-1. skills CLI の `skills init <name>` で `SKILL.md` を作る。複数のリポジトリで使う skill は masseater/skills の `skills/` に置く。
+1. skills CLI の `skills init <name>` で `SKILL.md` を作る。複数のリポジトリで使う skill は masseater/skills の `skills/` に置く。ここに置いた skill は Claude Code プラグイン `masseater-skills` にも入る。
 2. 検証する。frontmatter に `name` と `description` があること、参照するファイルが存在すること、他の skill へのリンクが解決することを確かめる。
 3. 構造的な内容ならテストケースを書く。主観的な内容なら書かない。
 4. リポジトリの手順で PR を出す。

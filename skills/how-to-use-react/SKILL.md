@@ -14,15 +14,7 @@ metadata:
 
 # React の使い方
 
-大本は次の資料で、masseater/typescript-template から作ったリポジトリ向けに読み替えてある。読み替えと原典が食い違うときは読み替えを採る。
-
-- 非同期と性能: https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices
-- React 19 の書き方: https://github.com/adhhamdev/modern-react-guidance
-- 宣言的 UI とトランジション: https://speakerdeck.com/uhyo/react-no-sekkeiron
-- 操作を止めないミューテーション: https://zenn.dev/uhyo/articles/async-react-action-queue
-- 重い派生の一貫性: https://zenn.dev/uhyo/articles/async-react-debounce
-- コンポーネント API: https://imply.io/blog/an-opinionated-guide-to-component-apis
-- 名前とファイル: https://gist.github.com/rafaelrozon/9fd6bc9efbce3e70311b364f87b89241
+masseater/typescript-template から作ったリポジトリ向けに、`metadata.upstream` の資料を読み替えてある。読み替えと原典が食い違うときは読み替えを採る。
 
 ## 置き分け
 
@@ -46,21 +38,23 @@ Compiler が無いリポジトリでは、`react-perf` のルールが props に
 
 ## コンポーネントを書くとき
 
-1. 派生値はレンダー中に計算する。Effect で props を state にコピーしない。
-2. Effect は React の外（DOM、計測、購読、ウィジェット）と同期するときだけ書き、後始末を返す（`references/effects-and-data.md`）。
-3. イベントで起きる画面の変化はトランジションが既定である（`references/design-theory.md`）。
-4. 操作列を止めないミューテーションは `useOptimistic` と組み合わせ、追加の操作を pending で無効にしない（`references/action-queue.md`）。
-5. 重い一覧は入力と `useDeferredValue` を分け、タイマーデバウンスを書かない（`references/deferred-consistency.md`）。
-6. `<Activity>`、`<ViewTransition>`、`useEffectEvent` の使いどころは `references/concurrent-ux.md`。
-7. props の形は `references/component-apis.md`、名前とファイルは `references/naming.md`。
+該当するものを読む。
+
+- Effect とデータ取得: `references/effects-and-data.md`
+- トランジションと Suspense: `references/design-theory.md`
+- 操作を止めないミューテーション: `references/action-queue.md`
+- 重い一覧と入力: `references/deferred-consistency.md`
+- `<Activity>`、`<ViewTransition>`、`useEffectEvent`: `references/concurrent-ux.md`
+- props の形: `references/component-apis.md`
+- 名前とファイル: `references/naming.md`
 
 ## 非同期の瀑布
 
-独立した処理を、前の結果を使わないのに順番に待たない。React の他の性能の話より先に、この節を当てる。詳細は `references/async.md`。
+React の他の性能の話より先に、この節を当てる。詳細は `references/async.md`。
 
-- Effect なら `Effect.all` か `Effect.forEach` に `{ concurrency: "unbounded" }` を渡す。順番が仕様なら `{ concurrency: 1 }` と書く。省略しない。
+- 前の結果を使わない処理は、`Effect.all` か `Effect.forEach` に `{ concurrency: "unbounded" }` を渡して同時に始める。順番が仕様なら `{ concurrency: 1 }` と書く。省略しない。
 - Effect の外の Promise なら `Promise.all`。
-- 依存が一部だけのときは、依存しない側を先に始め、依存する側は `Effect.flatMap` で必要な値ができてから始める。両方を一つの `Effect.all` に載せる。
+- 一部だけ依存するときは、依存する側を `Effect.flatMap` で組み、依存しない側と一つの `Effect.all` に載せる。
 
 ```ts
 const loaded = Effect.all(

@@ -8,7 +8,6 @@ description: masseater/typescript-template から作ったリポジトリの Git
 [masseater/typescript-template](https://github.com/masseater/typescript-template) から作ったリポジトリで使う前提で書いている。
 それ以外のリポジトリで使ってもよい。
 ただしその場合は、手順を始める前に、どの手順を適用するかをユーザーに確認する。
-アプリ名、secrets、必須チェック名のように、テンプレートの構成を前提にした手順がそのまま当てはまるとは限らないためである。
 
 設定はすべて `gh` で行う。対象リポジトリを `REPO=<owner>/<name>` とする。
 どの手順も、同じ値で何度実行しても結果が変わらない。
@@ -16,9 +15,8 @@ description: masseater/typescript-template から作ったリポジトリの Git
 ## 1. アプリ名を変える
 
 `apps/web/app-name.ts` の `APP_NAME` は、テンプレートの名前のままになっている。
-`APP_NAME` はスタック名とリソース名の接頭辞になる。
-状態は Cloudflare アカウントの中でスタック名ごとに保存されるため、同じアカウントを使う別のリポジトリと名前が重なると、互いのリソースを置き換えてしまう。
 リポジトリ名に合わせて変える。
+同じ Cloudflare アカウントの別リポジトリと名前が重なると、互いのリソースを置き換え合う。
 
 ## 2. secrets を登録する
 
@@ -42,8 +40,6 @@ Organization のリポジトリなら、Organization の secrets に一度登録
 
 ## 3. Actions に PR の作成を許可する
 
-release-please と自動修正が PR を作るためである。
-
 ```sh
 gh api --method PUT "repos/$REPO/actions/permissions/workflow" \
   -f default_workflow_permissions=read -F can_approve_pull_request_reviews=true
@@ -58,8 +54,7 @@ gh api --method PATCH "repos/$REPO" -f pull_request_creation_policy=collaborator
 
 ## 5. 既定ブランチを保護する
 
-既定ブランチの削除と force push を禁じ、最新の既定ブランチを取り込んでいない PR のマージを拒むルールセットを置く。
-取り込みの検査は、`up-to-date` ワークフローのチェックを必須にし、`strict_required_status_checks_policy` を有効にして行う。
+既定ブランチの削除と force push を禁じ、`up-to-date` チェックを通っていない PR と、最新の既定ブランチを取り込んでいない PR のマージを拒むルールセットを置く。
 バイパスは置かない。release-please の PR は、Claude が既定ブランチを取り込んで push し、そこで動いた `up-to-date` を通してからマージする。
 同じ名前のルールセットがあれば置き換える。
 
@@ -91,4 +86,4 @@ JSON
 ## 6. 反映を確かめる
 
 `gh api "repos/$REPO" --jq '[.pull_request_creation_policy, .allow_auto_merge]'` が `["collaborators_only",true]` を返すことを確かめる。
-`gh api "repos/$REPO/rules/branches/main" --jq '[.[].type]'` に `required_status_checks` があることも確かめる。
+`gh api "repos/$REPO/rules/branches/$(gh api "repos/$REPO" --jq .default_branch)" --jq '[.[].type]'` に `required_status_checks` があることも確かめる。

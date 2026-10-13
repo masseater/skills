@@ -5,8 +5,8 @@ description: 仮説を白黒つける計測を実装や修正の前に決めて�
 
 # 推測するな、計測しろ
 
-根本原因の調べ方は `.agents/skills/systematic-debugging/SKILL.md` に従う。
-完了と報告する前の確認は `.agents/skills/verification-before-completion/SKILL.md` に従う。
+根本原因の調べ方は obra/superpowers の `systematic-debugging` skill に、完了と報告する前の確認は同じく `verification-before-completion` skill に従う。
+「何を計るか」以降は masseater/typescript-template から作ったリポジトリの構成で書いている。ほかのリポジトリでは、同じ役割のものに読み替える。
 
 ## どこで計るか
 
@@ -41,8 +41,6 @@ description: 仮説を白黒つける計測を実装や修正の前に決めて�
 3. 改善前と同じ条件で計り直し、値が良くなったことを確かめる。良くならなければ次の仮説で 2 に戻る。
 4. 改善で別の箇所が遅くなっていないかも計る。
 
-「理論上速くなった」「コードを改善した」では終えない。計った値で良くなるまで続ける。
-
 ## 何を計るか
 
 サーバーの信号はEffectのAPIで出し、Cloudflare Workers Observabilityに集める。
@@ -58,8 +56,6 @@ D1やfetchの呼び出しは、Cloudflareが自動でスパンにする。
 | 遅さ   | `Effect.withSpan` の所要時間を変更の前後で比べ、ロジック単体は `vp test bench` で比べる                             |
 | 新機能 | 受け入れテストに加え、成功と失敗を `Effect.annotateLogs` 付きのログで出し、Workers Logsで件数を集計する             |
 
-テストは対象のコードの隣に置き、`vp test` で回す。
-
 ## 計測結果を読む
 
 ログとトレースは、リクエストの一部だけを標本として残す。
@@ -72,7 +68,6 @@ D1やfetchの呼び出しは、Cloudflareが自動でスパンにする。
 デプロイしたWorkerのログを流して見るときは、`apps/web` で `vp exec alchemy logs --tail` を使う。
 
 Effectのログとブラウザのconsoleは、`vp run dev` のターミナルにも出る。
-手元の出力は、計る仕組みが動くかを確かめるためだけに使う。
 
 ## ブラウザ
 
