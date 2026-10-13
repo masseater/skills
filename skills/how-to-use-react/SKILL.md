@@ -1,15 +1,17 @@
 ---
 name: how-to-use-react
 description: React 19.3 のコンポーネント、ローダー、サーバー処理を書く・直す・レビューするときに読む。非同期の瀑布を消し、状態を Effect Atom と TanStack Query に置き分け、Effect・トランジション・Suspense・Activity・ViewTransition・useEffectEvent の使いどころとコンポーネントの props の形を決める。
+license: MIT（vercel-labs/agent-skills と adhhamdev/modern-react-guidance。後者の全文は LICENSE-modern-react-guidance）
 metadata:
-  upstream:
-    - https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices
-    - https://github.com/adhhamdev/modern-react-guidance
-    - https://speakerdeck.com/uhyo/react-no-sekkeiron
-    - https://zenn.dev/uhyo/articles/async-react-action-queue
-    - https://zenn.dev/uhyo/articles/async-react-debounce
-    - https://imply.io/blog/an-opinionated-guide-to-component-apis
-    - https://gist.github.com/rafaelrozon/9fd6bc9efbce3e70311b364f87b89241
+  upstream: >-
+    https://github.com/vercel-labs/agent-skills/tree/063bee94c3f4df8453406c830b0a7df0f2860278/skills/react-best-practices
+    https://github.com/adhhamdev/modern-react-guidance/tree/569e90f516aa5248afef0614ece3fb9ab36087be
+    https://speakerdeck.com/uhyo/react-no-sekkeiron
+    https://zenn.dev/uhyo/articles/async-react-action-queue
+    https://zenn.dev/uhyo/articles/async-react-debounce
+    https://zenn.dev/uhyo/articles/async-react-debounce-2
+    https://imply.io/blog/an-opinionated-guide-to-component-apis
+    https://gist.github.com/rafaelrozon/9fd6bc9efbce3e70311b364f87b89241/a2c1ee76bd90722161dd9ffe3b17b1dddf669b72
 ---
 
 # React の使い方

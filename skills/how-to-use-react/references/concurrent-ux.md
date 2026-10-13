@@ -1,7 +1,5 @@
 # 並行 UI
 
-大本: https://github.com/adhhamdev/modern-react-guidance/blob/main/references/concurrent-ux.md
-
 設計の前提は `design-theory.md`。
 
 ## ViewTransition

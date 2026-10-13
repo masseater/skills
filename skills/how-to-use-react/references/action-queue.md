@@ -1,7 +1,5 @@
 # 操作を止めないミューテーション
 
-大本: https://zenn.dev/uhyo/articles/async-react-action-queue
-
 原典の `useActionState` のキューイングは、`useMutation` に `scope: { id }` を渡して作る。同じ `scope.id` のミューテーションは順番に実行される。
 
 ## やる

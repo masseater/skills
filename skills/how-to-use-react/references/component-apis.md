@@ -1,7 +1,5 @@
 # コンポーネントの API
 
-大本: https://imply.io/blog/an-opinionated-guide-to-component-apis
-
 ## イベント
 
 | 使う | 使わない |

@@ -1,7 +1,5 @@
 # 宣言的 UI とトランジション
 
-大本: https://speakerdeck.com/uhyo/react-no-sekkeiron
-
 ## 保証
 
 - 一貫性: 変化前と変化後の UI が同居しない。
