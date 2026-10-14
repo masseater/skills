@@ -1,8 +1,8 @@
 ---
 name: skill-authoring
-description: Agent Skills の skill（`SKILL.md` とそのディレクトリ）を作る・直す・添削するときに読む。frontmatter と metadata の書き方、大本の skill の参照とライセンス、本文を削る基準、検証の手順を決める。
-license: MIT（全文は LICENSE）
+description: Agent Skills の skill（`SKILL.md` とそのディレクトリ）を作る・直す・添削するときに読む。frontmatter と metadata の書き方、大本の skill の参照、本文を削る基準、検証の手順を決める。
 metadata:
+  upstream-license: MIT
   upstream: https://github.com/cursor/plugins/blob/bebaffe14f8f442b98e9c409e960aedad59b5fc8/pstack/skills/poteto-mode/playbooks/authoring-a-skill.md
 ---
 
@@ -16,16 +16,17 @@ skill は https://agentskills.io/specification が定義するものである。
 
 - `name`: ディレクトリ名と同じにする。
 - `description`: 何をするかと、いつ使うかを書く。使う場面の語を入れる。
-- `license`: 大本の skill のライセンス。大本がライセンス文書の同梱を求めるなら、skill のディレクトリに置き、そのファイル名も書く。大本が無ければ書かない。
+- `license`: この skill 自体のライセンス。ユーザーが指定したときだけ書く。大本のライセンスを書かない。LICENSE ファイルも作らない。
 - `metadata.upstream`: 大本の skill と、参考にした資料の URL。`references/` のファイルの大本もここに入れる。GitHub の URL はコミットを指定した permalink にする。
+- `metadata.upstream-license`: 大本の skill のライセンス。
 
-大本の URL、ライセンス、作者、バージョンは本文と `references/` に書かず、frontmatter に入れる。
+大本の URL、ライセンス、作者、バージョンは本文と `references/` に書かず、`metadata` に入れる。
 
 `metadata` の値は文字列だけである。複数の URL は空白区切りの 1 つの文字列にする。
 
 ```yaml
-license: MIT（全文は LICENSE）
 metadata:
+  upstream-license: MIT
   upstream: >-
     https://github.com/<owner>/<repo>/blob/<commit>/path/SKILL.md
     https://example.com/article
