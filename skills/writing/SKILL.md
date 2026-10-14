@@ -2,7 +2,7 @@
 name: writing
 description: 文章を書く・推敲するときに読む。ドキュメント、コメント、コミットメッセージ、PR 本文、記事、解説のような説明文の規範に、読み手の読み方に合わせた構成、読み物の緩急の設計、AI が読むコンテキスト、小説、Zenn 記事の書き方を加えている。「AI っぽい」「読みにくい」文章を直すときにも使う。
 metadata:
-  upstream: https://github.com/masseater/claude-code-plugin/tree/2e0619b1ab620552764da5ea6e46b77a0dcfaa35/plugins/writing
+  derived-from: https://github.com/masseater/claude-code-plugin/tree/2e0619b1ab620552764da5ea6e46b77a0dcfaa35/plugins/writing
 ---
 
 # writing

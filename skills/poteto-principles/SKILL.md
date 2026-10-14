@@ -2,7 +2,7 @@
 name: poteto-principles
 description: 設計・実装・修正・リファクタリング・移行・検証・文書の変更に取りかかるときに読む。cursor/plugins の pstack にある poteto の原則集で、該当する原則を references から読んで従う。
 metadata:
-  upstream: https://github.com/cursor/plugins/tree/c86f349b102feb91f1966f8a6a60882a4e601b50/pstack/skills
+  derived-from: https://github.com/cursor/plugins/tree/c86f349b102feb91f1966f8a6a60882a4e601b50/pstack/skills
 ---
 
 # poteto-principles

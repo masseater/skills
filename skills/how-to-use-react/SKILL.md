@@ -2,7 +2,7 @@
 name: how-to-use-react
 description: React 19.3 のコンポーネント、ローダー、サーバー処理を書く・直す・レビューするときに読む。非同期の瀑布を消し、状態を Effect Atom と TanStack Query に置き分け、Effect・トランジション・Suspense・Activity・ViewTransition・useEffectEvent の使いどころとコンポーネントの props の形を決める。
 metadata:
-  upstream: >-
+  derived-from: >-
     https://github.com/vercel-labs/agent-skills/tree/063bee94c3f4df8453406c830b0a7df0f2860278/skills/react-best-practices
     https://github.com/adhhamdev/modern-react-guidance/tree/569e90f516aa5248afef0614ece3fb9ab36087be
     https://speakerdeck.com/uhyo/react-no-sekkeiron
@@ -15,7 +15,7 @@ metadata:
 
 # how-to-use-react
 
-masseater/typescript-template から作ったリポジトリ向けに、`metadata.upstream` の資料を読み替えてある。読み替えと原典が食い違うときは読み替えを採る。
+masseater/typescript-template から作ったリポジトリ向けに、`metadata.derived-from` の skillを読み替えてある。読み替えと原典が食い違うときは読み替えを採る。
 
 ## この skill が必要な理由と達成したい状態
 
