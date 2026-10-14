@@ -1,6 +1,6 @@
 ---
 name: how-to-use-react
-description: React 19.3 のコンポーネント、ローダー、サーバー処理を書く・直す・レビューするときに読む。非同期の瀑布を消し、状態を Effect Atom と TanStack Query に置き分け、Effect・トランジション・Suspense・Activity・ViewTransition・useEffectEvent の使いどころとコンポーネントの props の形を決める。
+description: React 19.3 のコンポーネント、ローダー、サーバー処理を書く・直す・レビューするときに読む。状態の置き場所、非同期の組み方、並行 UI の API の使いどころ、props の形を決める。
 metadata:
   derived-from: >-
     https://github.com/vercel-labs/agent-skills/tree/063bee94c3f4df8453406c830b0a7df0f2860278/skills/react-best-practices
