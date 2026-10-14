@@ -1,6 +1,6 @@
 ---
 name: skill-authoring
-description: Agent Skills の skill、つまり `SKILL.md` とそのディレクトリを作る・直す・添削するときに読む。本文を skill が必要な理由と達成したい状態から導いて書き、直すときも全体を導き直す。frontmatter と metadata の書き方、検証の手順も決める。
+description: Agent Skills の skill、つまり `SKILL.md` とそのディレクトリを作る・直す・添削するときに読む。本文を skill が必要な理由と達成したい状態から導いて書き、直すときも全体を導き直す。
 metadata:
   derived-from: https://github.com/cursor/plugins/blob/bebaffe14f8f442b98e9c409e960aedad59b5fc8/pstack/skills/poteto-mode/playbooks/authoring-a-skill.md
 ---
@@ -99,6 +99,7 @@ skill でよく起きる継ぎ足しは、指摘された一文を末尾に足�
 
 - `name` はディレクトリ名と同じにする。本文の最初の見出しも同じ名前にする
 - `description` には何をするかと、いつ使うかを書く。使う場面の語を入れる
+- `description` に本文の目次を書かない。`references/` や `usecases/` が増えるたびに直すことになる
 - `license` は書かない。LICENSE ファイルも作らない
 
 ### metadata.derived-from
