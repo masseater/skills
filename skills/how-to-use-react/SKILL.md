@@ -51,18 +51,6 @@ React 19.3 のコンポーネント、ローダー、サーバー処理を書く
 
 `react-perf` が指摘するのは、props に渡す関数やオブジェクトの作り直しである。
 
-## コンポーネントを書くとき
-
-次もすべて読むこと。
-
-- [`effects-and-data`](references/effects-and-data.md)。Effect に書いてよいものと、データの置き場所
-- [`design-theory`](references/design-theory.md)。トランジションと Suspense の設計の前提
-- [`action-queue`](references/action-queue.md)。操作を止めないミューテーション
-- [`deferred-consistency`](references/deferred-consistency.md)。重い一覧と入力の分離
-- [`concurrent-ux`](references/concurrent-ux.md)。`<Activity>`、`<ViewTransition>`、`useEffectEvent`
-- [`component-apis`](references/component-apis.md)。props の形
-- [`naming`](references/naming.md)。名前とファイル
-
 ## 非同期の瀑布
 
 [`async`](references/async.md) も読むこと。React の他の性能の話より先に、この節を当てる。
@@ -94,3 +82,15 @@ const loaded = Effect.all(
 | Redux の Action / Reducer / Selector | Effect Atom と TanStack Query、FSD の `model` / `api` / `ui` |
 
 不確かな API の形は react.dev の該当リファレンスを見る。原典の例を、上の表が使わないとしたフックのまま写さない。
+
+## 参照
+
+次もすべて読むこと。
+
+- [`effects-and-data`](references/effects-and-data.md)。Effect に書いてよいものと、データの置き場所
+- [`design-theory`](references/design-theory.md)。トランジションと Suspense の設計の前提
+- [`action-queue`](references/action-queue.md)。操作を止めないミューテーション
+- [`deferred-consistency`](references/deferred-consistency.md)。重い一覧と入力の分離
+- [`concurrent-ux`](references/concurrent-ux.md)。`<Activity>`、`<ViewTransition>`、`useEffectEvent`
+- [`component-apis`](references/component-apis.md)。props の形
+- [`naming`](references/naming.md)。名前とファイル
