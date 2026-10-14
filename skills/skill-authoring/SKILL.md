@@ -11,6 +11,8 @@ metadata:
 
 skill は https://agentskills.io/specification が定義するものである。frontmatter、ディレクトリ構成、ファイル参照はこの仕様に従う。
 
+skill は Claude Opus 5.5 が読む。本文は https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5 を読み、その通りに書く。
+
 ## frontmatter
 
 - `name`: ディレクトリ名と同じにする。
