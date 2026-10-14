@@ -7,7 +7,7 @@ metadata:
 
 # skill-authoring
 
-skill は https://agentskills.io/specification が定義するもので、frontmatter、ディレクトリ構成、ファイル参照はこの仕様に従う。読むのは Claude なので、文章は https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices と、そこから辿れる読み手の model 向けのガイドの通りに書く。「書きぶり」はその要点である。日本語の文章は writing に従う。
+skill は https://agentskills.io/specification が定義するもので、frontmatter、ディレクトリ構成、ファイル参照はこの仕様に従う。読むのは Claude なので、文章は https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices と、そこから辿れる読み手の model 向けのガイドの通りに書く。「書きぶり」はその要点である。文章は writing に、ユーザーの読み方と考え方の前提は humanity-and-humanness に従う。
 
 ## この skill が必要な理由と達成したい状態
 

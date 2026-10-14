@@ -1,6 +1,6 @@
 ---
 name: writing
-description: 日本語の文章を書く・推敲するときに読む。ドキュメント、コメント、コミットメッセージ、PR 本文、記事、解説のような説明文の規範に、読み物の緩急の設計、小説、Zenn 記事の書き方を加えている。「AI っぽい」「読みにくい」文章を直すときにも使う。
+description: 文章を書く・推敲するときに読む。ドキュメント、コメント、コミットメッセージ、PR 本文、記事、解説のような説明文の規範に、読み手の読み方に合わせた構成、読み物の緩急の設計、AI が読むコンテキスト、小説、Zenn 記事の書き方を加えている。「AI っぽい」「読みにくい」文章を直すときにも使う。
 metadata:
   upstream: https://github.com/masseater/claude-code-plugin/tree/2e0619b1ab620552764da5ea6e46b77a0dcfaa35/plugins/writing
 ---
@@ -9,15 +9,24 @@ metadata:
 
 ## この skill が必要な理由と達成したい状態
 
-この skill が必要な理由は、AI が文を、読者に何を判断させるかからではなく、学習した説明文の形から反射的に組み立てることにある。そのため理由が欠け、コードから導出できる陳腐化する情報が増え、反射的な読点が不自然な拍を作り、全文が同じ認知モードで平坦になる。この癖は読者を疲れさせ、大事な判断基準を埋もれさせる。
+この skill が必要な理由は、AI が文を、読者に何を判断させるかからではなく、学習した説明文の形から反射的に組み立てることにある。そのため理由が欠け、コードから導出できる陳腐化する情報が増え、反射的な読点が不自然な拍を作り、全文が同じ認知モードで平坦になる。さらに AI は、書いてあることをそのまま読み取れる自分を読者の模型にするので、推測で補いながら読む人間には、項目が数えられず、流れに乗れず、読んでも頭に残らない文章になる。この癖は読者を疲れさせ、大事な判断基準を埋もれさせる。
 
 この skill で達成したい状態は、読者が一度読むだけで書き手の判断とその理由を受け取り、最後まで読み進められる文章になっていることである。
 
 ## 大原則
 
-日本語の文章は philtzjp/skills の [`japanese`](https://github.com/philtzjp/skills/blob/main/.agents/skills/japanese/SKILL.md) に従う。この skill の規範は、その上に足すものである。
+読者である人間の読み方と考え方は humanity-and-humanness に従う。日本語の文章は philtzjp/skills の [`japanese`](https://github.com/philtzjp/skills/blob/main/.agents/skills/japanese/SKILL.md) に従う。この skill の規範は、その上に足すものである。
 
 規範は、文型や禁止事項として機械的に当てはめるものではない。先に決めるのは「どう直すか」ではなく「その修正で文章の何を守るのか」であり、形式ではなく文章が果たしている働きで判断する。
+
+### 読み手の読み方に合わせた構成
+
+人間は順に読み、読んだ順に理解を組み立て、一覧して全体を把握してから詳細に入る。構成はその読み方に合わせる。
+
+- 規則を並べる前に、その規則がなければ何が起きるかを書く。読み手は「それでどうするのか」と疑問を持ち、次に来る規則で解ける。規則を先に並べて理由を後から添えると、疑問が立たないので流れが生まれない。必要な理由から達成したい状態、大原則、規則へ進む構成は、この流れを文書全体に作ったものである。
+- 並列の項目はリストにする。文章に畳むと、人間は項目を数えられず、いくつあるかを推測する。
+- 別のファイルや節への索引には、一行の要約を付ける。要約を一覧すれば、読み手は全体の地図を持った上で詳細に入れる。
+- 一文に置く独立した判断は 1 つにする。複数あると人間は読み飛ばして推測で埋め、AI は全部を実行するので、ここで両者の認識がずれる。
 
 ### 緩急の設計
 
@@ -34,14 +43,18 @@ metadata:
 
 ## 規範
 
-日本語の説明文を書くときは、次もすべて読むこと。
+説明文を書くときは、次もすべて読むこと。
 
-- [`purpose-and-reason`](references/purpose-and-reason.md)
-- [`no-perishable-information`](references/no-perishable-information.md)
-- [`punctuation`](references/punctuation.md)
-- [`purpose-before-means`](references/purpose-before-means.md)
-- [`headings`](references/headings.md)
+- [`purpose-and-reason`](references/purpose-and-reason.md)。そうする目的と理由を書き、読者が想定外の状況でも判断できるようにする。
+- [`no-perishable-information`](references/no-perishable-information.md)。コードや設定から導出できる個数、名称、配置を文書に複製しない。
+- [`punctuation`](references/punctuation.md)。句読点は役割の異なる領域の境界と、意味が確定する場所に打つ。
+- [`purpose-before-means`](references/purpose-before-means.md)。手段より目的を先に置き、目的の要否から評価できるようにする。
+- [`headings`](references/headings.md)。見出しと箇条書きは体言止めにする。
 
 ## 用途
 
-`usecases/` は特定の文章を書く手順である。小説は [`novel`](usecases/novel.md) を、Zenn の技術記事は [`zenn-article`](usecases/zenn-article.md) を読むこと。
+`usecases/` は特定の文章を書く手順である。
+
+- [`ai-context`](usecases/ai-context.md)。SKILL.md、AGENTS.md、CLAUDE.md、README.md、rules、memory のように、AI が恒常的に読み、人間がときどき読んで認識を照合する文書を書く。
+- [`novel`](usecases/novel.md)。小説を書く。説明文向けの規範はそのまま当てはめない。
+- [`zenn-article`](usecases/zenn-article.md)。Zenn の技術記事を書き、レビューを経て PR を出す。
