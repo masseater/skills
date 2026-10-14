@@ -1,6 +1,6 @@
 ---
 name: poteto-principles
-description: 設計・実装・修正・リファクタリング・移行・文書の変更に取りかかるとき、とくに依頼や指摘を既存のものに継ぎ足して済ませそうなときに読む。cursor/plugins の pstack にある poteto の原則集で、該当する原則を references から読んで従う。
+description: 設計・実装・修正・リファクタリング・移行・検証・文書の変更に取りかかるときに読む。cursor/plugins の pstack にある poteto の原則集で、該当する原則を references から読んで従う。
 metadata:
   upstream: https://github.com/cursor/plugins/tree/c86f349b102feb91f1966f8a6a60882a4e601b50/pstack/skills
 ---
@@ -9,13 +9,13 @@ metadata:
 
 ## この skill が必要な理由と達成したい状態
 
-この skill が必要な理由: 要件は会話の途中で一つずつ届く。作業者は届いた要件を今の設計にどう足すかを考え、設計が要件全体に合っているかは問わない。足すたびに一回分の差分は小さく正しく見えるが、設計は要件が届いた順の履歴になり、どの要件の組み合わせからも導けない形になる。
+この skill が必要な理由: 作業者は、その場で思いつく観点でしか判断を問えない。知らない観点は問いとして浮かばないので、抜けていても気づけず、同じ種類の誤りを繰り返す。経験を積んだエンジニアが、何度も効いた判断の観点を言葉にしたものを借りれば、その抜けを自分の経験を待たずに埋められる。
 
-この skill で達成したい状態: どの設計も、今ある要件を最初から知っていたかのような形をしている。
+この skill で達成したい状態: どの判断も、経験を積んだエンジニアが当てる観点を通っている。
 
 ## 原則
 
-`references/` は pstack の `principle-*` の原文である。作業に当てはまる原則を読んで従う。どれにも迷ったら、まず [`redesign-from-first-principles`](references/redesign-from-first-principles.md) と [`subtract-before-you-add`](references/subtract-before-you-add.md) を読む。
+`references/` は pstack の `principle-*` の原文である。作業に当てはまる原則を読んで従う。
 
 - [`attack-the-premise`](references/attack-the-premise.md): Apply when two or more fixes that share one premise have failed the same gate. Take a census of which actors hold the imbalance before the next fix, then question the premise instead of writing another fix that assumes it.
 - [`boundary-discipline`](references/boundary-discipline.md): Apply when wiring validation, error handling, or framework adapters. Concentrate guards at system boundaries (CLI, config, network, external APIs); trust internal types and keep business logic in pure functions.
