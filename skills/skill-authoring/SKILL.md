@@ -54,7 +54,7 @@ skill は https://agentskills.io/specification が定義するもので、frontm
 - `name` はディレクトリ名と同じにする。本文の最初の見出しも同じ名前にする。
 - `description` には何をするかと、いつ使うかを書く。使う場面の語を入れる。
 - `license` は書かない。LICENSE ファイルも作らない。
-- `metadata.upstream` には、この skill を書くときに大本にした skill と、参考にした資料の URL を書く。`references/` のファイルの大本もここに入れる。GitHub の URL はコミットを指定した permalink にする。大本の URL、作者、バージョンは本文と `references/` に書かない。skill を使うたびに読ませたい資料は大本ではないので、本文にリンクを書く。
+- `metadata.upstream` には、この skill がそのまま持ってきた大本の skill の URL だけを書く。`references/` のファイルの大本もここに入れる。GitHub の URL はコミットを指定した permalink にする。大本の URL、作者、バージョンは本文と `references/` に書かない。書くときに参考にした資料や、本文で根拠として引く資料は大本ではないので、使う箇所の本文にリンクを書く。
 
 `metadata` の値は文字列だけなので、複数の URL は空白区切りの 1 つの文字列にする。
 
