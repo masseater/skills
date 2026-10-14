@@ -82,5 +82,6 @@ metadata:
 
 `usecases/` は特定の文章を書く手順である。
 
-- [`ai-context`](usecases/ai-context.md)。SKILL.md、AGENTS.md、README.md のように AI が読む文書を書く
+- [`ai-context`](usecases/ai-context.md)。SKILL.md、AGENTS.md、CLAUDE.md のように AI が読む文書を書く
+- [`readme-md`](usecases/readme-md.md)。人間が最初に読む README.md を書く
 - [`novel`](usecases/novel.md)。小説を書く
