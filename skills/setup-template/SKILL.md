@@ -40,6 +40,8 @@ Organization のリポジトリなら、Organization の secrets に一度登録
 
 ## 3. Actions に PR の作成を許可する
 
+release-please と自動修正のワークフローが PR を作る。
+
 ```sh
 gh api --method PUT "repos/$REPO/actions/permissions/workflow" \
   -f default_workflow_permissions=read -F can_approve_pull_request_reviews=true
