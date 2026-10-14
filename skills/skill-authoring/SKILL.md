@@ -16,7 +16,7 @@ skill は https://agentskills.io/specification が定義するものである。
 
 - `name`: ディレクトリ名と同じにする。
 - `description`: 何をするかと、いつ使うかを書く。使う場面の語を入れる。
-- `license`: この skill 自体のライセンス。ユーザーが指定したときだけ書く。大本のライセンスを書かない。LICENSE ファイルも作らない。
+- `license`: 書かない。skill はリポジトリのルートの LICENSE に従う。skill のディレクトリに LICENSE ファイルも作らない。
 - `metadata.upstream`: 大本の skill と、参考にした資料の URL。`references/` のファイルの大本もここに入れる。GitHub の URL はコミットを指定した permalink にする。
 - `metadata.upstream-license`: 大本の skill のライセンス。
 
