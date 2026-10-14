@@ -7,11 +7,11 @@ metadata:
 
 # skill の作成・変更
 
-**skill の書きぶりはあなたが責任を持つ。**
+skill の書きぶりはあなたが責任を持つ。
 
 skill は https://agentskills.io/specification が定義するものである。frontmatter、ディレクトリ構成、ファイル参照はこの仕様に従う。
 
-skill は Claude Opus 5.5 が読む。本文は https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5 を読み、その通りに書く。
+skill は Claude Opus 5.5 が読む。本文は https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5 と、そこから参照される https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices を読み、その通りに書く。下の「本文」はその要点である。
 
 ## frontmatter
 
@@ -40,6 +40,15 @@ metadata:
 
 ## 本文
 
-迷ったら消す。判断を変える文だけを残す。何をするかを命じ、理由は書かない。理由がないと混乱する規則にだけ説明を付ける。文の調子は扱う範囲に合わせる。構造的な情報源（型、README、設定）を指し示し、繰り返す指示は文を足さずに lint・メタデータ・実行時の検査・スクリプトにする。他の skill にはパスで委ね、言い直さない。繰り返し踏むのに skill になっていない手順があれば、新しい skill を提案する。
+- 記述を消すことを恐れない。判断を変えない文、ほかの場所の言い直し、言われなくてもモデルがやることは消す。迷ったら消す。
+- 規則には理由を一文添える。モデルは理由から、書いていない場面にも規則を広げて当てはめる。理由がなくても読み違えようのない規則には付けない。
+- 「〜しない」で終えず、代わりに何をするかを書く。避けてほしい形は「汎用的な見た目を避ける」のような一般論にせず、具体的に名指しする。
+- 出力の形を決めたいときは、文で説明するより良い例を示す。
+- 「よく考えてから」「最終確認をする」「見直してから答える」のような思考や検証の指示は書かない。モデルは自分でやり、指示すると過剰になる。推論を書き出させる指示は拒否されうるので、要るなら結果の短い説明を求める。
+- 徹底させるための強い言い回しや強調を足さない。いまのモデルは指示に過敏に反応する。
+- 文の調子は扱う範囲に合わせる。
+- 構造的な情報源（型、README、設定）を指し示し、繰り返す指示は文を足さずに lint・メタデータ・実行時の検査・スクリプトにする。
+- 他の skill にはパスで委ね、言い直さない。
+- 繰り返し踏むのに skill になっていない手順があれば、新しい skill を提案する。
 
-**返答:** skill の要約、主な設計判断、検証の結果。
+返答: skill の要約、主な設計判断、検証の結果。
