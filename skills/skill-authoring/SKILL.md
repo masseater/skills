@@ -54,7 +54,7 @@ skill は https://agentskills.io/specification が定義するもので、frontm
 - `name` はディレクトリ名と同じにする。本文の最初の見出しも同じ名前にする。
 - `description` には何をするかと、いつ使うかを書く。使う場面の語を入れる。
 - `license` は書かない。LICENSE ファイルも作らない。
-- `metadata.derived-from` には、この skill の元になった skill の URL だけを書く。元になった skill とは、それを取り込んでこの skill を作ったもので、取り込んだ後に書き直していても元である。GitHub の URL はコミットを指定した permalink にする。元の URL、作者、バージョンは本文と `references/` に書かない。書くときに読んだ資料や、本文で根拠として引く資料は元ではないので、使う箇所の本文にリンクを書く。
+- `metadata.derived-from` には、この skill の原典の URL だけを書く。原典とは、その内容を取り込み、読み替えてこの skill にしたもので、skill でも記事でもよく、取り込んだ後に書き直していても原典である。書くときに読んだだけの資料、本文で根拠として引く資料、本文から名前で委ねる skill は原典ではないので、使う箇所の本文にリンクか名前を書く。GitHub の URL はコミットを指定した permalink にする。原典の URL、作者、バージョンは本文と `references/` に書かない。
 
 `metadata` の値は文字列だけなので、複数の URL は空白区切りの 1 つの文字列にする。
 

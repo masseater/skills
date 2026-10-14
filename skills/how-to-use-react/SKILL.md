@@ -15,7 +15,7 @@ metadata:
 
 # how-to-use-react
 
-masseater/typescript-template から作ったリポジトリ向けに、`metadata.derived-from` の skillを読み替えてある。読み替えと原典が食い違うときは読み替えを採る。
+masseater/typescript-template から作ったリポジトリ向けに、原典を読み替えてある。読み替えと原典が食い違うときは読み替えを採る。
 
 ## この skill が必要な理由と達成したい状態
 
