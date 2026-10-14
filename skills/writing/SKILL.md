@@ -2,9 +2,7 @@
 name: writing
 description: 日本語の文章を書く・推敲するときに読む。ドキュメント、コメント、コミットメッセージ、PR 本文、記事、解説のような説明文の規範に、読み物の緩急の設計、小説、Zenn 記事の書き方を加えたもの。「AI っぽい」「読みにくい」文章を直すときにも使う。
 metadata:
-  upstream: >-
-    https://github.com/masseater/claude-code-plugin/tree/2e0619b1ab620552764da5ea6e46b77a0dcfaa35/plugins/writing
-    https://github.com/philtzjp/skills/blob/5d8b844e8cf087515a345b56bf5b40ad8125f4bc/.agents/skills/japanese/SKILL.md
+  upstream: https://github.com/masseater/claude-code-plugin/tree/2e0619b1ab620552764da5ea6e46b77a0dcfaa35/plugins/writing
 ---
 
 # writing
@@ -39,6 +37,8 @@ metadata:
 ## 規範
 
 `references/` は説明文の規範である。日本語の説明文を書くたびに読む。
+
+英語の直訳、体言止め、「〜どうぞ」のような訳語調、文中の記号といった日本語の言い回しは、philtzjp/skills の [`japanese`](https://github.com/philtzjp/skills/blob/main/.agents/skills/japanese/SKILL.md) に従う。
 
 - [`purpose-and-reason`](references/purpose-and-reason.md): そうする目的を書く。動作の説明は理由の代わりにならず、技術で完結する理由はプロダクトの要件まで遡る。
 - [`no-perishable-information`](references/no-perishable-information.md): コードや設定から導出できる個数、名称、配置を文書に複製せず、正本を参照する。
