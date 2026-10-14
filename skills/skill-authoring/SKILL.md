@@ -7,28 +7,21 @@ metadata:
 
 # skill の作成・変更
 
-## 目的
-
-書いた本人がいない場面では、モデルは skill に書かれたことからしか判断できない。判断を変えない文は、判断を変える文を薄める。
-
-## 達成したい状態
-
-skill を読んだモデルが、書いていない場面でも書き手と同じ判断を下せる。
-
-## 前提
-
 skill の書きぶりはあなたが責任を持つ。
 
 skill は https://agentskills.io/specification が定義するものである。frontmatter、ディレクトリ構成、ファイル参照はこの仕様に従う。
 
 skill は Claude Opus 5.5 が読む。本文は https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5 と、そこから参照される https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices を読み、その通りに書く。下の「本文」はその要点である。
 
+## 目的と達成したい状態
+
+書いた本人がいない場面では、モデルは skill に書かれたことからしか判断できない。判断を変えない文は、判断を変える文を薄める。
+
+skill を読んだモデルが、書いていない場面でも書き手と同じ判断を下せる。
+
 ## 構成
 
-本文は「目的」「達成したい状態」の 2 つのセクションで始め、手順や規則のセクションと分ける。
-
-- 目的: この skill がないと何が起きるか。なぜ必要か。
-- 達成したい状態: skill に従った結果、どうなっていればよいか。
+本文に「目的と達成したい状態」のセクションを 1 つ置き、手順や規則と分ける。目的にはこの skill がないと何が起きるかを、達成したい状態には skill に従った結果どうなっていればよいかを書く。
 
 規則が当てはまらない場面では、モデルはこの 2 つから判断する。規則はすべてこの 2 つから導けるように書き、ずれた規則は直すか消す。2 つが言えない skill は、まだ作る段階にない。
 
