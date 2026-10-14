@@ -5,7 +5,7 @@ metadata:
   upstream: https://github.com/cursor/plugins/blob/bebaffe14f8f442b98e9c409e960aedad59b5fc8/pstack/skills/poteto-mode/playbooks/authoring-a-skill.md
 ---
 
-# skill の作成・変更
+# skill-authoring
 
 skill の書きぶりはあなたが責任を持つ。
 
@@ -27,7 +27,7 @@ skill を読んだモデルが、書いていない場面でも書き手と同�
 
 ## frontmatter
 
-- `name`: ディレクトリ名と同じにする。
+- `name`: ディレクトリ名と同じにする。本文の最初の見出し（`#`）も同じ名前にする。
 - `description`: 何をするかと、いつ使うかを書く。使う場面の語を入れる。
 - `license`: 書かない。LICENSE ファイルも作らない。
 - `metadata.upstream`: 大本の skill と、参考にした資料の URL。`references/` のファイルの大本もここに入れる。GitHub の URL はコミットを指定した permalink にする。

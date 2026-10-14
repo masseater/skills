@@ -13,7 +13,7 @@ metadata:
     https://gist.github.com/rafaelrozon/9fd6bc9efbce3e70311b364f87b89241/a2c1ee76bd90722161dd9ffe3b17b1dddf669b72
 ---
 
-# React の使い方
+# how-to-use-react
 
 masseater/typescript-template から作ったリポジトリ向けに、`metadata.upstream` の資料を読み替えてある。読み替えと原典が食い違うときは読み替えを採る。
 
