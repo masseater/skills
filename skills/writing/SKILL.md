@@ -53,7 +53,7 @@ metadata:
 
 ## 用途
 
-`usecases/` は特定の文章を書く手順である。
+`usecases/` は特定の文章を書く手順である。人間は地図を持ってから詳細に入るので、各ファイルは、何の手順かを書く「概要」、守ることの一覧である「ポイント」、詳細の順に書く。詳細の見出しは、規則の文ではなく扱う対象の名にする。
 
 - [`ai-context`](usecases/ai-context.md)。SKILL.md、AGENTS.md、CLAUDE.md、README.md、rules、memory のように、AI が恒常的に読み、人間がときどき読んで認識を照合する文書を書く。
 - [`novel`](usecases/novel.md)。小説を書く。説明文向けの規範はそのまま当てはめない。
