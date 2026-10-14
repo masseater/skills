@@ -5,7 +5,7 @@ metadata:
   upstream: https://github.com/obra/superpowers/blob/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/systematic-debugging/SKILL.md
 ---
 
-# 推測するな、計測しろ
+# measure-dont-guess
 
 「何を計るか」以降は masseater/typescript-template から作ったリポジトリの構成で書いている。ほかのリポジトリでは、同じ役割のものに読み替える。
 
