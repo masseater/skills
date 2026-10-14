@@ -1,7 +1,5 @@
 # 非同期の瀑布を消す
 
-大本: https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices の `rules/async-*.md`。
-
 ## 独立した処理は同時に始める
 
 前の結果を使わない処理を、順番に `yield*` したり `await` したりしない。
