@@ -5,6 +5,8 @@ description: masseater/typescript-template から作ったリポジトリの Git
 
 # テンプレートから作ったリポジトリの設定
 
+大前提: テンプレートから作ったリポジトリを、作った直後からテンプレートと同じ自動化と保護が効く状態にする。設定が抜けた自動化は、動かないことに誰も気づかない。
+
 [masseater/typescript-template](https://github.com/masseater/typescript-template) から作ったリポジトリで使う前提で書いている。
 それ以外のリポジトリで使ってもよい。
 ただしその場合は、手順を始める前に、どの手順を適用するかをユーザーに確認する。
