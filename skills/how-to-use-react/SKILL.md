@@ -2,7 +2,7 @@
 name: how-to-use-react
 description: React 19.3 のコンポーネント、ローダー、サーバー処理を書く・直す・レビューするときに読む。非同期の瀑布を消し、状態を Effect Atom と TanStack Query に置き分け、Effect・トランジション・Suspense・Activity・ViewTransition・useEffectEvent の使いどころとコンポーネントの props の形を決める。
 metadata:
-  upstream: >-
+  derived-from: >-
     https://github.com/vercel-labs/agent-skills/tree/063bee94c3f4df8453406c830b0a7df0f2860278/skills/react-best-practices
     https://github.com/adhhamdev/modern-react-guidance/tree/569e90f516aa5248afef0614ece3fb9ab36087be
     https://speakerdeck.com/uhyo/react-no-sekkeiron
@@ -15,7 +15,12 @@ metadata:
 
 # how-to-use-react
 
-masseater/typescript-template から作ったリポジトリ向けに、`metadata.upstream` の資料を読み替えてある。読み替えと原典が食い違うときは読み替えを採る。
+React 19.3 のコンポーネント、ローダー、サーバー処理を書くときの規則である。masseater/typescript-template から作ったリポジトリ向けに、原典を読み替えてある。読み替えと原典が食い違うときは読み替えを採る。
+
+- 状態は Effect Atom と TanStack Query に置き分ける
+- 非同期の瀑布を消す
+- React Compiler があるリポジトリでは `useMemo`、`useCallback`、`memo` を書かない
+- 原典にある Next.js、SWR、Redux、`better-all` は採らない
 
 ## この skill が必要な理由と達成したい状態
 
@@ -40,28 +45,32 @@ masseater/typescript-template から作ったリポジトリ向けに、`metadat
 
 ## メモ化
 
-React Compiler が有効なリポジトリでは `useMemo`、`useCallback`、`memo` を書かない。
-Compiler が無いリポジトリでは、`react-perf` のルールが props に渡す関数やオブジェクトの作り直しを指摘した箇所にだけ `useCallback` / `useMemo` を書く。それ以外は計測で遅いと分かってから足す。
+- React Compiler が有効なリポジトリでは `useMemo`、`useCallback`、`memo` を書かない
+- Compiler が無いリポジトリでは、`react-perf` のルールが指摘した箇所にだけ `useCallback` か `useMemo` を書く
+- それ以外は、計測で遅いと分かってから足す
+
+`react-perf` が指摘するのは、props に渡す関数やオブジェクトの作り直しである。
 
 ## コンポーネントを書くとき
 
-該当するものを読む。
+次もすべて読むこと。
 
-- Effect とデータ取得: `references/effects-and-data.md`
-- トランジションと Suspense: `references/design-theory.md`
-- 操作を止めないミューテーション: `references/action-queue.md`
-- 重い一覧と入力: `references/deferred-consistency.md`
-- `<Activity>`、`<ViewTransition>`、`useEffectEvent`: `references/concurrent-ux.md`
-- props の形: `references/component-apis.md`
-- 名前とファイル: `references/naming.md`
+- [`effects-and-data`](references/effects-and-data.md)。Effect に書いてよいものと、データの置き場所
+- [`design-theory`](references/design-theory.md)。トランジションと Suspense の設計の前提
+- [`action-queue`](references/action-queue.md)。操作を止めないミューテーション
+- [`deferred-consistency`](references/deferred-consistency.md)。重い一覧と入力の分離
+- [`concurrent-ux`](references/concurrent-ux.md)。`<Activity>`、`<ViewTransition>`、`useEffectEvent`
+- [`component-apis`](references/component-apis.md)。props の形
+- [`naming`](references/naming.md)。名前とファイル
 
 ## 非同期の瀑布
 
-React の他の性能の話より先に、この節を当てる。詳細は `references/async.md`。
+[`async`](references/async.md) も読むこと。React の他の性能の話より先に、この節を当てる。
 
-- 前の結果を使わない処理は、`Effect.all` か `Effect.forEach` に `{ concurrency: "unbounded" }` を渡して同時に始める。順番が仕様なら `{ concurrency: 1 }` と書く。省略しない。
-- Effect の外の Promise なら `Promise.all`。
-- 一部だけ依存するときは、依存する側を `Effect.flatMap` で組み、依存しない側と一つの `Effect.all` に載せる。
+- 前の結果を使わない処理は、`Effect.all` か `Effect.forEach` に `{ concurrency: "unbounded" }` を渡して同時に始める
+- 順番が仕様なら `{ concurrency: 1 }` と書く。省略しない
+- Effect の外の Promise なら `Promise.all` を使う
+- 一部だけ依存するときは、依存する側を `Effect.flatMap` で組み、依存しない側と一つの `Effect.all` に載せる
 
 ```ts
 const loaded = Effect.all(

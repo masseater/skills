@@ -5,24 +5,21 @@ description: masseater/typescript-template から作ったリポジトリの Git
 
 # setup-template
 
-[masseater/typescript-template](https://github.com/masseater/typescript-template) から作ったリポジトリで使う前提で書いている。
-それ以外のリポジトリで使ってもよい。
-ただしその場合は、手順を始める前に、どの手順を適用するかをユーザーに確認する。
+[masseater/typescript-template](https://github.com/masseater/typescript-template) から作ったリポジトリの GitHub 側の設定を整える手順である。
 
-設定はすべて `gh` で行う。対象リポジトリを `REPO=<owner>/<name>` とする。
-どの手順も、同じ値で何度実行しても結果が変わらない。
+- 設定はすべて `gh` で行う。対象リポジトリを `REPO=<owner>/<name>` とする
+- どの手順も、同じ値で何度実行しても結果が変わらない
+- それ以外のリポジトリで使うときは、手順を始める前に、どの手順を適用するかをユーザーに確認する
 
 ## この skill が必要な理由と達成したい状態
 
-この skill が必要な理由は、テンプレートから作ったリポジトリに、コードとワークフローは引き継がれても、secrets、Actions の権限、ルールセットなど GitHub 側の設定とアプリ名が引き継がれないことにある。ワークフローのファイルは揃っているので設定の抜けは見えず、抜けたまま動く自動化は失敗するか何もしないまま、誰も気づかない。
+この skill が必要な理由は、テンプレートから作ったリポジトリに、コードとワークフローは引き継がれても、GitHub 側の設定とアプリ名が引き継がれないことにある。secrets、Actions の権限、ルールセットがそれにあたる。ワークフローのファイルは揃っているので設定の抜けは見えない。抜けたまま動く自動化は失敗するか何もしないまま、誰も気づかない。
 
 この skill で達成したい状態は、作った直後から、テンプレートと同じ自動化と保護が効いていることである。
 
 ## 1. アプリ名を変える
 
-`apps/web/app-name.ts` の `APP_NAME` は、テンプレートの名前のままになっている。
-リポジトリ名に合わせて変える。
-同じ Cloudflare アカウントの別リポジトリと名前が重なると、互いのリソースを置き換え合う。
+`apps/web/app-name.ts` の `APP_NAME` は、テンプレートの名前のままになっている。リポジトリ名に合わせて変える。同じ Cloudflare アカウントの別リポジトリと名前が重なると、互いのリソースを置き換え合う。
 
 ## 2. secrets を登録する
 
@@ -62,9 +59,14 @@ gh api --method PATCH "repos/$REPO" -f pull_request_creation_policy=collaborator
 
 ## 5. 既定ブランチを保護する
 
-既定ブランチの削除と force push を禁じ、`up-to-date` チェックを通っていない PR と、最新の既定ブランチを取り込んでいない PR のマージを拒むルールセットを置く。
-バイパスは置かない。release-please の PR は、Claude が既定ブランチを取り込んで push し、そこで動いた `up-to-date` を通してからマージする。
-同じ名前のルールセットがあれば置き換える。
+既定ブランチにルールセットを置く。同じ名前のルールセットがあれば置き換える。
+
+- 既定ブランチの削除と force push を禁じる
+- `up-to-date` チェックを通っていない PR のマージを拒む
+- 最新の既定ブランチを取り込んでいない PR のマージを拒む
+- バイパスは置かない
+
+release-please の PR は、Claude が既定ブランチを取り込んで push し、そこで動いた `up-to-date` を通してからマージする。
 
 ```sh
 id="$(gh api "repos/$REPO/rulesets" --jq '.[] | select(.name == "protect default branch") | .id')"
@@ -93,5 +95,7 @@ JSON
 
 ## 6. 反映を確かめる
 
-`gh api "repos/$REPO" --jq '[.pull_request_creation_policy, .allow_auto_merge]'` が `["collaborators_only",true]` を返すことを確かめる。
-`gh api "repos/$REPO/rules/branches/$(gh api "repos/$REPO" --jq .default_branch)" --jq '[.[].type]'` に `required_status_checks` があることも確かめる。
+次の 2 つを確かめる。
+
+- `gh api "repos/$REPO" --jq '[.pull_request_creation_policy, .allow_auto_merge]'` が `["collaborators_only",true]` を返す
+- `gh api "repos/$REPO/rules/branches/$(gh api "repos/$REPO" --jq .default_branch)" --jq '[.[].type]'` に `required_status_checks` がある
