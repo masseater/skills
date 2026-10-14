@@ -5,7 +5,7 @@ description: 仮説を白黒つける計測を実装や修正の前に決めて�
 
 # 推測するな、計測しろ
 
-根本原因の調べ方は obra/superpowers の `systematic-debugging` skill に、完了と報告する前の確認は同じく `verification-before-completion` skill に従う。
+根本原因の調べ方は obra/superpowers の `systematic-debugging` skill に従う。
 「何を計るか」以降は masseater/typescript-template から作ったリポジトリの構成で書いている。ほかのリポジトリでは、同じ役割のものに読み替える。
 
 ## どこで計るか
