@@ -27,4 +27,4 @@ npx skills init <name>                      # SKILL.md の雛形を作る
 
 ## 作業の流れ
 
-ブランチを切って PR を出し、squash でマージする。マージ後はブランチを main から作り直す。
+ブランチを切って PR を出し、squash でマージする。mergify は使わない。マージ後はブランチを main から作り直す。
