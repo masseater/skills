@@ -1,6 +1,6 @@
 ---
 name: setup-template
-description: masseater/typescript-template から作ったリポジトリを、テンプレートに揃える。GitHub 側の設定を gh で整え、中身の移行が完了しているかを、テンプレートの骨格（vite-plus・pnpm カタログ・tsgo・Effect・fallow・verify・hooks と CI・エージェント用の設定・Alchemy・冗長な設定をしない）が入り、効き、古い形が消えているかで判定する。新しいリポジトリを作ったとき、AI に移行を任せたあとに使う。ほかのリポジトリでも使えるが、その場合は適用する手順をユーザーに確認する。
+description: masseater/typescript-template から作ったリポジトリを、テンプレートに揃える。GitHub 側の設定を gh で整え、中身の移行が完了しているかを、テンプレートの骨格が入り、効き、古い形が消えているかで判定する。新しいリポジトリを作ったとき、AI に移行を任せたあとに使う。ほかのリポジトリでも使えるが、その場合は適用する手順をユーザーに確認する。
 ---
 
 # setup-template
