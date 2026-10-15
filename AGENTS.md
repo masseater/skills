@@ -27,4 +27,4 @@ npx skills init <name>                      # SKILL.md の雛形を作る
 
 ## 作業の流れ
 
-ブランチを切って PR を出し、squash でマージする。マージ後はブランチを main から作り直す。
+clone 直後は一度 `mergify stack hooks --setup` を通す（commit-msg フックが Change-Id を付ける）。PR は mergify stack で出し、draft のまま置く。squash でマージし、マージ後はブランチを main から作り直す。
