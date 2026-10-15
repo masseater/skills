@@ -1,101 +1,52 @@
 ---
 name: setup-template
-description: masseater/typescript-template から作ったリポジトリの GitHub 側の設定を gh で揃える。テンプレートから新しいリポジトリを作ったとき、GitHub の設定を揃え直すときに使う。ほかのリポジトリでも使えるが、その場合は適用する手順をユーザーに確認する。
+description: masseater/typescript-template から作ったリポジトリを、テンプレートに揃える。GitHub 側の設定を gh で整え、中身の移行が完了しているかを、テンプレートの骨格（vite-plus・pnpm カタログ・tsgo・Effect・fallow・verify・hooks と CI・エージェント用の設定・Alchemy・冗長な設定をしない）が入り、効き、古い形が消えているかで判定する。新しいリポジトリを作ったとき、AI に移行を任せたあとに使う。ほかのリポジトリでも使えるが、その場合は適用する手順をユーザーに確認する。
 ---
 
 # setup-template
 
-[masseater/typescript-template](https://github.com/masseater/typescript-template) から作ったリポジトリの GitHub 側の設定を整える手順である。
+[masseater/typescript-template](https://github.com/masseater/typescript-template) から作ったリポジトリを、テンプレートに揃える。GitHub 側の設定を gh で整え、中身の移行が完了しているかをテンプレートの骨格から照合する。対象リポジトリを `REPO=<owner>/<name>` とする。
 
-- 設定はすべて `gh` で行う。対象リポジトリを `REPO=<owner>/<name>` とする
+- 設定はすべて `gh` で行う
 - どの手順も、同じ値で何度実行しても結果が変わらない
 - それ以外のリポジトリで使うときは、手順を始める前に、どの手順を適用するかをユーザーに確認する
+- 基準にするのは、テンプレートが持ち続けている骨格である。テンプレートの新しいリリースで増えた要素は、この検査の欠けにしない
+- 各要素を、入っているか、効いているか、古い形や重複が残っていないかの 3 点で見る
+- 判定には、コマンドの出力やファイルの実物を根拠として添える
+- 対象外の要素には、リポジトリの現実から言える理由を書く
+- 検査では直さない。欠けは一覧として渡す。直しながら検査すると、判定が直しの結果に塗り替わる
+- 検査や lint を緩めて緑にした形跡は、欠けとして扱う
 
 ## この skill が必要な理由と達成したい状態
 
-この skill が必要な理由は、テンプレートから作ったリポジトリに、コードとワークフローは引き継がれても、GitHub 側の設定とアプリ名が引き継がれないことにある。secrets、Actions の権限、ルールセットがそれにあたる。ワークフローのファイルは揃っているので設定の抜けは見えない。抜けたまま動く自動化は失敗するか何もしないまま、誰も気づかない。
+この skill が必要な理由は、テンプレートから作ったリポジトリに、コードとワークフローは引き継がれても、GitHub 側の設定とアプリ名が引き継がれないことにある。secrets、Actions の権限、ルールセットがそれにあたる。ワークフローのファイルは揃っているので、設定の抜けは見えない。抜けたまま動く自動化は失敗するか何もしないまま、誰も気づかない。
 
-この skill で達成したい状態は、作った直後から、テンプレートと同じ自動化と保護が効いていることである。
+中身も同じである。移行の欠けは失敗として現れない。hook が 1 つ足りなくても、古い設定が隣に残っても、ビルドもテストも verify も、入っている検査のぶんだけは通る。欠けは静かに無いままで、取り残しは静かに効かないままで、報告には「移行しました」だけが残る。テンプレートは動くアプリの土台も持っているので、作業の目標は「アプリが動く」に寄り、動かすのに要らない骨格から先に抜け落ちる。リポジトリは欠けを教えてくれないので、テンプレートの骨格から逆向きに照合しないと、未完は見つからない。
 
-## 1. アプリ名を変える
+この skill で達成したい状態は、作った直後から、テンプレートと同じ自動化と保護が GitHub 側でも中身でも効いていることである。そしてその状態を、要素ごとに実物の出力で言い切れていること。
 
-`apps/web/app-name.ts` の `APP_NAME` は、テンプレートの名前のままになっている。リポジトリ名に合わせて変える。同じ Cloudflare アカウントの別リポジトリと名前が重なると、互いのリソースを置き換え合う。
+## 検査の基準
 
-## 2. secrets を登録する
+[`typescript-template`](references/typescript-template.md) も読むこと。
 
-値はユーザーに尋ねる。
+- 骨格の一覧は references にある。細部（今のタスクの並び、hook の中身、workflow の条件）は、手元のテンプレートの実物で確かめる。一覧を写しとして使わない
+- テンプレートの新しいリリースで増えた要素は、欠けにしない。それは移行の欠けではなく更新の未取り込みであり、取り込みは template-release の仕組みが案内する。混ぜると、未完なのか、ただ古いだけなのかが判定から読めなくなる
+- 対象外の要素には理由を書く。アプリを持たない、デプロイしない、のようにリポジトリの現実から言えることだけを理由にする。理由の書けない対象外は欠けである
 
-```sh
-gh secret set OPENROUTER_API_KEY --repo "$REPO"
-gh secret set CLAUDE_CODE_OAUTH_TOKEN --repo "$REPO"
-gh secret set CLOUDFLARE_ACCOUNT_ID --repo "$REPO"
-gh secret set CLOUDFLARE_API_TOKEN --repo "$REPO"
-```
+## 判定の作り方
 
-| 名前                      | 用途                                         |
-| ------------------------- | -------------------------------------------- |
-| `OPENROUTER_API_KEY`      | verify ワークフローの oxlint-plugin-decision |
-| `CLAUDE_CODE_OAUTH_TOKEN` | verify 失敗時に Claude Code が自動修正する   |
-| `CLOUDFLARE_ACCOUNT_ID`   | デプロイ先と Alchemy の状態を置くアカウント  |
-| `CLOUDFLARE_API_TOKEN`    | 同じアカウントの API トークン                |
+- 入りは、ファイルと依存が実在するかで見る
+- 効きは、動かす仕組みが繋がり、実際に走るかで見る。設定ファイルにあるだけの hook や、このリポジトリでは決して動かない条件は、効いていない
+- 残りは、置き換えられた仕組みと、同じ関心の二重の設定で見る
+- 古い形でも働いているものは、欠けにしない。欠けと言えるのは、無いことで何かが壊れるか、静かに無効になるものだけである。形の新しさはテンプレートの更新の領分なので、混ぜると本当の欠けが埋もれる
+- 根拠は実物にする。ファイルは開き、コマンドは実行する。「ありそう」は判定にしない（poteto-principles の prove-it-works）
+- `vp install` と `vp run verify` を実行する。verify が落ちたら、そのタスクと出力が最初の欠けである
+- 判定は「移行完了」か「未完了」の 2 つにする。未完了には、要素、欠けの中身、根拠のコマンドと出力を添える
+- 検査のタスクや厳しさを緩めて緑にした形跡（タスクの削除、severity や ignorePatterns の緩和、無視コメントの増加）は、それ自体を欠けにする。理由: 緩んでいるかもしれない検査は、ほかの判定の基準に使えない
 
-Organization のリポジトリなら、Organization の secrets に一度登録すれば、各リポジトリでの登録は要らない。
+## 用途
 
-## 3. Actions に PR の作成を許可する
+次を読むこと。
 
-release-please と自動修正のワークフローが PR を作る。
-
-```sh
-gh api --method PUT "repos/$REPO/actions/permissions/workflow" \
-  -f default_workflow_permissions=read -F can_approve_pull_request_reviews=true
-```
-
-## 4. PR を作れる人を collaborator に限り、auto-merge を有効にする
-
-```sh
-gh api --method PATCH "repos/$REPO" -f pull_request_creation_policy=collaborators_only \
-  -F allow_auto_merge=true -F allow_update_branch=true
-```
-
-## 5. 既定ブランチを保護する
-
-既定ブランチにルールセットを置く。同じ名前のルールセットがあれば置き換える。
-
-- 既定ブランチの削除と force push を禁じる
-- `up-to-date` チェックを通っていない PR のマージを拒む
-- 最新の既定ブランチを取り込んでいない PR のマージを拒む
-- バイパスは置かない
-
-release-please の PR は、Claude が既定ブランチを取り込んで push し、そこで動いた `up-to-date` を通してからマージする。
-
-```sh
-id="$(gh api "repos/$REPO/rulesets" --jq '.[] | select(.name == "protect default branch") | .id')"
-gh api --method "$([ -n "$id" ] && echo PUT || echo POST)" "repos/$REPO/rulesets${id:+/$id}" --input - <<'JSON'
-{
-  "name": "protect default branch",
-  "target": "branch",
-  "enforcement": "active",
-  "conditions": { "ref_name": { "include": ["~DEFAULT_BRANCH"], "exclude": [] } },
-  "bypass_actors": [],
-  "rules": [
-    { "type": "deletion" },
-    { "type": "non_fast_forward" },
-    {
-      "type": "required_status_checks",
-      "parameters": {
-        "strict_required_status_checks_policy": true,
-        "do_not_enforce_on_create": false,
-        "required_status_checks": [{ "context": "up-to-date", "integration_id": 15368 }]
-      }
-    }
-  ]
-}
-JSON
-```
-
-## 6. 反映を確かめる
-
-次の 2 つを確かめる。
-
-- `gh api "repos/$REPO" --jq '[.pull_request_creation_policy, .allow_auto_merge]'` が `["collaborators_only",true]` を返す
-- `gh api "repos/$REPO/rules/branches/$(gh api "repos/$REPO" --jq .default_branch)" --jq '[.[].type]'` に `required_status_checks` がある
+- [`setup`](usecases/setup.md)。GitHub 側の設定を gh で揃える
+- [`check`](usecases/check.md)。移行の完了を判定する
