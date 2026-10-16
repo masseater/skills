@@ -4,7 +4,7 @@
 
 ## 1. アプリ名を変える
 
-`apps/web/app-name.ts` の `APP_NAME` は、テンプレートの名前のままになっている。リポジトリ名に合わせて変える。同じ Cloudflare アカウントの別リポジトリと名前が重なると、互いのリソースを置き換え合う。
+`apps/web/app-name.ts` の `APP_NAME` は、テンプレートの名前のままになっている。リポジトリ名に合わせて変える。同じ Cloudflare アカウントの別リポジトリと名前が重なると、お互いのリソースを置き換えてしまう。
 
 ## 2. secrets を登録する
 
@@ -24,7 +24,7 @@ gh secret set CLOUDFLARE_API_TOKEN --repo "$REPO"
 | `CLOUDFLARE_ACCOUNT_ID`   | デプロイ先と Alchemy の状態を置くアカウント  |
 | `CLOUDFLARE_API_TOKEN`    | 同じアカウントの API トークン                |
 
-Organization のリポジトリなら、Organization の secrets に一度登録すれば、各リポジトリでの登録は要らない。
+Organization のリポジトリなら、Organization の secrets に一度登録すれば、リポジトリごとの登録は要らない。
 
 ## 3. Actions に PR の作成を許可する
 
@@ -51,7 +51,7 @@ gh api --method PATCH "repos/$REPO" -f pull_request_creation_policy=collaborator
 - 最新の既定ブランチを取り込んでいない PR のマージを拒む
 - バイパスは置かない
 
-release-please の PR は、Claude が既定ブランチを取り込んで push し、そこで動いた `up-to-date` を通してからマージする。
+release-please の PR は、Claude が既定ブランチを取り込んで push し、その push で動く `up-to-date` が通ってからマージする。
 
 ```sh
 id="$(gh api "repos/$REPO/rulesets" --jq '.[] | select(.name == "protect default branch") | .id')"
