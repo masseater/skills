@@ -9,7 +9,7 @@ masseater.dev のリポジトリ（masseater/masseater.dev）に記事を置く�
 | Zenn に出す技術記事 | `apps/zenn-articles/articles/` |
 
 - frontmatter の項目は `apps/portfolio/src/entities/entry/model/entry.ts` の `Frontmatter` に従う
-- 脚注は remark-gfm が本文の末尾に「出典」の一覧として描画する
+- 脚注は remark-gfm が出現順に番号を振り、本文の末尾に「出典」の一覧として描画する
 - 中身の薄いアイデア段階の blog は `stage: idea` にする
 - `apps/portfolio/content/` の文章は `.textlintrc` の検査を通す。本文は「である」調になる
 - Zenn の記事は textlint の対象外で、既存の記事は「です・ます」調で書かれている
