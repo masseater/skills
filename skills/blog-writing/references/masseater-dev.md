@@ -4,7 +4,7 @@ masseater.dev のリポジトリ（masseater/masseater.dev）に記事を置く�
 
 | 種類 | 置き場所 |
 | --- | --- |
-| 調査メモ、ポエム、論説、技術記事 | `apps/portfolio/content/blogs/` |
+| 調査メモ、ポエム、論説、技術記事、教えてClaude | `apps/portfolio/content/blogs/` |
 | scrap | `apps/portfolio/content/scraps/` |
 | Zenn に出す技術記事 | `apps/zenn-articles/articles/` |
 
