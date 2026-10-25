@@ -57,7 +57,7 @@ masseater の名前で出す記事を書く、直すときの規則である。
 
 ## 全種類に共通の規則
 
-[`ai-style`](references/ai-style.md) も読むこと。
+[`ai-style`](references/ai-style.md) も読むこと。書いたあとは [`evidence`](references/evidence.md) の表に当てて確かめる。
 
 - 依頼の軸から外れた独自の主張を足さない。記事の軸は本人の言葉で確かめ、自分の要約に置き換えない
 - 本人の言葉は言い換えない。「複利」と言われたら「複利」と書き、借金や利払いのような比喩に広げない
