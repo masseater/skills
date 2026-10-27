@@ -67,8 +67,7 @@ masseater/typescript-template から作ったリポジトリで確かめる、�
 ## 11. 冗長な設定をしない
 
 - 同じ役割の持ち主を 1 つにする。tsconfig の共通部は `tsconfig.base.json`、依存の版はカタログ、アプリ名は `app-name.ts` に置き、環境変数は環境ごとに変わる値だけにする。
-- 置き換えの後始末を済ませる。prettier から oxfmt へ、eslint CLI の直接実行から `vp check` へ、knip から fallow へ、husky から `.vite-hooks` へ置き換わり、旧い側の設定、依存、script は消えている。
-- 無効化を増やさない。`oxlint-disable` と `eslint-disable` のコメント、`ignorePatterns` の追加、severity の緩和を、移行の都合で増やさない。
+- eslint CLI の直接実行は `vp check` に置き換わり、旧い側の設定、依存、script は消えている。
 
 ## 12. 無駄なドキュメント、無駄なコードコメントを削除する
 

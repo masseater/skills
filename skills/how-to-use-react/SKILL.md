@@ -41,7 +41,7 @@ React 19.3 のコンポーネント、ローダー、サーバー処理を書く
 | ref | 関数の props | `forwardRef`、文字列 ref |
 | 隠しても状態を残す | `<Activity mode="hidden">` | 条件付きアンマウントで状態を捨てる |
 | 遷移のアニメーション | `<ViewTransition>` | |
-| Effect で最新の props を使う | `useEffectEvent`。依存配列には入れない | その関数を依存配列に足して購読をやり直す |
+| Effect で最新の props を使う | `useEffectEvent`。依存配列には入れない | その関数を依存配列に足して購読をやり直す、ハンドラを ref にしまう |
 
 ## メモ化
 
@@ -76,9 +76,7 @@ const loaded = Effect.all(
 | --- | --- |
 | Next.js（`next/dynamic`、`after()`、React `cache()` をリクエストをまたいで使う） | TanStack Start のローダー |
 | SWR | TanStack Query |
-| `useState` / `useRef` でローディングや一時値を持つ | `useMutation`、`useTransition`、Effect Atom |
 | `better-all` | `Effect.all` |
-| ハンドラを ref にしまう | `useEffectEvent` |
 | Redux の Action / Reducer / Selector | Effect Atom と TanStack Query、FSD の `model` / `api` / `ui` |
 
 不確かな API の形は react.dev の該当リファレンスを見る。原典の例を、上の表が使わないとしたフックのまま写さない。
