@@ -21,6 +21,15 @@
 - アカウントの支出を止める設定は無い。[予算アラート](https://developers.cloudflare.com/billing/manage/optimize-costs/)は通知だけである
 - 1 回の実行の暴走を止める公式の手段は、[Custom limits](https://developers.cloudflare.com/workers/platform/pricing/) の `limits.cpu_ms` である
 
+## Rate Limiting バインディングの効き方
+
+[Rate Limiting バインディング](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/)は拠点ごとの近似で、上限ちょうどでは止まらない。2026-10-27 に typescript-template の本番で、1 分 100 回の設定に 1 つの IP から送って測った。
+
+- 600 回を約 1 分で送ったときは、1 回も 429 にならなかった
+- 3,000 回を 24 秒で送ったときは、1,852 回が 429 になり、1,148 回が通った
+
+大量アクセスで請求が跳ねるのは防げるが、上限を正確に守らせる用途には使えない。正確な上限が要るときは、WAF のレート制限ルールか Durable Object のカウンターを使う。
+
 ## 静的アセットと Worker
 
 - 静的アセットに一致するリクエストは、既定では [Worker を起動せずに配られる](https://developers.cloudflare.com/workers/static-assets/)
