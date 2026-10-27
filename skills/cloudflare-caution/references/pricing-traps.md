@@ -23,12 +23,8 @@
 
 ## Rate Limiting バインディングの効き方
 
-[Rate Limiting バインディング](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/)は拠点ごとの近似で、上限ちょうどでは止まらない。2026-10-27 に typescript-template の本番で、1 分 100 回の設定に 1 つの IP から送って測った。
-
-- 600 回を約 1 分で送ったときは、1 回も 429 にならなかった
-- 3,000 回を 24 秒で送ったときは、1,852 回が 429 になり、1,148 回が通った
-
-大量アクセスで請求が跳ねるのは防げるが、上限を正確に守らせる用途には使えない。正確な上限が要るときは、WAF のレート制限ルールか Durable Object のカウンターを使う。
+- [Rate Limiting バインディング](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/)は拠点ごとの近似で、上限を超えても止まらないことがある
+- 大量アクセスの歯止めには使えるが、正確な上限が要るときは WAF のレート制限ルールか Durable Object のカウンターを使う
 
 ## 静的アセットと Worker
 
