@@ -1,13 +1,13 @@
 # security
 
-攻撃と漏えいへの備えを確かめる。どれも欠けていても動くので、検出の仕組みで見ないと気づかない。基準は [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) と [OWASP Top 10](https://owasp.org/www-project-top-ten/) に従う。
+攻撃と情報漏えいへの対策を確認する。どれも欠けていてもアプリケーションは動くので、検出ツールで確認しないと気づかない。基準は [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) と [OWASP Top 10](https://owasp.org/www-project-top-ten/) に従う。
 
-| 確かめること | 今の状態の確かめ方 | 満たす状態 |
+| 確認する事項 | 現状の確認方法 | 充足条件 |
 | --- | --- | --- |
-| 秘密情報の置き場所 | gitleaks のような秘密情報の検出を、リポジトリの全履歴に掛ける | 検出が無い。秘密情報はシークレットの保管先にだけある |
-| 依存の脆弱性 | パッケージマネージャーの audit を実行する | 勧告が無い。修正版の無い勧告だけが、理由つきで除外されている |
-| レスポンスヘッダー | 本番の HTML を返す各ページに `curl -I` でリクエストし、CSP、HSTS、X-Content-Type-Options、Referrer-Policy、Permissions-Policy を見る | すべて付いている |
-| 動的な検査 | 本番に ZAP のスキャンを掛ける | 警告も含めてアラートが無い |
-| 書き込みと認証の口への大量のリクエスト | レート制限の設定を探す | 書き込み、認証、公開 API の前にレート制限がある |
+| シークレットの保管場所 | gitleaks などのシークレット検出ツールを、リポジトリの全履歴に対して実行する | 検出がない。シークレットはシークレットの保管サービスにだけある |
+| 依存パッケージの脆弱性 | パッケージマネージャーの audit を実行する | 勧告がない。修正版のない勧告だけが、理由とともに除外されている |
+| レスポンスヘッダー | 本番の HTML を返す各ページに `curl -I` でリクエストし、CSP、HSTS、X-Content-Type-Options、Referrer-Policy、Permissions-Policy を確認する | すべて付与されている |
+| 動的スキャン | 本番環境に ZAP のスキャンを実行する | 警告を含めてアラートがない |
+| 書き込みと認証のエンドポイントへの大量リクエスト | レート制限の設定を探す | 書き込み、認証、公開 API の前段にレート制限がある |
 
-全履歴に掛けるのは、消したつもりの秘密情報が過去のコミットに残るからである。
+全履歴を対象にするのは、削除したつもりのシークレットが過去のコミットに残るからである。
