@@ -1,0 +1,20 @@
+{
+  "name": "masseater-skills",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare": "vp config --no-agent",
+    "readme": "node scripts/update-readme.mjs"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.15.0",
+      "onFail": "download"
+    }
+  },
+  "devDependencies": {
+    "skills-ref": "^0.1.5",
+    "vite-plus": "^1.4.0"
+  }
+}
