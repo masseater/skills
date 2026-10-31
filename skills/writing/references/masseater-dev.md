@@ -1,6 +1,6 @@
 # masseater.dev での置き場所
 
-masseater.dev のリポジトリ（masseater/masseater.dev）に記事を置くときの参照である。リポジトリの AGENTS.md の「記事」節も読むこと。
+masseater/masseater.dev の AGENTS.md の「記事」節も読むこと。
 
 | 種類 | 置き場所 |
 | --- | --- |
