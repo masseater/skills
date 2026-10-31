@@ -78,9 +78,9 @@ gh api --method "$([ -n "$id" ] && echo PUT || echo POST)" "repos/$REPO/rulesets
 JSON
 ```
 
-## 6. 反映を確かめる
+## 6. 反映を確認する
 
-次の 2 つを確かめる。
+次の 2 つを確認する。
 
 - `gh api "repos/$REPO" --jq '[.pull_request_creation_policy, .allow_auto_merge]'` が `["collaborators_only",true]` を返す
 - `gh api "repos/$REPO/rules/branches/$(gh api "repos/$REPO" --jq .default_branch)" --jq '[.[].type]'` に `required_status_checks` がある
