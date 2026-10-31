@@ -23,6 +23,8 @@ npx -y skills-ref validate skills/<name>   # frontmatter と構成を検証す�
 npx skills init <name>                      # SKILL.md の雛形を作る
 ```
 
+README.md の「入っているスキル」の一覧は、main に push されると `.github/workflows/readme.yml` が `node scripts/update-readme.mjs` で各 `SKILL.md` の `name` と `description` から書き直す。手で直さない。手元で揃えるときも同じコマンドを動かし、`--check` を付けると古いときに失敗する。
+
 ビルド、テスト、lint はない。skill を変えたら `skills-ref validate` を通し、参照するファイルと名前で委ねた skill が存在することを確かめる。
 
 ## 作業の流れ
