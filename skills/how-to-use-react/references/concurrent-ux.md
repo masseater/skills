@@ -1,6 +1,6 @@
 # 並行 UI
 
-`<ViewTransition>`、`<Activity>`、`useEffectEvent` の使いどころである。設計の前提は [`design-theory`](design-theory.md) も読むこと。
+設計の前提は [`design-theory`](design-theory.md) も読むこと。
 
 - 遷移の出入りは `<ViewTransition>` に乗せる
 - 行き来しても状態を残したい画面は `<Activity>` で隠す

@@ -1,6 +1,6 @@
 # GitHub 側の設定を揃える
 
-テンプレートから作ったリポジトリの GitHub 側の設定を、gh で揃える手順である。対象リポジトリを `REPO=<owner>/<name>` とする。
+対象リポジトリを `REPO=<owner>/<name>` とする。
 
 ## 1. アプリ名を変える
 
@@ -79,8 +79,6 @@ JSON
 ```
 
 ## 6. 反映を確認する
-
-次の 2 つを確認する。
 
 - `gh api "repos/$REPO" --jq '[.pull_request_creation_policy, .allow_auto_merge]'` が `["collaborators_only",true]` を返す
 - `gh api "repos/$REPO/rules/branches/$(gh api "repos/$REPO" --jq .default_branch)" --jq '[.[].type]'` に `required_status_checks` がある

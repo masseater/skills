@@ -1,7 +1,5 @@
 # コンポーネントの API
 
-props の形を決める規則である。
-
 - イベントは `onXxxChange` の形にする
 - 真偽の props は `is` を付けず、省略時を偽にする
 - 見た目の分岐は `variant` と `size` に閉じる
@@ -23,7 +21,7 @@ props の形を決める規則である。
 | `open`、`disabled`、`checked`、`required`、`readOnly` | `isOpen`、`isLoading`、`hasMultiple` |
 | `variant` や `size` の文字列ユニオン | 見た目用の boolean の増殖、enum の import |
 
-真偽の props は省略時を偽にする。見た目の分岐は `cva` の `variant` と `size` に閉じる。振る舞いの分岐が増えたら boolean を足さず、コンポーネントを分けるかクラスタで合成する。
+見た目の分岐は `cva` の `variant` と `size` に閉じる。振る舞いの分岐が増えたら boolean を足さず、コンポーネントを分けるかクラスタで合成する。
 
 ## 合成
 
