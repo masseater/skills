@@ -1,13 +1,11 @@
 ---
 name: cloudflare-caution
-description: Cloudflare（Workers・静的アセット・KV・D1・R2・Durable Objects・Queues・Workers Logs）で請求が膨らむ設計を避け、安く済む形を選ぶ。Cloudflare に載せるものを設計するとき、Worker やバインディングを足すとき、ページやデータの配り方を決めるとき、ループや再試行を書くときに使う。
+description: Cloudflare で請求が膨らむ設計を避け、安く済む形を選ぶ。Cloudflare に載せるものを設計するとき、Worker やバインディングを足すとき、ページやデータの配り方を決めるとき、ループや再試行を書くときに使う。
 metadata:
   derived-from: https://github.com/anantbhandarkar/make-it-right/blob/1e20457d47d6cf4658b131c29204a9a4d1c1d91d/skills/mir-cloud-cloudflare/SKILL.md
 ---
 
 # cloudflare-caution
-
-Cloudflare で請求が膨らまない設計にするための規則である。
 
 - 結果が同じになる処理を、リクエストのたびに動かさない
 - 暴走したときに止まる仕組みを、コードと設定に入れる
@@ -15,7 +13,7 @@ Cloudflare で請求が膨らまない設計にするための規則である。
 
 ## この skill が必要な理由と達成したい状態
 
-この skill が必要な理由は、Cloudflare の課金がリクエスト、行、操作、ログのイベントといった細かい単位の従量で、しかも支出に上限が無いことにある。どの単位も 1 回あたりは安いので、書いている時点では気にならない。けれど閲覧のたびに SSR や API や DB を動かす設計では、費用がアクセス数に比例して伸びる。ループや再試行のバグがあれば、その回数がそのまま請求になる。予算アラートは知らせるだけで、止めてはくれない。
+この skill が必要な理由は、Cloudflare の課金が細かい単位の従量で、支出に上限が無いことにある。1 回あたりは安いので書いている時点では気にならないが、閲覧のたびに動く処理や、ループと再試行のバグは、その回数がそのまま請求になる。
 
 この skill で達成したい状態は、1 回のアクセスにかかる費用が設計の段階で決まっていることである。バグやボットで想定を外れても、請求になる前にコードと設定が止める。
 
@@ -32,8 +30,6 @@ Cloudflare で請求が膨らまない設計にするための規則である。
 - クライアントでは、データが変わらない間は再取得しない。TanStack Query なら `staleTime` を設定する
 
 ## 暴走の歯止め
-
-支出の上限が無いので、止める仕組みは自分で入れるしかない。
 
 - Worker には [Custom limits](https://developers.cloudflare.com/workers/platform/pricing/) の `limits.cpu_ms` を付ける。1 回の実行の暴走を止める公式の手段はこれだけである。値は本番の CPU 時間の p99 を測って、その少し上にする。上限まで上げると、無限ループがそのまま請求になる
 - 公開する API、認証、書き込みの口の前段には、レート制限を置く。ボットの大量アクセスは、レート制限が無ければすべて課金される
