@@ -1,10 +1,11 @@
 ---
 name: writing
-description: 文章を書く・推敲するときに読む。ドキュメント、コメント、コミットメッセージ、PR 本文、記事のような説明文と、小説のような読み物が対象である。「AI っぽい」「読みにくい」文章を直すときにも使う。
+description: 文章を書く・推敲するときに読む。ドキュメント、コメント、コミットメッセージ、PR 本文、README のような説明文と、masseater の名前で出す記事（調査メモ、ポエム、論説、技術記事、scrap、教えてClaude）と、小説が対象である。「AI っぽい」「AI 文体」「冗長」「読みにくい」と言われた文章を直すとき、Claude との壁打ちを「記事化して」と言われたときにも使う。
 metadata:
   derived-from: >-
     https://github.com/masseater/claude-code-plugin/tree/2e0619b1ab620552764da5ea6e46b77a0dcfaa35/plugins/writing
     https://github.com/cursor/plugins/blob/837067b75aa20ab58d7b2a2f6c0531e37118c596/pstack/skills/technical-writing/SKILL.md
+    https://github.com/azukiazusa1/skills/tree/a7f996f1cd700a4a56827f6cf2a130ff5a9ceedf/skills/writing/write-blog-article
 ---
 
 # writing
@@ -78,8 +79,17 @@ metadata:
 
 ## 用途
 
-`usecases/` は特定の文章を書く手順である。
+`usecases/` は特定の文章を書く手順である。選んだ手順も読むこと。
 
 - [`ai-context`](usecases/ai-context.md)。SKILL.md、AGENTS.md、CLAUDE.md のように AI が読む文書を書く
 - [`readme-md`](usecases/readme-md.md)。人間が使うかを決めて使い始めるための README.md を書く
 - [`novel`](usecases/novel.md)。小説を書く
+
+masseater の名前で出す記事は、次の 6 つの種類から 1 つを選んで書く。依頼の言葉から決まらないときは、たたき台を書く前に本人に確かめる。種類を取り違えると、構成から書き直しになるためである。
+
+- [`article-research-memo`](usecases/article-research-memo.md)。**調査メモ**：自分向けに調べた事実の記録。前置きと正当化を書かない
+- [`article-poem`](usecases/article-poem.md)。**ポエム**：個人の主張を一人称の実感で吐き出す文章。論証しない
+- [`article-essay`](usecases/article-essay.md)。**論説**：外部の人に読んでもらう寄稿レベルの記事。根拠を置き、読み手の疑問をつなぎながら主張へ進む
+- [`article-tech-article`](usecases/article-tech-article.md)。**技術記事**：リポジトリ、ライブラリ、ツールの紹介と解説。対象が軸で、独自の主張を足さない
+- [`article-scrap`](usecases/article-scrap.md)。**scrap**：外部の記事や事実へのリンクに、要約を 1、2 文添えたもの
+- [`article-oshiete-claude`](usecases/article-oshiete-claude.md)。**教えてClaude**：本人が素朴な疑問を Claude と壁打ちした会話を、軽く整えてそのまま載せたもの
