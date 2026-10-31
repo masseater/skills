@@ -42,7 +42,7 @@ description: プロジェクトの設計で検討すべき事項について、�
 - [`observability`](references/observability.md)。本番リクエストの追跡、計測、障害の検知
 - [`reliability`](references/reliability.md)。データの復旧、リソースの再作成、外部呼び出しの失敗
 - [`delivery`](references/delivery.md)。CI とデプロイの経路、ロールバック、環境変数
-- [`dependencies`](references/dependencies.md)。依存パッケージの選定とライセンス、第三者の素材
+- [`dependencies`](references/dependencies.md)。依存パッケージの選定とライセンス、第三者の素材、Node.js のバージョン
 - [`privacy`](references/privacy.md)。収集している個人情報と、その削除
 - [`publishing`](references/publishing.md)。公開しているものの一覧、URL の変更、撤去手順
 
