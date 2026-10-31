@@ -10,8 +10,6 @@
 | ページコンポーネント | `[Name]Page` | `LoginPage` |
 | 定数 | `SCREAMING_SNAKE` | `DEFAULT_STATE`、`MAX_PAGES_WITHOUT_GAPS` |
 
-`Screen` の接尾辞は使わない。
-
 ## ファイル
 
 | 対象 | 形式 | 例 |
@@ -22,5 +20,4 @@
 アプリの `src/` は FSD のレイヤーだけを置く。
 
 - ページは `pages/<slice>/ui/*-page.tsx`
-- クエリは `api` セグメント
 - Atom は `model` セグメント
