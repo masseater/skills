@@ -1,6 +1,6 @@
 # skill を減量する
 
-skill 全体を、置き場所の段に置き直して削る手順である。大きくなった skill、ほとんどの場面で使わない詳細を読ませている skill、教えている対象から内容がずれた skill に行う。
+大きくなった skill、ほとんどの場面で使わない詳細を読ませている skill、教えている対象から内容がずれた skill に行う。
 
 1. 今の skill を **before** として別の場所に写す。`description`、`SKILL.md`、`references/` と `usecases/` の各ファイルの大きさを `wc -c` で記録する
 2. この skill を使う側を挙げる。リンクしている skill、名前で委ねている skill、AGENTS.md、本文を読むテストがこれにあたる

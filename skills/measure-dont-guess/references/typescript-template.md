@@ -1,7 +1,5 @@
 # typescript-template での計測
 
-masseater/typescript-template から作ったリポジトリで、何をどこで計り、どう読むかの参照である。
-
 ## 信号の出し方
 
 サーバーの信号は Effect の API で出し、Cloudflare Workers Observability に集める。

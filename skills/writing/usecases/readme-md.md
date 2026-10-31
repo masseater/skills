@@ -1,13 +1,13 @@
 # README.md を書く
 
-README.md を書く、直すときの手順である。README.md は人間のための文書である。AI もコンテキストとして読むが、AI に向けては書かない。AI への指示は AGENTS.md や CLAUDE.md に置き、ai-context に従う。
+[`show-dont-describe`](../references/show-dont-describe.md) も読むこと。
+
+README.md は人間に向けて書く。AI への指示は AGENTS.md や CLAUDE.md に置き、ai-context に従う。
 
 README に書くのは次の 2 つだけである。どちらも端的に書く。
 
 - このプロジェクトが何を実現するものか
 - どうすれば使えるのか
-
-内部の仕組みは書かない。
 
 ## 読み手
 

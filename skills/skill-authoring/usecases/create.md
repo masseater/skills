@@ -1,7 +1,5 @@
 # skill を作る
 
-skill を新しく作るときの手順である。
-
 1. skills CLI の `skills init <name>` で `SKILL.md` を作る
 2. 本文を、必要な理由と達成したい状態から導いて書く
 3. `skills-ref validate <dir>` を通す
