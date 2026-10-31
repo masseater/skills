@@ -1,16 +1,15 @@
 ---
 name: writing
-description: 文章を書く・推敲するときに読む。ドキュメント、コメント、コミットメッセージ、PR 本文、README のような説明文と、masseater の名前で出す記事（調査メモ、ポエム、論説、技術記事、scrap、教えてClaude）と、小説が対象である。「AI っぽい」「AI 文体」「冗長」「読みにくい」と言われた文章を直すとき、Claude との壁打ちを「記事化して」と言われたときにも使う。
+description: 文章を書く・推敲するときに読む。ドキュメント、コメント、コミットメッセージ、PR 本文、README、masseater の名前で出す記事、小説が対象である。「AI っぽい」「冗長」「読みにくい」と言われた文章を直すとき、Claude との壁打ちを「記事化して」と言われたときにも使う。
 metadata:
   derived-from: >-
     https://github.com/masseater/claude-code-plugin/tree/2e0619b1ab620552764da5ea6e46b77a0dcfaa35/plugins/writing
     https://github.com/cursor/plugins/blob/837067b75aa20ab58d7b2a2f6c0531e37118c596/pstack/skills/technical-writing/SKILL.md
     https://github.com/azukiazusa1/skills/tree/a7f996f1cd700a4a56827f6cf2a130ff5a9ceedf/skills/writing/write-blog-article
+    https://github.com/artouc/stop-describe-ui/blob/251a859f6e40645030e1ae69fa4b501c851eac9c/skills/stop-describing-ui/SKILL.md
 ---
 
 # writing
-
-文章を書く、直すときの規範である。
 
 - 読者である人間の読み方と考え方は humanity-and-humanness に従う
 - 日本語の言い回しは philtzjp/skills の [`japanese`](https://github.com/philtzjp/skills/blob/main/.agents/skills/japanese/SKILL.md) に従う
@@ -18,7 +17,7 @@ metadata:
 
 ## この skill が必要な理由と達成したい状態
 
-この skill が必要な理由は、AI が文を、読者に何を判断させるかからではなく、学習した説明文の形から反射的に組み立てることにある。そのため理由が欠ける。コードから導出できる陳腐化する情報が増える。反射的な読点が不自然な拍を作る。全文が同じ認知モードで平坦になる。さらに AI は、書いてあることをそのまま読み取れる自分を読者の模型にする。推測で補いながら読む人間には、項目が数えられず、流れに乗れず、読んでも頭に残らない文章になる。この癖は読者を疲れさせ、大事な判断基準を埋もれさせる。
+この skill が必要な理由は、AI が文を、読者に何を判断させるかからではなく、学習した説明文の形から反射的に組み立てることにある。さらに AI は、書いてあることをそのまま読み取れる自分を読者の模型にするので、推測で補いながら読む人間には、読んでも頭に残らない文章になる。
 
 この skill で達成したい状態は、読者が一度読むだけで書き手の判断とその理由を受け取り、最後まで読み進められる文章になっていることである。
 
@@ -44,7 +43,7 @@ metadata:
 
 同じ段の見出しの観点が揃っていないと、読み手は一覧しても何を軸に分けてあるのか掴めない。規則の節と手順の節と対象の節を同じ段に並べない。
 
-規則を先に並べて理由を後から添えると、疑問が立たないので流れが生まれない。必要な理由から達成したい状態、大原則、規則へ進む構成は、この流れを文書全体に作ったものである。
+規則を先に並べて理由を後から添えると、疑問が立たないので流れが生まれない。
 
 ### 緩急の設計
 
@@ -76,6 +75,7 @@ metadata:
 - [`punctuation`](references/punctuation.md)。句読点は役割の境界と、意味が確定する場所に打つ
 - [`purpose-before-means`](references/purpose-before-means.md)。手段より目的を先に置く
 - [`headings`](references/headings.md)。見出しと箇条書きは体言止めにする
+- [`show-dont-describe`](references/show-dont-describe.md)。手順と参照の文書は UI として扱い、説明せずに見出しとコードブロックで示す
 
 ## 用途
 
