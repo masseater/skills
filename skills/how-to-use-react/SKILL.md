@@ -41,7 +41,7 @@ React 19.3 のコンポーネント、ローダー、サーバー処理を書く
 | ref | 関数の props | `forwardRef`、文字列 ref |
 | 隠しても状態を残す | `<Activity mode="hidden">` | 条件付きアンマウントで状態を捨てる |
 | 遷移のアニメーション | `<ViewTransition>` | |
-| Effect で最新の props を使う | `useEffectEvent`。依存配列には入れない | その関数を依存配列に足して購読をやり直す、ハンドラを ref にしまう |
+| Effect で最新の props を使う | `useEffectEvent` | その関数を依存配列に足して購読をやり直す、ハンドラを ref にしまう |
 
 ## メモ化
 
