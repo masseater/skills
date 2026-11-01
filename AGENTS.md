@@ -25,6 +25,8 @@ vp dlx skills init <name>                   # SKILL.md の雛形を作る
 
 README.md のスキル一覧は、`SKILL.md` を含むコミットのたびに `.vite-hooks/pre-commit` が `vp run readme` で各 `SKILL.md` の `name` と `description` から書き直し、コミットに含める。手で直さない。フックは `vp install` で有効になる。
 
+writing の `SKILL.md` の索引（作業の段と読むもの、用途）も同じ扱いで、`skills/writing/` を含むコミットのたびにフックが `vp run writing-index` で `skills/writing/index.json` から書き直し、コミットに含める。手で直さない。索引に載らないファイルは index.json の `via` に理由つきで置く。構造の検査は `node scripts/update-writing-index.mjs --check` で行う。
+
 ビルド、テスト、lint はない。skill を変えたら `skills-ref validate` を通し、参照するファイルと名前で委ねた skill が存在することを確かめる。
 
 ## 作業の流れ

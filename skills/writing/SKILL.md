@@ -35,6 +35,8 @@ AI と人間では文章の読み方がまるで違う。AI は書いてある�
 
 ## 作業の段と読むもの
 
+<!-- writing-stages:start -->
+
 ### 決める
 
 - [`purpose`](references/purpose.md)。目的を先に置き、理由を書く。理由は要件に届くまで遡る
@@ -56,7 +58,11 @@ AI と人間では文章の読み方がまるで違う。AI は書いてある�
 - [`ai-style`](references/ai-style.md)。AI 文体の型に当てはめて、組み立てた文章が崩れていないかを確かめる
 - [`evidence`](references/evidence.md)。ai-style の付属資料。型の出典と計測。記事の確かめる段では表を使う
 
+<!-- writing-stages:end -->
+
 ## 用途
+
+<!-- writing-usecases:start -->
 
 選んだ手順も読むこと。
 
@@ -72,3 +78,5 @@ masseater の名前で出す記事は、共通手順の [`article`](usecases/art
 - [`article-tech-article`](usecases/article-tech-article.md)。**技術記事**：リポジトリ、ライブラリ、ツールの紹介と解説。対象が軸で、独自の主張を足さない
 - [`article-scrap`](usecases/article-scrap.md)。**scrap**：外部の記事や事実へのリンクに、要約を 1、2 文添えたもの
 - [`article-oshiete-claude`](usecases/article-oshiete-claude.md)。**教えてClaude**：本人が素朴な疑問を Claude と壁打ちした会話を、軽く整えてそのまま載せたもの
+
+<!-- writing-usecases:end -->

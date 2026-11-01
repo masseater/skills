@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "prepare": "vp config --no-agent",
-    "readme": "node scripts/update-readme.mjs"
+    "readme": "node scripts/update-readme.mjs",
+    "writing-index": "node scripts/update-writing-index.mjs"
   },
   "devEngines": {
     "packageManager": {
