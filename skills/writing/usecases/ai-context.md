@@ -2,7 +2,7 @@
 
 README.md は readme-md に従う。
 
-文書の組み立ては [`composition`](../references/composition.md) と [`headings`](../references/headings.md) に従う。
+文書の組み立ては [`composition`](../references/composition.md) に従う。
 
 - 必要な理由と達成したい状態を先頭に置き、人間の言葉で書く
 - 文書は覚えさせるためではなく、戻って引くために書く。索引と見出しは、そのために要る

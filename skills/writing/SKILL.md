@@ -43,10 +43,7 @@ AI と人間では文章の読み方がまるで違う。AI は書いてある�
 
 ### 組み立てる
 
-- [`composition`](references/composition.md)。文書の種類、枠組み、段落、見出しの観点を決める
-- [`headings`](references/headings.md)。見出しと箇条書きは体言止めにする。見出しは読み手が探す単位にだけ付ける
-- [`show-dont-describe`](references/show-dont-describe.md)。手順と参照の文書は UI として扱い、説明ではなく見出しとコードブロックで示す
-- [`no-perishable-information`](references/no-perishable-information.md)。コードから導出できる情報を文書に複製しない
+- [`composition`](references/composition.md)。文書の種類、枠組み、段落、見出し、示し方、陳腐化の排除
 
 ### 書く
 

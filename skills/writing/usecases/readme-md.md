@@ -1,6 +1,6 @@
 # README.md を書く
 
-[`show-dont-describe`](../references/show-dont-describe.md) も読むこと。
+[`composition`](../references/composition.md) の「説明せずに示す」も読むこと。
 
 README.md は人間に向けて書く。AI への指示は AGENTS.md や CLAUDE.md に置き、ai-context に従う。
 
@@ -39,6 +39,6 @@ README を開く人はこのプロジェクトを使うかどうかを決めよ�
 使うかどうかを判断したり、使い始めたりするのに要らない情報は、ほかに置き場所があっても書かない。
 
 - アーキテクチャ、データの流れ、ディレクトリ構成、内部のモジュール
-- API の一覧や設定項目のように、コードから導出できる情報。no-perishable-information に従って指し示す
+- API の一覧や設定項目のように、コードから導出できる情報。[`composition`](../references/composition.md) の陳腐化の規則に従って指し示す
 - 設計の理由。コミットメッセージや DESIGN.md に置く
 - AI への指示や作業の決まり。AGENTS.md や CLAUDE.md に置く
