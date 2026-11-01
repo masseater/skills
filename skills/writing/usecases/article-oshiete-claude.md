@@ -1,6 +1,6 @@
 # 教えてClaude を書く
 
-[`article`](../references/article.md) も読むこと。
+[`article`](article.md) も読むこと。
 
 シリーズは masseater.dev のタグ「教えてClaude」で束ねる。読み手が追うのは本人が何を疑問に思い、Claude の説明を受けて次に何が気になったかという流れだ。会話を解説文に書き直すと、その流れが消える。
 

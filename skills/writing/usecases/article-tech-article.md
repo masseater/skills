@@ -1,6 +1,6 @@
 # 技術記事を書く
 
-[`article`](../references/article.md) も読むこと。
+[`article`](article.md) も読むこと。
 
 AI は紹介記事にも独自の主張を据えたがり、対象の紹介が主張の材料にされてしまう。
 
