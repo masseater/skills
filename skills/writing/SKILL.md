@@ -38,6 +38,7 @@ metadata:
 - 一文に置く独立した判断は 1 つにする
 - 同じ段の見出しは、同じ問いに答えるものに揃える
 - 見出しには話題名ではなく要点を持たせる。手順の見出しは動詞句、概念の見出しは名詞句にする
+- 見出しは、読み手がその単位で探すときにだけ付ける。一行で済む内容は見出しにせず、段落や箇条書きで処理する
 
 文書の種類は 4 つある。作業の手順、事実を引くための参照、理解のための説明、学習のためのチュートリアルである。読み手は種類ごとに読み方を変える。手順の中に背景を、参照の中に説得を混ぜると、読み手は読み方を切り替えられず、どちらの目的でも使えない文書になる。混ぜたくなったら、文書を分けてリンクでつなぐ。
 
@@ -72,12 +73,18 @@ metadata:
 
 説明文を書くときは、次もすべて読むこと。
 
-- [`purpose-and-reason`](references/purpose-and-reason.md)。規則や手順には、それで守る目的と理由を書く
+- [`purpose`](references/purpose.md)。目的を先に置き、理由を書く。理由は要件に届くまで遡る
 - [`no-perishable-information`](references/no-perishable-information.md)。コードから導出できる情報を、文書に複製しない
 - [`punctuation`](references/punctuation.md)。句読点は役割の境界と、意味が確定する場所に打つ
-- [`purpose-before-means`](references/purpose-before-means.md)。手段より先に目的を置く
-- [`headings`](references/headings.md)。見出しと箇条書きは体言止めにする
+- [`headings`](references/headings.md)。見出しと箇条書きは体言止めにする。見出しは読み手が探す単位にだけ付ける
 - [`show-dont-describe`](references/show-dont-describe.md)。手順と参照の文書は UI として扱い、説明ではなく見出しとコードブロックで示す
+
+## 書いた後に確かめる
+
+書いたあとは、次に当てて確かめる。
+
+- [`ai-style`](references/ai-style.md)。AI 文体の型に当てはめて、組み立てた文章が崩れていないかを確かめる
+- [`evidence`](references/evidence.md)。ai-style の型の裏付けになった出典と計測
 
 ## 用途
 
