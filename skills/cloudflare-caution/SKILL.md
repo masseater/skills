@@ -32,7 +32,7 @@ metadata:
 ## 暴走の歯止め
 
 - Worker には [Custom limits](https://developers.cloudflare.com/workers/platform/pricing/) の `limits.cpu_ms` を付ける。1 回の実行の暴走を止める公式の手段はこれだけである。値は本番の CPU 時間の p99 を測って、その少し上にする。上限まで上げると、無限ループがそのまま請求になる
-- 公開する API、認証、書き込みの口の前段には、レート制限を置く。ボットの大量アクセスは、レート制限が無ければすべて課金される
+- 公開 API や、認証・書き込みを受け付けるエンドポイントの手前には、レート制限を置く。ボットの大量アクセスは、レート制限が無ければすべて課金される
 - レート制限は、ゾーンを持つリポでは WAF のレート制限ルールで、持たないリポでは Workers の [Rate Limiting バインディング](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/)で掛ける。バインディングは拠点ごとの近似で、上限を超えても止まらないことがある。正確な上限が要るときは、WAF のレート制限ルールか Durable Object のカウンターを使う
 - Queue の consumer、Durable Object の alarm、再試行の処理は冪等にする。自分自身を再投入しない
 - 再投入と再試行には回数の上限を付ける
@@ -40,7 +40,7 @@ metadata:
 
 ## 書き込みと操作の削減
 
-書き込みと一覧の操作は、読み取りより 1 桁から 3 桁高い。
+書き込みと一覧の操作は、単価が読み取りより 1 桁から 3 桁高い。
 
 - KV の書き込み、D1 と Durable Objects の行の書き込みは、まとめて書く
 - 値が変わっていなければ書かない
@@ -60,7 +60,7 @@ metadata:
 
 measure-dont-guess に従う。
 
-- 設計を決める前に、想定のアクセス数に 1 回あたりの Worker の起動・行・操作・ログの数を掛けて、月額を見積もる
+- 設計を決める前に、想定のアクセス数に、1 回あたりの Worker の起動回数、読み書きする行数、操作数、ログの件数を掛けて、月額を見積もる
 - デプロイの後は、ダッシュボードの Billable Usage か GraphQL Analytics API で本番の使用量を見る。見積もりとずれていれば、設計を見直す
 
 課金の単位と単価は次のとおりである。2026-10-27 に [Workers の料金ページ](https://developers.cloudflare.com/workers/platform/pricing/)などで確認した。単価は変わるので、見積もりに使う前に料金ページで確認する。

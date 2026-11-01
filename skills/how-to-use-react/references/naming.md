@@ -17,7 +17,7 @@
 | ソース | kebab-case の `.ts` か `.tsx` | `login-page.tsx`、`button.tsx` |
 | テスト | `*.test.ts` か `*.test.tsx` | `filter.test.ts` |
 
-アプリの `src/` は FSD のレイヤーだけを置く。
+アプリの `src/` には FSD のレイヤーだけを置く。
 
 - ページは `pages/<slice>/ui/*-page.tsx`
 - Atom は `model` セグメント

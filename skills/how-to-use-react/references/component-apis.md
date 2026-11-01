@@ -4,7 +4,7 @@
 - 真偽の props は `is` を付けず、省略時を偽にする
 - 見た目の分岐は `variant` と `size` に閉じる
 - 中身は `children` で渡し、クラスタで合成する
-- 対話する値は制御 props を既定にする
+- ユーザーが操作する値は、制御 props で受け渡すのを既定にする
 
 ## イベント
 
@@ -31,10 +31,10 @@
 
 ## 見た目の上書き
 
-呼び出し側で色、半径、影を上書きしない。`@shadcn/lint` の `no-restyle` が止める。layout と spacing だけ許す。新しい見た目が要るときはコンポーネント側に `variant` を足す。
+呼び出し側で色、半径、影を上書きしない。上書きすると `@shadcn/lint` の `no-restyle` で検出される。layout と spacing だけ許す。新しい見た目が要るときはコンポーネント側に `variant` を足す。
 
 ## 制御
 
-対話する値は制御 props を既定にする。`value` と `onValueChange`、`checked` と `onCheckedChange`、`open` と `onOpenChange` の組である。一時値の入れ物は呼び出し側の Effect Atom に置き、コンポーネントの中に持たない。
+ユーザーが操作する値は、制御 props で受け渡すのを既定にする。`value` と `onValueChange`、`checked` と `onCheckedChange`、`open` と `onOpenChange` の組である。一時値の入れ物は呼び出し側の Effect Atom に置き、コンポーネントの中に持たない。
 
 固定文言の確認ダイアログのように内容が決まったものだけ、`title`、`description`、`confirmLabel` のような文字列 props でよい。

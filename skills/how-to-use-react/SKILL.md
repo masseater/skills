@@ -24,15 +24,15 @@ masseater/typescript-template から作ったリポジトリ向けに、原典�
 
 ## この skill が必要な理由と達成したい状態
 
-この skill が必要な理由は、React が同じ画面を何通りにも書け、どの書き方でも初めは動くことにある。違いはデータが増え、通信が遅れ、操作が重なったときに出るので、書いた時点では悪い書き方を選んだことに気づけない。
+この skill が必要な理由は、React では同じ画面を何通りにも書け、どの書き方でも初めは動くことにある。違いはデータが増え、通信が遅れ、操作が重なったときに出るので、書いた時点では悪い書き方を選んだことに気づけない。
 
-この skill で達成したい状態は、画面がユーザーの操作を止めず、待たせず、どの状態もどこに置くか迷わないことである。
+この skill で達成したい状態は、画面がユーザーの操作を止めず、ユーザーを待たせず、書き手がどの状態もどこに置くか迷わないことである。
 
 ## 置き分け
 
 | やりたいこと | 使うもの | 使わないもの |
 | --- | --- | --- |
-| 画面の一時状態、フォームの値、ツリーをまたいで共有する値 | Effect Atom（`Atom.make`、`useAtom`、`useAtomValue`） | `useState`、`useReducer`、`createContext`、`useContext`（`no-restricted-imports` が拒否する） |
+| 画面の一時状態、フォームの値、ツリーをまたいで共有する値 | Effect Atom（`Atom.make`、`useAtom`、`useAtomValue`） | `useState`、`useReducer`、`createContext`、`useContext`（`no-restricted-imports` でエラーになる） |
 | サーバーデータ | TanStack Query（`queryOptions` は FSD の `api` セグメント） | `use(promise)` での取得、`useEffect` と `fetch` の組み合わせ、Atom にサーバー応答を載せる |
 | ミューテーションの pending と error | TanStack Query の `useMutation` | 自前の pending フラグ、`useActionState`、`useFormStatus` |
 | 順番が仕様のミューテーション | 同じ `scope.id` を持つ `useMutation` | 自前のキュー、ボタンを無効にして操作列を止める |
