@@ -45,6 +45,7 @@ description: プロジェクトの設計で検討すべき事項が充足して�
 - [`dependencies`](references/dependencies.md)。依存パッケージの選定とライセンス、第三者の素材、Node.js のバージョン
 - [`privacy`](references/privacy.md)。収集している個人情報と、その削除
 - [`publishing`](references/publishing.md)。公開しているものの一覧、URL の変更、撤去手順
+- [`testing`](references/testing.md)。テストのためだけの本番コード
 
 masseater/typescript-template から作ったリポジトリでは、次も読むこと。
 
