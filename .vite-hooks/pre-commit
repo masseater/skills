@@ -1,3 +1,11 @@
-git diff --cached --name-only | grep -qE '^(skills/[^/]+/SKILL\.md|README\.md|scripts/update-readme\.mjs)$' || exit 0
-vp run readme
-git add README.md
+files=$(git diff --cached --name-only)
+
+if echo "$files" | grep -qE '^(skills/[^/]+/SKILL\.md|README\.md|scripts/update-readme\.mjs)$'; then
+  vp run readme
+  git add README.md
+fi
+
+if echo "$files" | grep -qE '^(skills/writing/|scripts/update-writing-index\.mjs$)'; then
+  vp run writing-index
+  git add skills/writing/SKILL.md
+fi
