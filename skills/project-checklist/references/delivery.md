@@ -1,6 +1,6 @@
 # delivery
 
-変更がチェックを通って本番に反映されるまでの経路を確認する。経路が手元の環境に依存していると、チェックを通っていない変更が本番に出る。考え方は [The Twelve-Factor App](https://12factor.net/) の build, release, run と config に従う。
+経路が手元の環境に依存していると、チェックを通っていない変更が本番に出る。変更がチェックを通って本番に反映されるまでの経路を確認する。経路の組み立ては [The Twelve-Factor App](https://12factor.net/) の build, release, run と config に沿わせる。
 
 | 確認する事項 | 現状の確認方法 | 充足条件 |
 | --- | --- | --- |

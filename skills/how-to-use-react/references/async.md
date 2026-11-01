@@ -24,7 +24,7 @@
 
 ## 一部だけ依存するとき
 
-`profile` が `user` を待つときも、`config` は `user` を待たせない。書き方は `SKILL.md` の例のとおりである。
+`profile` が `user` を待つときも、`config` の処理は `user` の完了を待たない。書き方は `SKILL.md` の例のとおりである。
 
 ## API とサーバー処理
 

@@ -1,6 +1,6 @@
 # security
 
-攻撃と情報漏えいへの対策を確認する。どれも欠けていてもアプリケーションは動くので、検出ツールで確認しないと気づかない。基準は [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) と [OWASP Top 10](https://owasp.org/www-project-top-ten/) に従う。
+攻撃と情報漏えいへの対策は、どれも欠けていてもアプリケーションは動くので、検出ツールで確認しないと気づかない。対策の有無を確かめ、基準には [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) と [OWASP Top 10](https://owasp.org/www-project-top-ten/) を使う。
 
 | 確認する事項 | 現状の確認方法 | 充足条件 |
 | --- | --- | --- |

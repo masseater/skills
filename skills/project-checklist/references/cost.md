@@ -1,6 +1,6 @@
 # cost
 
-アクセスが増えたときに費用がどう増えるかを確認する。従量課金の多くは支出に上限がなく、アクセスの急増やバグによる実行回数がそのまま請求額になる。考え方は [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html) のコスト最適化の柱に従う。Cloudflare で動かすものは cloudflare-caution にも従う。
+従量課金の多くは支出に上限がなく、アクセスの急増やバグによる実行回数がそのまま請求額になる。アクセスが増えたときに費用がどう増えるかを確かめ、コストの考え方は [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html) のコスト最適化の柱を土台にする。Cloudflare で動かすものは cloudflare-caution にも従う。
 
 | 確認する事項 | 現状の確認方法 | 充足条件 |
 | --- | --- | --- |

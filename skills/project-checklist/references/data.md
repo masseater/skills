@@ -1,6 +1,6 @@
 # data
 
-データの保存先と変更手順を確認する。正本が 2 か所にあると内容が食い違い、スキーマを手作業で変更すると本番と定義がずれる。考え方は [The Twelve-Factor App](https://12factor.net/) の backing services と admin processes に従う。
+データの保存先と変更手順は、[The Twelve-Factor App](https://12factor.net/) の backing services と admin processes の考え方で見る。正本が 2 か所にあると内容が食い違い、スキーマを手作業で変更すると本番と定義がずれる。
 
 | 確認する事項 | 現状の確認方法 | 充足条件 |
 | --- | --- | --- |

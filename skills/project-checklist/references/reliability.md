@@ -1,6 +1,6 @@
 # reliability
 
-障害が起きたときに復旧できるかを確認する。復旧手段は実際に使うまで試されないので、ないことに気づくのはデータを失った後になる。考え方は [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html) の信頼性の柱に従う。
+復旧手段は実際に使うまで試されないので、ないことに気づくのはデータを失った後になる。障害が起きたときに復旧できるかを確認する。考え方は [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html) の信頼性の柱に倣う。
 
 | 確認する事項 | 現状の確認方法 | 充足条件 |
 | --- | --- | --- |

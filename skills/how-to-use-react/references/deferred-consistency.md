@@ -6,4 +6,4 @@
 - 一覧に渡す値は `useDeferredValue` で遅らせる
 - 遅れていることを示すなら `useTransition` の pending を使う
 
-タイマーデバウンスは使わない。`useRef` と `setTimeout` と二重の state で作るものも、手書きの `useDebounced*` も、原典の続編にあるトランジション対応の自前デバウンスも、`useDeferredValue` で置き換える。
+タイマーデバウンスは使わない。`useRef` と `setTimeout` と二重の state で作るもの、手書きの `useDebounced*`、原典の続編にあるトランジション対応の自前デバウンスは、いずれも `useDeferredValue` で置き換える。

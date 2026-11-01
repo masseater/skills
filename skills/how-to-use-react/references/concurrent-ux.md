@@ -2,10 +2,6 @@
 
 設計の前提は [`design-theory`](design-theory.md) も読むこと。
 
-- 遷移の出入りは `<ViewTransition>` に乗せる
-- 行き来しても状態を残したい画面は `<Activity>` で隠す
-- 購読のたびに最新でなくてよい値は `useEffectEvent` に移す
-
 ## ViewTransition
 
 遷移、Suspense の表示、deferred 更新に乗る出入りは `<ViewTransition>` で包む。`startTransition` の中で状態を変える。

@@ -26,7 +26,7 @@
 ## 合成
 
 - 中身は `children` で渡す。`children` を関数やオブジェクトにしない
-- ダイアログ、メニュー、テーブルは shadcn/ui と同じクラスタで組む。`DropdownMenu` と `DropdownMenuTrigger`、`DropdownMenuContent`、`DropdownMenuItem` の形である
+- ダイアログ、メニュー、テーブルは shadcn/ui と同じクラスタで組む。たとえば `DropdownMenu` なら、`DropdownMenuTrigger`、`DropdownMenuContent`、`DropdownMenuItem` の組を使う
 - `header={...}` や `footer={...}` のスロット props と `renderHeader` は公開しない
 
 ## 見た目の上書き
@@ -35,6 +35,6 @@
 
 ## 制御
 
-ユーザーが操作する値は、制御 props で受け渡すのを既定にする。`value` と `onValueChange`、`checked` と `onCheckedChange`、`open` と `onOpenChange` の組である。一時値の入れ物は呼び出し側の Effect Atom に置き、コンポーネントの中に持たない。
+使う組は、`value` と `onValueChange`、`checked` と `onCheckedChange`、`open` と `onOpenChange` である。一時値の入れ物は呼び出し側の Effect Atom に置き、コンポーネントの中に持たない。
 
 固定文言の確認ダイアログのように内容が決まったものだけ、`title`、`description`、`confirmLabel` のような文字列 props でよい。

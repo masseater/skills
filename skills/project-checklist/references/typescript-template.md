@@ -43,7 +43,7 @@
 ## 6. fallow で死にコード・重複・脆弱性・依存を見る
 
 - 導入：`.fallowrc.jsonc` と、root と app の `fallow` script、verify の `fallow-all` がある。
-- 機能：`vp run -r fallow` が型認識とセキュリティ検査を含めて回り、通る。`--fail-on-issues` のような失敗条件が生きている。緩めると緑の意味が消えるからである。
+- 機能：`vp run -r fallow` が型認識とセキュリティ検査を含めて回り、通る。`--fail-on-issues` のような失敗条件が生きている。緩めた途端に、緑は通ったことを意味しなくなる。
 - 旧構成：knip・jscpd・ts-prune のような置き換え済みの設定や script が消えているか、rc と script に設定が二重になっていないかを見る。
 
 ## 7. 検証の入口は `vp run verify` ひとつ

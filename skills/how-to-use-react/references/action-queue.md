@@ -8,8 +8,8 @@
 
 ## 使わないもの
 
-- ボタンの無効化で、pending のあいだ操作列全体を止めない。ユーザーは続けて操作したい
-- 順番が仕様の列を、`Effect.all` の `concurrency: "unbounded"` や別々の scope に載せない。後の操作が先に終わり、サーバーの状態が壊れる
+- pending のあいだもユーザーが続けて操作できるように、ボタンを無効化して操作列全体を止めない
+- 順番が仕様の列を、`Effect.all` の `concurrency: "unbounded"` や別々の scope に載せない。後の操作が先に終わると、サーバーの状態が壊れる
 - キューを `useRef` や Effect Atom で自前実装しない。`scope.id` がすでに順番を保証する
 
 一度きりの送信フォームは、`disabled={mutation.isPending}` と `aria-busy={mutation.isPending}` で二重送信を防いでよい。操作を連打させたい列だけ、上の規則を適用する。

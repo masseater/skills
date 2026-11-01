@@ -1,6 +1,6 @@
 # observability
 
-本番で起きたことと、誰がどう使っているかを外部から把握できるかを確認する。把握できないと、不具合のたびに推測で修正することになる。考え方は [Google SRE の Production Readiness Review](https://sre.google/sre-book/evolving-sre-engagement-model/) に従う。
+[Google SRE の Production Readiness Review](https://sre.google/sre-book/evolving-sre-engagement-model/) の考え方で、本番で起きたことと、誰がどう使っているかを外部から把握できるかを見る。把握できないと、不具合のたびに推測で修正することになる。
 
 | 確認する事項 | 現状の確認方法 | 充足条件 |
 | --- | --- | --- |

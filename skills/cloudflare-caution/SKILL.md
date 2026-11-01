@@ -33,7 +33,7 @@ metadata:
 
 - Worker には [Custom limits](https://developers.cloudflare.com/workers/platform/pricing/) の `limits.cpu_ms` を付ける。1 回の実行の暴走を止める公式の手段はこれだけである。値は本番の CPU 時間の p99 を測って、その少し上にする。上限まで上げると、無限ループがそのまま請求になる
 - 公開 API や、認証・書き込みを受け付けるエンドポイントの手前には、レート制限を置く。ボットの大量アクセスは、レート制限が無ければすべて課金される
-- レート制限は、ゾーンを持つリポでは WAF のレート制限ルールで、持たないリポでは Workers の [Rate Limiting バインディング](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/)で掛ける。バインディングは拠点ごとの近似で、上限を超えても止まらないことがある。正確な上限が要るときは、WAF のレート制限ルールか Durable Object のカウンターを使う
+- レート制限は、ゾーンを持つリポでは WAF のレート制限ルールで、持たないリポでは Workers の [Rate Limiting バインディング](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/)で掛ける。ただしバインディングは拠点ごとの近似であり、上限を超えても止まらないことがある。正確な上限が要るときは、WAF のレート制限ルールか Durable Object のカウンターを使う
 - Queue の consumer、Durable Object の alarm、再試行の処理は冪等にする。自分自身を再投入しない
 - 再投入と再試行には回数の上限を付ける
 - アカウントに[予算アラート](https://developers.cloudflare.com/billing/manage/optimize-costs/)を設定する。止めるためではなく、早く気づくためである

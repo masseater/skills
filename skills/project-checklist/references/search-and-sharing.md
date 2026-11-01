@@ -1,6 +1,6 @@
 # search-and-sharing
 
-検索エンジンに掲載するかどうかと、リンクを共有したときの表示を確認する。決めておかないと、掲載したくないページが掲載され、掲載したいページは内容のないまま掲載される。基準は [Google 検索の基本事項](https://developers.google.com/search/docs/essentials) と [Open Graph protocol](https://ogp.me/) に従う。
+[Google 検索の基本事項](https://developers.google.com/search/docs/essentials) と [Open Graph protocol](https://ogp.me/) を基準に、検索エンジンに掲載するかどうかと、リンクを共有したときの表示を確認する。決めておかないと、掲載したくないページが掲載され、掲載したいページは内容のないまま掲載される。
 
 | 確認する事項 | 現状の確認方法 | 充足条件 |
 | --- | --- | --- |

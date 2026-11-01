@@ -1,6 +1,6 @@
 # performance
 
-ページと API の速度を計測して確認する。開発者の手元の環境と回線では、遅さに気づかない。指標は [Web Vitals](https://web.dev/articles/vitals) に従う。
+開発者の手元の環境と回線では、遅さに気づかない。ページと API の速度を計測して確認し、指標には [Web Vitals](https://web.dev/articles/vitals) を使う。
 
 | 確認する事項 | 現状の確認方法 | 充足条件 |
 | --- | --- | --- |

@@ -1,6 +1,6 @@
 # rendering
 
-ページごとのレンダリング方式を確認する。方式を決めないと、フレームワークのデフォルトのまま、全員に同じ内容のページまでリクエストのたびにサーバーで生成される。方式の分類は web.dev の [Rendering on the Web](https://web.dev/articles/rendering-on-the-web) に従う。
+方式を決めないと、フレームワークのデフォルトのまま、全員に同じ内容のページまでリクエストのたびにサーバーで生成される。ページごとのレンダリング方式を確認し、方式の分類には web.dev の [Rendering on the Web](https://web.dev/articles/rendering-on-the-web) を使う。
 
 | 確認する事項 | 現状の確認方法 | 充足条件 |
 | --- | --- | --- |
