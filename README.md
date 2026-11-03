@@ -7,7 +7,9 @@ Claude Code にはプラグインとして、ほかのエージェントには s
 
 <!-- skills:start -->
 
+- [build-explanation](skills/build-explanation/SKILL.md): 人に何かを説明するときに、読み手が知っていることから始め、読み手が次に抱く疑問に答える順で話を組み立てる手順。スライドの構成と読み上げ原稿、解説、提案、報告の文章を組み立てるときに使う。
 - [cloudflare-caution](skills/cloudflare-caution/SKILL.md): Cloudflare で請求が膨らむ設計を避け、安く済む形を選ぶ。Cloudflare に載せるものを設計するとき、Worker やバインディングを足すとき、ページやデータの配り方を決めるとき、ループや再試行を書くときに使う。
+- [create-slides](skills/create-slides/SKILL.md): スライドを作る前に相手や場の既定値と、聞き手の問いから組んだ構成案を示し、作った後に読み上げ原稿を書いて発表の流れを確かめる手順。スライドや資料を作ってほしいと頼まれたときに使う。
 - [dont-it-yourself](skills/dont-it-yourself/SKILL.md): ライブラリ、ランタイム、リポジトリにすでにあるものを探して使い、自前で作らない。新しい処理、ヘルパー、ラッパー、ツール、外部 API のクライアントを書き始める前に使う。
 - [how-to-use-react](skills/how-to-use-react/SKILL.md): React 19.3 のコンポーネント、ローダー、サーバー処理を書く・直す・レビューするときに読む。状態の置き場所、非同期の組み方、並行 UI の API の使いどころ、props の形を決める。
 - [humanity-and-humanness](skills/humanity-and-humanness/SKILL.md): 人間がどう読み、どう考え、何を察するかを AI が前提として持つために読む。人間が読む文章を書くとき、ユーザーの判断を仰ぐとき、ユーザーの指摘の意図を読み取るときに使う。
