@@ -11,6 +11,10 @@ description: スライドを作る前に相手や場の既定値と、聞き手�
 リポジトリに、これまでに受けた指摘と確認の手順や、構成についてのふりかえりをまとめた文書があれば、作る前に読む。
 構成と読み上げ原稿の話の順序は、読み手の理解が組み上がる順に並べるため、`build-explanation` スキルの手順で組み立てる。
 
+## 部品
+
+スライドは、リポジトリにあるデッキの部品ライブラリで組む。無ければ、この skill の `assets/deck`（スライドとアイコンの部品。色と文字の決まりは `assets/deck/DESIGN.md`）と `assets/single-html`（デッキを 1 つの HTML と PDF に書き出す Vite の設定）を、`vp add github:masseater/skills#path:/skills/create-slides/assets/deck` のような git の subpath 依存で入れる。写して使わない。
+
 ## 想定読者と説明の量
 
 相手や場について指示がないときは、前提知識はないが理解力はしっかりある人を想定読者とする。
