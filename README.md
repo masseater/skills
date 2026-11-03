@@ -1,5 +1,8 @@
 # skills
 
+masseater のリポジトリで AI エージェントに守らせる書き方と作り方を、[Agent Skills](https://agentskills.io) にまとめたものである。
+Claude Code にはプラグインとして、ほかのエージェントには skills CLI でインストールできる。
+
 ## スキル
 
 <!-- skills:start -->
