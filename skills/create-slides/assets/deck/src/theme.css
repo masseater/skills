@@ -1,0 +1,46 @@
+@import "@fontsource-variable/noto-sans-jp";
+@import "@fontsource-variable/jetbrains-mono";
+@import "./tokens.css";
+
+:root {
+  color-scheme: light dark;
+  --primary: light-dark(var(--color-primary), var(--color-primary-dark));
+  --on-primary: light-dark(var(--color-on-primary), var(--color-on-primary-dark));
+  --surface: light-dark(var(--color-surface), var(--color-surface-dark));
+  --surface-container: light-dark(
+    var(--color-surface-container),
+    var(--color-surface-container-dark)
+  );
+  --on-surface: light-dark(var(--color-on-surface), var(--color-on-surface-dark));
+  --on-surface-variant: light-dark(
+    var(--color-on-surface-variant),
+    var(--color-on-surface-variant-dark)
+  );
+  --inverse-surface: light-dark(var(--color-inverse-surface), var(--color-inverse-surface-dark));
+  --on-inverse-surface: light-dark(
+    var(--color-on-inverse-surface),
+    var(--color-on-inverse-surface-dark)
+  );
+  --outline: light-dark(var(--color-outline), var(--color-outline-dark));
+  --tertiary: light-dark(var(--color-tertiary), var(--color-tertiary-dark));
+  --on-tertiary: light-dark(var(--color-on-tertiary), var(--color-on-tertiary-dark));
+  --error: light-dark(var(--color-error), var(--color-error-dark));
+  --on-error: light-dark(var(--color-on-error), var(--color-on-error-dark));
+  --font-sans: "Noto Sans JP Variable", sans-serif;
+  --font-mono: "JetBrains Mono Variable", "Noto Sans JP Variable", monospace;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--on-surface);
+  font-family: var(--font-sans);
+}
