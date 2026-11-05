@@ -15,7 +15,7 @@ export type PlamoOptions = {
 /**
  * PLaMo が訳文の後に出す区切りのトークン
  *
- * 公式の README の例と同じく stop に渡し、残っていれば取り除く。
+ * 公式の README の例と同じく stop に渡す。llama-server はこの手前で出力を止める。
  * @see https://huggingface.co/pfnet/plamo-3-translate-0.8b-GGUF
  */
 const STOP_TOKENS = ["<|plamo:tag|>", "<|plamo:bos|>"];
@@ -71,9 +71,7 @@ export async function translate(
   if (!response.ok) {
     throw new Error(`PLaMo server returned ${response.status}: ${await response.text()}`);
   }
-  let ja = parseCompletionContent(await response.json());
-  for (const token of STOP_TOKENS) ja = ja.replaceAll(token, "");
-  return ja.trim();
+  return parseCompletionContent(await response.json()).trim();
 }
 
 /**
