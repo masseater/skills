@@ -45,11 +45,11 @@ export function createBatchTranslator(
     const results = await Promise.all(
       sources.map((en) => translateOne(en, history, config, onError)),
     );
-    return sources.map((en, i) => {
+    const pairs = sources.flatMap((en, i) => {
       const ja = results[i];
-      if (ja == null) return en;
-      store.appendHistory(sessionId, { en, ja });
-      return ja;
+      return ja == null ? [] : [{ en, ja }];
     });
+    store.appendHistory(sessionId, pairs);
+    return sources.map((en, i) => results[i] ?? en);
   };
 }

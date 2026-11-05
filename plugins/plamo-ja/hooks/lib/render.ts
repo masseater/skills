@@ -10,6 +10,19 @@ const THEMATIC_BREAK = /^\s{0,3}([-*_])(\s*\1){2,}\s*$/;
 const JAPANESE = /[぀-ヿ㐀-鿿ｦ-ﾟ]/g;
 const LATIN = /[A-Za-z]/g;
 
+function count(text: string, re: RegExp): number {
+  return text.match(re)?.length ?? 0;
+}
+
+function stripInlineCode(text: string): string {
+  return text.replace(/`[^`]*`/g, "");
+}
+
+/** インラインコードの外の英字の数 */
+function countLatin(text: string): number {
+  return count(stripInlineCode(text), LATIN);
+}
+
 /**
  * 訳す価値のある英文かを判定する
  *
@@ -20,10 +33,8 @@ const LATIN = /[A-Za-z]/g;
  * @returns 訳すなら true
  */
 function needsTranslation(text: string): boolean {
-  const prose = text.replace(/`[^`]*`/g, "");
-  const latin = prose.match(LATIN)?.length ?? 0;
-  const japanese = prose.match(JAPANESE)?.length ?? 0;
-  return latin > 0 && japanese * 3 <= latin;
+  const latin = countLatin(text);
+  return latin > 0 && count(stripInlineCode(text), JAPANESE) * 3 <= latin;
 }
 
 /**
@@ -36,8 +47,8 @@ function needsTranslation(text: string): boolean {
  * @returns 壊れていれば true
  */
 export function looksBroken(en: string, ja: string): boolean {
-  const latin = en.replace(/`[^`]*`/g, "").match(LATIN)?.length ?? 0;
-  const japanese = ja.match(JAPANESE)?.length ?? 0;
+  const latin = countLatin(en);
+  const japanese = count(ja, JAPANESE);
   if (latin >= 40 && japanese < 5) return true;
   return ja.length > en.length * 3 + 200;
 }

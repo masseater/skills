@@ -1,4 +1,4 @@
-import { mkdtempSync, rmSync, utimesSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, rmSync, utimesSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vite-plus/test";
@@ -27,7 +27,7 @@ describe("Store", () => {
 
   it("履歴を足し、reset で消す", () => {
     const store = makeStore();
-    store.appendHistory("s", { en: "Hi.", ja: "やあ。" });
+    store.appendHistory("s", [{ en: "Hi.", ja: "やあ。" }]);
     expect(store.history("s", 100)).toEqual([{ en: "Hi.", ja: "やあ。" }]);
     store.clearHistory("s");
     expect(store.history("s", 100)).toEqual([]);
@@ -45,22 +45,33 @@ describe("Store", () => {
     expect(store.readMessage("new").fence).toBe("```");
   });
 
-  it("切り出し位置を保存し、上限を超えるまで先頭を変えない", () => {
+  it("落とした後は、上限を超えるまで先頭を変えない", () => {
     const store = makeStore();
-    for (let i = 0; i < 4; i++) store.appendHistory("s", { en: "aaaa", ja: "bbbb" });
+    for (let i = 0; i < 4; i++) store.appendHistory("s", [{ en: "aaaa", ja: "bbbb" }]);
     expect(store.history("s", 20)).toHaveLength(1);
-    writeFileSync(path.join(store.dataDir, "sessions", "s.window"), "3");
-    store.appendHistory("s", { en: "cccc", ja: "dddd" });
-    expect(store.history("s", 20)).toHaveLength(2);
+    store.appendHistory("s", [{ en: "cccc", ja: "dddd" }]);
+    expect(store.history("s", 20)).toEqual([
+      { en: "aaaa", ja: "bbbb" },
+      { en: "cccc", ja: "dddd" },
+    ]);
+  });
+
+  it("読むだけではデータディレクトリを作らない", () => {
+    const store = makeStore();
+    expect(store.isOn("s")).toBe(false);
+    store.pruneMessages();
+    expect(store.readMessage("m")).toEqual({ fence: null, done: {} });
+    expect(existsSync(path.join(store.dataDir, "sessions"))).toBe(false);
+    expect(existsSync(path.join(store.dataDir, "messages"))).toBe(false);
   });
 });
 
 describe("履歴の切り出し", () => {
   it("上限に収まれば全部を返し、超えたら上限の半分まで一度に落とす", () => {
     const store = makeStore();
-    for (let i = 0; i < 6; i++) store.appendHistory("s", { en: "12345", ja: "12345" });
+    for (let i = 0; i < 6; i++) store.appendHistory("s", [{ en: "12345", ja: "12345" }]);
     expect(store.history("s", 60)).toHaveLength(6);
-    for (let i = 0; i < 4; i++) store.appendHistory("s", { en: "12345", ja: "12345" });
+    for (let i = 0; i < 4; i++) store.appendHistory("s", [{ en: "12345", ja: "12345" }]);
     expect(store.history("s", 60)).toHaveLength(3);
   });
 });
