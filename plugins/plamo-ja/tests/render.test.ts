@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vite-plus/test";
 import { looksBroken, renderLines, splitLines } from "../hooks/lib/render.ts";
-import type { MessageState } from "../hooks/lib/store.ts";
+import { emptyMessageState } from "../hooks/lib/schema.ts";
 
 const fake = async (sources: string[]) => sources.map((en) => `JA(${en})`);
-const fresh = (): MessageState => ({ fence: null, done: {} });
+const fresh = emptyMessageState;
 
 describe("renderLines", () => {
   it("段落の続く行を 1 つにまとめて訳し、空行はそのまま残す", async () => {

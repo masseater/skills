@@ -9,6 +9,10 @@ export type MessageState = {
   done: Record<string, string>;
 };
 
+export function emptyMessageState(): MessageState {
+  return { fence: null, done: {} };
+}
+
 /** PLaMo 3 Translate の Chat Completions API に渡す訳語の指定 */
 export type GlossaryEntry = { source: string; target: string };
 

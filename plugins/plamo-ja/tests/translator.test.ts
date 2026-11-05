@@ -57,7 +57,7 @@ describe("createBatchTranslator", () => {
       .mockResolvedValueOnce(reply("この文は日本語に訳す必要がある。"));
     vi.stubGlobal("fetch", fetchMock);
     const { store, config } = setup();
-    store.appendHistory("s", { en: "Old.", ja: "古い。" });
+    store.appendHistory("s", [{ en: "Old.", ja: "古い。" }]);
 
     expect(await createBatchTranslator(store, "s", config, vi.fn())([en])).toEqual([
       "この文は日本語に訳す必要がある。",
