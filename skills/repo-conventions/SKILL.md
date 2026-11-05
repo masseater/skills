@@ -28,7 +28,8 @@ description: masseater のリポジトリに共通の決まり。masseater/types
 
 ## 文書
 
-- 手書きの文章は、ルートの CLAUDE.md・README.md・DESIGN.md と docs/ に限る。コードを読めば分かることは書かない
+- 手書きの文章は、ルートの CLAUDE.md・README.md・ARCHITECTURE.md・DESIGN.md と docs/ に限る。コードを読めば分かることは書かない
+- ARCHITECTURE.md には、ワークスペースと層の地図と、依存してよい向きなどの不変条件だけを短く書く。頻繁に変わることは書かず、名前はリンクにしない。変わるたびに同期させず、境界や不変条件が変わるときだけ直す
 - 「なぜ」はコミットメッセージに書く
 - デプロイ先や外部に公開しているもの（サイト、API、npm パッケージなど）があれば、その URL を README に一覧で載せる
 
