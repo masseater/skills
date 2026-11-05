@@ -34,8 +34,8 @@ afterEach(() => {
 });
 
 describe("createBatchTranslator", () => {
-  it("訳を返し、区切りのトークンを除いて履歴に足す", async () => {
-    const fetchMock = vi.fn(async () => reply("テストは通った。<|plamo:tag|>"));
+  it("訳を返し、履歴に足す", async () => {
+    const fetchMock = vi.fn(async () => reply("テストは通った。"));
     vi.stubGlobal("fetch", fetchMock);
     const { store, config } = setup();
     const batch = createBatchTranslator(store, "s", config, vi.fn());

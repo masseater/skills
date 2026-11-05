@@ -21,6 +21,10 @@ llama-server -m plamo-3-translate-0.8b-Q4_K_M.gguf -c 16384 --port 8000 --alias 
 
 接続先、文体、訳語の指定は [display skill](skills/display/SKILL.md) の「設定」にある。
 
+## 実測
+
+2026-11-05 に、llama.cpp（commit 3259ab6）の llama-server と Q4_K_M のモデルで、4 コアの x86-64（GPU なし）で hook を通した。見出しと 1 文の段落、箇条書き 2 項目とコードフェンス、1 文の段落の 3 バッチで、1 バッチの hook は 1.0〜1.6 秒だった。生成は 1 秒あたり約 41 トークンだった。
+
 ## 出典とライセンス
 
 発想は kat0h の [X のポスト](https://x.com/kat0h/status/2118175639262175376)と、そこで公開された [gist の plamo-ja-v2 skill](https://gist.github.com/kat0h/61951d19c606374aa1dd901b0303cc6c)（2026-11-05）による。英語で書かせて `MessageDisplay` で訳す方式と、履歴が上限を超えたら半分まで一度に落としてプロンプトキャッシュを効かせる方式は、この gist から取った。gist にはライセンスの表記が無いので、コードは写さずに書き直した。
