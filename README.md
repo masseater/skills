@@ -21,6 +21,10 @@ Claude Code にはプラグインとして、ほかのエージェントには s
 
 <!-- skills:end -->
 
+## プラグイン
+
+- [plamo-ja](plugins/plamo-ja/README.md): Claude に英語で書かせ、ローカルの PLaMo 3 Translate で訳した日本語を画面に出す。
+
 ## Claude Code にインストール
 
 ```sh

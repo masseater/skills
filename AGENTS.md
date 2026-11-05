@@ -16,6 +16,10 @@ skill は `skills/<name>/` に 1 つずつ置き、`name` はディレクトリ�
 
 `metadata.derived-from` には、内容を取り込んで読み替えた原典の URL だけを、コミットを指定した permalink で書く。読んだだけの資料や根拠として引く資料は、本文にリンクする。
 
+## プラグイン
+
+skill のほかに hook を持つものは `plugins/<name>/` に 1 つずつ Claude Code のプラグインとして置き、`.claude-plugin/marketplace.json` に足す。依存は入れず、hook とスクリプトは Node.js がそのまま動かせる TypeScript（型の注釈を消すだけで動く書き方）で書く。テストは `plugins/<name>/tests/` に置く。
+
 ## コマンド
 
 ```sh
@@ -25,7 +29,7 @@ vp dlx skills init <name>                   # SKILL.md の雛形を作る
 
 README.md のスキル一覧は、`SKILL.md` を含むコミットのたびに `.vite-hooks/pre-commit` が `vp run readme` で各 `SKILL.md` の `name` と `description` から書き直し、コミットに含める。手で直さない。フックは `vp install` で有効になる。
 
-ビルド、テスト、lint はない。skill を変えたら `skills-ref validate` を通し、参照するファイルと名前で委ねた skill が存在することを確かめる。
+ビルドと lint はない。プラグインを変えたら `./node_modules/.bin/vp run test` を通す。`skills/` の skill を変えたら `skills-ref validate` を通し、参照するファイルと名前で委ねた skill が存在することを確かめる。
 
 ## 作業の流れ
 
