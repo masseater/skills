@@ -17,12 +17,21 @@ afterEach(() => {
 describe("Store", () => {
   it("セッションごとにモードを切り替える", () => {
     const store = makeStore();
-    expect(store.isOn("a")).toBe(false);
+    expect(store.isOn("a", false)).toBe(false);
     store.setOn("a", true);
-    expect(store.isOn("a")).toBe(true);
-    expect(store.isOn("b")).toBe(false);
+    expect(store.isOn("a", false)).toBe(true);
+    expect(store.isOn("b", false)).toBe(false);
     store.setOn("a", false);
-    expect(store.isOn("a")).toBe(false);
+    expect(store.isOn("a", false)).toBe(false);
+  });
+
+  it("既定でオンのときも、off にしたセッションはオフのまま", () => {
+    const store = makeStore();
+    expect(store.isOn("a", true)).toBe(true);
+    store.setOn("a", false);
+    expect(store.isOn("a", true)).toBe(false);
+    store.setOn("a", true);
+    expect(store.isOn("a", true)).toBe(true);
   });
 
   it("履歴を足し、reset で消す", () => {
@@ -58,7 +67,7 @@ describe("Store", () => {
 
   it("読むだけではデータディレクトリを作らない", () => {
     const store = makeStore();
-    expect(store.isOn("s")).toBe(false);
+    expect(store.isOn("s", false)).toBe(false);
     store.pruneMessages();
     expect(store.readMessage("m")).toEqual({ fence: null, done: {} });
     expect(existsSync(path.join(store.dataDir, "sessions"))).toBe(false);

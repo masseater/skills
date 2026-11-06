@@ -11,6 +11,18 @@ const DEFAULT_HISTORY_BUDGET = 8000;
 
 export type Config = PlamoOptions & { historyBudget: number };
 
+/**
+ * 切り替えていないセッションをオンにするかを返す
+ *
+ * `PLAMO_JA_AUTO=on` のとき、`/plamo-ja:display` を使わなくても全セッションでオンになる。
+ *
+ * @param env - 読む環境変数
+ * @returns 既定でオンなら true
+ */
+export function autoOn(env: NodeJS.ProcessEnv = process.env): boolean {
+  return env.PLAMO_JA_AUTO === "on";
+}
+
 function readGlossary(dataDir: string): GlossaryEntry[] {
   const p = path.join(dataDir, "glossary.json");
   if (!existsSync(p)) return [];

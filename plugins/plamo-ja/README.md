@@ -1,6 +1,6 @@
 # plamo-ja
 
-Claude Code の応答を、ローカルで動かす翻訳モデル [PLaMo 3 Translate](https://huggingface.co/pfnet/plamo-3-translate-0.8b-GGUF) で日本語にして画面に出すプラグインである。オンにすると Claude は英語で書き、`MessageDisplay` hook が段落ごとに訳す。訳が変えるのは画面の表示だけで、transcript と Claude の文脈は英語のまま残る。
+Claude Code の応答を、ローカルで動かす翻訳モデル [PLaMo 3 Translate](https://huggingface.co/pfnet/plamo-3-translate-0.8b-GGUF) で日本語にして画面に出すプラグインである。オンにすると Claude は英語で書き、`MessageDisplay` hook が段落ごとに訳す。AskUserQuestion と、Claude の claude.ai のプロジェクトでスレッドに送るメッセージ（`mcp__hearthbot__post_message` など）は、`PreToolUse` hook が送る前に訳す。transcript と Claude の文脈は英語のまま残る。
 
 ## 使い方
 
@@ -12,7 +12,7 @@ cd plamo-3-translate-0.8b-GGUF
 llama-server -m plamo-3-translate-0.8b-Q4_K_M.gguf -c 16384 --port 8000 --alias plamo-3-translate --chat-template-file chat_template.jinja --no-prefill-assistant
 ```
 
-プラグインを入れ、セッションの中で `/plamo-ja:display` を実行するとオンになる。`/plamo-ja:display off` で戻る。hook は Node.js 22.18 以降で TypeScript をそのまま動かす。
+プラグインを入れ、セッションの中で `/plamo-ja:display` を実行するとオンになる。`/plamo-ja:display off` で戻る。`PLAMO_JA_AUTO=on` で全セッションを既定でオンにでき、`PLAMO_JA_SERVER_COMMAND` に起動コマンドを置くとセッションの開始時にサーバーを起動する。hook は Node.js 22.18 以降で TypeScript をそのまま動かす。
 
 ```sh
 /plugin marketplace add masseater/skills
