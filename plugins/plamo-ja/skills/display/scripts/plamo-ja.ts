@@ -1,17 +1,12 @@
 /**
- * 日本語表示モードの切り替えと、hook の訳し方での単発の翻訳
+ * 日本語表示モードの切り替え
  *
- * 使い方: plamo-ja.ts <on|off|reset|status|translate> --session <ID> [--data <DIR>]
- * translate は標準入力の英文を訳して標準出力に書く。
+ * 使い方: plamo-ja.ts <on|off|reset|status> --session <ID> [--data <DIR>]
  */
-import { readFileSync } from "node:fs";
 import { parseArgs } from "node:util";
-import { type Config, DEFAULT_URL, loadConfig } from "../../../hooks/lib/config.ts";
+import { autoOn, type Config, DEFAULT_URL, loadConfig } from "../../../hooks/lib/config.ts";
 import { isServerUp, MODEL_ALIAS } from "../../../hooks/lib/plamo.ts";
-import { renderLines, splitLines } from "../../../hooks/lib/render.ts";
-import { emptyMessageState } from "../../../hooks/lib/schema.ts";
 import { resolveDataDir, Store } from "../../../hooks/lib/store.ts";
-import { createBatchTranslator } from "../../../hooks/lib/translator.ts";
 
 const SERVER_COMMAND = [
   "hf download pfnet/plamo-3-translate-0.8b-GGUF plamo-3-translate-0.8b-Q4_K_M.gguf chat_template.jinja --local-dir plamo-3-translate-0.8b-GGUF",
@@ -42,17 +37,8 @@ async function turnOn({ store, sessionId }: Context): Promise<void> {
 async function showStatus({ store, sessionId }: Context): Promise<void> {
   const config = configOf(store);
   const up = await isServerUp(config.url);
-  const mode = store.isOn(sessionId) ? "on" : "off";
+  const mode = store.isOn(sessionId, autoOn()) ? "on" : "off";
   console.log(`mode: ${mode}\nserver: ${config.url} (${up ? "up" : "down"})`);
-}
-
-async function translateStdin({ store, sessionId }: Context): Promise<void> {
-  const input = readFileSync(0, "utf8");
-  const translateBatch = createBatchTranslator(store, sessionId, configOf(store), (error) => {
-    console.error(`plamo-ja: ${String(error)}`);
-  });
-  const shown = await renderLines(splitLines(input), emptyMessageState(), translateBatch);
-  process.stdout.write(shown);
 }
 
 const COMMANDS: Record<string, (context: Context) => void | Promise<void>> = {
@@ -66,7 +52,6 @@ const COMMANDS: Record<string, (context: Context) => void | Promise<void>> = {
     console.log("Translation history cleared.");
   },
   status: showStatus,
-  translate: translateStdin,
 };
 
 const USAGE = `usage: plamo-ja.ts <${Object.keys(COMMANDS).join("|")}> --session <ID> [--data <DIR>]`;

@@ -59,13 +59,24 @@ export class Store {
     return this.file(area, id, ext);
   }
 
-  isOn(sessionId: string): boolean {
-    return existsSync(this.file("sessions", sessionId, ".on"));
+  /**
+   * このセッションでモードがオンかを返す
+   *
+   * `on` か `off` で切り替えたセッションはその指定に従い、切り替えていなければ `defaultOn` に従う。
+   *
+   * @param sessionId - 対象のセッション
+   * @param defaultOn - 切り替えていないセッションの既定
+   * @returns オンなら true
+   */
+  isOn(sessionId: string, defaultOn: boolean): boolean {
+    if (existsSync(this.file("sessions", sessionId, ".off"))) return false;
+    return defaultOn || existsSync(this.file("sessions", sessionId, ".on"));
   }
 
   setOn(sessionId: string, on: boolean): void {
-    if (on) writeFileSync(this.writable("sessions", sessionId, ".on"), "");
-    else rmSync(this.file("sessions", sessionId, ".on"), { force: true });
+    const [set, unset] = on ? [".on", ".off"] : [".off", ".on"];
+    writeFileSync(this.writable("sessions", sessionId, set), "");
+    rmSync(this.file("sessions", sessionId, unset), { force: true });
   }
 
   clearHistory(sessionId: string): void {

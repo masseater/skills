@@ -7,7 +7,8 @@
           {
             "type": "command",
             "command": "node",
-            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/session-start.ts"]
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/session-start.ts"],
+            "timeout": 90
           }
         ]
       }
@@ -20,6 +21,19 @@
             "command": "node",
             "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/translate-display.ts"],
             "timeout": 60
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "^(AskUserQuestion|mcp__hearthbot__post_message|mcp__hearthbot__edit_message|mcp__hearthbot__update_progress_checklist)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/translate-tool-input.ts"],
+            "timeout": 120
           }
         ]
       }
