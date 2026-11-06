@@ -50,6 +50,13 @@ description: masseater のリポジトリに共通の決まり。masseater/types
 - 環境変数は環境ごとに変わる値だけにする。変わらない値はコードか Alchemy の設定に、ツールにフラグがあればフラグにする。環境変数が 1 つ増えるたびに、どの環境で何を設定するかの考慮が増えるからである
 - Alchemy に足りない設定は、alchemy にパッチを当てず、カスタムリソースで定義する
 
+## CI
+
+- ワークフローの手順は masseater/typescript-template の `.github/actions/` にある composite action（verify・autofix・skills-lock・credentials・ci-telemetry）を `masseater/typescript-template/.github/actions/<名前>@<sha>` で参照する。手順を各リポに写すと、直すたびに全リポを書き換えることになるからである。sha は renovate が上げる
+- リポ固有のツール（uv・go・weaver・apt の依存など）は、そのリポの `.github/actions/setup` に置き、ジョブからは `$/.github/actions/setup` で呼ぶ。actionlint はまだ `$/` を知らないので、`.github/actionlint.yaml` でその 1 件だけを無視する
+- Cloudflare・OpenRouter・Claude のトークンは credentials action が credentials.masseater.dev から受け取る。GitHub の Secrets に置かない
+- `.claude/skills` は `.agents/skills` へのリンクなので、`.agents/skills/.gitkeep` を追跡する。リンク先が無いと Actions が composite action を取り込むときに落ちる
+
 ## PR とマージ
 
 - PR のレビュー、PR ごとの CI・動作検証・デプロイはしない。動作は main にマージしてデプロイした本番で確かめる
