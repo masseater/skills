@@ -15,6 +15,15 @@ description: Vite+ の `vp` でインストール、実行、検査、テスト�
 
 この skill で達成したい状態は、公式の案内をパッケージに入っている原本から読み、masseater のリポジトリで足した決まりだけをここに置くことである。手元、フック、CI のどこで動かしても、同じ `vp` の入口から同じ結果が出る。
 
+## タスクと scripts
+
+- package.json の scripts には `prepare`・`prepack` などの lifecycle だけを置く。ほかのコマンドは、そのパッケージの `vite.config.ts` の `run.tasks` に書く。scripts の文字列は型で検査できず、引数を並べたコマンドが壊れても気づけないからである
+- ビルトインと同じことをするだけのタスク（`build: "vp build"` など）は作らず、`vp build`・`vp pack` を直接使う
+- モノレポに対応したツールはルートで 1 回だけ動かす。テストはルートの `test.projects` に pnpm-workspace と同じ glob を並べて `vp test run`、fallow はルートの 1 回でワークスペース全体を見る。各パッケージに同じ検査のタスクを写さない。`test.projects` の glob に当たるディレクトリのうちパッケージでないものは `!` で外し、ワークスペースの直下に `.gitkeep` などのファイルを置かない。Vitest はどちらも project として読もうとして落ちる
+- 特定のパッケージのタスクに頼るときは、`vp run --filter` を包んだタスクを作らず、`dependsOn` に `<パッケージ名>#<タスク名>` と書く。`vp run -r` は、同じ名前のタスクを持つパッケージすべてで動かすときだけに使う
+- ファイルを書き出すタスク（build・deploy・生成・計測）は `cache: false` にする
+- タスクからだけ呼ばれるファイルは fallow の解析から見えないので、`.fallowrc.jsonc` の `entry` に足す。fallow はルートの `vite.config.ts` に書いたタスクの文字列からバイナリの使用を拾うので、`run` を別のファイルに切り出さない
+
 ## 検査とフック
 
 - 検査を足すときは、`vite.config.ts` のタスクにして `verify` の `dependsOn` に入れる。フックと CI が同じ `verify` を動かすので、そこに入れた検査だけがすべての経路で効く
