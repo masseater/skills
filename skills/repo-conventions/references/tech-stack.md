@@ -11,6 +11,18 @@ masseater の道具一式を「masseater エコシステム」として、完成
 - ユーザーが「これが欲しい」と言えば、ユーザーの手作業なしに作られて動く。権限の付与のような手作業がいくらか残るのは許容する
 - 対象は、VST などの音楽プラグイン、ゲーム、ゲームの Mod、Discord、wiki、decision モデルの研究、Unity と Blender の 3D である
 - OS は作らない
+- いずれは Unity や Blender に代わるものを自分で作ってもよい。その規模で作ることを許容する
+- 迷ったものは、必要になったときに作る
+
+### 決まっている選択
+
+- 言語は TypeScript と Rust にする。C# と Python は使わず、Unity と Blender の中で要る分だけを閉じた例外にする
+- 音楽プラグインの形式は VST3 を基本にする。Logic Pro は AU しか読まないので、AU を出すかは決めていない
+- 決済は Stripe だけを使う。ライセンスサーバーは今は作らない
+- 配布先は npm と crates.io だけにする。他は必要になったときに足す
+- 3D のデータ形式は FBX・`.blend`・glTF を扱う。他は必要になったときに足す
+- PC 向けのものは Windows・macOS・Linux で動かす。常駐させるものは必要になったときに作る
+- Claude を使うのは claude.ai のサービスの質が良いからである。モデルは用途に応じて選び、Claude 以外のモデルも使う
 
 ### 自分専用でベンダーロックインを歓迎する
 
@@ -74,3 +86,4 @@ masseater の道具一式を「masseater エコシステム」として、完成
 4. 全部を自作する人の事例を調べた。うまくいった例は、自作する範囲を本業の核心に絞っている。Jonathan Blow は言語を作り、その上で 10 年かけてゲームを出した。Andreas Kling は SerenityOS の「全部自前」を Ladybird でやめ、グラフィックスや音声をライブラリに任せた。破綻した例は、道具づくりそのものが目的になったか、本人しか回せない状態で止まっている。TempleOS や Handmade Hero がこれにあたる。AI 時代の例では、Mario Zechner が Claude Code の変化に振り回されないよう最小のエージェント pi を自作し、Armin Ronacher は [pi で pi を直す運用](https://lucumr.pocoo.org/2026/5/24/pi-oss/)をしている。一方で Ronacher は[作るのが簡単になりすぎて磨き込みが追いつかない](https://lucumr.pocoo.org/2026/1/18/agent-psychosis/)とも書き、[Personal software factories are a waste of time](https://www.peterp.me/articles/personal-software-factories-are-a-waste-of-time/) は作るもの自体が無いまま工場を作り続ける罠を指摘している
 5. 事例を受けて、中核は借り、開発者が触る面とつなぐ仕組みだけを作るという境目に決めた。自作の言語は範囲の外とした
 6. ユーザーは、ロックインを SaaS にも広げた。GitHub は public なら Actions が無料で、Claude はクラウド環境が付いてくるので、どちらも安すぎるという理由である。この前提で道具を組んだ全体を「masseater エコシステム」と呼ぶことにした
+7. 範囲を聞き取った。C# と Python は嫌いなので Unity と Blender の中だけの例外とし、将来は Unity や Blender に代わるものを作る規模まで許容した。VST3 で macOS 向けに困るかという問いには、VST3 は macOS でも動くが Logic Pro は AU しか読まないと答えた。Rust の [nih-plug](https://github.com/robbert-vdh/nih-plug) は VST3 と CLAP を出せ、AU は別のラッパーが要る。決済は Stripe だけ、配布先は npm と crates.io だけ、データ形式は FBX・`.blend`・glTF、OS は Windows・macOS・Linux とし、どれも足りなくなったら足す。分からないものは必要になったときに作ると決めた
