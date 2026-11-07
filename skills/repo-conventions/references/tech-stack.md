@@ -23,6 +23,10 @@ masseater の道具一式を「masseater エコシステム」として、完成
 - 3D のデータ形式は FBX・`.blend`・glTF を扱う。他は必要になったときに足す
 - PC 向けのものは Windows・macOS・Linux で動かす。常駐させるものは必要になったときに作る
 - Claude を使うのは claude.ai のサービスの質が良いからである。モデルは用途に応じて選び、Claude 以外のモデルも使う
+- UI は React と TanStack Start で作る
+- 永続データは Cloudflare に置く
+- ドメインと DNS は Cloudflare で管理する。Cloudflare で取れない `.jp` ドメインは、要るときに考える
+- 作ったものの利用者からの要望は、基本的に受け付けない。受け付けるかはその都度決める
 
 ### 自分専用でベンダーロックインを歓迎する
 
@@ -87,3 +91,4 @@ masseater の道具一式を「masseater エコシステム」として、完成
 5. 事例を受けて、中核は借り、開発者が触る面とつなぐ仕組みだけを作るという境目に決めた。自作の言語は範囲の外とした
 6. ユーザーは、ロックインを SaaS にも広げた。GitHub は public なら Actions が無料で、Claude はクラウド環境が付いてくるので、どちらも安すぎるという理由である。この前提で道具を組んだ全体を「masseater エコシステム」と呼ぶことにした
 7. 範囲を聞き取った。C# と Python は嫌いなので Unity と Blender の中だけの例外とし、将来は Unity や Blender に代わるものを作る規模まで許容した。VST3 で macOS 向けに困るかという問いには、VST3 は macOS でも動くが Logic Pro は AU しか読まないと答えた。Rust の [nih-plug](https://github.com/robbert-vdh/nih-plug) は VST3 と CLAP を出せ、AU は別のラッパーが要る。決済は Stripe だけ、配布先は npm と crates.io だけ、データ形式は FBX・`.blend`・glTF、OS は Windows・macOS・Linux とし、どれも足りなくなったら足す。分からないものは必要になったときに作ると決めた
+8. 続けて、UI は使いやすく困っていない React と TanStack Start のまま、永続データとドメインと DNS は Cloudflare に寄せ、利用者からの要望は基本的に受け付けないと決めた
