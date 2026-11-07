@@ -1,0 +1,12 @@
+{
+  "name": "existing-libraries",
+  "description": "新しい処理を書く前に、masseater の自作パッケージの一覧と、依存が同梱する TanStack Intent の skill を Claude に見せる",
+  "version": "0.1.0",
+  "author": {
+    "name": "masseater",
+    "url": "https://github.com/masseater"
+  },
+  "homepage": "https://github.com/masseater/skills/tree/main/plugins/existing-libraries",
+  "repository": "https://github.com/masseater/skills",
+  "license": "AGPL-3.0-only"
+}

@@ -26,6 +26,7 @@ Claude Code にはプラグインとして、ほかのエージェントには s
 
 ## プラグイン
 
+- [existing-libraries](plugins/existing-libraries/README.md): 新しい処理を書く前に、masseater の自作パッケージの一覧と、依存が同梱する TanStack Intent の skill を Claude に見せる。
 - [plamo-ja](plugins/plamo-ja/README.md): Claude に英語で書かせ、ローカルの PLaMo 3 Translate で訳した日本語を画面に出す。
 
 ## Claude Code にインストール
