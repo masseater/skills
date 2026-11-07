@@ -6,3 +6,4 @@
 4. `vp pack` の設定に `publint: { strict: true }` と `attw: { profile: "esm-only", level: "error" }` を書き、`publint` と `@arethetypeswrong/core` を devDependencies に入れる。fallow はこの 2 つの利用を辿れないので、`.fallowrc.jsonc` の `ignoreDependencies` に載せる
 5. バンドルサイズを size-limit（`@size-limit/file`）で測る。パッケージに `"size": "vp run build && size-limit"` と `size-limit` の設定を置き、ルートの `vite.config.ts` に `"size-all": "vp run -r size"` を足して verify の `dependsOn` に入れる。`vp run -r` は対象のタスクが 1 つも無いと落ちる
 6. `limit` は今の大きさをバイト単位でちょうどに書く。増やすときは `limit` を上げ、その理由をコミットメッセージに書く
+7. 出したパッケージを使う場面を、dont-it-yourself の「masseater の自作パッケージ」に 1 行で足す。自作パッケージは npm の検索では人気の順で埋もれるので、そこに無いものは別のリポジトリで作業する AI に気づかれない
