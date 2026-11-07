@@ -1,11 +1,7 @@
-/** 訳した英文と日本語の組。PLaMo に履歴として渡す */
 export type TranslationPair = { en: string; ja: string };
 
-/** 1 つのメッセージの、バッチをまたいで持ち越す状態 */
 export type MessageState = {
-  /** 開いているコードフェンスの記号。フェンスの外なら null */
   fence: string | null;
-  /** 処理済みのバッチの表示内容。同じバッチが二度届いたときに同じ結果を返すため */
   done: Record<string, string>;
 };
 
@@ -13,7 +9,6 @@ export function emptyMessageState(): MessageState {
   return { fence: null, done: {} };
 }
 
-/** PLaMo 3 Translate の Chat Completions API に渡す訳語の指定 */
 export type GlossaryEntry = { source: string; target: string };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -53,7 +48,6 @@ export function parseGlossary(value: unknown): GlossaryEntry[] {
   );
 }
 
-/** Chat Completions API の応答から訳文を取り出す */
 export function parseCompletionContent(value: unknown): string {
   const choice = isRecord(value) && Array.isArray(value.choices) ? value.choices[0] : undefined;
   const message = isRecord(choice) ? choice.message : undefined;

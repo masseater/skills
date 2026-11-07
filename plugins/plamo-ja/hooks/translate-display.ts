@@ -16,7 +16,6 @@ if (store.isOn(sessionId, autoOn())) {
   if (shown === undefined) {
     const config = loadConfig(store.dataDir);
     const translateBatch = createBatchTranslator(store, sessionId, config, (error) => {
-      // 訳せなかった単位は英文のまま表示される。原因は claude --debug で読める
       console.error(`plamo-ja: translation failed; showing the original text: ${String(error)}`);
     });
     shown = await renderLines(splitLines(field(input, "delta")), state, translateBatch);

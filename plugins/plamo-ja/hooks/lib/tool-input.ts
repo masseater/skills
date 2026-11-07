@@ -1,10 +1,5 @@
-/**
- * 送る前に訳すツールの入力の場所
- *
- * キーはツールの名前、値は入力の中の文字列の場所である。`[]` は配列の各要素を指す。
- * 長さに上限のある入力（request_decision の選択肢など）は、訳すと上限を超えうるので載せない。
- * hooks.json の PreToolUse の matcher は、このキーと同じ並びにする。
- */
+// request_decision など長さに上限のある入力は、訳すと上限を超えうるので載せない。
+// hooks.json の PreToolUse の matcher はこのキーと同じ並びにする（tests/tool-input.test.ts が確かめる）
 export const TRANSLATED_FIELDS: Record<string, string[]> = {
   AskUserQuestion: [
     "questions[].question",
@@ -40,14 +35,6 @@ function collect(node: unknown, segments: string[], out: Slot[]): void {
   }
 }
 
-/**
- * ツールの入力の決まった場所の文字列を訳す
- *
- * @param input - ツールの入力。書き換えず、写しを返す
- * @param paths - 訳す場所
- * @param translate - 文字列を訳す
- * @returns 訳した入力と、1 か所でも変わったか
- */
 export async function translateToolInput(
   input: unknown,
   paths: string[],

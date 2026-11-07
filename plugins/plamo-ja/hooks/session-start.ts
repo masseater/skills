@@ -4,7 +4,6 @@ import { ensureServer } from "./lib/server.ts";
 import { resolveDataDir, Store } from "./lib/store.ts";
 import { TRANSLATED_FIELDS } from "./lib/tool-input.ts";
 
-/** 再開や compact の後も、英語で書く決まりを Claude が覚えているように渡す文言 */
 const REMINDER =
   "Japanese display mode (plamo-ja) is on for this session. Write every message to the user in plain, " +
   "complete English sentences, one sentence or list item per line, with code, paths and identifiers in " +
@@ -18,7 +17,6 @@ const SERVER_DOWN =
   "Japanese display mode (plamo-ja) is on, but its PLaMo server is not running, so nothing is " +
   "translated. Write in the user's language as usual.";
 
-/** 起動コマンドがモデルを読み込み終えるまで待つ上限 */
 const SERVER_WAIT_MS = 60_000;
 
 const input = readHookInput();

@@ -20,15 +20,6 @@ import {
 
 const ONE_DAY_MS = 24 * 60 * 60 * 1000;
 
-/**
- * plugin の永続データの置き場を決める
- *
- * hook には Claude Code が `CLAUDE_PLUGIN_DATA` を渡す。skill のスクリプトには SKILL.md が
- * 同じパスを `--data` で渡す。どちらも無い（手で動かした）ときは `~/.cache/plamo-ja` を使う。
- *
- * @param explicit - `--data` で渡されたパス
- * @returns データディレクトリのパス
- */
 export function resolveDataDir(explicit?: string): string {
   if (explicit) return explicit;
   if (process.env.CLAUDE_PLUGIN_DATA) return process.env.CLAUDE_PLUGIN_DATA;
@@ -41,7 +32,6 @@ function safeName(id: string): string {
 
 type Area = "sessions" | "messages";
 
-/** セッションごとのモードと訳の履歴、メッセージごとの状態を読み書きする */
 export class Store {
   readonly dataDir: string;
 
@@ -53,21 +43,11 @@ export class Store {
     return path.join(this.dataDir, area, `${safeName(id)}${ext}`);
   }
 
-  /** 書き込む前に置き場を作る。読むだけの呼び出しではディレクトリを作らない */
   private writable(area: Area, id: string, ext: string): string {
     mkdirSync(path.join(this.dataDir, area), { recursive: true });
     return this.file(area, id, ext);
   }
 
-  /**
-   * このセッションでモードがオンかを返す
-   *
-   * `on` か `off` で切り替えたセッションはその指定に従い、切り替えていなければ `defaultOn` に従う。
-   *
-   * @param sessionId - 対象のセッション
-   * @param defaultOn - 切り替えていないセッションの既定
-   * @returns オンなら true
-   */
   isOn(sessionId: string, defaultOn: boolean): boolean {
     if (existsSync(this.file("sessions", sessionId, ".off"))) return false;
     return defaultOn || existsSync(this.file("sessions", sessionId, ".on"));
@@ -89,17 +69,8 @@ export class Store {
     appendFileSync(this.writable("sessions", sessionId, ".jsonl"), lines);
   }
 
-  /**
-   * PLaMo に渡す履歴を、合計 `budget` 文字に収まるよう新しい側から選ぶ
-   *
-   * 古い組を 1 つずつ落とすと毎回プロンプトの先頭が変わり、llama-server の
-   * プロンプトキャッシュが効かない。上限を超えたときだけ、上限の半分に収まる新しい側だけを
-   * 残してファイルを書き直す。ファイルの中身がそのまま次に渡す履歴になる。
-   *
-   * @param sessionId - 対象のセッション
-   * @param budget - 履歴の文字数の上限
-   * @returns 古い順の履歴
-   */
+  // 古い組を 1 つずつ落とすと毎回プロンプトの先頭が変わり、llama-server のプロンプトキャッシュが効かない。
+  // 上限を超えたときだけ、上限の半分まで一度に落とす
   history(sessionId: string, budget: number): TranslationPair[] {
     const p = this.file("sessions", sessionId, ".jsonl");
     const all = readJsonLines(p);
@@ -126,11 +97,6 @@ export class Store {
     writeFileSync(this.writable("messages", messageId, ".json"), JSON.stringify(state));
   }
 
-  /**
-   * 1 日より古いメッセージの状態を消す。メッセージはその間に表示し終わっている
-   *
-   * @param now - 現在時刻（ミリ秒）
-   */
   pruneMessages(now: number = Date.now()): void {
     const dir = path.join(this.dataDir, "messages");
     if (!existsSync(dir)) return;
