@@ -88,7 +88,7 @@ description: masseater のリポジトリに共通の決まり。masseater/types
 
 - [`cloudflare`](references/cloudflare.md)。Cloudflare にデプロイするリポジトリの決まり
 - [`oxlint-plugin-decision`](references/oxlint-plugin-decision.md)。`vp check` で decision ルールを使うリポジトリの決まり
-- [`instrumentation`](references/instrumentation.md)。スパン、CI の計測、Web Vitals の決まり
+- [`instrumentation`](references/instrumentation.md)。スパン、CI の計測、Web Vitals の決まり。Workers のトレースは `@r_masseater/workers-tracing`、テストでのテレメトリの検査は `@r_masseater/vitest-otlp`、Web Vitals は `@r_masseater/web-vitals-flow` で行う
 
 ## 用途
 
