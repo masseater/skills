@@ -14,6 +14,7 @@ Claude Code にはプラグインとして、ほかのエージェントには s
 - [how-to-use-react](skills/how-to-use-react/SKILL.md): React 19.3 のコンポーネント、ローダー、サーバー処理を書く・直す・レビューするときに読む。状態の置き場所、非同期の組み方、並行 UI の API の使いどころ、props の形を決める。
 - [humanity-and-humanness](skills/humanity-and-humanness/SKILL.md): 人間がどう読み、どう考え、何を察するかを AI が前提として持つために読む。人間が読む文章を書くとき、ユーザーの判断を仰ぐとき、ユーザーの指摘の意図を読み取るときに使う。
 - [integrate](skills/integrate/SKILL.md): ライブラリや新しい実装手段を導入するときに使う。追加するだけで終わらせず、既存コードの移行と、その手段を使わせる機械的な強制まで行う。
+- [masseater-ecosystem](skills/masseater-ecosystem/SKILL.md): masseater の技術スタックの完成形と、自作するものと借りるものの境目。技術やサービスを選ぶとき、自作するか既存のものを使うかを決めるとき、新しい言語・形式・配布先を足すとき、リポジトリの構成を変えるときに読む。
 - [measure-dont-guess](skills/measure-dont-guess/SKILL.md): 仮説を白黒つける計測を実装や修正の前に決めて実行し、その結果だけで判断する。不具合の原因を調べるとき、性能や挙動を比べるとき、新しい機能を書き始めるとき、「たぶん」で判断しそうになったときに使う。
 - [project-checklist](skills/project-checklist/SKILL.md): プロジェクトの設計で検討すべき事項が充足しているかを、実物で確認して判定する。masseater/typescript-template から作ったリポジトリでは、GitHub の設定とテンプレートへの移行も扱う。新しいリポジトリの作成時、AI に移行を任せたあと、大きな変更の前、既存のプロジェクトの見直しで使う。
 - [repo-conventions](skills/repo-conventions/SKILL.md): masseater のリポジトリに共通の決まり。masseater/typescript-template から作ったリポジトリや、AGENTS.md がこの skill を指すリポジトリで作業を始めるときに読む。
