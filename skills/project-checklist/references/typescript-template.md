@@ -83,6 +83,6 @@
 
 ## 13. CI は差分とキャッシュで効率よく回す
 
-- 導入：verify が main への push と手動実行でだけ回り、PR では回らない。PR 側のゲートは `up-to-date` の必須チェックだけである。commitlint と gitleaks は push された範囲だけを対象にし、`fetch-depth: 0` の全履歴取得を禁じるルールが actions-lint にある。deploy は、その sha がブランチの先頭のときだけ動く。依存の install は setup-vp の `cache: true` でキャッシュし、oxlint-plugin-decision の判定は `actions/cache` の restore と save で持ち回る。
+- 導入：verify が main への push と手動実行でだけ回り、PR では回らない。PR 側のゲートは `up-to-date` の必須チェックだけである。commitlint と Betterleaks は push された範囲だけを対象にし、`fetch-depth: 0` の全履歴取得を禁じるルールが actions-lint にある。deploy は、その sha がブランチの先頭のときだけ動く。依存の install は setup-vp の `cache: true` でキャッシュし、oxlint-plugin-decision の判定は `actions/cache` の restore と save で持ち回る。
 - 機能：main の直近の run で確認する。`gh run view <run-id> --log` に、依存のキャッシュと oxlint-plugin-decision の判定キャッシュの復元が出ていること、push のたびの検査が push された範囲だけを対象にしていることである。PR ごとのレビューはしない前提なので、PR 側は main の更新に追従しているかまででよい。
 - 旧構成：PR ごとに verify を回す形、全履歴を対象にした検査、`fetch-depth: 0`、キャッシュの restore や save の不足、古い sha でも deploy が動く形が無いかを見る。
