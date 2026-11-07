@@ -1,8 +1,3 @@
-/**
- * 日本語表示モードの切り替え
- *
- * 使い方: plamo-ja.ts <on|off|reset|status> --session <ID> [--data <DIR>]
- */
 import { parseArgs } from "node:util";
 import { autoOn, type Config, DEFAULT_URL, loadConfig } from "../../../hooks/lib/config.ts";
 import { isServerUp, MODEL_ALIAS } from "../../../hooks/lib/plamo.ts";
@@ -15,7 +10,6 @@ const SERVER_COMMAND = [
 
 type Context = { store: Store; sessionId: string };
 
-/** glossary.json が壊れていても off と reset は動くよう、設定は使うコマンドだけが読む */
 function configOf(store: Store): Config {
   return loadConfig(store.dataDir);
 }
@@ -65,7 +59,6 @@ async function main(args: string[]): Promise<number> {
       options: { session: { type: "string" }, data: { type: "string" } },
     });
   } catch (error) {
-    // 知らないオプションや値の無い --session は使い方の誤りなので、使い方を出して終える
     console.error(`${String(error)}\n${USAGE}`);
     return 2;
   }

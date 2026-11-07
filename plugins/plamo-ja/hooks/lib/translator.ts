@@ -20,20 +20,6 @@ async function translateOne(
   }
 }
 
-/**
- * セッションの履歴を使って訳し、訳した組を履歴に足す訳し方を作る
- *
- * 1 回のバッチの本文は、バッチの前までの履歴を共有して並列に訳す。
- * 履歴つきの訳が壊れていたら履歴なしで 1 回だけ訳し直し、それでも壊れているか、
- * サーバーに届かないときは英文をそのまま返す。表示を止めないため例外は外に出さず、
- * `onError` に渡す。
- *
- * @param store - 履歴の置き場
- * @param sessionId - 対象のセッション
- * @param config - 訳し方の設定
- * @param onError - 訳せなかったときに呼ぶ
- * @returns バッチの訳し方
- */
 export function createBatchTranslator(
   store: Store,
   sessionId: string,

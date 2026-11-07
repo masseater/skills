@@ -17,7 +17,6 @@ if (paths && store.isOn(sessionId, autoOn())) {
     sessionId,
     loadConfig(store.dataDir),
     (error) => {
-      // 訳せなかった単位は英文のまま送られる。原因は claude --debug で読める
       console.error(`plamo-ja: translation failed; sending the original text: ${String(error)}`);
     },
   );
@@ -25,7 +24,7 @@ if (paths && store.isOn(sessionId, autoOn())) {
     renderLines(splitLines(text), emptyMessageState(), translateBatch),
   );
   if (changed) {
-    // 入力を書き換えた呼び出しは、決定が無いと auto mode に拒まれうる。AskUserQuestion も allow を要る
+    // 入力を書き換えた呼び出しは、決定が無いと auto mode に拒まれる
     writeHookOutput({
       hookEventName: "PreToolUse",
       permissionDecision: "allow",
