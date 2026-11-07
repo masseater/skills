@@ -54,9 +54,11 @@ description: masseater のリポジトリに共通の決まり。masseater/types
 
 ## CI
 
-- ワークフローの手順は masseater/typescript-template の `.github/actions/` にある composite action（verify・autofix・skills-lock・credentials・ci-telemetry）を `masseater/typescript-template/.github/actions/<名前>@<sha>` で参照する。手順を各リポに写すと、直すたびに全リポを書き換えることになるからである。sha は renovate が上げる
+- ワークフローの手順は masseater/typescript-template の `.github/actions/` にある composite action（verify・autofix・skills-lock・update-branches・credentials・ci-telemetry）を `masseater/typescript-template/.github/actions/<名前>@<sha>` で参照する。手順を各リポに写すと、直すたびに全リポを書き換えることになるからである。sha は renovate が上げる
 - リポ固有のツール（uv・go・weaver・apt の依存など）は、そのリポの `.github/actions/setup` に置き、ジョブからは `$/.github/actions/setup` で呼ぶ。actionlint はまだ `$/` を知らないので、`.github/actionlint.yaml` でその 1 件だけを無視する
 - Cloudflare・OpenRouter・Claude のトークンは credentials action が credentials.masseater.dev から受け取る。GitHub の Secrets に置かない
+- bot がブランチへ push するワークフロー（autofix・skills-lock・update-branches）は、broker が出す GitHub App のトークンで push する。`GITHUB_TOKEN` で push すると、`pull_request` の `up-to-date` が承認待ち（action_required）で止まり、PR がマージされないまま残るからである。broker はワークフローのファイル名で権限を出すので、bot のワークフローを足したら masseater.dev の `credential-grants.ts` の `WORKFLOW_GITHUB_GRANTS` にも足す
+- bot の PR は auto-merge で出す。main が進んで遅れた PR には `update-branches.yml` が main を取り込む
 - `.claude/skills` は `.agents/skills` へのリンクなので、`.agents/skills/.gitkeep` を追跡する。リンク先が無いと Actions が composite action を取り込むときに落ちる
 
 ## PR とマージ
@@ -64,7 +66,7 @@ description: masseater のリポジトリに共通の決まり。masseater/types
 - PR のレビュー、PR ごとの CI・動作検証・デプロイはしない。動作は main にマージしてデプロイした本番で確かめる
 - マージ前に base を取り込み、手元の `vp run verify` を通してから自分でマージする。マージしてよいかは聞かない
 - ルールセットのバイパスや `--admin` は使わない
-- release-please のリリース PR は `verify` を手動実行して作り直す。github-actions[bot] が作った PR の `up-to-date` は承認待ち（action_required）になるので、その実行を自分で再実行して通す
+- release-please のリリース PR は `verify` を手動実行して作り直す。手動実行では App のトークンで PR を作るので、`up-to-date` は承認なしで動く
 
 ## 脆弱性
 
