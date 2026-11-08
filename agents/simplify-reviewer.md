@@ -2,7 +2,7 @@
 name: simplify-reviewer
 description: simplify-repo の達成状態を、今のリポジトリの状態だけから批判的にレビューする。単純化の作業が終わったと思ったときに使う。
 tools: Read, Grep, Glob, Bash
-model: inherit
+model: opus
 skills:
   - simplify-repo
 ---
