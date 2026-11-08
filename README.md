@@ -18,7 +18,7 @@ Claude Code にはプラグインとして、ほかのエージェントには s
 - [measure-dont-guess](skills/measure-dont-guess/SKILL.md): 仮説を白黒つける計測を実装や修正の前に決めて実行し、その結果だけで判断する。不具合の原因を調べるとき、性能や挙動を比べるとき、新しい機能を書き始めるとき、「たぶん」で判断しそうになったときに使う。
 - [project-checklist](skills/project-checklist/SKILL.md): プロジェクトの設計で検討すべき事項が充足しているかを、実物で確認して判定する。masseater/typescript-template から作ったリポジトリでは、GitHub の設定とテンプレートへの移行も扱う。新しいリポジトリの作成時、AI に移行を任せたあと、大きな変更の前、既存のプロジェクトの見直しで使う。
 - [repo-conventions](skills/repo-conventions/SKILL.md): masseater のリポジトリに共通の決まり。masseater/typescript-template から作ったリポジトリや、AGENTS.md がこの skill を指すリポジトリで作業を始めるときに読む。
-- [simplify-repo](skills/simplify-repo/SKILL.md): リポジトリ全体を対象に、コード、文書、設定から不要なものを削って単純にする。育ちすぎたリポジトリの棚卸しやリファクタリング、重複と死んだコードの整理、分割しすぎたモジュールとパッケージの統合、文書の陳腐化を止めるときに使う。
+- [simplify-repo](skills/simplify-repo/SKILL.md): リポジトリ全体を単純にする。棚卸し、重複と死んだコードの整理、分割しすぎたモジュールとパッケージの統合をするときに使う。
 - [skill-authoring](skills/skill-authoring/SKILL.md): Agent Skills の skill、つまり `SKILL.md` とそのディレクトリを作る・直す・添削するときに読む。本文を skill が必要な理由と達成したい状態から導いて書き、直すときも全体を導き直す。
 - [vite-plus](skills/vite-plus/SKILL.md): Vite+ の `vp` でインストール、実行、検査、テストをする。`vite-plus` を使うリポジトリでコマンドを実行するとき、タスクや検査を足すとき、生成されたコマンドを読み替えるときに使う。
 - [writing](skills/writing/SKILL.md): 文章を書く・推敲するときに読む。ドキュメント、コメント、コミットメッセージ、PR 本文、README、masseater の名前で出す記事、小説が対象である。「AI っぽい」「冗長」「読みにくい」と言われた文章を直すとき、Claude との壁打ちを「記事化して」と言われたときにも使う。
