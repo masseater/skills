@@ -8,5 +8,6 @@
   },
   "homepage": "https://github.com/masseater/skills",
   "repository": "https://github.com/masseater/skills",
-  "skills": "./skills/"
+  "skills": "./skills/",
+  "agents": "./agents/"
 }
