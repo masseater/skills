@@ -19,6 +19,12 @@
       "source": "./plugins/plamo-ja",
       "description": "日本語表示モード。Claude に英語で書かせ、ローカルの PLaMo 3 Translate で訳した日本語を画面に出す",
       "category": "productivity"
+    },
+    {
+      "name": "watashi",
+      "source": "./plugins/watashi",
+      "description": "watashi の CLI。Claude Code の会話履歴を、手元で秘密を伏せてから Stop フックで送る",
+      "category": "productivity"
     }
   ]
 }
