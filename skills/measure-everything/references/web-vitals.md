@@ -29,9 +29,10 @@ In a sandboxed container, pass Chrome flags such as
 `--chrome-flags="--no-sandbox"`. Behind a proxy, also pass
 `--proxy-server=$HTTPS_PROXY`. Set `CHROME_PATH` when Chrome is not found.
 
-The command emits `web-vitals.flow`, `web-vitals.load`, `web-vitals.transition`
-and `web-vitals.audit` spans. It does so when `OTEL_TRACES_EXPORTER=otlp` and an
-endpoint are set.
+The command emits `web-vitals.flow`, `web-vitals.load`, `web-vitals.transition`,
+`web-vitals.audit` and `web-vitals.judge` spans. It does so when
+`OTEL_TRACES_EXPORTER=otlp` and an endpoint are set. `web-vitals.judge` lists the
+metrics that missed the passing score in `failures` and is an error when any did.
 
 Lab data does not replace field data. For what real visitors experience, use
 the analytics of the platform that serves the page. Cloudflare Web Analytics is
