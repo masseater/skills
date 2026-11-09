@@ -25,6 +25,13 @@ function parseLine(raw: string): Line {
 const isMediaData = (parent: { [key: string]: JsonValue }, key: string): boolean =>
   key === "data" && parent["type"] === "base64";
 
+const isThinkingSignature = (parent: { [key: string]: JsonValue }, key: string): boolean =>
+  (key === "signature" && parent["type"] === "thinking") ||
+  (key === "data" && parent["type"] === "redacted_thinking");
+
+const isOpaque = (parent: { [key: string]: JsonValue }, key: string): boolean =>
+  isMediaData(parent, key) || isThinkingSignature(parent, key);
+
 function collectStrings(value: JsonValue, out: string[]): void {
   if (typeof value === "string") {
     out.push(value);
@@ -36,7 +43,7 @@ function collectStrings(value: JsonValue, out: string[]): void {
   }
   if (isRecord(value)) {
     for (const [key, item] of Object.entries(value)) {
-      if (!isMediaData(value, key)) collectStrings(item, out);
+      if (!isOpaque(value, key)) collectStrings(item, out);
     }
   }
 }
@@ -113,7 +120,7 @@ function replaceStrings(value: JsonValue, replace: Replacer, counter: { count: n
   if (isRecord(value)) {
     const out: { [key: string]: JsonValue } = {};
     for (const [key, item] of Object.entries(value)) {
-      out[key] = isMediaData(value, key) ? item : replaceStrings(item, replace, counter);
+      out[key] = isOpaque(value, key) ? item : replaceStrings(item, replace, counter);
     }
     return out;
   }

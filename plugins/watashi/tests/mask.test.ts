@@ -118,6 +118,29 @@ describe("maskText の安全側の動き", () => {
     expect(seen.join("")).not.toContain(data);
   });
 
+  it("思考の署名は検査にも置き換えにも回さず、思考の本文は検査する", () => {
+    const signature = pick("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", 400);
+    const seen: string[] = [];
+    const detector: Detector = (text) => {
+      seen.push(text);
+      return text.includes("TOKEN123") ? [finding("TOKEN123")] : [];
+    };
+    const line = (thinking: string): string =>
+      JSON.stringify({
+        type: "assistant",
+        message: {
+          role: "assistant",
+          content: [
+            { type: "thinking", thinking, signature },
+            { type: "redacted_thinking", data: signature },
+          ],
+        },
+      });
+    const masked = maskText(`${line("uses TOKEN123")}\n`, detector).text;
+    expect(masked).toBe(`${line("uses [REDACTED:fake]")}\n`);
+    expect(seen.join("")).not.toContain(signature);
+  });
+
   it("JSON でない行もそのまま検査して伏せる", () => {
     const detector: Detector = (text) => (text.includes("TOKEN123") ? [finding("TOKEN123")] : []);
     expect(maskText("plain TOKEN123 line\n", detector).text).toBe("plain [REDACTED:fake] line\n");
