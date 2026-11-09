@@ -118,7 +118,7 @@ const base64url = (buffer: Buffer): string => buffer.toString("base64url");
 
 function openBrowser(url: string): void {
   const command =
-    process.platform === "darwin" ? ["open", url] : process.platform === "win32" ? ["cmd", "/c", "start", "", url] : ["xdg-open", url];
+    process.platform === "darwin" ? ["open", url] : process.platform === "win32" ? ["rundll32", "url.dll,FileProtocolHandler", url] : ["xdg-open", url];
   const [file, ...args] = command;
   if (file === undefined) return;
   try {
