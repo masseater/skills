@@ -28,6 +28,17 @@ description: masseater のリポジトリに共通の決まり。masseater/types
 
 検査を通すために設定を無効化・簡易化したり、閾値を下げたり、抑止ディレクティブを使ったりしない。数値の設定はツールの既定値を保ち、既定値で検査が機能しないときだけ公式の指針で設定する。緩めた検査は、通っても何も保証しないからである。
 
+## Python を使わない
+
+Python は使わない。コード・スクリプト・CI・検証・依存のどれにも置かない。言語を TypeScript と Rust に絞っていて、Python を 1 か所でも置くと、そのためのランタイムとパッケージ管理と版の固定を、セッションと CI の両方で持ち続けることになるからである。
+
+- `.py`・`.ipynb`・`pyproject.toml`・`requirements.txt`・`uv.lock` のような Python のファイルを置かない
+- ワークフロー・フック・タスク・スクリプトから `python`・`pip`・`pipx`・`uv`・`uvx`・`poetry` を呼ばない。`actions/setup-python` と `astral-sh/setup-uv` も使わない
+- mise・renovate・MCP の設定に Python とそのツールを書かない
+- Python でしか動かないライブラリやツールが要るときは、TypeScript か Rust で動く別の手段に置き換える。置き換えられないものは使うのをやめ、何をやめたかを報告に書く
+- 一度きりの調査や変換も Python で書かない
+- msch がこれらを検出して `vp run verify` を落とす
+
 ## 確かめ方を先に作る
 
 機能・ツール・ワークフロー・画面・インフラのような仕組みを作るときは、それが動いていることを確かめる方法を最初に決めて作り、実装はその後に始める。確かめ方を後回しにすると、確かめられない形のまま作り終え、確認がそのたびのエージェントの目視になるからである。
@@ -66,7 +77,7 @@ description: masseater のリポジトリに共通の決まり。masseater/types
 ## CI
 
 - ワークフローの手順は masseater/typescript-template の `.github/actions/` にある composite action（verify・autofix・skills-lock・update-branches・credentials・ci-telemetry）を `masseater/typescript-template/.github/actions/<名前>@<sha>` で参照する。手順を各リポに写すと、直すたびに全リポを書き換えることになるからである。sha は renovate が上げる
-- リポ固有のツール（uv・go・weaver・apt の依存など）は、そのリポの `.github/actions/setup` に置き、ジョブからは `$/.github/actions/setup` で呼ぶ。actionlint はまだ `$/` を知らないので、`.github/actionlint.yaml` でその 1 件だけを無視する
+- リポ固有のツール（go・weaver・apt の依存など）は、そのリポの `.github/actions/setup` に置き、ジョブからは `$/.github/actions/setup` で呼ぶ。actionlint はまだ `$/` を知らないので、`.github/actionlint.yaml` でその 1 件だけを無視する
 - Cloudflare・OpenRouter・Claude のトークンは credentials action が credentials.masseater.dev から受け取る。GitHub の Secrets に置かない
 - bot がブランチへ push するワークフロー（autofix・skills-lock・update-branches）は、broker が出す GitHub App のトークンで push する。`GITHUB_TOKEN` で push すると、`pull_request` の `up-to-date` が承認待ち（action_required）で止まり、PR がマージされないまま残るからである。broker はワークフローのファイル名で権限を出すので、bot のワークフローを足したら masseater.dev の `credential-grants.ts` の `WORKFLOW_GITHUB_GRANTS` にも足す
 - bot の PR は auto-merge で出す。main が進んで遅れた PR には `update-branches.yml` が main を取り込む
