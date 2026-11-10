@@ -16,7 +16,8 @@ masseater の道具一式を「masseater エコシステム」として、完成
 
 ### 決まっている選択
 
-- 言語は TypeScript と Rust にする。C# と Python は使わず、Unity と Blender の中で要る分だけを閉じた例外にする
+- 言語は TypeScript と Rust にする。C# は使わず、Unity の中で要る分だけを閉じた例外にする
+- Python は例外なく使わない。コード・スクリプト・CI・検証・依存のどこにも置かず、Blender の中でも書かない。決まりは repo-conventions にある
 - 音楽プラグインの形式は VST3 を基本にする。Logic Pro は AU しか読まないので、AU を出すかは決めていない
 - 決済は Stripe だけを使う。ライセンスサーバーは今は作らない
 - 配布先は npm と crates.io だけにする。他は必要になったときに足す
@@ -96,3 +97,4 @@ masseater の道具一式を「masseater エコシステム」として、完成
 6. ユーザーは、ロックインを SaaS にも広げた。GitHub は public なら Actions が無料で、Claude はクラウド環境が付いてくるので、どちらも安すぎるという理由である。この前提で道具を組んだ全体を「masseater エコシステム」と呼ぶことにした
 7. 範囲を聞き取った。C# と Python は嫌いなので Unity と Blender の中だけの例外とし、将来は Unity や Blender に代わるものを作る規模まで許容した。VST3 で macOS 向けに困るかという問いには、VST3 は macOS でも動くが Logic Pro は AU しか読まないと答えた。Rust の [nih-plug](https://github.com/robbert-vdh/nih-plug) は VST3 と CLAP を出せ、AU は別のラッパーが要る。決済は Stripe だけ、配布先は npm と crates.io だけ、データ形式は FBX・`.blend`・glTF、OS は Windows・macOS・Linux とし、どれも足りなくなったら足す。分からないものは必要になったときに作ると決めた
 8. 続けて、UI は使いやすく困っていない React と TanStack Start のまま、計測データとドメインと DNS は Cloudflare に寄せ、利用者からの要望は基本的に受け付けないと決めた。データベース・認証・ORM は今のものを標準にし、テストは言語ごとのフレームワークを使い分けるのが面倒なので入口を 1 つにしたいとした。見た目の調整はまだ決まりが無く、いずれ自作することになりそうだとした
+9. 2026-11-10 にユーザーは Python を全面的に禁止した。コード・スクリプト・CI・検証・依存のどこにも置かず、Blender の中の例外も無くした。C# の Unity の中だけの例外は残る
