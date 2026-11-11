@@ -6,17 +6,18 @@ const START = "<!-- skills:start -->";
 const END = "<!-- skills:end -->";
 
 const root = join(import.meta.dirname, "..");
+const skillsDir = "plugins/masseater-skills/skills";
 const readmePath = join(root, "README.md");
 
-const dirs = readdirSync(join(root, "skills"), { withFileTypes: true })
-  .filter((entry) => entry.isDirectory() && existsSync(join(root, "skills", entry.name, "SKILL.md")))
+const dirs = readdirSync(join(root, skillsDir), { withFileTypes: true })
+  .filter((entry) => entry.isDirectory() && existsSync(join(root, skillsDir, entry.name, "SKILL.md")))
   .map((entry) => entry.name)
   .sort();
 
 const lines = await Promise.all(
   dirs.map(async (dir) => {
-    const { name, description } = await readProperties(join(root, "skills", dir));
-    return `- [${name}](skills/${dir}/SKILL.md): ${description.replace(/\s*\n\s*/g, " ").trim()}`;
+    const { name, description } = await readProperties(join(root, skillsDir, dir));
+    return `- [${name}](${skillsDir}/${dir}/SKILL.md): ${description.replace(/\s*\n\s*/g, " ").trim()}`;
   }),
 );
 

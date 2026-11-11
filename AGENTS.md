@@ -1,14 +1,14 @@
 # AGENTS.md
 
-masseater のリポジトリで共通に使うエージェントスキルを置くリポジトリである。Claude Code のプラグインマーケットプレイスを兼ね、ルートのプラグイン `masseater-skills` が `skills/` を skill にしている。
+masseater のリポジトリで共通に使うエージェントスキルを置くリポジトリである。ルートは Claude Code のプラグインマーケットプレイスで、skill はプラグイン `masseater-skills` の `plugins/masseater-skills/skills/` に置く。
 
-- skill を作る、直すときは `skills/skill-authoring/SKILL.md` に従う
-- 文章は `skills/writing/SKILL.md` に、読み手である人間の前提は `skills/humanity-and-humanness/SKILL.md` に従う
+- skill を作る、直すときは `skill-authoring` に従う
+- 文章は `writing` に、読み手である人間の前提は `humanity-and-humanness` に従う
 - ドキュメント、コミットメッセージ、PR 本文は日本語で書く
 
 ## 構成
 
-skill は `skills/<name>/` に 1 つずつ置き、`name` はディレクトリ名と同じにする。1 つの文書には 1 つの種類だけを入れる。
+skill は `plugins/masseater-skills/skills/<name>/` に 1 つずつ置き、`name` はディレクトリ名と同じにする。1 つの文書には 1 つの種類だけを入れる。
 
 - `SKILL.md` には、必要な理由と達成したい状態の説明と、規則を置く
 - `usecases/` には手順を置く
@@ -18,18 +18,18 @@ skill は `skills/<name>/` に 1 つずつ置き、`name` はディレクトリ�
 
 ## プラグイン
 
-skill のほかに hook を持つものは `plugins/<name>/` に 1 つずつ Claude Code のプラグインとして置き、`.claude-plugin/marketplace.json` に足す。依存は入れず、hook とスクリプトは Node.js がそのまま動かせる TypeScript（型の注釈を消すだけで動く書き方）で書く。テストは `plugins/<name>/tests/` に置く。
+プラグインは `plugins/<name>/` に 1 つずつ置き、`.claude-plugin/marketplace.json` に足す。hook の依存は入れず、hook とスクリプトは Node.js がそのまま動かせる TypeScript（型の注釈を消すだけで動く書き方）で書く。テストは `plugins/<name>/tests/` に置く。
 
 ## コマンド
 
 ```sh
-vp exec skills-ref validate skills/<name>   # frontmatter と構成を検証する
+vp exec skills-ref validate plugins/masseater-skills/skills/<name>   # frontmatter と構成を検証する
 vp dlx skills init <name>                   # SKILL.md の雛形を作る
 ```
 
 README.md のスキル一覧は、`SKILL.md` を含むコミットのたびに `.vite-hooks/pre-commit` が `vp run readme` で各 `SKILL.md` の `name` と `description` から書き直し、コミットに含める。手で直さない。フックは `vp install` で有効になる。
 
-ビルドと lint はない。`./node_modules/.bin/vp run test` がプラグインのテストとマニフェストの検証を動かし、pre-push でも動く。`skills/` の skill を変えたら `skills-ref validate` を通し、参照するファイルと名前で委ねた skill が存在することを確かめる。
+ビルドと lint はない。`./node_modules/.bin/vp run test` がプラグインのテストとマニフェストの検証を動かし、pre-push でも動く。skill を変えたら `skills-ref validate` を通し、参照するファイルと名前で委ねた skill が存在することを確かめる。
 
 ## 作業の流れ
 

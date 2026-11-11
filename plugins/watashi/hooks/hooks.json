@@ -7,7 +7,7 @@
           {
             "type": "command",
             "command": "node",
-            "args": ["${CLAUDE_PLUGIN_ROOT}/bin/watashi.ts", "hook", "stop"],
+            "args": ["${CLAUDE_PLUGIN_ROOT}/lib/main.ts", "hook", "stop"],
             "async": true
           }
         ]

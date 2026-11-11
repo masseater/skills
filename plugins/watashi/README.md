@@ -11,7 +11,7 @@
 
 入れると、Stop のたびに `watashi hook stop` が非同期に動き、前回から増えた行を送る。送るのは環境変数 `WATASHI_SEND_CONVERSATIONS=1` を置いた環境だけで、既定では送らない。仕事の環境のように送ってはいけない場所では置かない。認証が無いときも何もしない。失敗は `~/.config/watashi/hook.log` に書き、Claude Code の動きは止めない。
 
-- 手元の PC では `node <プラグイン>/bin/watashi.ts login` で OAuth を通す。
+- 手元の PC では `node <プラグイン>/lib/main.ts login`（以下 `watashi` と書く）で OAuth を通す。
 - クラウドのセッションでは、`watashi token issue --scope conversation:write --label cloud` で発行したトークンを、クラウド環境の環境変数 `WATASHI_TOKEN` に入れる。`watashi token list` と `watashi token revoke <id>` で管理する。
 
 Betterleaks は `lib/betterleaks.ts` の `BETTERLEAKS_VERSION` の版を `mise exec` で動かす。mise が無いときは PATH の `betterleaks`、`WATASHI_BETTERLEAKS` で別のパスを渡せる。どれも無ければ送らない。
