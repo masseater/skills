@@ -1,7 +1,7 @@
 import { loadDefaultJapaneseParser } from "budoux";
 
 const parser = loadDefaultJapaneseParser();
-const BREAK = "​";
+const BREAK = "\u200B";
 const JAPANESE = /[\p{scx=Hiragana}\p{scx=Katakana}\p{scx=Han}]/u;
 
 const insertPhraseBreaks = (root: HTMLElement | null): void => {

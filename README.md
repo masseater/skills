@@ -17,6 +17,7 @@ Claude Code にはプラグインとして、ほかのエージェントには s
 - [masseater-ecosystem](plugins/masseater-skills/skills/masseater-ecosystem/SKILL.md): masseater の技術スタックの完成形と、自作するものと借りるものの境目。技術やサービスを選ぶとき、自作するか既存のものを使うかを決めるとき、新しい言語・形式・配布先を足すとき、リポジトリの構成を変えるときに読む。
 - [measure-dont-guess](plugins/masseater-skills/skills/measure-dont-guess/SKILL.md): 仮説を白黒つける計測を実装や修正の前に決めて実行し、その結果だけで判断する。不具合の原因を調べるとき、性能や挙動を比べるとき、新しい機能を書き始めるとき、「たぶん」で判断しそうになったときに使う。
 - [measure-everything](plugins/masseater-skills/skills/measure-everything/SKILL.md): Decide how to measure before building or fixing something. Use when adding traces, metrics or logs, checking that telemetry really leaves the process, measuring Web Vitals or page transitions, timing CI, or when about to write custom measurement code.
+- [measure-postmortem](plugins/masseater-skills/skills/measure-postmortem/SKILL.md): PR を読み、その修正は事前に計測できていれば防げたか、検出できたかを考える。不具合を直した PR を振り返るとき、計測の抜けを探すときに使う。
 - [project-checklist](plugins/masseater-skills/skills/project-checklist/SKILL.md): プロジェクトの設計で検討すべき事項が充足しているかを、実物で確認して判定する。masseater/typescript-template から作ったリポジトリでは、GitHub の設定とテンプレートへの移行も扱う。新しいリポジトリの作成時、AI に移行を任せたあと、大きな変更の前、既存のプロジェクトの見直しで使う。
 - [repo-conventions](plugins/masseater-skills/skills/repo-conventions/SKILL.md): masseater のリポジトリに共通の決まり。masseater/typescript-template から作ったリポジトリや、AGENTS.md がこの skill を指すリポジトリで作業を始めるときに読む。
 - [simplify-repo](plugins/masseater-skills/skills/simplify-repo/SKILL.md): リポジトリ全体を単純にする。
