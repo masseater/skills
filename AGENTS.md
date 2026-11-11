@@ -1,6 +1,6 @@
 # AGENTS.md
 
-masseater のリポジトリで共通に使うエージェントスキルを置くリポジトリである。Claude Code のプラグインマーケットプレイスを兼ね、リポのルートがプラグイン `masseater-skills` である。Claude Code は既定で `skills/` と `agents/` を読むので、`.claude-plugin/plugin.json` に `skills`・`agents` のような部品のパスを書かない。`agents` はディレクトリを受け付けず、書くとインストールが検証で落ちる。
+masseater のリポジトリで共通に使うエージェントスキルを置くリポジトリである。Claude Code のプラグインマーケットプレイスを兼ね、ルートのプラグイン `masseater-skills` が `skills/` を skill にしている。
 
 - skill を作る、直すときは `skills/skill-authoring/SKILL.md` に従う
 - 文章は `skills/writing/SKILL.md` に、読み手である人間の前提は `skills/humanity-and-humanness/SKILL.md` に従う
@@ -29,7 +29,7 @@ vp dlx skills init <name>                   # SKILL.md の雛形を作る
 
 README.md のスキル一覧は、`SKILL.md` を含むコミットのたびに `.vite-hooks/pre-commit` が `vp run readme` で各 `SKILL.md` の `name` と `description` から書き直し、コミットに含める。手で直さない。フックは `vp install` で有効になる。
 
-ビルドと lint はない。`./node_modules/.bin/vp run test` は、プラグインのテストと、`tests/plugin-manifests.test.ts` の検査を動かす。後者は devDependencies の Claude Code で、マーケットプレイスと各プラグインを `claude plugin validate --strict` にかけ、git で追跡するファイルだけを写した場所から実際にインストールし、`skills/` と `agents/` のすべてが読まれることを確かめる。`.vite-hooks/pre-push` が同じ `vp run test` を動かす。`skills/` の skill を変えたら `skills-ref validate` を通し、参照するファイルと名前で委ねた skill が存在することを確かめる。
+ビルドと lint はない。`./node_modules/.bin/vp run test` がプラグインのテストとマニフェストの検証を動かし、pre-push でも動く。`skills/` の skill を変えたら `skills-ref validate` を通し、参照するファイルと名前で委ねた skill が存在することを確かめる。
 
 ## 作業の流れ
 
