@@ -28,7 +28,29 @@ Claude Code にはプラグインとして、ほかのエージェントには s
 
 ## プラグイン
 
-- [plamo-ja](plugins/plamo-ja/README.md): Claude に英語で書かせ、ローカルの PLaMo 3 Translate で訳した日本語を画面に出す。
+### plamo-ja
+
+Claude に英語で書かせ、ローカルの [PLaMo 3 Translate](https://huggingface.co/pfnet/plamo-3-translate-0.8b-GGUF) で訳した日本語を画面に出す。transcript と Claude の文脈は英語のまま残る。
+
+```sh
+hf download pfnet/plamo-3-translate-0.8b-GGUF plamo-3-translate-0.8b-Q4_K_M.gguf chat_template.jinja --local-dir plamo-3-translate-0.8b-GGUF
+cd plamo-3-translate-0.8b-GGUF
+llama-server -m plamo-3-translate-0.8b-Q4_K_M.gguf -c 16384 --port 8000 --alias plamo-3-translate --chat-template-file chat_template.jinja --no-prefill-assistant
+```
+
+`/plugin install plamo-ja@masseater` で入れ、`/plamo-ja:display` でオン、`/plamo-ja:display off` でオフにする。`PLAMO_JA_AUTO=on` で全セッションを既定でオンにし、`PLAMO_JA_SERVER_COMMAND` に置いたコマンドでセッションの開始時にサーバーを起動する。接続先、文体、訳語の指定は [display skill](plugins/plamo-ja/skills/display/SKILL.md) にある。
+
+発想は kat0h の [X のポスト](https://x.com/kat0h/status/2118175639262175376)と [gist の plamo-ja-v2 skill](https://gist.github.com/kat0h/61951d19c606374aa1dd901b0303cc6c)（2026-11-05）による。gist にはライセンスの表記が無いので、コードは写さずに書き直した。モデルは同梱せず、利用者が [PLaMo Community License](https://plamo.preferredai.jp/info/plamo-community-license-ja) に従って取得する。
+
+### watashi
+
+Claude Code の会話履歴を、手元の [Betterleaks](https://github.com/betterleaks/betterleaks) で秘密を `[REDACTED:<規則>]` に伏せてから、Stop フックで [watashi](https://watashi.masseater.dev) に送る。環境変数 `WATASHI_SEND_CONVERSATIONS=1` を置いた環境でだけ送る。
+
+```sh
+/plugin install watashi@masseater
+node <プラグイン>/lib/main.ts login                                          # 手元の PC
+node <プラグイン>/lib/main.ts token issue --scope conversation:write --label cloud  # クラウド用。WATASHI_TOKEN に入れる
+```
 
 ## Claude Code にインストール
 
