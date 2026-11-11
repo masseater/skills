@@ -5,6 +5,7 @@ import { DeckItem } from "./deck-item";
 import type { DeckSlide } from "./deck-slide";
 import { stepOf } from "./deck-state";
 import type { DeckView } from "./deck-state";
+import { insertPhraseBreaks } from "./phrase-breaks";
 import { totalSteps } from "./slide-steps";
 import { useDeckState } from "./use-deck-state";
 
@@ -16,7 +17,7 @@ const Deck = ({
   const steps = useMemo(() => slides.map((slide) => totalSteps(slide)), [slides]);
   const state = useDeckState(view, steps);
   return (
-    <div className="deck" data-view={state.view}>
+    <div className="deck" data-view={state.view} ref={insertPhraseBreaks}>
       {slides.map((slide, index) => (
         <DeckItem
           key={slide.id}
