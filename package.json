@@ -5,10 +5,11 @@
   "scripts": {
     "prepare": "vp config --no-agent",
     "readme": "node scripts/update-readme.mjs",
-    "test": "vp test run"
+    "test": "msch && vp test run"
   },
   "devDependencies": {
     "@anthropic-ai/claude-code": "^2.1.321",
+    "@r_masseater/msch": "^0.3.0",
     "skills-ref": "^0.1.5",
     "vite-plus": "^1.4.0"
   },

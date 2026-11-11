@@ -29,7 +29,7 @@ vp dlx skills init <name>                   # SKILL.md の雛形を作る
 
 README.md のスキル一覧は、`SKILL.md` を含むコミットのたびに `.vite-hooks/pre-commit` が `vp run readme` で各 `SKILL.md` の `name` と `description` から書き直し、コミットに含める。手で直さない。フックは `vp install` で有効になる。
 
-ビルドと lint はない。`./node_modules/.bin/vp run test` がプラグインのテストとマニフェストの検証を動かし、pre-push でも動く。skill を変えたら `skills-ref validate` を通し、参照するファイルと名前で委ねた skill が存在することを確かめる。
+ビルドと lint はない。`./node_modules/.bin/vp run test` が msch の検査とプラグインのテストとマニフェストの検証を動かし、pre-push でも動く。skill を変えたら `skills-ref validate` を通し、参照するファイルと名前で委ねた skill が存在することを確かめる。
 
 ## 作業の流れ
 

@@ -63,10 +63,6 @@ describe("marketplace", () => {
     expect(result.status, result.output).toBe(0);
   });
 
-  it("keeps README.md and AGENTS.md only at the root", () => {
-    expect(tracked.filter((f) => /(^|\/)(README|AGENTS|CLAUDE)\.md$/.test(f) && f.includes("/"))).toEqual([]);
-  });
-
   it("is not itself a plugin", () => {
     expect(existsSync(path.join(root, ".claude-plugin/plugin.json"))).toBe(false);
   });
