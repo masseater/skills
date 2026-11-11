@@ -75,7 +75,7 @@
   font-feature-settings: "palt";
   text-align: center;
   text-wrap: pretty;
-  word-break: auto-phrase;
+  word-break: keep-all;
   pointer-events: none;
   transition:
     opacity 0.3s ease,
@@ -110,7 +110,7 @@
   color: var(--on-surface);
   font-family: var(--font-sans);
   line-height: 1.8;
-  word-break: auto-phrase;
+  word-break: keep-all;
   overflow-wrap: break-word;
 }
 
