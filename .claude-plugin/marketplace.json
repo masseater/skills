@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "masseater-skills",
-      "source": "./",
+      "source": "./plugins/masseater-skills",
       "description": "masseater のリポジトリで共通に使うエージェントスキル",
       "category": "development"
     },
