@@ -5,9 +5,10 @@
   "scripts": {
     "prepare": "vp config --no-agent",
     "readme": "node scripts/update-readme.mjs",
-    "test": "vp test run plugins"
+    "test": "vp test run"
   },
   "devDependencies": {
+    "@anthropic-ai/claude-code": "^2.1.321",
     "skills-ref": "^0.1.5",
     "vite-plus": "^1.4.0"
   },
