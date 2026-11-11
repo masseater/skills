@@ -7,6 +7,13 @@ with `observability.traces.enabled`. Cloudflare then makes spans for outbound
 fetches and for calls to KV, R2, D1, Durable Objects and other Workers. No SDK
 is needed.
 
+Turn on
+[Workers Issues](https://developers.cloudflare.com/workers/observability/issues/)
+with `observability.issues.enabled`. It groups uncaught exceptions, 5xx
+responses and logged errors into issues, so a failure in production is recorded
+before anyone reports it. It is off by default and records only traffic after it
+is turned on. Log a handled error with `console.error()` to make it an issue.
+
 For an app on Effect, TanStack Start and Elysia, add
 [`@r_masseater/workers-tracing`](https://github.com/masseater/masseater.dev/tree/main/libs/workers-tracing).
 Effect spans, requests, server functions and Elysia routes then join the
@@ -14,10 +21,11 @@ platform's own spans in one trace. Do not build an Effect tracer
 or a span middleware per repository.
 
 In an Alchemy stack, pass the providers through its `withWorkersTracing({
-destinations })`. Do not write `observability` and a compatibility date on each
-Worker. A Worker added later is then traced without anyone remembering to. Run
-every Effect with its `run` or `runner`, and import `Elysia` from it. Add its
-oxlint preset, so that code which skips tracing fails the lint.
+destinations })`, which also turns on Issues. Do not write `observability` and a
+compatibility date on each Worker. A Worker added later is then traced without
+anyone remembering to. Run every Effect with its `run` or `runner`, and import
+`Elysia` from it. Add its oxlint preset, so that code which skips tracing fails
+the lint.
 
 To check spans in CI, deploy its `traceSink` once per account. Then run
 `workers-traces --request <url> --expect <span> --wait <seconds>` after each
