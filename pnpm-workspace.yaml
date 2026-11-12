@@ -2,4 +2,4 @@ allowBuilds:
   "@anthropic-ai/claude-code": true
   "@openrouter/sdk": false
 minimumReleaseAgeExclude:
-  - "@r_masseater/msch@0.3.0"
+  - "@r_masseater/msch@0.3.0 || 0.4.0"

@@ -5,13 +5,17 @@ import path from "node:path";
 import { readProperties } from "skills-ref";
 import { afterAll, beforeAll, describe, expect, it } from "vite-plus/test";
 
-type MarketplaceEntry = { name: string; source: string };
+type NpmSource = { source: "npm"; package: string };
+type MarketplaceEntry = { name: string; source: string | NpmSource };
+type LocalEntry = { name: string; source: string };
 type Marketplace = { name: string; plugins: MarketplaceEntry[] };
 
 const root = path.resolve(import.meta.dirname, "..");
 const marketplace: Marketplace = JSON.parse(
   readFileSync(path.join(root, ".claude-plugin/marketplace.json"), "utf8"),
 );
+const localPlugins = marketplace.plugins.filter((p): p is LocalEntry => typeof p.source === "string");
+const npmPlugins = marketplace.plugins.filter((p) => typeof p.source !== "string");
 const claudeBin = path.join(root, "node_modules/.bin/claude");
 const tracked = execFileSync("git", ["ls-files", "-z", "--cached", "--others", "--exclude-standard"], {
   cwd: root,
@@ -67,7 +71,11 @@ describe("marketplace", () => {
     expect(existsSync(path.join(root, ".claude-plugin/plugin.json"))).toBe(false);
   });
 
-  describe.each(marketplace.plugins)("$name", ({ name, source }) => {
+  it.each(npmPlugins)("$name comes from a scoped npm package", ({ source }) => {
+    expect(source).toEqual({ source: "npm", package: expect.stringMatching(/^@[a-z0-9_-]+\/[a-z0-9-]+$/) });
+  });
+
+  describe.each(localPlugins)("$name", ({ name, source }) => {
     it("passes claude plugin validate --strict", () => {
       const result = claude(["plugin", "validate", "--strict", source]);
       expect(result.status, result.output).toBe(0);
@@ -128,7 +136,7 @@ describe("marketplace", () => {
 
 describe("masseater-skills", () => {
   it("loads every skill and every agent in the plugin", () => {
-    const entry = marketplace.plugins.find((p) => p.name === "masseater-skills");
+    const entry = localPlugins.find((p) => p.name === "masseater-skills");
     expect(entry).toBeDefined();
     const pluginRoot = path.join(root, entry?.source ?? "");
     const installed = claude(["plugin", "install", `masseater-skills@${marketplace.name}`, "--scope", "user"]);
