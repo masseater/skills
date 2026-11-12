@@ -168,10 +168,10 @@ importers:
     devDependencies:
       '@anthropic-ai/claude-code':
         specifier: ^2.1.321
-        version: 2.1.322
+        version: 2.1.323
       '@r_masseater/msch':
-        specifier: ^0.5.0
-        version: 0.5.0(eslint@10.14.0)(oxlint@1.93.0(oxlint-tsgolint@7.0.2006)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(yaml@2.9.1))
+        specifier: ^0.6.0
+        version: 0.6.0(@effect/tsgo@0.67.5)(effect@4.1.2)(eslint@10.14.0)(oxlint@1.93.0(oxlint-tsgolint@7.0.2006)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(typescript@7.1.0-beta)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(yaml@2.9.1))
       skills-ref:
         specifier: ^0.1.5
         version: 0.1.5
@@ -181,52 +181,52 @@ importers:
 
 packages:
 
-  '@anthropic-ai/claude-code-darwin-arm64@2.1.322':
-    resolution: {integrity: sha512-OAx5Y7V7tGCi0tWuDV3lwcDWmIua512NgpClLbqvwC9m+mbLiaytgVLXf4unTXBjMf+QbQiIUO1Kus90PklDhA==}
+  '@anthropic-ai/claude-code-darwin-arm64@2.1.323':
+    resolution: {integrity: sha512-x9yT07lVYrIe9GiqwIkrgJt/vXkDVFz4VljRAQsAmhNQTdr+egTzUMbM6kGtTl0VN9TjEBdeBTWimSWNlkkHcg==}
     cpu: [arm64]
     os: [darwin]
 
-  '@anthropic-ai/claude-code-darwin-x64@2.1.322':
-    resolution: {integrity: sha512-nGpWAtSEI1OMMVzlMGS4MuXZ6Op0kzXPnTzhbipgEA7Ym3LFHuCWE//9jB20xcy55zx9lagSe4tb9kRfvZ9Xdw==}
+  '@anthropic-ai/claude-code-darwin-x64@2.1.323':
+    resolution: {integrity: sha512-EZLW++xdIyxFpVRxhHgg2TC3u8BMdEc/Zg2zm0eRZnfC9znzr7sobDgQsb8r4vw209E5rcfpbt1V5Nrmeg9E9w==}
     cpu: [x64]
     os: [darwin]
 
-  '@anthropic-ai/claude-code-linux-arm64-musl@2.1.322':
-    resolution: {integrity: sha512-lcJl5oH4RtUVp7uRSpj/jrXubXDrK1v62lt50lyAaILH5wJM/psaTTlF8E+aFGFd0MT7nGinypjYapgB88Zhvg==}
+  '@anthropic-ai/claude-code-linux-arm64-musl@2.1.323':
+    resolution: {integrity: sha512-0BEiR/+PbtnQVaIXlo7vNeYDqdA1dAEZDOM+tE5gBuq5PpXPyxziddtm+yhSebeV6WyjUzQc88c9bRTrYTtLOA==}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@anthropic-ai/claude-code-linux-arm64@2.1.322':
-    resolution: {integrity: sha512-YYNp1op87WWcBEE6jC1neOjMDPdn4Iy+kUHyFcI1GsLl4IwH7EjZlwVKcpsZqVbE0IXEFaOldmyOHC1y3j18Ag==}
+  '@anthropic-ai/claude-code-linux-arm64@2.1.323':
+    resolution: {integrity: sha512-7Bq+2p46Utor4m4T5f+RLdmTSjP6I/isQYQTGqVDJKAuhDE6dxEBFw/0yzO/PGqcmYRi45mJeN/Ln1XQqHFhcg==}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@anthropic-ai/claude-code-linux-x64-musl@2.1.322':
-    resolution: {integrity: sha512-Tmb7C0xAFVLe4pWBmIxlAfulysXfdqgAd1GGp0DWrGxY9YZ5uiIaq25GeddBxB9IfNfWrZBcWU2g9Skb4piazQ==}
+  '@anthropic-ai/claude-code-linux-x64-musl@2.1.323':
+    resolution: {integrity: sha512-nJC75kQgm9YMLac6aY6P6quQURsL7WAyLeeASWBqQu1hK/uZdUKavVl0oFbZrxnfgRRJNWhDUfZVMeENSCaGFQ==}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@anthropic-ai/claude-code-linux-x64@2.1.322':
-    resolution: {integrity: sha512-0DoaNAXLWCYYIGachWBCkTUsS8dOOgvk4R2fFKdrLejO9XlRTwaWUMD9ONdDmv0csdpwxj4qLUN6zWMaG2Sz6g==}
+  '@anthropic-ai/claude-code-linux-x64@2.1.323':
+    resolution: {integrity: sha512-cUAH9W7KrcfM5v7hWjvv1rurvAAgvOe+BVfOlk17sXH3Vqh9V+tVj0WZin6RiJ8MiZ7RpEtVfaVKPcgrY3x6Vw==}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@anthropic-ai/claude-code-win32-arm64@2.1.322':
-    resolution: {integrity: sha512-UTmhBanbWh5/i3a3o2CWfewluw5xWvvSr8TpfZs/XHBKQsWybMorUwDJIJDErkyy+cQ55UklH7foJIqGBMjjGQ==}
+  '@anthropic-ai/claude-code-win32-arm64@2.1.323':
+    resolution: {integrity: sha512-KfhkpvwpSGxVadFJ4OYvBrFLTjgWXisCz2h2oCA6Si8BNLxBlZKptHMzqFUmUbLozUdkUwTxv2QZbkoyeiGfFw==}
     cpu: [arm64]
     os: [win32]
 
-  '@anthropic-ai/claude-code-win32-x64@2.1.322':
-    resolution: {integrity: sha512-MCf137rbW8N6PjmF04HHmKfc+yKHu8w3Uq0yqkIj5snr3KHAL4et+H5bMe05DgFmjdnRoXIVcaXg4QXgHNUw4A==}
+  '@anthropic-ai/claude-code-win32-x64@2.1.323':
+    resolution: {integrity: sha512-AfzJv4YoitoOQBAoZeoBSPRKxPWHrZRYU5igfXcbd43ig0KJqC7+xjGZvBewn7dKS2PH0sv992eaN1btS7KPjw==}
     cpu: [x64]
     os: [win32]
 
-  '@anthropic-ai/claude-code@2.1.322':
-    resolution: {integrity: sha512-oP7oW4vM5DREWfL1jn4JSGlmLcrJ5QmppgADrVNJBUPiC1mQ5YvRrke0on+YZ/3QhKIaCJtdr6jPvehcAQIHLQ==}
+  '@anthropic-ai/claude-code@2.1.323':
+    resolution: {integrity: sha512-6YjP5aY9xKZfYsYOoUDZ/AKNbPCSOnjMvSI2vdfoBjBN5adCeQIZ3u/QkEFK21Z0PMdssQWOyw75a1IeS0B65g==}
     engines: {node: '>=22.0.0'}
     hasBin: true
 
@@ -313,18 +313,16 @@ packages:
   '@dual-bundle/import-meta-resolve@4.2.1':
     resolution: {integrity: sha512-id+7YRUgoUX6CgV0DtuhirQWodeeA7Lf4i2x71JS/vtA5pRb/hIGWlw+G6MeXvsM+MXrz0VAydTGElX1rAfgPg==}
 
+  '@effect/ai-openrouter@4.1.2':
+    resolution: {integrity: sha512-iWNUPM4I8t6PZIDj7biJHZF7GUaVyevIiXNOyrd7vhZ4eYeuMyIimuELH+qwPt0AKnpU72mkY11ngBranM7/Lw==}
+    peerDependencies:
+      effect: ^4.1.2
+
   '@effect/platform-node-shared@4.1.2':
     resolution: {integrity: sha512-wSwl9A/G1hcVvF8nLI+YfB3EyOIDvWS6+lsTZBkmgDnPBL7m8YWZF+1HD+mdEsb52SUGfukip46Q3gRwSdk3QA==}
     engines: {node: '>=22.19.0'}
     peerDependencies:
       effect: ^4.1.2
-
-  '@effect/platform-node@4.1.2':
-    resolution: {integrity: sha512-ye0UjxORdd5Qu3paZ1LljgGOALWHt7muP9VTpjUSCNfcesiB/Hm7wPJIvZeu4gnwpTe5BtEnO1VHngWqjJp8mA==}
-    engines: {node: '>=22.19.0'}
-    peerDependencies:
-      effect: ^4.1.2
-      redis: '>=5.1.0 <7.0.0'
 
   '@effect/tsgo-darwin-arm64@0.67.5':
     resolution: {integrity: sha512-wCtc/UafbsiWDZlDboVqW6qZI4PdlJzWnK1M29KgJVrey0E6yvGA9YV0ak+38cVqcAaXm1azL9qgI0IKwgNk8A==}
@@ -456,9 +454,6 @@ packages:
 
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
-
-  '@openrouter/sdk@1.5.33':
-    resolution: {integrity: sha512-hbg4q/tZHOnggBk7Sjkel6COExpbe1+2p4Mt2YyvAloDXtNNaFkMab0SgVfoBdTgzweBlrJJ4jUHwHt5rFiadA==}
 
   '@oxc-parser/binding-android-arm-eabi@0.148.0':
     resolution: {integrity: sha512-pHASv9g5pASxb7akHERZNSkrEqPhFaUix98o7d9hbTpolnnFWl7UiRrcMhCsV1+iVO4/cJwKsbKRJTFNs2tdBQ==}
@@ -880,18 +875,23 @@ packages:
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
 
-  '@r_masseater/msch@0.5.0':
-    resolution: {integrity: sha512-Jx52QXocrcPW6ORqyH2Ye48o39zWibyH62fgYg9WcqVSM5pCmQt+eQKUxEneZSCcUF+4gHXO5UZa8jbJ8e37pg==}
+  '@r_masseater/msch@0.6.0':
+    resolution: {integrity: sha512-wkSID+WOQJrSHO19jJS9E+RlgyB80q0ji07mvDiDCfWvGgx+yIzdDFWTYArUgg3dyneFhUbPrNSzOtaU8YCh9g==}
     engines: {node: '>=26'}
     hasBin: true
     peerDependencies:
+      '@effect/tsgo': '>=0.67.5'
+      effect: ^4.1.2
+      typescript: '>=7.1.0-beta'
       vite: '*'
       vite-plus: '>=1.5.0'
 
-  '@r_masseater/oxlint-plugin-decision@0.3.0':
-    resolution: {integrity: sha512-jsgV/QjCLoYIeTyaMmSyA2DdDOGqK4AIKUgSJeYTgl4AkPgNJbYBcniRsUduefjIFlTkqqUL9JYnjq37G/iyWg==}
+  '@r_masseater/oxlint-plugin-decision@0.4.0':
+    resolution: {integrity: sha512-aQQ9xBShQS0/aHJXI35MvQqdWcj8mXO8LLcRqRZm2M/dg0Vbf99WTBOg7650fNZNeS+L+tryaJxd5uYv8wfkfw==}
     engines: {node: '>=26'}
     peerDependencies:
+      '@effect/platform-node-shared': ^4.1.2
+      effect: ^4.1.2
       oxlint: '>=1.87.0'
 
   '@r_masseater/oxlint-typed-rules@0.3.0':
@@ -899,42 +899,6 @@ packages:
     engines: {node: '>=26'}
     peerDependencies:
       typescript: '>=7.1.0-beta'
-
-  '@redis/bloom@6.3.1':
-    resolution: {integrity: sha512-dpF9j2yJDoPzSCaZn0MSB3xzmnXQVJeTSAWJcQVcgbmluwhpFeemmII0cF1t+WYfoVS+shEFq79+MmUItgzJLg==}
-    engines: {node: '>= 20.0.0'}
-    peerDependencies:
-      '@redis/client': ^6.3.1
-
-  '@redis/client@6.3.1':
-    resolution: {integrity: sha512-masbfVKULdoAofwddepZxRhWa4w6zvBHn6TRn90TRPrRkVIlGCur3pFqwWaCbMxtYI9twepkz63e/T/tEH8GjA==}
-    engines: {node: '>= 20.0.0'}
-    peerDependencies:
-      '@node-rs/xxhash': ^1.1.0
-      '@opentelemetry/api': '>=1 <2'
-    peerDependenciesMeta:
-      '@node-rs/xxhash':
-        optional: true
-      '@opentelemetry/api':
-        optional: true
-
-  '@redis/json@6.3.1':
-    resolution: {integrity: sha512-fMz4kUwJzEftcU9EMaqsjZcUwzpTQLOYRqhQsAD6uKvZWeamblK13ZhgO5SzVSZVk31jmwLeTRpU5GAl5egfUw==}
-    engines: {node: '>= 20.0.0'}
-    peerDependencies:
-      '@redis/client': ^6.3.1
-
-  '@redis/search@6.3.1':
-    resolution: {integrity: sha512-T67pvPUpW82VrZLvihO8O2DFMC7eY2oMAzMzapCbiPZn7mdWqHMEIlohYim12gIawT5kn6qT/Cvmm4WulKB+kQ==}
-    engines: {node: '>= 20.0.0'}
-    peerDependencies:
-      '@redis/client': ^6.3.1
-
-  '@redis/time-series@6.3.1':
-    resolution: {integrity: sha512-MNDgrm+i63M/1a+XA+HcDsScwt4uBh/fGGJ84swTQZTFK5K5wMmxdlTRa4ZgmNJzjxMaszW/ipPScMUGV3aAMg==}
-    engines: {node: '>= 20.0.0'}
-    peerDependencies:
-      '@redis/client': ^6.3.1
 
   '@rolldown/binding-android-arm-eabi@1.2.18':
     resolution: {integrity: sha512-ubTG+4KlidvioxjOFdsdEa2F6JVGZb8m2ByJUqQ7fYzUeT1cEn194POcsQ10PKH4p//q0YQn4SB3YpSuzcA1Yg==}
@@ -1892,8 +1856,8 @@ packages:
       vite-plus:
         optional: true
 
-  oxlint-plugin-eslint@1.92.0:
-    resolution: {integrity: sha512-yGNTd1Ja6U79pWnSYcy16f1OAUtJNkmXkGxq6TFKkKqIGy22frtUUqG7tngbfqV9/oIUHvuu3EEm1W2l8z/TRw==}
+  oxlint-plugin-eslint@1.93.0:
+    resolution: {integrity: sha512-NN1PcS4IUrxeDQqBCOpqa8qhsTcxR5j7l0kTqp8Le+904FeIYwkG4qwbYtpR7e3G8JlKi6qaZ0VEsooPi++wSA==}
     engines: {node: ^20.19.0 || >=22.12.0}
 
   oxlint-tsgolint@7.0.2006:
@@ -1965,10 +1929,6 @@ packages:
 
   react-is@17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
-
-  redis@6.3.1:
-    resolution: {integrity: sha512-mV96ZKxQ4CGn3SyEGaY0Lb9YA443mdVey3c+mdr0NAUaBxiOZGoYCWX8PoM55kictSOmxlJRtZJxIsmZm3jL+w==}
-    engines: {node: '>= 20.0.0'}
 
   rolldown@1.2.18:
     resolution: {integrity: sha512-C1uuT3UR60SShuCaPQFAAZyefJCWZlAKB02BV3BuPE2Rs4fevRQltEKoFO2tV5W9/eJhU5RieV6vJj3euulfNQ==}
@@ -2042,10 +2002,6 @@ packages:
 
   undici-types@8.9.0:
     resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
-
-  undici@8.12.4:
-    resolution: {integrity: sha512-8Mx+uNKKER2bA4AdtedkqRbwUCIJFr2nJckXRe5yrDqzePqwLP7VNcctN8/XdmDSbF7mS+jJKIszlL+vbam1VA==}
-    engines: {node: '>=22.19.0'}
 
   update-browserslist-db@1.3.4:
     resolution: {integrity: sha512-t8wonIOdQyOjtPd2VktlBu6QjTVTks6v8bSi7kd0r2Vll8TK1JYDZtRRdbmCHOAMphkZgrzK+L+vXK4pyZ8t4A==}
@@ -2225,40 +2181,40 @@ packages:
 
 snapshots:
 
-  '@anthropic-ai/claude-code-darwin-arm64@2.1.322':
+  '@anthropic-ai/claude-code-darwin-arm64@2.1.323':
     optional: true
 
-  '@anthropic-ai/claude-code-darwin-x64@2.1.322':
+  '@anthropic-ai/claude-code-darwin-x64@2.1.323':
     optional: true
 
-  '@anthropic-ai/claude-code-linux-arm64-musl@2.1.322':
+  '@anthropic-ai/claude-code-linux-arm64-musl@2.1.323':
     optional: true
 
-  '@anthropic-ai/claude-code-linux-arm64@2.1.322':
+  '@anthropic-ai/claude-code-linux-arm64@2.1.323':
     optional: true
 
-  '@anthropic-ai/claude-code-linux-x64-musl@2.1.322':
+  '@anthropic-ai/claude-code-linux-x64-musl@2.1.323':
     optional: true
 
-  '@anthropic-ai/claude-code-linux-x64@2.1.322':
+  '@anthropic-ai/claude-code-linux-x64@2.1.323':
     optional: true
 
-  '@anthropic-ai/claude-code-win32-arm64@2.1.322':
+  '@anthropic-ai/claude-code-win32-arm64@2.1.323':
     optional: true
 
-  '@anthropic-ai/claude-code-win32-x64@2.1.322':
+  '@anthropic-ai/claude-code-win32-x64@2.1.323':
     optional: true
 
-  '@anthropic-ai/claude-code@2.1.322':
+  '@anthropic-ai/claude-code@2.1.323':
     optionalDependencies:
-      '@anthropic-ai/claude-code-darwin-arm64': 2.1.322
-      '@anthropic-ai/claude-code-darwin-x64': 2.1.322
-      '@anthropic-ai/claude-code-linux-arm64': 2.1.322
-      '@anthropic-ai/claude-code-linux-arm64-musl': 2.1.322
-      '@anthropic-ai/claude-code-linux-x64': 2.1.322
-      '@anthropic-ai/claude-code-linux-x64-musl': 2.1.322
-      '@anthropic-ai/claude-code-win32-arm64': 2.1.322
-      '@anthropic-ai/claude-code-win32-x64': 2.1.322
+      '@anthropic-ai/claude-code-darwin-arm64': 2.1.323
+      '@anthropic-ai/claude-code-darwin-x64': 2.1.323
+      '@anthropic-ai/claude-code-linux-arm64': 2.1.323
+      '@anthropic-ai/claude-code-linux-arm64-musl': 2.1.323
+      '@anthropic-ai/claude-code-linux-x64': 2.1.323
+      '@anthropic-ai/claude-code-linux-x64-musl': 2.1.323
+      '@anthropic-ai/claude-code-win32-arm64': 2.1.323
+      '@anthropic-ai/claude-code-win32-x64': 2.1.323
 
   '@babel/code-frame@7.29.7':
     dependencies:
@@ -2378,21 +2334,15 @@ snapshots:
 
   '@dual-bundle/import-meta-resolve@4.2.1': {}
 
+  '@effect/ai-openrouter@4.1.2(effect@4.1.2)':
+    dependencies:
+      effect: 4.1.2
+
   '@effect/platform-node-shared@4.1.2(effect@4.1.2)':
     dependencies:
       '@types/ws': 8.18.2
       effect: 4.1.2
       ws: 8.22.2
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-
-  '@effect/platform-node@4.1.2(effect@4.1.2)(redis@6.3.1)':
-    dependencies:
-      '@effect/platform-node-shared': 4.1.2(effect@4.1.2)
-      effect: 4.1.2
-      redis: 6.3.1
-      undici: 8.12.4
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -2520,10 +2470,6 @@ snapshots:
       keyv: 5.6.0
 
   '@keyv/serialize@1.1.1': {}
-
-  '@openrouter/sdk@1.5.33':
-    dependencies:
-      zod: 4.6.7
 
   '@oxc-parser/binding-android-arm-eabi@0.148.0':
     optional: true
@@ -2729,19 +2675,19 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
-  '@r_masseater/msch@0.5.0(eslint@10.14.0)(oxlint@1.93.0(oxlint-tsgolint@7.0.2006)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(yaml@2.9.1))':
+  '@r_masseater/msch@0.6.0(@effect/tsgo@0.67.5)(effect@4.1.2)(eslint@10.14.0)(oxlint@1.93.0(oxlint-tsgolint@7.0.2006)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(typescript@7.1.0-beta)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(yaml@2.9.1))':
     dependencies:
-      '@effect/platform-node': 4.1.2(effect@4.1.2)(redis@6.3.1)
+      '@effect/platform-node-shared': 4.1.2(effect@4.1.2)
       '@effect/tsgo': 0.67.5
       '@html-eslint/eslint-plugin-react': 0.68.0(eslint@10.14.0)
-      '@r_masseater/oxlint-plugin-decision': 0.3.0(oxlint@1.93.0(oxlint-tsgolint@7.0.2006)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)
+      '@r_masseater/oxlint-plugin-decision': 0.4.0(@effect/platform-node-shared@4.1.2(effect@4.1.2))(effect@4.1.2)(oxlint@1.93.0(oxlint-tsgolint@7.0.2006)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(typescript@7.1.0-beta)(yaml@2.9.1)))
       '@r_masseater/oxlint-typed-rules': 0.3.0(typescript@7.1.0-beta)
       '@shadcn/lint': 0.2.5(eslint@10.14.0)
       effect: 4.1.2
       eslint-plugin-baseline-js: 0.7.7(eslint@10.14.0)
       eslint-plugin-no-comments: 1.2.1(eslint@10.14.0)
       eslint-plugin-react-hooks: 7.1.1(eslint@10.14.0)
-      oxlint-plugin-eslint: 1.92.0
+      oxlint-plugin-eslint: 1.93.0
       typescript: 7.1.0-beta
       vite: 8.3.8(@types/node@26.6.6)(yaml@2.9.1)
       vite-plus: 1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(typescript@7.1.0-beta)(yaml@2.9.1)
@@ -2751,44 +2697,21 @@ snapshots:
       - bufferutil
       - eslint
       - oxlint
-      - redis
       - supports-color
       - utf-8-validate
 
-  '@r_masseater/oxlint-plugin-decision@0.3.0(oxlint@1.93.0(oxlint-tsgolint@7.0.2006)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)':
+  '@r_masseater/oxlint-plugin-decision@0.4.0(@effect/platform-node-shared@4.1.2(effect@4.1.2))(effect@4.1.2)(oxlint@1.93.0(oxlint-tsgolint@7.0.2006)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(typescript@7.1.0-beta)(yaml@2.9.1)))':
     dependencies:
-      '@effect/platform-node': 4.1.2(effect@4.1.2)(redis@6.3.1)
-      '@openrouter/sdk': 1.5.33
+      '@effect/ai-openrouter': 4.1.2(effect@4.1.2)
+      '@effect/platform-node-shared': 4.1.2(effect@4.1.2)
       effect: 4.1.2
       oxlint: 1.93.0(oxlint-tsgolint@7.0.2006)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(typescript@7.1.0-beta)(yaml@2.9.1))
       synckit: 0.12.3
-    transitivePeerDependencies:
-      - bufferutil
-      - redis
-      - utf-8-validate
 
   '@r_masseater/oxlint-typed-rules@0.3.0(typescript@7.1.0-beta)':
     dependencies:
       effect: 4.1.2
       typescript: 7.1.0-beta
-
-  '@redis/bloom@6.3.1(@redis/client@6.3.1)':
-    dependencies:
-      '@redis/client': 6.3.1
-
-  '@redis/client@6.3.1': {}
-
-  '@redis/json@6.3.1(@redis/client@6.3.1)':
-    dependencies:
-      '@redis/client': 6.3.1
-
-  '@redis/search@6.3.1(@redis/client@6.3.1)':
-    dependencies:
-      '@redis/client': 6.3.1
-
-  '@redis/time-series@6.3.1(@redis/client@6.3.1)':
-    dependencies:
-      '@redis/client': 6.3.1
 
   '@rolldown/binding-android-arm-eabi@1.2.18':
     optional: true
@@ -3522,7 +3445,7 @@ snapshots:
       '@oxfmt/binding-win32-x64-msvc': 0.78.0
       vite-plus: 1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(typescript@7.1.0-beta)(yaml@2.9.1)
 
-  oxlint-plugin-eslint@1.92.0: {}
+  oxlint-plugin-eslint@1.93.0: {}
 
   oxlint-tsgolint@7.0.2006:
     optionalDependencies:
@@ -3598,17 +3521,6 @@ snapshots:
       hookified: 2.2.0
 
   react-is@17.0.2: {}
-
-  redis@6.3.1:
-    dependencies:
-      '@redis/bloom': 6.3.1(@redis/client@6.3.1)
-      '@redis/client': 6.3.1
-      '@redis/json': 6.3.1(@redis/client@6.3.1)
-      '@redis/search': 6.3.1(@redis/client@6.3.1)
-      '@redis/time-series': 6.3.1(@redis/client@6.3.1)
-    transitivePeerDependencies:
-      - '@node-rs/xxhash'
-      - '@opentelemetry/api'
 
   rolldown@1.2.18:
     dependencies:
@@ -3703,8 +3615,6 @@ snapshots:
       '@typescript/typescript-win32-x64': 7.1.0-beta
 
   undici-types@8.9.0: {}
-
-  undici@8.12.4: {}
 
   update-browserslist-db@1.3.4(browserslist@4.29.5):
     dependencies:
