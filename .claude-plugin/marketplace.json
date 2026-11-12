@@ -22,7 +22,10 @@
     },
     {
       "name": "watashi",
-      "source": "./plugins/watashi",
+      "source": {
+        "source": "npm",
+        "package": "@r_masseater/watashi"
+      },
       "description": "watashi の CLI。Claude Code の会話履歴を、手元で秘密を伏せてから Stop フックで送る",
       "category": "productivity"
     }

@@ -45,12 +45,12 @@ llama-server -m plamo-3-translate-0.8b-Q4_K_M.gguf -c 16384 --port 8000 --alias 
 
 ### watashi
 
-Claude Code の会話履歴を、手元の [Betterleaks](https://github.com/betterleaks/betterleaks) で秘密を `[REDACTED:<規則>]` に伏せてから、Stop フックで [watashi](https://watashi.masseater.dev) に送る。環境変数 `WATASHI_SEND_CONVERSATIONS=1` を置いた環境でだけ送る。
+Claude Code の会話履歴を、手元の [Betterleaks](https://github.com/betterleaks/betterleaks) で秘密を `[REDACTED:<規則>]` に伏せてから、Stop フックで [watashi](https://watashi.masseater.dev) に送る。環境変数 `WATASHI_SEND_CONVERSATIONS=1` を置いた環境でだけ送る。実体は npm の [`@r_masseater/watashi`](https://www.npmjs.com/package/@r_masseater/watashi) で、ソースは [masseater/masseater.dev の libs/watashi](https://github.com/masseater/masseater.dev/tree/main/libs/watashi) にある。
 
 ```sh
 /plugin install watashi@masseater
-node <プラグイン>/lib/main.ts login                                          # 手元の PC
-node <プラグイン>/lib/main.ts token issue --scope conversation:write --label cloud  # クラウド用。WATASHI_TOKEN に入れる
+npx @r_masseater/watashi login                                                  # 手元の PC
+npx @r_masseater/watashi token issue --scope conversation:write --label cloud   # クラウド用。WATASHI_TOKEN に入れる
 ```
 
 ## Claude Code にインストール
