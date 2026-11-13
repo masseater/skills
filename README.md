@@ -10,7 +10,7 @@ Claude Code にはプラグインとして、ほかのエージェントには s
 - [build-explanation](plugins/masseater-skills/skills/build-explanation/SKILL.md): 人に何かを説明するときに、読み手が知っていることから始め、読み手が次に抱く疑問に答える順で話を組み立てる手順。スライドの構成と読み上げ原稿、解説、提案、報告の文章を組み立てるときに使う。
 - [cloudflare-caution](plugins/masseater-skills/skills/cloudflare-caution/SKILL.md): Cloudflare で請求が膨らむ設計を避け、安く済む形を選ぶ。Cloudflare に載せるものを設計するとき、Worker やバインディングを足すとき、ページやデータの配り方を決めるとき、ループや再試行を書くときに使う。
 - [create-slides](plugins/masseater-skills/skills/create-slides/SKILL.md): スライドを作る前に相手や場の既定値と、聞き手の問いから組んだ構成案を示し、作った後に読み上げ原稿を書いて発表の流れを確かめる手順。スライドや資料を作ってほしいと頼まれたときに使う。
-- [debug-like-a-human](plugins/masseater-skills/skills/debug-like-a-human/SKILL.md): AI がログイン後の画面や API、Cloudflare Access の背後の本番に、本人と同じ認証を通って入る入口を作り、人間と同じように動かして確かめる。パスキー・Google・Access などのログインがある画面・API・サイトを作るとき、本番で起きた不具合を調べるとき、確認や状況の説明を持ち主に頼みそうになったときに使う。
+- [debug-like-a-human](plugins/masseater-skills/skills/debug-like-a-human/SKILL.md): AI がログイン後の画面や Access の背後の本番に、本人と同じ認証の経路を通って入り、自分で確かめる。ログインのある画面・API・サイトを作るとき、本番の不具合を調べるとき、「本人の認証が要るので確かめられない」と書きそうになったときに使う。
 - [dont-it-yourself](plugins/masseater-skills/skills/dont-it-yourself/SKILL.md): ライブラリ、ランタイム、リポジトリにすでにあるものを探して使い、自前で作らない。新しい処理、ヘルパー、ラッパー、ツール、外部 API のクライアントを書き始める前に使う。
 - [how-to-use-react](plugins/masseater-skills/skills/how-to-use-react/SKILL.md): React 19.3 のコンポーネント、ローダー、サーバー処理を書く・直す・レビューするときに読む。状態の置き場所、非同期の組み方、並行 UI の API の使いどころ、props の形を決める。
 - [humanity-and-humanness](plugins/masseater-skills/skills/humanity-and-humanness/SKILL.md): 人間がどう読み、どう考え、何を察するかを AI が前提として持つために読む。人間が読む文章を書くとき、ユーザーの判断を仰ぐとき、ユーザーの指摘の意図を読み取るときに使う。
