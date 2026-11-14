@@ -7,24 +7,24 @@ Claude Code にはプラグインとして、ほかのエージェントには s
 
 <!-- skills:start -->
 
-- [build-explanation](plugins/masseater-skills/skills/build-explanation/SKILL.md): 人に何かを説明するときに、読み手が知っていることから始め、読み手が次に抱く疑問に答える順で話を組み立てる手順。スライドの構成と読み上げ原稿、解説、提案、報告の文章を組み立てるときに使う。
-- [cloudflare-caution](plugins/masseater-skills/skills/cloudflare-caution/SKILL.md): Cloudflare で請求が膨らむ設計を避け、安く済む形を選ぶ。Cloudflare に載せるものを設計するとき、Worker やバインディングを足すとき、ページやデータの配り方を決めるとき、ループや再試行を書くときに使う。
-- [create-slides](plugins/masseater-skills/skills/create-slides/SKILL.md): スライドを作る前に相手や場の既定値と、聞き手の問いから組んだ構成案を示し、作った後に読み上げ原稿を書いて発表の流れを確かめる手順。スライドや資料を作ってほしいと頼まれたときに使う。
-- [debug-like-a-human](plugins/masseater-skills/skills/debug-like-a-human/SKILL.md): AI がログイン後の画面や Access の背後の本番に、本人と同じ認証の経路を通って入り、自分で確かめる。ログインのある画面・API・サイトを作るとき、本番の不具合を調べるとき、「本人の認証が要るので確かめられない」と書きそうになったときに使う。
-- [dont-it-yourself](plugins/masseater-skills/skills/dont-it-yourself/SKILL.md): ライブラリ、ランタイム、リポジトリにすでにあるものを探して使い、自前で作らない。新しい処理、ヘルパー、ラッパー、ツール、外部 API のクライアントを書き始める前に使う。
-- [how-to-use-react](plugins/masseater-skills/skills/how-to-use-react/SKILL.md): React 19.3 のコンポーネント、ローダー、サーバー処理を書く・直す・レビューするときに読む。状態の置き場所、非同期の組み方、並行 UI の API の使いどころ、props の形を決める。
-- [humanity-and-humanness](plugins/masseater-skills/skills/humanity-and-humanness/SKILL.md): 人間がどう読み、どう考え、何を察するかを AI が前提として持つために読む。人間が読む文章を書くとき、ユーザーの判断を仰ぐとき、ユーザーの指摘の意図を読み取るときに使う。
-- [integrate](plugins/masseater-skills/skills/integrate/SKILL.md): ライブラリや新しい実装手段を導入するときに使う。追加するだけで終わらせず、既存コードの移行と、その手段を使わせる機械的な強制まで行う。
-- [masseater-ecosystem](plugins/masseater-skills/skills/masseater-ecosystem/SKILL.md): masseater の技術スタックの完成形と、自作するものと借りるものの境目。技術やサービスを選ぶとき、自作するか既存のものを使うかを決めるとき、新しい言語・形式・配布先を足すとき、リポジトリの構成を変えるときに読む。
-- [measure-dont-guess](plugins/masseater-skills/skills/measure-dont-guess/SKILL.md): 仮説を白黒つける計測を実装や修正の前に決めて実行し、その結果だけで判断する。不具合の原因を調べるとき、性能や挙動を比べるとき、新しい機能を書き始めるとき、「たぶん」で判断しそうになったときに使う。
-- [measure-everything](plugins/masseater-skills/skills/measure-everything/SKILL.md): Decide how to measure before building or fixing something. Use when adding traces, metrics or logs, checking that telemetry really leaves the process, measuring Web Vitals or page transitions, timing CI, or when about to write custom measurement code.
-- [measure-postmortem](plugins/masseater-skills/skills/measure-postmortem/SKILL.md): PR を読み、その修正は事前に計測できていれば防げたか、検出できたかを考える。不具合を直した PR を振り返るとき、計測の抜けを探すときに使う。
-- [project-checklist](plugins/masseater-skills/skills/project-checklist/SKILL.md): プロジェクトの設計で検討すべき事項が充足しているかを、実物で確認して判定する。masseater/typescript-template から作ったリポジトリでは、GitHub の設定とテンプレートへの移行も扱う。新しいリポジトリの作成時、AI に移行を任せたあと、大きな変更の前、既存のプロジェクトの見直しで使う。
-- [repo-conventions](plugins/masseater-skills/skills/repo-conventions/SKILL.md): masseater のリポジトリに共通の決まり。masseater/typescript-template から作ったリポジトリや、AGENTS.md がこの skill を指すリポジトリで作業を始めるときに読む。
-- [simplify-repo](plugins/masseater-skills/skills/simplify-repo/SKILL.md): リポジトリ全体を単純にする。
-- [skill-authoring](plugins/masseater-skills/skills/skill-authoring/SKILL.md): Agent Skills の skill、つまり `SKILL.md` とそのディレクトリを作る・直す・添削するときに読む。本文を skill が必要な理由と達成したい状態から導いて書き、直すときも全体を導き直す。
-- [vite-plus](plugins/masseater-skills/skills/vite-plus/SKILL.md): Vite+ の `vp` でインストール、実行、検査、テストをする。`vite-plus` を使うリポジトリでコマンドを実行するとき、タスクや検査を足すとき、生成されたコマンドを読み替えるときに使う。
-- [writing](plugins/masseater-skills/skills/writing/SKILL.md): 文章を書く・推敲するときに読む。ドキュメント、コメント、コミットメッセージ、PR 本文、README、masseater の名前で出す記事、小説が対象である。「AI っぽい」「冗長」「読みにくい」と言われた文章を直すとき、Claude との壁打ちを「記事化して」と言われたときにも使う。
+- [build-explanation](plugins/masseater-skills/skills/build-explanation/SKILL.md): 読み手が既知の情報を起点とし、次に問われる質問に答える順序で展開する解説を、読み手向けに作成するための手順書。スライドの構成やスピーカースクリプト、および解説、提案書、報告書の本文を作成する際に活用する。
+- [cloudflare-caution](plugins/masseater-skills/skills/cloudflare-caution/SKILL.md): Cloudflareの料金を吊り上げるような設計は避け、コストを抑えた形式を選択しよう。Cloudflareにデプロイするものを設計する際、Workerやバインディングを追加する際、ページやデータの提供方法を決定する際、そしてループやリトライを記述する際に活用してほしい。
+- [create-slides](plugins/masseater-skills/skills/create-slides/SKILL.md): スライドを作成する前に、聴衆や場面に応じたデフォルト設定と聴衆からの質問に基づいて作成した構成案を提示し、作成後にプレゼンテーションの流れを確認するためのスピーカースクリプトを記述する手順。スライドやプレゼンテーション資料の作成を依頼された際に使用する。
+- [debug-like-a-human](plugins/masseater-skills/skills/debug-like-a-human/SKILL.md): AIはオーナーと同じ認証パスを通じて、ログイン後の画面やAccessの本番環境にアクセスし、自ら確認を行う。ログインを伴う画面やAPI、サイトの構築時、本番環境のバグ調査時、および「オーナーの認証が必要なため確認できない」と書きかけの際などに活用する。
+- [dont-it-yourself](plugins/masseater-skills/skills/dont-it-yourself/SKILL.md): ライブラリ、ランタイム、リポジトリに既に存在するものを探し出して利用し、自作はしない。新規の処理、ヘルパー、ラッパー、ツール、または外部API用のクライアントを記述し始める前に、まずはこれらを利用すること。
+- [how-to-use-react](plugins/masseater-skills/skills/how-to-use-react/SKILL.md): React 19.3のコンポーネント、ローダー、およびサーバー処理の記述、修正、レビュー時に参照する。ステートの配置場所、非同期処理の構成方法、並行UI APIの使用箇所、およびpropsの形式を決定する。
+- [humanity-and-humanness](plugins/masseater-skills/skills/humanity-and-humanness/SKILL.md): AIが人間の読み方、考え方、感覚を前提として持つように読む。人間が読む文章を書く際、ユーザーに判断を求める際、ユーザーのフィードバックの意図を読み取る際に活用する。
+- [integrate](plugins/masseater-skills/skills/integrate/SKILL.md): ライブラリや新しい実装手段を導入する際に使用する。追加するだけで終わらせず、既存のコードを移行し、その手段の使用を機械的に強制するところまで行う。
+- [masseater-ecosystem](plugins/masseater-skills/skills/masseater-ecosystem/SKILL.md): masseaterのテックスタックの完成形と、自社開発のものと借用したものの境界。技術やサービスを選択する際、自前で開発するか既存のものを利用するかを判断する際、新しい言語やフォーマット、配布先を追加する際、そしてリポジトリの構造を変更する際に参照すること。
+- [measure-dont-guess](plugins/masseater-skills/skills/measure-dont-guess/SKILL.md): 実装や修正を行う前に、仮説をどちらに収束させるかを判断し、実行した上で、その結果のみで判断する。バグの原因を調査する際、パフォーマンスや行動を比較する際、新機能の開発に着手する際、そして「おそらく」と判断しようとする際に活用する。
+- [measure-everything](plugins/masseater-skills/skills/measure-everything/SKILL.md): 何かを構築または修正する前に、どのように測定するかを決めておく。トレース、メトリクス、ログを追加する際、テレメトリが実際にプロセスから抜けているかを確認する際、Web Vitalsやページ遷移を測定する際、CIのタイミングを調整する際、あるいはカスタム測定コードを記述しようとする際などに活用する。
+- [measure-postmortem](plugins/masseater-skills/skills/measure-postmortem/SKILL.md): PRを読み、その修正が事前に計測されていれば防げた、あるいは検出できたのではないかと検討する。バグを修正したPRを振り返る際や、計測の漏れを探す際に活用する。
+- [project-checklist](plugins/masseater-skills/skills/project-checklist/SKILL.md): プロジェクトの設計で考慮すべき項目が満たされているか、実機を確認することで判断する。masseater/typescript-template から作成したリポジトリについては、GitHub の設定やテンプレートへの移行についても網羅する。新規リポジトリの作成時、AI への移行を完了した後、大幅な変更を行う前、および既存プロジェクトのレビュー時に活用する。
+- [repo-conventions](plugins/masseater-skills/skills/repo-conventions/SKILL.md): masseaterのリポジトリに共通するルール。masseater/typescript-templateから作成されたリポジトリ、またはAGENTS.mdでこのスキルが参照されているリポジトリで作業を開始する際に参照すること。
+- [simplify-repo](plugins/masseater-skills/skills/simplify-repo/SKILL.md): リポジトリ全体を簡素化する。
+- [skill-authoring](plugins/masseater-skills/skills/skill-authoring/SKILL.md): Agent Skillsスキル（すなわち `SKILL.md` とそのディレクトリ）の作成、修正、または訂正時に読み込む。ボディは、なぜそのスキルが必要なのか、どのような状態を実現すべきかを導出して記述し、修正時には改めて全体を導出する。
+- [vite-plus](plugins/masseater-skills/skills/vite-plus/SKILL.md): Vite+ の `vp` でインストール、実行、確認、テストを行う。`vite-plus` を使用するリポジトリでコマンドを実行する際、タスクやチェックを追加する際、および生成されたコマンドを翻訳する際に使用する。
+- [writing](plugins/masseater-skills/skills/writing/SKILL.md): 文章の執筆や修正時に読む。ドキュメント、コメント、コミットメッセージ、PR本体、README、masseater名義で公開された記事、小説などを扱う。また、「AIっぽい」「冗長」「読みづらい」と評された文章を修正する際や、Claudeにアイデアをぶつけた後に「記事にしてほしい」と頼まれた際にも利用する。
 
 <!-- skills:end -->
 
