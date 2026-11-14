@@ -1,25 +1,25 @@
 # Cloudflare にデプロイするリポジトリ
 
-費用を抑える設計は cloudflare-caution に従う。
+コストを抑える設計については、cloudflare-caution に従うこと。
 
-- Workers Paid プランを前提にする。Paid でしか使えない機能や上限を前提に設計してよい
-- ゾーンの WAF カスタムルールと Logpush のジョブは、masseater.dev ゾーンの持ち主の masseater/masseater.dev だけが持つ。ほかのリポは持たず、`OWNED_ZONE` は `Option.none()` のままにする。2 つのリポが同じゾーンの設定を持つと、デプロイのたびに互いの設定を上書きするからである
-- Worker にはすべて `logpush: true` を付ける
-- Bot Fight Mode は使わない
-- Cloudflare などのクラウドの認証は Alchemy のプロファイルで管理する
-- `APP_NAME` やスタック名を変えると、リソースは作り直される
+- Workers Paid プランを前提とすること。Paid でのみ利用可能な機能や制限を前提に設計してもよい。
+- ゾーンの WAF カスタムルールおよび Logpush ジョブは、masseater.dev ゾーンの所有者である masseater/masseater.dev のみが所有している。他のリポジトリはこれらを所有しておらず、`OWNED_ZONE` を `Option.none()` として残している。2つのリポジトリが同じゾーンの設定を所有している場合、デプロイのたびに互いの設定を上書きする。
+- すべての Worker に `logpush: true` を追加する。
+- Bot Fight Mode は使用しないこと。
+- Alchemy プロファイルを使用して、Cloudflare などのクラウドの認証を管理する。
+- `APP_NAME` またはスタック名を変更すると、リソースが再作成される。
 
-## 公開の静的ページ
+## 公開静的ページ
 
-誰にでも見せるページで、リクエストごとに中身が変わらないものは、masseater/typescript-template の `apps/lp` と同じ形で作る。
+リクエストごとに内容が変更されないすべてのユーザーに表示されるページは、masseater/typescript-template の `apps/lp` と同じ形式で構築される。
 
-- TanStack Start のプリレンダーで HTML にし、`main` を渡さない `Website.StaticSite` で静的アセットだけとして配る。Worker の SSR、`runWorkerFirst`、R2 からの配信は使わない
-- CSP は nonce に頼らない。`apps/lp/inline-scripts.ts` の Vite プラグインが inline の script を外部ファイルに出し、`security-headers` の `STATIC_PAGE_HEADERS` を `_headers` で付ける
+- TanStack Start のプリレンダリングを用いて HTML 化し、`main` を渡さずに `Website.StaticSite` のみで静的アセットとして提供する。Worker SSR、`runWorkerFirst`、または R2 からの提供は使用しないこと。
+- CSP でノンスに依存しないこと。`apps/lp/inline-scripts.ts` の Vite プラグインはインラインスクリプトを外部ファイルに移動し、`security-headers` の `STATIC_PAGE_HEADERS` は `_headers` でアタッチされる。
 
-## アクセス解析
+## アナリティクス
 
-Cloudflare Web Analytics を既定で有効にする。
+デフォルトで Cloudflare Web Analytics を有効にする。
 
-- サイトはホストごとに Cloudflare の API で一度だけ作り、そのトークンを `alchemy.run.ts` の `CF_BEACON_TOKEN` に置く
-- CI のトークンに Account Settings Write を足さないため、`Rum.Site` は使わない
-- SSR のアプリは、Worker の `CF_BEACON_TOKEN` から `start.ts` が HTML にビーコンを足す。静的ページは、ビルド時の `VITE_CF_BEACON_TOKEN` から root の `head` で入れる。ゾーンの自動挿入は Workers の応答に効かない
+- Cloudflare API を使用して、ホストごとに一度だけサイトを作成し、そのトークンを `alchemy.run.ts` の `CF_BEACON_TOKEN` に設定する。
+- CI トークンにAccount Settings Writeを追加しないよう、`Rum.Site` は使用しないこと。
+- SSR アプリの場合、`start.ts` で Worker の `CF_BEACON_TOKEN` から HTML にビーコンを追加する。静的ページの場合は、ビルド時に `VITE_CF_BEACON_TOKEN` からルートの `head` に挿入される。ゾーンの自動インジェクションは Workers のレスポンスには適用されない。

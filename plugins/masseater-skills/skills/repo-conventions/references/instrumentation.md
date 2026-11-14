@@ -1,17 +1,17 @@
-# 計装
+# インストルメンテーション
 
-計測で判断する手順は measure-dont-guess に従う。ここには、計れる状態を作る決まりを置く。
+測定によって判定する手順については、measure-dont-guessに従うこと。このファイルには、測定可能にするためのルールが記載されている。
 
-- 機能開発の前に、AI が自分でデバッグできる仕組みを作る。再現手段、ログやスパン、それを読む経路の 3 つである
-- 時間かお金を使う処理はすべてスパンにする。外部 API やモデルへのリクエスト、子プロセス、ファイルの入出力がこれにあたる
-- Cloudflare Workers では、Effect のスパン、TanStack Start のリクエストとサーバー関数、Elysia のルートを `@r_masseater/workers-tracing` で Workers のトレースに出す
-- Workers 以外のプロセスは `OtlpTracer.layerFromConfig` で出す。Effect は `OTEL_TRACES_EXPORTER=otlp` と `OTEL_EXPORTER_OTLP_ENDPOINT` が設定されたときだけ送る
-- コードが実際に出したスパン・メトリクス・ログをテストで確かめるときは、`@r_masseater/vitest-otlp` でテストファイルごとに OTLP の受け口を立てる
-- スパンは時間を使っている処理そのものに仕込む。計測のためだけにコマンドやプロセスを包まない
-- GitHub Actions のワークフローの最後には `.github/scripts/ci-telemetry.sh` を動かすジョブを置く
+- 機能開発に先立ち、AIが自律的にデバッグできる仕組みを構築する。これには3つの要素がある：再現手段、ログとスパン、およびそれらを読み込むためのパスである。
+- 時間やコストがかかるあらゆる操作をスパン化する。外部APIやモデルへのリクエスト、子プロセス、ファイルI/Oがこれに該当する。
+- Cloudflare Workersにおいて、Effectスパン、TanStack Startリクエスト、サーバー関数、およびElysiaが`@r_masseater/workers-tracing`を用いてWorkersへのトレースをルーティングする操作をエクスポートする。
+- Workers以外のプロセスについては、`OtlpTracer.layerFromConfig`でエクスポートする。Effectは、`OTEL_TRACES_EXPORTER=otlp`かつ`OTEL_EXPORTER_OTLP_ENDPOINT`が設定されている場合にのみ送信される。
+- テストでコードが実際に出力したスパン、メトリクス、ログを確認する際は、`@r_masseater/vitest-otlp`を用いてテストファイルごとにOTLPレシーバーを設定する。
+- 実際に時間がかかる操作にスパンを記述する。測定のためだけにコマンドやプロセスをラップしてはならない。
+- すべてのGitHub Actionsワークフローの末尾に、`.github/scripts/ci-telemetry.sh`を実行するジョブを配置する。
 
 ## Web Vitals
 
-- Web Vitals（LCP・INP・CLS・FCP・TTFB・TBT）は、`@r_masseater/web-vitals-flow` を入れた `tools/web-vitals` で `vp run measure <URL>...` を実行して測る。各 URL の読み込みと、そのページの同じオリジンのリンクを押した遷移を Lighthouse の user flow で 5 回測り、`report/` に回ごとの flow-<回>.html と flow-<回>.json を書く。各ステップの中央値で LCP・INP・CLS のどれかが Lighthouse の合格点（0.9）に届かなければ失敗する
-- main の verify はデプロイの後に `vars.ZAP_TARGET_URL` の本番を測り、レポートを Actions の成果物に残す
-- クラウドのセッションでは `--chrome-flags="--no-sandbox --proxy-server=$HTTPS_PROXY"` を付ける。Chrome は session-start フックが `CHROME_PATH` で渡す
+- `@r_masseater/web-vitals-flow`がインストールされている`tools/web-vitals`で`vp run measure <URL>...`を実行し、Web Vitals（LCP、INP、CLS、FCP、TTFB、TBT）を測定する。Lighthouseのユーザーフローを用いて5回測定し、各URLの負荷と、そのページ上の同一オリジンリンクのクリックによる遷移を測定し、実行ごとにflow-<run>.htmlおよびflow-<run>.jsonを`report/`に書き出す。各ステップの中央値において、LCP、INP、またはCLSのいずれかがLighthouseの合格スコア（0.9）に達しない場合は失敗する。
+- main's verifyは、デプロイ後に`vars.ZAP_TARGET_URL`で本番環境の測定を行い、レポートをActionsアーティファクトとして保持する。
+- クラウドセッションでは、`--chrome-flags="--no-sandbox --proxy-server=$HTTPS_PROXY"`を追加する。セッション開始フックは、`CHROME_PATH`経由でChromeを通過する。

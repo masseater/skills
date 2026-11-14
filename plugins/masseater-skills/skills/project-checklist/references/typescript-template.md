@@ -1,88 +1,88 @@
-# typescript-template の骨格
+# TypeScriptテンプレートの骨組み
 
-テンプレートからの移行の不足は、ビルドやテストの失敗として現れない。hook が 1 つ足りなくても、古い設定が隣に残っても、verify は通る。
+テンプレートからの移行におけるギャップは、ビルドやテストの失敗として表示されない。フックが1つ欠けていたり、古い設定が残っていたりしても、パスを確認すること。
 
-- 各要素は、導入されているか、機能しているか、旧構成が残っていないかの 3 点で判定する
-- 導入は、ファイルと依存が実在するかで判定する
-- 機能は、動かす仕組みが接続され、実際に実行されるかで判定する。設定ファイルにあるだけの hook や、このリポジトリでは決して動かない条件は、機能していない
-- 旧構成は、置き換え済みの古い仕組みや、同じ役割の設定の重複が残っていないかで判定する
-- 細部の正はテンプレートの実物にある。root の `vite.config.ts`、`.claude/hooks/`、`.vite-hooks/`、`.github/workflows/`、`apps/*/` がそれにあたる。この一覧を写しとして使わない
-- テンプレートの新しいリリースで追加された要素は、不足にしない。それは移行の不足ではなく、更新の未取り込みである。取り込みはテンプレートの更新の仕組みが案内する
-- 古い形でも機能しているものは、不足にしない。不足と言えるのは、無いことで何かが壊れるか、静かに無効になるものだけである
+- 各要素について、導入されているか、動作するか、古い構造が残っていないかの3点で判断する
+- ファイルや依存関係が実際に存在するかどうかで導入を判断する
+- 実行する仕組みが接続されており、実際に実行されているかで機能を判断する。設定ファイルにしか存在しないフックや、このリポジトリでは決して発火しない条件は動作していない
+- 古い仕組みが置き換えられたか、あるいは同じ役割を持つ設定が重複しているかで、古い構造を判断する
+- 詳細の真相は実際のテンプレート、つまりルートの `vite.config.ts`、`.claude/hooks/`、`.vite-hooks/`、`.github/workflows/`、`apps/*/` にある。このリストをコピーとして使用しないこと。
+- テンプレートの新リリースで追加された要素を、不足していると判断しないこと。これは移行におけるギャップではなく、まだ実施されていない更新である。導入にあたっては、テンプレートの更新メカニズムに従うこと。
+- 古い形式であっても、動作するものを不足していると判断しないこと。欠落することで何かが壊れる、あるいは暗黙的に無効化されるもののみを不足と呼べる。
 
-## 1. 道具立ては Vite+ ひとつ
+## 1. ツールは Vite+ のみである
 
-- 導入：root と各 app の `vite.config.ts` があり、`package.json` の scripts が vp 経由で、`devEngines` が pnpm である。
-- 機能：`git config core.hooksPath` が `.vite-hooks/_` を指し、`.vite-hooks/{pre-commit,commit-msg,pre-push}` が vp を呼ぶ。CI は `voidzero-dev/setup-vp` で install と verify を回す。エージェントの pnpm 直実行は `.claude/settings.json` の deny と `block-pnpm.ts` が止める。
-- 旧構成：turbo.json、husky、yarn・npm・bun のロックファイル、生の pnpm や npx や prettier を呼ぶ script や CI が消えているかを見る。
+- はじめに：ルートと各アプリには `vite.config.ts` があり、`package.json` 内のスクリプトは vp を経由し、`devEngines` は pnpm である。
+- 機能：`git config core.hooksPath` は `.vite-hooks/_` を指し、`.vite-hooks/{pre-commit,commit-msg,pre-push}` は vp を呼び出す。CI は `voidzero-dev/setup-vp` でインストールと検証を行う。pnpm を直接実行するエージェントは、`.claude/settings.json` および `block-pnpm.ts` の拒否によって停止される。
+- 古い構造：turbo.json、husky、yarn、npm、bun のロックファイル、および raw pnpm、npx、prettier を呼び出すスクリプトや CI が消えていないかを確認する。
 
-## 2. 依存のバージョンは pnpm カタログに一本化
+## 2. 依存関係のバージョンは pnpm カタログで統一されている
 
-- 導入：`pnpm-workspace.yaml` に `catalog` と `catalogs: stack`、`catalogMode: prefer` があり、依存が `catalog:` と `catalog:stack` を参照している。
-- 機能：`vp run verify` の syncpack が通り、同じ依存の複数バージョンを許さない。
-- 旧構成：カタログにある依存の直書きと、パッケージに散った同じ依存の別バージョンが無いかを見る。
+- はじめに：`pnpm-workspace.yaml` には `catalog`、`catalogs: stack`、`catalogMode: prefer` があり、依存関係は `catalog:` および `catalog:stack` を指す。
+- 機能：`vp run verify` における syncpack はパスされ、同一の依存関係の複数バージョンは許可されない。
+- 古い構造：カタログ内に依存関係のハードコード版が存在するか、あるいは同一の依存関係の異なるバージョンがパッケージ間に散在していないかを確認する。
 
-## 3. monorepo の構成は Nx スタイルで、パッケージマネージャは pnpm のまま
+## 3. モノレポは Nx スタイルで構成されており、pnpm が引き続きパッケージマネージャーとして機能する。
 
-- 導入：パッケージがアプリの `apps/`、共有するコードの `libs/`、リポジトリの道具の `tools/` に分かれ、`pnpm-workspace.yaml` の `packages` がこれらを挙げている。
-- 機能：`vp install` と `vp run -r` が、ワークスペースのパッケージを解決して回る。
-- 旧構成：`nx.json` や `@nx/*` を入れた形跡と、`apps/`・`libs/`・`tools/` の外に散ったパッケージが無いかを見る。
+- はじめに：パッケージは、アプリ用の `apps/`、共有コード用の `libs/`、リポジトリツール用の `tools/` に分かれており、`pnpm-workspace.yaml` の `packages` にそれらが列挙されている。
+- 機能：`vp install` および `vp run -r` は、ワークスペースのパッケージを解決して実行する。
+- 古い構造：`nx.json` や `@nx/*` がインストールされた痕跡があるか、また `apps/`、`libs/`、`tools/` の外にパッケージが散在していないかを確認する。
 
-## 4. 型は `@effect/tsgo` で見る
+## 4. 型は `@effect/tsgo` でチェックされる。
 
-- 導入：`catalog:stack` の `@effect/tsgo` があり、全パッケージの tsconfig が `tsconfig.base.json` を `extends` し、app の `prepare` が `effect-tsgo patch --typescript --oxlint` を回す。
-- 機能：`vite.config.ts` の `vp check` で `typeAware: true` と `typeCheck: true` が有効で、`@effect/tsgo/oxlint-presets` の effect ルールが読み込まれ、`tsconfig.base.json` の `strict`・`exactOptionalPropertyTypes`・`noUncheckedIndexedAccess` が生きたままである。
-- 旧構成：独自の緩い tsconfig が継承を置き換えていないか、preset の読み込みを外していないか、patch の prepare を消していないかを見る。
+- はじめに：`catalog:stack` の `@effect/tsgo` が存在し、すべてのパッケージの tsconfig が `tsconfig.base.json` を `extends` しており、各アプリの `prepare` が `effect-tsgo patch --typescript --oxlint` を実行する。
+- 機能：`vite.config.ts` の `vp check` で `typeAware: true` および `typeCheck: true` が有効になっており、`@effect/tsgo/oxlint-presets` のエフェクトルールが読み込まれ、`tsconfig.base.json` の `strict`、`exactOptionalPropertyTypes`、および `noUncheckedIndexedAccess` が引き続き有効である。
+- 古い構造：カスタムのルーズな tsconfig が継承を置き換えていないか、プリセットの読み込みが削除されていないか、および prepare 内のパッチが削除されていないかを確認する。
 
-## 5. Effect を土台にする
+## 5. Effect を基盤としたビルド
 
-- 導入：`effect` 依存があり、外部入力や外部 API との境界とドメインが Effect・Layer・Context・Schema で組まれている。
-- 機能：境界の値がライブラリの型のまま `Schema.decode*` に渡り、外部 API のクライアントが Effect 公式、distilled.cloud、OpenAPI 生成の順で選ばれ、時間やお金を使う処理が `Effect.withSpan` で見える。
-- 旧構成：素の Promise と try/catch のドメイン、valibot や zod の併存、手書きの API ラッパーが無いかを見る。
+- はじめに：`effect` 依存関係があり、外部入力や外部 API との境界、およびドメインは、Effect、Layer、Context、Schema で構築されている。
+- 機能：境界値はライブラリの型そのままの状態で `Schema.decode*` に渡され、外部 API のクライアントは、公式の Effect、distilled.cloud、OpenAPI から生成された順に選択され、時間やコストがかかる処理は `Effect.withSpan` で可視化される。
+- 古い構造：単純な Promise と try/catch、valibot や zod co が共存するドメインがあるか、あるいは手書きの API ラッパーがあるかを確認する。
 
-## 6. fallow で死にコード・重複・脆弱性・依存を見る
+## 6. デッドコード、重複、脆弱性、およびフォールow を伴う依存関係を確認する。
 
-- 導入：`.fallowrc.jsonc` と、root と app の `fallow` script、verify の `fallow-all` がある。
-- 機能：`vp run -r fallow` が型認識とセキュリティ検査を含めて回り、通る。`--fail-on-issues` のような失敗条件が生きている。緩めると緑の意味が消えるからである。
-- 旧構成：knip・jscpd・ts-prune のような置き換え済みの設定や script が消えているか、rc と script に設定が二重になっていないかを見る。
+- はじめに：`.fallowrc.jsonc`、ルートおよびアプリ内の `fallow` スクリプト、および verify 内の `fallow-all` が存在する。
+- 機能：`vp run -r fallow` を実行し、型認識とセキュリティチェックを含めて渡し、`--fail-on-issues` などの失敗条件が引き続き有効である。これらを緩めると、green の意味が消える。
+- 古い構造：knip、jscpd、ts-prune などの置き換えられた設定やスクリプトが消えているか、および rc とスクリプト間で設定が重複していないかを確認する。
 
-## 7. 検証の入口は `vp run verify` ひとつ
+## 7. 検証の単一のエントリポイントは `vp run verify` である。
 
-- 導入：`vp run verify` が検証の入口として存在する。今のテンプレートでは root `vite.config.ts` の `run.tasks.verify` と dependsOn のグラフが入口で、script の連鎖でも、1 つの入口から検査がまとめて回っていれば働いている。
-- 機能：`.vite-hooks/pre-push`、CI の verify ジョブ、`.claude/hooks/stop-gate.ts` が同じ `vp run verify` を呼ぶ。test、eslint、syncpack、markdown-lint、renovate、actions-lint、steiger、db:check、fallow、audit のような、リポジトリに対象のある検査が入口から回っている。
-- 旧構成：verify の外に散った検査、対象が無いのに残ったタスク、タスクの削除で緑にした形跡が無いかを見る。
+- はじめに：検証のエントリポイントとして `vp run verify` が存在する。現在のテンプレートでは、ルートの `vite.config.ts` にある `run.tasks.verify` とその dependsOn グラフがエントリポイントとなっており、スクリプトが連鎖していても、一つのエントリポイントからチェックがまとめて実行されていれば動作する。
+- 機能：CI の検証ジョブである `.vite-hooks/pre-push` と `.claude/hooks/stop-gate.ts` は、同じ `vp run verify` を呼び出す。test、eslint、syncpack、markdown-lint、renovate、actions-lint、steiger、db:check、fallow、audit など、リポジトリ内にターゲットを持つチェックは、エントリポイントから実行される。
+- 古い構造：検証の外にチェックが散在していないか、ターゲットのないタスクが残っていないか、あるいはタスクを削除してgreenにした痕跡がないかを確認する。
 
-## 8. 手元と CI のゲートが効いている
+## 8. ローカルゲートとCIゲートが有効である
 
-- 導入：`.vite-hooks/` と `.github/workflows/` に verify のセットがある。今のテンプレートは autofix・up-to-date・zap のワークフローを持ち、deploy と release は verify のワークフローのジョブである。
-- 機能：main の直近の verify が緑である。`gh run list --branch main --limit 5` で確認する。ルールセットの必須チェックに挙がる名前のジョブがワークフローに実在し、実際に報告される。`gh api repos/{owner}/{repo}/rulesets` と `gh workflow list` で確認する。報告されない必須チェックは PR を止める。デプロイするリポジトリでは deploy ジョブが緑で、README の「公開先」の URL が応答する。
-- 旧構成：deploy.yml や verify-autofix.yml のような前身のワークフローが消えているか、このリポジトリでは決して動かない条件が無いかを見る。`github.repository == 'masseater/typescript-template'` のままの release ジョブなどがそれにあたる。
+- はじめに：`.vite-hooks/` と `.github/workflows/` には検証が設定されている。現在のテンプレートでは autofix、updated および zap workflows があり、deploy と release は検証ワークフロー内のジョブとなっている。
+- 機能：main 上の最新の検証はgreenである。`gh run list --branch main --limit 5` で確認する。ルールセット内の必須チェックとしてリストされている名前のジョブは、実際にワークフローに存在し、報告されている。`gh api repos/{owner}/{repo}/rulesets` および `gh workflow list` で確認する。報告されない必須チェックはPRをブロックする。デプロイを行うリポジトリでは、deploy ジョブがgreenであり、READMEの「where it is published」にあるURLが応答する。
+- 古い構造：deploy.yml や verify-autofix.yml といった前身のワークフローが消えていないか、また release ジョブが依然として `github.repository == 'masseater/typescript-template'` に設定されているなど、このリポジトリで決して実行できない条件がないかを確認する。
 
-## 9. エージェント用の設定が生きている
+## 9. エージェントの設定が有効である
 
-- 導入：`.claude/hooks/` 一式、`.claude/settings.json`、`.claude/loop.md`、`AGENTS.md` と `CLAUDE.md`、`.intent/hooks/intent-claude-gate.mjs`、`.claude/skills` から張る `.agents/skills` と `skills-lock.json` がある。
-- 機能：settings.json の hooks が実在のファイルを指して起動時に走る。`skills ls` と `vp exec intent list` がスキルを返す。セッション開始でテンプレートの新リリースが案内される。
-- 旧構成：移行前の `.claude/rules/` や旧スキルの残骸、settings.json が指す実在しないファイルが無いかを見る。
+- はじめに：`.claude/hooks/`、`.claude/settings.json`、`.claude/loop.md`、`AGENTS.md` および `CLAUDE.md`、`.intent/hooks/intent-claude-gate.mjs`、`.agents/skills`（`.claude/skills` からリンクされている）、および `skills-lock.json` の全セットが存在する。
+- 機能：settings.json のフックは、起動時に存在し実行されるファイルを指定する。`skills ls` と `vp exec intent list` はスキルを返す。セッション開始時にテンプレートの新しいリリースが通知される。
+- 古い構造：マイグレーション前の `.claude/rules/` や古いスキルの残骸、あるいは settings.json が指している存在しないファイルがないかを確認する。
 
-## 10. デプロイするリポジトリは Alchemy で宣言する
+## 10. デプロイを行うリポジトリが Alchemy で宣言している
 
-- 導入：`apps/<name>/alchemy.run.ts`、`app-name.ts` とそのテストがあり、リソース名が `app-name.ts` から取られている。
-- 機能：`vp run deploy` が通り、CI の deploy ジョブが secrets で回る。
-- 旧構成：wrangler.toml や wrangler の直呼び、Terraform や Pulumi の併存が無いかを見る。
+- はじめに：`apps/<name>/alchemy.run.ts`、`app-name.ts` およびそのテストが存在し、リソース名は `app-name.ts` から取得されている。
+- 機能：`vp run deploy` がパスし、CI のデプロイジョブがシークレット付きで実行される。
+- 古い構造：wrangler.toml が存在するか、wrangler への直接呼び出しがあるか、あるいは Terraform や Pulumi が共存しているかを確認する。
 
-## 11. 冗長な設定をしない
+## 11. 冗長な設定がない
 
-- 同じ役割の持ち主を 1 つにする。tsconfig の共通部は `tsconfig.base.json`、依存の版はカタログ、アプリ名は `app-name.ts` に置き、環境変数は環境ごとに変わる値だけにする。
-- eslint CLI の直接実行は `vp check` に置き換わり、旧い側の設定、依存、script は消えている。
+- 各ロールに単一のオーナーを付与する。`tsconfig.base.json` に tsconfig の共通部分、カタログに依存関係のバージョンを、`app-name.ts` にアプリ名を記述し、環境変数には環境ごとに変化する値のみを設定する。
+- eslint CLI の直接実行は `vp check` に置き換えられ、旧バージョン側の設定、依存関係、スクリプトはなくなっている。
 
-## 12. 無駄なドキュメント、無駄なコードコメントを削除する
+## 12. 不要なドキュメントと不要なコードコメントを削除する
 
-- 導入：`vite.config.ts` の lint に `no-comments/disallowComments` が error で入り、許すのは `oxlint-disable` と `eslint-disable` だけである。
-- 機能：`vp run verify` の lint が、コメントを含むコードを落とす。
-- 旧構成：経緯や理由を書いたコメントやドキュメント、前の構成のままの README や docs、移行の間に書いたメモが消えているかを見る。
+- はじめに：`vite.config.ts` のリントに `no-comments/disallowComments` がエラーとして表示されており、`oxlint-disable` と `eslint-disable` のみが許可されている。
+- 機能：`vp run verify` のリントで、コメントを含むコードが拒否される。
+- 古い構造：履歴や理由を記述したコメントやドキュメント、以前の構造を記述した README やドキュメント、およびマイグレーション中に書かれたメモがなくなっているかを確認する。
 
-## 13. CI は差分とキャッシュで効率よく回す
+## 13. CI が差分とキャッシュを用いて効率的に動作する
 
-- 導入：verify が main への push と手動実行でだけ回り、PR では回らない。PR 側のゲートは `up-to-date` の必須チェックだけである。commitlint と Betterleaks は push された範囲だけを対象にし、`fetch-depth: 0` の全履歴取得を禁じるルールが actions-lint にある。deploy は、その sha がブランチの先頭のときだけ動く。依存の install は setup-vp の `cache: true` でキャッシュし、oxlint-plugin-decision の判定は `actions/cache` の restore と save で持ち回る。
-- 機能：main の直近の run で確認する。`gh run view <run-id> --log` に、依存のキャッシュと oxlint-plugin-decision の判定キャッシュの復元が出ていること、push のたびの検査が push された範囲だけを対象にしていることである。PR ごとのレビューはしない前提なので、PR 側は main の更新に追従しているかまででよい。
-- 旧構成：PR ごとに verify を回す形、全履歴を対象にした検査、`fetch-depth: 0`、キャッシュの restore や save の不足、古い sha でも deploy が動く形が無いかを見る。
+- はじめに：verify は PR ではなく、main への push 時と手動ディスパッチ時にのみ動作する。PR 側の唯一のゲートは、必須の `up-to-date` チェックである。commitlint と Betterleaks は push された範囲のみを対象とし、actions-lint には `fetch-depth: 0` でフル履歴の取得を禁止するルールがある。deploy は sha がブランチの先頭である場合にのみ動作する。依存関係のインストールは setup-vp の `cache: true` でキャッシュされ、oxlint-plugin-decision の判定結果は `actions/cache` の restore and save で引き継がれる。
+- 機能：main での最新の実行で確認する。`gh run view <run-id> --log` で依存関係キャッシュと oxlint-plugin-decision の判定キャッシュの復元が表示され、各プッシュターゲットのチェックは push された範囲のみを対象にする。PR ごとのレビューはないため、PR 側で main の更新に追従しているかを確認すれば十分である。
+- 古い構造：PR ごとに verify を実行し、フル履歴を確認する、`fetch-depth: 0` 、キャッシュの復元や保存が欠落している、あるいは古い sha でも deploy が動作する、といった形式があるかを確認する。

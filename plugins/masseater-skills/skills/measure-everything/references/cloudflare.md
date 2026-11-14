@@ -1,52 +1,19 @@
-# Measuring on Cloudflare
+# Cloudflareでの計測
 
-Turn on
-[Workers
-tracing](https://developers.cloudflare.com/workers/observability/traces/)
-with `observability.traces.enabled`. Cloudflare then makes spans for outbound
-fetches and for calls to KV, R2, D1, Durable Objects and other Workers. No SDK
-is needed.
+`observability.traces.enabled` で [Workers tracing](https://developers.cloudflare.com/workers/observability/traces/) を有効にする。すると、Cloudflare がアウトバウンドフェッチおよび KV、R2、D1、Durable Objects、その他の Worker への呼び出し用のスパンを作成する。SDKは不要である。
 
-Turn on
-[Workers Issues](https://developers.cloudflare.com/workers/observability/issues/)
-with `observability.issues.enabled`. It groups uncaught exceptions, 5xx
-responses and logged errors into issues, so a failure in production is recorded
-before anyone reports it. It is off by default and records only traffic after it
-is turned on. Log a handled error with `console.error()` to make it an issue.
+`observability.issues.enabled` で [Workers Issues](https://developers.cloudflare.com/workers/observability/issues/) を有効にする。これにより、捕捉されなかった例外、5xx レスポンス、およびログに記録されたエラーが issue にまとめられ、本番環境での障害が報告前に記録される。デフォルトでは無効になっており、有効にした後のみトラフィックが記録される。`console.error()` で処理済みのエラーをログに記録し、issue として扱う。
 
-For an app on Effect, TanStack Start and Elysia, add
-[`@r_masseater/workers-tracing`](https://github.com/masseater/masseater.dev/tree/main/libs/workers-tracing).
-Effect spans, requests, server functions and Elysia routes then join the
-platform's own spans in one trace. Do not build an Effect tracer
-or a span middleware per repository.
+Effect、TanStack Start、および Elysia のアプリでは、[`@r_masseater/workers-tracing`](https://github.com/masseater/masseater.dev/tree/main/libs/workers-tracing) を追加する。これにより、Effect のスパン、リクエスト、サーバー関数、および Elysia ルートが、プラットフォーム独自のスパンに統合されて 1 つのトレースとなる。リポジトリごとに Effect トレーサーやスパンミドルウェアをビルドしてはならない。
 
-In an Alchemy stack, pass the providers through its `withWorkersTracing({
-destinations })`, which also turns on Issues. Do not write `observability` and a
-compatibility date on each Worker. A Worker added later is then traced without
-anyone remembering to. Run every Effect with its `run` or `runner`, and import
-`Elysia` from it. Add its oxlint preset, so that code which skips tracing fails
-the lint.
+Alchemy スタックでは、プロバイダーに `withWorkersTracing({ destinations })` を渡し、これにより Issues も有効になる。各 Worker に `observability` と互換性日を記述してはならない。後から追加された Worker は、誰も忘れずにトレースされる。すべての Effect を `run` または `runner` で実行し、そこから `Elysia` をインポートする。トレースをスキップするコードがリントに失敗するよう、oxlint プリセットを追加しておく。
 
-To check spans in CI, deploy its `traceSink` once per account. Then run
-`workers-traces --request <url> --expect <span> --wait <seconds>` after each
-deploy. A span that stops arriving then fails the deploy job.
+CI でスパンを確認するには、アカウントごとに一度だけ `traceSink` をデプロイする。その後、デプロイのたびに `workers-traces --request <url> --expect <span> --wait <seconds>` を実行する。到達しなくなったスパンは、デプロイジョブに失敗する。
 
-Send traces and logs to an OTLP backend through
-[export
-destinations](https://developers.cloudflare.com/workers/observability/exporting-opentelemetry-data).
-Make one destination per signal in the dashboard, and name it in the Worker
-configuration. Export needs a paid Workers plan, and metrics cannot be exported
-yet. Set `persist: false` to send without keeping a copy in the dashboard.
+トレースとログを [export destinations](https://developers.cloudflare.com/workers/observability/exporting-opentelemetry-data) 経由で OTLP バックエンドに送信する。ダッシュボードのシグナルごとに 1 つの宛先を作成し、Worker の設定で名前を付ける。エクスポートには有料の Workers プランが必要であり、メトリクスはまだエクスポートできない。ダッシュボードにコピーを残さずに送信するには、`persist: false` を設定する。
 
-Read the timing of Workers spans with care. The runtime advances the clock only
-on I/O, so some spans show a duration of zero. Calls through service bindings
-and to Durable Objects start separate traces.
+Worker スパンのタイミングを慎重に確認すること。ランタイムがクロックを進めるのは I/O 時のみであるため、一部のスパンでは持続時間が 0 と表示される。サービスバインディングや Durable オブジェクトへの呼び出しでは、個別のトレースが開始される。
 
-For D1, query the
-[GraphQL Analytics
-API](https://developers.cloudflare.com/d1/observability/metrics-analytics).
-`d1QueriesAdaptiveGroups` lists queries with their time, rows read and rows
-written. `wrangler d1 insights` ranks the same data from the command line. The
-command is experimental, so its options may change.
+D1 については、[GraphQL Analytics API](https://developers.cloudflare.com/d1/observability/metrics-analytics) をクエリする。`d1QueriesAdaptiveGroups` には、クエリの時刻、読み取り行数、書き込み行数が一覧表示される。`wrangler d1 insights` は、コマンドラインから同じデータをランク付けする。このコマンドは実験的なため、オプションが変更される可能性がある。
 
-For what real visitors experience, use Cloudflare Web Analytics.
+実際の訪問者がどのような体験をするかについては、Cloudflare Web Analytics を使用する。

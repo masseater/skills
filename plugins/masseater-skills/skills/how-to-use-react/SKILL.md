@@ -1,6 +1,6 @@
 ---
 name: how-to-use-react
-description: React 19.3 のコンポーネント、ローダー、サーバー処理を書く・直す・レビューするときに読む。状態の置き場所、非同期の組み方、並行 UI の API の使いどころ、props の形を決める。
+description: React 19.3のコンポーネント、ローダー、およびサーバー処理の記述、修正、レビュー時に参照する。ステートの配置場所、非同期処理の構成方法、並行UI APIの使用箇所、およびpropsの形式を決定する。
 metadata:
   derived-from: >-
     https://github.com/vercel-labs/agent-skills/tree/063bee94c3f4df8453406c830b0a7df0f2860278/skills/react-best-practices
@@ -15,48 +15,48 @@ metadata:
 
 # how-to-use-react
 
-masseater/typescript-template から作ったリポジトリ向けに、原典を読み替えてある。原典と食い違うときは、読み替えを採る。
+原文は masseater/typescript-template から作成されたリポジトリ向けに改変されている。原文と矛盾する箇所については、改変版が優先される。
 
-- 状態は Effect Atom と TanStack Query に置き分ける
-- 非同期の瀑布を消す
-- React Compiler があるリポジトリでは `useMemo`、`useCallback`、`memo` を書かない
-- 原典にある Next.js、SWR、Redux、`better-all` は採らない
+- Effect AtomとTanStack Query間でステートを分割
+- 非同期ウォーターフォールを排除
+- React Compiler を使用するリポジトリでは、`useMemo`、`useCallback`、`memo` を記述しないこと。
+- 原文から Next.js、SWR、Redux、または `better-all` を採用しないこと。
 
-## この skill が必要な理由と達成したい状態
+## なぜこのスキルが必要なのか、および実現すべき状態
 
-この skill が必要な理由は、React が同じ画面を何通りにも書け、どの書き方でも初めは動くことにある。違いはデータが増え、通信が遅れ、操作が重なったときに出るので、書いた時点では悪い書き方を選んだことに気づけない。
+React では同一の画面を多様な方法で記述でき、どの方法も最初は動作するため、このスキルが必要となる。データが増加し、通信が遅くなり、操作が重複すると差異が現れるため、記述時点では誤った方法を選んだことに気づかない。
 
-この skill で達成したい状態は、画面がユーザーの操作を止めず、待たせず、どの状態もどこに置くか迷わないことである。
+このスキルで実現すべき状態は、画面がブロックしたりユーザーを待たせたりせず、またどこにステートを配置すべきか迷うことがない状態である。
 
-## 置き分け
+## 配置先
 
-| やりたいこと | 使うもの | 使わないもの |
+| やりたいこと | 使用するもの | 使用しないもの |
 | --- | --- | --- |
-| 画面の一時状態、フォームの値、ツリーをまたいで共有する値 | Effect Atom（`Atom.make`、`useAtom`、`useAtomValue`） | `useState`、`useReducer`、`createContext`、`useContext`（`no-restricted-imports` が拒否する） |
-| サーバーデータ | TanStack Query（`queryOptions` は FSD の `api` セグメント） | `use(promise)` での取得、`useEffect` と `fetch` の組み合わせ、Atom にサーバー応答を載せる |
-| ミューテーションの pending と error | TanStack Query の `useMutation` | 自前の pending フラグ、`useActionState`、`useFormStatus` |
-| 順番が仕様のミューテーション | 同じ `scope.id` を持つ `useMutation` | 自前のキュー、ボタンを無効にして操作列を止める |
-| 楽観更新 | `useOptimistic` | 自前の巻き戻し状態 |
-| 急がない更新・重い派生 | `useTransition` / `startTransition` / `useDeferredValue` | タイマーデバウンス |
-| ref | 関数の props | `forwardRef`、文字列 ref |
-| 隠しても状態を残す | `<Activity mode="hidden">` | 条件付きアンマウントで状態を捨てる |
-| 遷移のアニメーション | `<ViewTransition>` | |
-| Effect で最新の props を使う | `useEffectEvent` | その関数を依存配列に足して購読をやり直す、ハンドラを ref にしまう |
+| 一時的な画面状態、フォーム値、ツリー全体で共有される値 | Effect Atom (`Atom.make`, `useAtom`, `useAtomValue`) | `useState`, `useReducer`, `createContext`, `useContext` (`no-restricted-imports` により拒否) |
+| サーバーデータ | TanStack Query (FSDの `api` セグメント内の `queryOptions`) | `use(promise)` によるフェッチ、`useEffect` と `fetch` の組み合わせ、サーバーレスポンスをAtomに格納する |
+| Mutation pending およびエラー | TanStack Query の `useMutation` | 自作の保留フラグ、`useActionState`、`useFormStatus` |
+| 順序が仕様の一部であるミューテーション | 同一の `scope.id` を持つ `useMutation` | 自作のキュー、操作シーケンスを停止させるボタンの無効化 |
+| 楽観的更新 | `useOptimistic` | 自作のロールバック状態 |
+| 非緊急の更新および重い導出 | `useTransition` / `startTransition` / `useDeferredValue` | タイマーのデバウンス |
+| ref | 関数のプロップ | `forwardRef`、文字列参照 |
+| 状態を非表示にしたまま保持すること | `<Activity mode="hidden">` | 条件付きアンマウントで状態を破棄すること |
+| トランジションアニメーション | `<ViewTransition>` | |
+| Effect で最新のプロップを使用すること | `useEffectEvent` | その関数を依存配列に追加して再サブスクライブし、ハンドラを参照に格納すること |
 
 ## メモ化
 
-- React Compiler が有効なリポジトリでは `useMemo`、`useCallback`、`memo` を書かない
-- Compiler が無いリポジトリでは、`react-perf` のルールが指摘した箇所にだけ `useCallback` か `useMemo` を書く
-- それ以外は、計測で遅いと分かってから足す
+- React Compiler が有効なリポジトリでは、`useMemo`、`useCallback`、`memo` を記述しないこと
+- Compiler が無効なリポジトリでは、`react-perf` ルールが指す箇所にのみ `useCallback` または `useMemo` を記述すること
+- それ以外の場合は、計測結果が遅いことが示された後にのみ追加すること
 
-## 非同期の瀑布
+## 非同期ウォーターフォール
 
-[`async`](references/async.md) も読むこと。React の他の性能の話より先に、この節を当てる。
+また、[`async`](references/async.md) も参照すること。React の他のパフォーマンストピックよりも先にこのセクションを適用すること。
 
-- 前の結果を使わない処理は、`Effect.all` か `Effect.forEach` に `{ concurrency: "unbounded" }` を渡して同時に始める
-- 順番が仕様なら `{ concurrency: 1 }` と書く。省略しない
-- Effect の外の Promise なら `Promise.all` を使う
-- 一部だけ依存するときは、依存する側を `Effect.flatMap` で組み、依存しない側と一つの `Effect.all` に載せる
+- `Effect.all` または `Effect.forEach` に `{ concurrency: "unbounded" }` を渡すことで、直前の結果を使用しない操作を同時に開始すること。
+- 順序が仕様の一部である場合は、`{ concurrency: 1 }` と記述すること。省略しないこと。
+- Effect 外の Promise には `Promise.all` を使用すること。
+- Promise が何らかの要素にのみ依存している場合は、依存側を `Effect.flatMap` でビルドし、独立した側と共に一つの `Effect.all` に配置すること。
 
 ```ts
 const loaded = Effect.all(
@@ -68,25 +68,25 @@ const loaded = Effect.all(
 );
 ```
 
-## 採らない原典の箇所
+## 元の要素の一部が採用されていない場合
 
-| 原典 | 代わり |
+| 元の | 代わりに |
 | --- | --- |
-| Next.js（`next/dynamic`、`after()`、React `cache()` をリクエストをまたいで使う） | TanStack Start のローダー |
+| Next.js (`next/dynamic`、`after()`、リクエストをまたいだ React の `cache()` の使用) | TanStack Start のローダー |
 | SWR | TanStack Query |
 | `better-all` | `Effect.all` |
-| Redux の Action / Reducer / Selector | Effect Atom と TanStack Query、FSD の `model` / `api` / `ui` |
+| Redux Action / Reducer / Selector | Effect Atom と TanStack Query、FSD の `model` / `api` / `ui` |
 
-不確かな API の形は react.dev の該当リファレンスを見る。原典の例を、上の表が使わないとしたフックのまま写さない。
+判断に迷う API シェイプについては、react.dev の関連リファレンスを参照すること。上記の表で使用しないよう指定されているフックがあるため、元のサンプルをコピーしないこと。
 
-## 参照
+## 参考文献
 
-次もすべて読むこと。
+以下もすべて読んでください。
 
-- [`effects-and-data`](references/effects-and-data.md)。Effect に書いてよいものと、データの置き場所
-- [`design-theory`](references/design-theory.md)。トランジションと Suspense の設計の前提
-- [`action-queue`](references/action-queue.md)。操作を止めないミューテーション
-- [`deferred-consistency`](references/deferred-consistency.md)。重い一覧と入力の分離
-- [`concurrent-ux`](references/concurrent-ux.md)。`<Activity>`、`<ViewTransition>`、`useEffectEvent`
-- [`component-apis`](references/component-apis.md)。props の形
+- [`effects-and-data`](references/effects-and-data.md)。Effect で記述できる内容と、データが配置される場所
+- [`design-theory`](references/design-theory.md)。遷移と Suspense の設計に関する前提
+- [`action-queue`](references/action-queue.md)。インタラクションをブロックしないミューテーション
+- [`deferred-consistency`](references/deferred-consistency.md)。重いリストと入力を分離すること
+- [`concurrent-ux`](references/concurrent-ux.md). `<Activity>`, `<ViewTransition>`, `useEffectEvent`
+- [`component-apis`](references/component-apis.md). The shape of props
 - [`naming`](references/naming.md)。名前とファイル

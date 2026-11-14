@@ -1,9 +1,9 @@
-# npm にパッケージを出す
+# npmへのパッケージ公開
 
-1. パッケージの `private` を外して `publishConfig` を持たせる。`publish.yml` はこの 2 つで出す対象を選ぶ
-2. `publish.yml` は Trusted Publisher（GitHub OIDC）で `--provenance` を付けて出す。npm 側には `publish.yml` と environment `npm` を登録する。トークンは置かない
-3. release-please を使うなら、`verify.yml` の `release` ジョブの `if` を自分のリポ名にし、`extra-files` でパッケージの `package.json` の version も上げる。リリースが切れると `publish.yml` が呼ばれる
-4. `vp pack` の設定に `publint: { strict: true }` と `attw: { profile: "esm-only", level: "error" }` を書き、`publint` と `@arethetypeswrong/core` を devDependencies に入れる。fallow はこの 2 つの利用を辿れないので、`.fallowrc.jsonc` の `ignoreDependencies` に載せる
-5. バンドルサイズを size-limit（`@size-limit/file`）で測る。パッケージに `"size": "vp run build && size-limit"` と `size-limit` の設定を置き、ルートの `vite.config.ts` に `"size-all": "vp run -r size"` を足して verify の `dependsOn` に入れる。`vp run -r` は対象のタスクが 1 つも無いと落ちる
-6. `limit` は今の大きさをバイト単位でちょうどに書く。増やすときは `limit` を上げ、その理由をコミットメッセージに書く
-7. 出したパッケージを使う場面を、dont-it-yourself の「masseater の自作パッケージ」に 1 行で足す。自作パッケージは npm の検索では人気の順で埋もれるので、そこに無いものは別のリポジトリで作業する AI に気づかれない
+1. パッケージから `private` を削除し、`publishConfig` を付与する。`publish.yml` はこれら2つで公開対象を選択する。
+2. `publish.yml` は Trusted Publisher (GitHub OIDC) と `--provenance` を指定して公開する。npm 側では `publish.yml` と環境 `npm` を登録する。トークンは保持しない。
+3. release-please を使用する場合、`verify.yml` の `release` ジョブの `if` をリポジトリ名に設定し、パッケージの `package.json` のバージョンも `extra-files` で引き上げる。リリースがカットされると、`publish.yml` が呼び出される。
+4. `vp pack` の設定に `publint: { strict: true }` と `attw: { profile: "esm-only", level: "error" }` を記述し、devDependencies に `publint` と `@arethetypeswrong/core` を追加する。fallow はこれら2つの使用状況を追跡できないため、`.fallowrc.jsonc` の `ignoreDependencies` に列挙する。
+5. size-limit (`@size-limit/file`) でバンドルサイズを測定する。パッケージに `"size": "vp run build && size-limit"` と `size-limit` の設定を記述し、ルートの `vite.config.ts` に `"size-all": "vp run -r size"` を追加して、verify の `dependsOn` に記述する。ターゲットタスクが一つも存在しない場合、`vp run -r` は失敗する。
+6. `limit` は現在のサイズ（バイト単位）通りに記述する。サイズを増加させる際は `limit` を引き上げ、その理由をコミットメッセージに記述する。
+7. 公開済みパッケージをいつ使用するかについて、「dont-it-yourself.」の "masseater's own packages" に1行追加する。自身のパッケージは人気順にソートされる npm 検索で埋もれてしまうため、そこに記載されていないものは他リポジトリで動作する AI に気づかれない。

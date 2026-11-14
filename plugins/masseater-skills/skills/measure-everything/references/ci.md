@@ -1,18 +1,10 @@
-# Measuring CI
+# CIの計測
 
-Send every workflow as a trace with
-[otel-cicd-action](https://github.com/corentinmusard/otel-cicd-action). Jobs
-and steps become child spans. The action reads the run from the GitHub API
-after the fact, so no step is wrapped.
+すべてのワークフローを [otel-cicd-action](https://github.com/corentinmusard/otel-cicd-action) でトレースとして送信する。ジョブとステップは子スパンとなる。アクションは事後的に GitHub API から実行を読み込むため、ステップはラップされない。
 
-Put it in a last job that `needs` every other job. Run that job with `always()`
-so that failed and cancelled runs are measured too. Give it only `actions:
-read`.
+他のあらゆるジョブを`必要`とする最後のジョブに配置する。そのジョブを`always()`で実行し、失敗やキャンセルされた実行も計測されるようにする。`actions: read`のみを付与する。
 
-Pass the endpoint as the repository variable `OTEL_EXPORTER_OTLP_ENDPOINT`. Pass
-the headers as the secret `OTEL_EXPORTER_OTLP_HEADERS`. Skip the job when the
-variable is not set, so that forks and new repositories stay green. Pin the
-action to a commit SHA. The example below pins v4.2.0.
+エンドポイントをリポジトリ変数 `OTEL_EXPORTER_OTLP_ENDPOINT` として渡す。ヘッダーをシークレット `OTEL_EXPORTER_OTLP_HEADERS` として渡す。変数が設定されていない場合はジョブをスキップし、フォークや新しいリポジトリがグリーンのままになるようにする。アクションをコミットSHAにピン留めする。以下の例では v4.2.0 をピン留めしている。
 
 ```yaml
 ci-telemetry:
@@ -30,6 +22,4 @@ ci-telemetry:
         githubToken: ${{ github.token }}
 ```
 
-Some steps emit OpenTelemetry themselves, such as a test suite or
-`web-vitals-flow`. Give them the same `OTEL_*` variables. Their spans then land
-next to the workflow trace.
+テストスイートや `web-vitals-flow` など、一部のステップは OpenTelemetry 自体を出力する。これらにも同じ `OTEL_*` 変数を指定する。すると、それらのスパンはワークフロートレースの隣に配置される。

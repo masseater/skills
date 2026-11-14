@@ -1,6 +1,6 @@
-# scrap を書く
+# スクラップの作成
 
-[`article`](../references/article.md) も読むこと。
+[`article`](../references/article.md)も参照。
 
-- 本文はリンクを埋め込んだ 1、2 文の要約にする
-- 形は masseater.dev の `apps/portfolio/content/scraps/` にある既存の scrap に合わせる
+- 本文をリンクを埋め込んだ1〜2文の要約にする
+- masseater.dev の `apps/portfolio/content/scraps/` にある既存のスクラップの形式に合わせる

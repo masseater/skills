@@ -1,40 +1,40 @@
-# コンポーネントの API
+# コンポーネントAPI
 
-- イベントは `onXxxChange` の形にする
-- 真偽の props は `is` を付けず、省略時を偽にする
-- 見た目の分岐は `variant` と `size` に閉じる
-- 中身は `children` で渡し、クラスタで合成する
-- 対話する値は制御 props を既定にする
+- `onXxxChange` 形式の名前イベント
+- ブール型のpropsの先頭に `is` を付けず、省略した場合は false とする
+- 視覚的な分岐を `variant` と `size` に限定する
+- コンテンツを `children` で渡し、クラスターで合成する
+- インタラクティブな値をデフォルトで制御付きpropsとする
 
 ## イベント
 
-| 使う | 使わない |
+| 使用 | 使用しない |
 | --- | --- |
-| `onChange`、`onOpenChange`、`onValueChange`、`onCheckedChange`、`onConfirm` | `setFoo`、`handleClick`、`changeOpen`、`onScrollTable` |
+| `onChange`, `onOpenChange`, `onValueChange`, `onCheckedChange`, `onConfirm` | `setFoo`, `handleClick`, `changeOpen`, `onScrollTable` |
 
-値を親へ返すときは、いまの値を先に渡す。必要なら DOM イベントを最後の引数に足す。親の Effect Atom の更新方法をコンポーネントに漏らさない。
+使用しない
 
-## 真偽と多値
+## ブール値および複数値
 
-| 使う | 使わない |
+| 使用 | 使用しない |
 | --- | --- |
-| `open`、`disabled`、`checked`、`required`、`readOnly` | `isOpen`、`isLoading`、`hasMultiple` |
-| `variant` や `size` の文字列ユニオン | 見た目用の boolean の増殖、enum の import |
+| `open`, `disabled`, `checked`, `required`, `readOnly` | `isOpen`, `isLoading`, `hasMultiple` |
+| `variant` と `size` に文字列ユニオンを使用する | 見た目のためのブール値の乱立、enum のインポート |
 
-見た目の分岐は `cva` の `variant` と `size` に閉じる。振る舞いの分岐が増えたら boolean を足さず、コンポーネントを分けるかクラスタで合成する。
+視覚的な分岐を `variant` と `cva` の `size` に限定する。振る舞いの分岐が増えた場合はブール値を追加せず、コンポーネントを分割するかクラスターで合成する。
 
 ## 合成
 
-- 中身は `children` で渡す。`children` を関数やオブジェクトにしない
-- ダイアログ、メニュー、テーブルは shadcn/ui と同じクラスタで組む。`DropdownMenu` と `DropdownMenuTrigger`、`DropdownMenuContent`、`DropdownMenuItem` の形である
-- `header={...}` や `footer={...}` のスロット props と `renderHeader` は公開しない
+- コンテンツを `children` で渡す。`children` を関数やオブジェクトにしない
+- ダイアログ、メニュー、テーブルを shadcn/ui と同じクラスターで構築し、`DropdownMenuTrigger`、`DropdownMenuContent`、`DropdownMenuItem` を用いて `DropdownMenu` の形式で作成する。
+- `header={...}` や `footer={...}`、`renderHeader` などのスロットpropsを公開しない。
 
-## 見た目の上書き
+## 見た目のオーバーライド
 
-呼び出し側で色、半径、影を上書きしない。`@shadcn/lint` の `no-restyle` が止める。layout と spacing だけ許す。新しい見た目が要るときはコンポーネント側に `variant` を足す。
+呼び出し箇所で色、半径、シャドウをオーバーライドしない。`@shadcn/lint` の `no-restyle` で停止する。レイアウトと間隔のみが許可される。新しい見た目が必要な場合は、コンポーネント側で `variant` を追加する。
 
 ## 制御
 
-対話する値は制御 props を既定にする。`value` と `onValueChange`、`checked` と `onCheckedChange`、`open` と `onOpenChange` の組である。一時値の入れ物は呼び出し側の Effect Atom に置き、コンポーネントの中に持たない。
+インタラクティブな値をデフォルトで制御付きpropsとする。`value` と `onValueChange`、`checked` と `onCheckedChange`、`open` と `onOpenChange` のペア。一時的な値用のコンテナは、コンポーネント内ではなく呼び出し元の Effect Atom 内に保持する。
 
-固定文言の確認ダイアログのように内容が決まったものだけ、`title`、`description`、`confirmLabel` のような文字列 props でよい。
+文言が固定された確認ダイアログなど、コンテンツが固定されているものに限り、`title`、`description`、`confirmLabel` などの文字列propsは問題ない。

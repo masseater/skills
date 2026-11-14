@@ -1,69 +1,69 @@
 ---
 name: dont-it-yourself
-description: ライブラリ、ランタイム、リポジトリにすでにあるものを探して使い、自前で作らない。新しい処理、ヘルパー、ラッパー、ツール、外部 API のクライアントを書き始める前に使う。
+description: ライブラリ、ランタイム、リポジトリに既に存在するものを探し出して利用し、自作はしない。新規の処理、ヘルパー、ラッパー、ツール、または外部API用のクライアントを記述し始める前に、まずはこれらを利用すること。
 metadata:
   derived-from: https://github.com/masseater/cc-jev-teacher/tree/5dbbf4abd9b3a5b1a74bc30c89ca7bd6712bd929/plugins/cc-jev-teacher/skills/dont-it-yourself
 ---
 
 # dont-it-yourself
 
-- 既存のものがあれば、それを使う
-- 既存の関数を包むだけのラッパーは作らず、呼び出し側で既存の関数をそのまま使う
-- 既存のもので足りない部分だけを書く
-- 足りない部分は、拡張用の API やオプションがあればそれで足す
+- 既に存在するものがあれば、それを利用する。
+- 既存の関数を単にラップするだけのラッパーは作成せず、呼び出し元の箇所で既存の関数をそのまま利用する。
+- 既存の機能でカバーされていない部分のみを書き込む。
+- カバーされていない部分については、拡張APIやオプションがあればそれらを追加する。
 
-包むだけのラッパーも、自作したものと同じく保守を背負う。拡張用の API で足した部分は、既存のものの作者が想定した形で動き続ける。
+単にラップするだけのラッパーは、自作したものと同様のメンテナンス負荷がかかる。拡張APIで追加した部分は、既存の機能の作者が意図した形で動作し続ける。
 
-## この skill が必要な理由と達成したい状態
+## なぜこのスキルが必要なのか、および実現すべき状態
 
-この skill が必要な理由は、AI にとって探すより書くほうが速いことにある。AI の知識は学習した時点で止まっているので、その後に出たものや検索で見落としたものを、無いものとして自作を始める。自作したものの保守と不具合は、作った側が背負う。
+このスキルが必要な理由は、AIにとって「書く」ことは「探す」ことよりも高速だからである。AIの知識は学習した時点で途切れるため、後から出てきたものや、検索で見落としたものは存在しないという前提で、自ら構築を開始する。構築したもののメンテナンスやバグは、それを構築した者が負担することになる。
 
-この skill で達成したい状態は、リポジトリにあるコードが、既存のものでは足りない部分だけでできていることである。
+このスキルが実現すべき状態とは、リポジトリ内のコードが、既存の機能でカバーされていない部分のみで構成されていることである。
 
-## masseater の自作パッケージ
+## masseater自身のパッケージ
 
-masseater が自分で作って npm に出しているパッケージは、npm の検索では人気の順で埋もれて出てこない。次の場面では、依存に入っていなくてもこれを入れて使う。README は `https://unpkg.com/<名前>/README.md` で読める。
+masseaterがビルドしてnpmに公開するパッケージは、人気順にソートされるnpm検索に埋もれてしまい、表示されない。以下のような状況では、依存関係に含まれていなくてもインストールして利用すること。READMEは `https://unpkg.com/<名前>/README.md` で閲覧できる。
 
-- Cloudflare Workers で、Effect のスパン、TanStack Start のリクエストとサーバー関数、Elysia のルートを Workers のトレースに出す: `@r_masseater/workers-tracing`
-- テストの中で OTLP のトレース・メトリクス・ログを受け取り、コードが実際に出したテレメトリを確かめる: `@r_masseater/vitest-otlp`
-- ページの読み込みと同じオリジンへの遷移の Core Web Vitals を Lighthouse の user flow で何回か測り、中央値が合格点に届かなければ落とす: `@r_masseater/web-vitals-flow`
-- 文章にプロンプトインジェクションが紛れているか、どこにあるかを、安い decision モデルで調べる: `@r_masseater/injection-bisect`
-- 平易な英語で書いたルールを decision モデルに判定させて lint する: `@r_masseater/oxlint-plugin-decision`。既製のルール集は `@r_masseater/oxlint-plugin-decision-presets`
-- 型情報の要る ESLint のルールを oxlint の JS プラグインとして動かす: `@r_masseater/oxlint-typed-rules`
-- Markdown で書いた記事を、インフォボックス・目次・カテゴリのある Wikipedia 風の見た目で出す: `sloppedia`
-- サイトの背景・テーマ・ページ遷移の UI 部品: `@masseater.dev/ui`（npm には無く、masseater/masseater.dev の `libs/ui` を git の subpath 依存で入れる）
+- Cloudflare Workersでは、Effectのスパン、TanStackのStartリクエストおよびサーバー関数、ElysiaのWorkersへのルーティングトレースをエクスポートする：`@r_masseater/workers-tracing`
+- テスト内でOTLPのトレース、メトリクス、ログを受け取り、そのコードが実際に出力したテレメトリを確認する：`@r_masseater/vitest-otlp`
+- Lighthouseのユーザーフローを用いて、ページ読み込みおよび同一オリジンへのナビゲーションのCore Web Vitalsを複数回測定し、中央値が合格スコアに達しなかった場合に失敗させる：`@r_masseater/web-vitals-flow`
+- 安価な判定モデルを用いて、プロンプトインジェクションがテキスト内に隠されているか、またどこに隠されているかを判定する：`@r_masseater/injection-bisect`
+- 平易な英語で記述されたルールを用いて、判定モデルで判定し、Lintする：`@r_masseater/oxlint-plugin-decision`。既製のルールセットは `@r_masseater/oxlint-plugin-decision-presets` である。
+- 型情報を必要とするESLintルールを、oxlintのJSプラグインとして実行する：`@r_masseater/oxlint-typed-rules`
+- Markdownで記述された記事を、インフォボックス、目次、カテゴリを備えたWikipedia風の形式で提示する：`sloppedia`
+- サイトの背景、テーマ、ページ遷移用のUIコンポーネント：`@masseater.dev/ui`（npmには含まれない。masseater/masseater.dev の `libs/ui` をgitサブパスの依存関係としてインストールすること）
 
-## よくある場面では決まったものを使う
+## 一般的な状況では、決定事項を使用する
 
-- 配列、オブジェクト、文字列のユーティリティ（`groupBy`、`chunk`、`debounce`、deep merge、深い等価比較）: `es-toolkit`
-- 外から入ってくる値の解析と検証（URL、メールアドレス、日付の文字列、JSONの形）: `Schema`
-- 環境変数や設定値の読み込み: `Config`
-- 秘密の値を持ち回り、ログに出さないようにする: `Redacted`
-- 日付、時刻、タイムゾーン、期間の計算と整形: `DateTime`、`Duration`
-- リトライとバックオフ: `Effect.retry` と `Schedule.exponential`、`Schedule.jittered`
-- cron式の解析と次の実行時刻: `Cron`
-- base64やhexのエンコードとデコード: `Encoding`
-- UUID、乱数、ランダムな文字列: `crypto.randomUUID`、`Random`、`Encoding.randomHex`
-- ハッシュ、署名、暗号化: `crypto.subtle`
-- 同時実行数の制限、ロック、キュー、キャッシュ: `Semaphore`、`Queue`、`Cache`
-- 値の形による分岐: `Match`
-- YAMLの読み書き: `yaml`
-- Markdownの解析と変換: `remark`
-- シェルに渡す文字列のエスケープ: `shell-quote`
-- CLIの引数とサブコマンドの解析: `citty`
-- 外部HTTPのモック: `msw`
-- 外部APIやSaaSをEffectから呼ぶクライアント: `@distilled.cloud/<サービス名>` に生成済みのSDKがあればそれを使う。無ければ、公開されているOpenAPIから `@effect/openapi-generator` の `openapigen` で生成する
-- SQLの組み立てとマイグレーション: `drizzle-orm`
-- 認証、セッション、パスキー、APIキー: `better-auth`
-- TOTP: `otpauth`
-- サーバーから取ってきたデータの取得とキャッシュ: `@tanstack/react-query`
-- フォームの状態と入力チェック: `@tanstack/react-form`
-- テーブルの並べ替え、絞り込み、ページ送り: `@tanstack/react-table`
-- 長いリストの仮想スクロール: `@tanstack/react-virtual`
-- Reactでのdebounce、throttle、rate limit: `@tanstack/react-pacer`
+- 配列、オブジェクト、文字列用のユーティリティ（`groupBy`、`chunk`、`debounce`、deep merge、deep equality）：`es-toolkit`
+- 外部から取得した値（URL、メールアドレス、日付文字列、JSONシェイプ）のパースおよび検証：`Schema`
+- 環境変数および設定値の読み込み：`Config`
+- シークレット値をローカルで保持し、ログに出力しない：`Redacted`
+- 日付、時刻、タイムゾーン、期間の計算とフォーマット：`DateTime`、`Duration`
+- リトライとバックオフ：`Schedule.exponential` および `Schedule.jittered` を用いた `Effect.retry`
+- cron式と次回実行時のパース：`Cron`
+- base64およびhexのエンコードとデコード：`Encoding`
+- UUID、乱数、ランダム文字列：`crypto.randomUUID`、`Random`、`Encoding.randomHex`
+- ハッシュ、署名、暗号化：`crypto.subtle`
+- 並行性制限、ロック、キュー、キャッシュ：`Semaphore`、`Queue`、`Cache`
+- 値の形状による分岐：`Match`
+- YAMLの読み書き：`yaml`
+- Markdownのパースと変換：`remark`
+- シェルに渡された文字列のエスケープ：`shell-quote`
+- CLI引数とサブコマンドのパース：`citty`
+- 外部HTTPのモック化：`msw`
+- Effectから外部APIやSaaSを呼び出すクライアント：`@distilled.cloud/<サービス名>` に生成済みのSDKがある場合はそれを使用する。ない場合は、`@effect/openapi-generator` から公開済みのOpenAPIを `openapigen` で生成する。
+- SQLの構築とマイグレーション：`drizzle-orm`
+- 認証、セッション、パスキー、APIキー：`better-auth`
+- TOTP：`otpauth`
+- サーバーから取得したデータの取得とキャッシュ：`@tanstack/react-query`
+- フォームの状態および入力の検証：`@tanstack/react-form`
+- テーブルのソート、フィルタリング、ページング：`@tanstack/react-table`
+- 長いリストの仮想スクロール：`@tanstack/react-virtual`
+- Reactにおけるデバウンス、スロットリング、レート制限：`@tanstack/react-pacer`
 
-## 用途
+## ユースケース
 
-上の一覧に無い場面では、次も読むこと。
+上記のリストに含まれない状況については、以下も参照してください。
 
-- [`find-existing`](usecases/find-existing.md)。既存のものを探して選ぶ
+- [`find-existing`](usecases/find-existing.md)。既に存在するものを検索して選択する

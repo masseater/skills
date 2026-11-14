@@ -1,14 +1,14 @@
-# GitHub 側の設定を揃える
+# GitHub側の設定を揃える
 
 対象リポジトリを `REPO=<owner>/<name>` とする。
 
-## 1. アプリ名を変える
+## 1. アプリ名を変更する
 
-`apps/web/app-name.ts` の `APP_NAME` は、テンプレートの名前のままになっている。リポジトリ名に合わせて変える。同じ Cloudflare アカウントの別リポジトリと名前が重なると、お互いのリソースを置き換えてしまう。
+`apps/web/app-name.ts` の `APP_NAME` は依然としてテンプレートの名前である。リポジトリ名に合わせて変更する。同じ Cloudflare アカウント内の別のリポジトリと名前が衝突した場合、互いのリソースを置き換える。
 
-## 2. secrets を登録する
+## 2. シークレットを登録する
 
-値はユーザーに尋ねる。
+ユーザーに値を尋ねる。
 
 ```sh
 gh secret set OPENROUTER_API_KEY --repo "$REPO"
@@ -17,41 +17,41 @@ gh secret set CLOUDFLARE_ACCOUNT_ID --repo "$REPO"
 gh secret set CLOUDFLARE_API_TOKEN --repo "$REPO"
 ```
 
-| 名前                      | 用途                                         |
-| ------------------------- | -------------------------------------------- |
-| `OPENROUTER_API_KEY`      | verify ワークフローの oxlint-plugin-decision |
-| `CLAUDE_CODE_OAUTH_TOKEN` | verify 失敗時に Claude Code が自動修正する   |
-| `CLOUDFLARE_ACCOUNT_ID`   | デプロイ先と Alchemy の状態を置くアカウント  |
-| `CLOUDFLARE_API_TOKEN`    | 同じアカウントの API トークン                |
+| 名前 | 目的 |
+| ------------------------- | --------------------------------------------------------- |
+| `OPENROUTER_API_KEY` | 検証ワークフローにおける oxlint-plugin-decision |
+| `CLAUDE_CODE_OAUTH_TOKEN` | Claude Code は検証失敗時に自動的に修正を行う |
+| `CLOUDFLARE_ACCOUNT_ID` | デプロイターゲットと Alchemy の状態を保持するアカウント |
+| `CLOUDFLARE_API_TOKEN` | 同一アカウント用の API トークン |
 
-Organization のリポジトリなら、Organization の secrets に一度登録すれば、リポジトリごとの登録は要らない。
+組織内のリポジトリの場合、組織のシークレットに一度登録すれば、リポジトリごとの登録は不要になる。
 
-## 3. Actions に PR の作成を許可する
+## 3. Actions による PR 作成を許可する
 
-release-please と自動修正のワークフローが PR を作る。
+release-please と auto-fix ワークフローが PR を作成する。
 
 ```sh
 gh api --method PUT "repos/$REPO/actions/permissions/workflow" \
   -f default_workflow_permissions=read -F can_approve_pull_request_reviews=true
 ```
 
-## 4. PR を作れる人を collaborator に限り、auto-merge を有効にする
+## 4. PR を作成できるユーザーをコラボレーターに制限し、自動マージを有効にする
 
 ```sh
 gh api --method PATCH "repos/$REPO" -f pull_request_creation_policy=collaborators_only \
   -F allow_auto_merge=true -F allow_update_branch=true
 ```
 
-## 5. 既定ブランチを保護する
+## 5. デフォルトブランチを保護する
 
-既定ブランチにルールセットを置く。同じ名前のルールセットがあれば置き換える。
+デフォルトブランチにルールセットを記述する。同名のルールセットが存在する場合は置き換える。
 
-- 既定ブランチの削除と force push を禁じる
-- `up-to-date` チェックを通っていない PR のマージを拒む
-- 最新の既定ブランチを取り込んでいない PR のマージを拒む
-- バイパスは置かない
+- デフォルトブランチの削除と強制プッシュを禁止する
+- `up-to-date` チェックを通過しなかった PR のマージを拒否する
+- 最新のデフォルトブランチに取り込まれていない PR のマージを拒否する
+- バイパスを設定しない
 
-release-please の PR は、Claude が既定ブランチを取り込んで push し、その push で動く `up-to-date` が通ってからマージする。
+release-please PR の場合、Claude はデフォルトブランチを取り込んでプッシュし、`up-to-date` の後にマージを行い、そのプッシュがパスする。
 
 ```sh
 id="$(gh api "repos/$REPO/rulesets" --jq '.[] | select(.name == "protect default branch") | .id')"
@@ -78,7 +78,7 @@ gh api --method "$([ -n "$id" ] && echo PUT || echo POST)" "repos/$REPO/rulesets
 JSON
 ```
 
-## 6. 反映を確認する
+## 6. 変更が反映されたことを確認する
 
-- `gh api "repos/$REPO" --jq '[.pull_request_creation_policy, .allow_auto_merge]'` が `["collaborators_only",true]` を返す
-- `gh api "repos/$REPO/rules/branches/$(gh api "repos/$REPO" --jq .default_branch)" --jq '[.[].type]'` に `required_status_checks` がある
+- `gh api "repos/$REPO" --jq '[.pull_request_creation_policy, .allow_auto_merge]'` は `["collaborators_only",true]` を返す
+- `gh api "repos/$REPO/rules/branches/$(gh api "repos/$REPO" --jq .default_branch)" --jq '[.[].type]'` には `required_status_checks` が含まれている

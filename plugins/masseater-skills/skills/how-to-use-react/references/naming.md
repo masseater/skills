@@ -1,23 +1,23 @@
-# 名前とファイル
+# 名称とファイル
 
-原典の Redux、`.jsx`、`*Screen` は採らない。
+元記事の Redux、`.jsx`、`*Screen` を採用しないでください。
 
 ## 識別子
 
 | 対象 | 形式 | 例 |
 | --- | --- | --- |
-| コンポーネント | PascalCase | `Button`、`LoginPage`、`LoginDialog` |
+| コンポーネント | PascalCase | `Button`, `LoginPage`, `LoginDialog` |
 | ページコンポーネント | `[Name]Page` | `LoginPage` |
-| 定数 | `SCREAMING_SNAKE` | `DEFAULT_STATE`、`MAX_PAGES_WITHOUT_GAPS` |
+| 定数 | `SCREAMING_SNAKE` | `DEFAULT_STATE`, `MAX_PAGES_WITHOUT_GAPS` |
 
 ## ファイル
 
 | 対象 | 形式 | 例 |
 | --- | --- | --- |
-| ソース | kebab-case の `.ts` か `.tsx` | `login-page.tsx`、`button.tsx` |
-| テスト | `*.test.ts` か `*.test.tsx` | `filter.test.ts` |
+| 例 | kebab-case `.ts` または `.tsx` | `login-page.tsx`, `button.tsx` |
+| テスト | `*.test.ts` または `*.test.tsx` | `filter.test.ts` |
 
-アプリの `src/` は FSD のレイヤーだけを置く。
+アプリの `src/` には FSD レイヤーのみが含まれています。
 
-- ページは `pages/<slice>/ui/*-page.tsx`
-- Atom は `model` セグメント
+- ページは `pages/<slice>/ui/*-page.tsx` です。
+- Atom は `model` セグメントにあります。

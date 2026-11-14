@@ -1,31 +1,31 @@
 ---
 name: vite-plus
-description: Vite+ の `vp` でインストール、実行、検査、テストをする。`vite-plus` を使うリポジトリでコマンドを実行するとき、タスクや検査を足すとき、生成されたコマンドを読み替えるときに使う。
+description: Vite+ の `vp` でインストール、実行、確認、テストを行う。`vite-plus` を使用するリポジトリでコマンドを実行する際、タスクやチェックを追加する際、および生成されたコマンドを翻訳する際に使用する。
 ---
 
 # vite-plus
 
-- 使い方は、入っている版の公式の `node_modules/vite-plus/AGENTS.md` を読み、従う。細かい引数は `vp help`・`vp <command> --help`・`node_modules/vite-plus/docs` に任せる
-- コマンドは `vp` から実行する。`pnpm`・`pnpx`・`npx` は直接使わず、生成されたブロックや他のツールの文書にある `pnpm exec`・`pnpm dlx` は `vp exec`・`vp dlx` に読み替える
-- 作業の完了は `vp run verify` が通ることである
+- 使用方法については、インストール済みバージョンの公式 `node_modules/vite-plus/AGENTS.md` を読み、それに従うこと。詳細な引数は `vp help`、`vp <command> --help`、および `node_modules/vite-plus/docs` に任せる。
+- コマンドは `vp` 経由で実行する。`pnpm`、`pnpx`、`npx` を直接使用せず、生成されたブロックや他のツールのドキュメント内の `pnpm exec` および `pnpm dlx` は `vp exec` および `vp dlx` に置き換えること。
+- `vp run verify` がパスすれば作業完了となる。
 
-## この skill が必要な理由と達成したい状態
+## このスキルが必要な理由と、実現すべき状態
 
-この skill が必要な理由は、Vite+ の公式の案内が `vp create`・`vp migrate` で各リポの AGENTS.md に書き写す形でしか届かないことにある。Vite+ 公式の skill は無く（[#2781](https://github.com/voidzero-dev/vite-plus/issues/2781) は提案のまま、[#560](https://github.com/voidzero-dev/vite-plus/issues/560) は npm パッケージの AGENTS.md で足りるとして閉じた）、書き写した写しは版が上がるたびに古くなる。
+このスキルが必要な理由は、Vite+ の公式ガイダンスが `vp create` や `vp migrate` によって AGENTS.md にコピーされて初めて各リポジトリに届くためである。公式の Vite+ スキルは存在せず（[#2781](https://github.com/voidzero-dev/vite-plus/issues/2781) は提案段階のままであり、[#560](https://github.com/voidzero-dev/vite-plus/issues/560) は npm パッケージの AGENTS.md で十分であるという理由でクローズされた）、バージョンが上がるたびにコピーが古くなっていく。
 
-この skill で達成したい状態は、公式の案内をパッケージに入っている原本から読み、masseater のリポジトリで足した決まりだけをここに置くことである。手元、フック、CI のどこで動かしても、同じ `vp` の入口から同じ結果が出る。
+このスキルが実現すべき状態とは、公式ガイダンスがパッケージ内のオリジナルから読み込まれ、masseater のリポジトリ向けに追加されたルールのみがここに保持されている状態である。ローカルで実行しても、フックで実行しても CI で実行しても、同じ `vp` エントリーポイントで同様の結果が得られる。
 
-## タスクと scripts
+## タスクとスクリプト
 
-- package.json の scripts には `prepare`・`prepack` などの lifecycle だけを置く。ほかのコマンドは、そのパッケージの `vite.config.ts` の `run.tasks` に書く。scripts の文字列は型で検査できず、引数を並べたコマンドが壊れても気づけないからである
-- ビルトインと同じことをするだけのタスク（`build: "vp build"` など）は作らず、`vp build`・`vp pack` を直接使う
-- モノレポに対応したツールはルートで 1 回だけ動かす。テストはルートの `test.projects` に pnpm-workspace と同じ glob を並べて `vp test run`、fallow はルートの 1 回でワークスペース全体を見る。各パッケージに同じ検査のタスクを写さない。`test.projects` の glob に当たるディレクトリのうちパッケージでないものは `!` で外し、ワークスペースの直下に `.gitkeep` などのファイルを置かない。Vitest はどちらも project として読もうとして落ちる
-- 特定のパッケージのタスクに頼るときは、`vp run --filter` を包んだタスクを作らず、`dependsOn` に `<パッケージ名>#<タスク名>` と書く。`vp run -r` は、同じ名前のタスクを持つパッケージすべてで動かすときだけに使う
-- ファイルを書き出すタスク（build・deploy・生成・計測）は `cache: false` にする
-- タスクからだけ呼ばれるファイルは fallow の解析から見えないので、`.fallowrc.jsonc` の `entry` に足す。fallow はルートの `vite.config.ts` に書いたタスクの文字列からバイナリの使用を拾うので、`run` を別のファイルに切り出さない
+- `prepare` や `prepack` などのライフサイクルスクリプトのみを package.json のスクリプトに記述すること。その他のコマンドは、そのパッケージの `vite.config.ts` 内の `run.tasks` に記述すること。スクリプト文字列は型チェックができず、引数が1行で構成されるコマンドが壊れたとしても気づかない。
+- 組み込みスクリプトと単に同じ処理を行うタスク（`build: "vp build"` など）は作成せず、`vp build` と `vp pack` を直接使用すること。
+- モノレポ対応ツールは、ルートで一度だけ実行すること。テストの場合は、ルートの `test.projects` に pnpm-workspace と同じ glob をリストして `vp test run` を実行すること。fallow はルートで一度の実行でワークスペース全体を対象とする。同じチェックタスクを各パッケージにコピーしないこと。`test.projects` の glob に一致し、かつパッケージではないディレクトリは `!` で除外し、`.gitkeep` などのファイルをワークスペースの直下に置かないこと。Vitest は両方をプロジェクトとして読み込もうとして失敗する。
+- 特定のパッケージのタスクに依存する場合、`vp run --filter` をラップするタスクを作成せず、`dependsOn` に `<パッケージ名>#<タスク名>` と記述すること。`vp run -r` は、同名のタスクを持つすべてのパッケージでタスクを実行する場合にのみ使用すること。
+- ファイルを書き込むタスク（build, deploy, generation, measurement）には `cache: false` を設定すること。
+- タスクから呼び出されたファイルは fallow の解析では見えないため、`.fallowrc.jsonc` の `entry` に追加すること。fallow はルートの `vite.config.ts` に記述されたタスク文字列からバイナリの使用状況を拾うため、`run` を別ファイルに分割しないこと。
 
-## 検査とフック
+## チェックとフック
 
-- 検査を足すときは、`vite.config.ts` のタスクにして `verify` の `dependsOn` に入れる。フックと CI が同じ `verify` を動かすので、そこに入れた検査だけがすべての経路で効く
-- pre-push フックを `--no-verify` で飛ばさない
-- 公式の案内を AGENTS.md に写さない。`vp create`・`vp migrate` に `--agent` を付けない。付けると AGENTS.md に Vite+ の節が足され、以後の `vp config` が目印の `<!--VITE PLUS START-->` の間を書き直し続ける
+- チェックを追加する際は、`vite.config.ts` のタスクとして記述し、`verify` の `dependsOn` に配置すること。フックと CI は同じ `verify` を実行するため、そこに配置されたチェックのみがすべてのパスで有効になる。
+- `--no-verify` でプリプッシュフックをスキップしないこと。
+- 公式ガイダンスを AGENTS.md にコピーしないこと。`vp create` や `vp migrate` に `--agent` を渡さないこと。これを行うと AGENTS.md に Vite+ セクションが追加され、それ以降のすべての `vp config` で `<!--VITE PLUS START-->` マーカーの間の内容が書き換えられ続ける。
