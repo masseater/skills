@@ -1,9 +1,9 @@
 # reliability
 
-Confirm that you can recover when a failure happens. Means of recovery are not tested until they are actually used, so you notice they are missing only after you have lost data. Follow the reliability pillar of the [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html) for the approach.
+障害発生時に復旧できることを確認すること。復旧手段は実際に使用されるまで検証されないため、データを失って初めて不足していることに気づく。アプローチとしては、[AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html) の信頼性の柱に従うこと。
 
-| Item to check | How to check the current state | Condition for being satisfied |
+| 確認項目 | 現在の状態を確認する方法 | 満たされる条件 |
 | --- | --- | --- |
-| Data recovery | Check the data store's backup or point-in-time recovery settings, and records of a restore | There is a means of restoring, and a restore has actually been done once |
-| Recreating resources | In the infrastructure definitions, look for resources that are recreated when their name changes | Resources that hold data are not recreated unintentionally |
-| Failures of external calls | Check whether calls to external APIs have a timeout and a cap on the number of retries | Both exist. Operations that are retried are idempotent |
+| データ復旧 | データストアのバックアップまたは時点復旧の設定、および復元の記録を確認する | 復元手段があり、実際に一度復元が行われている |
+| リソースの再作成 | インフラストラクチャの定義において、名前が変更された際に再作成されるリソースを確認する | データを保持するリソースが意図せず再作成されない |
+| 外部呼び出しの失敗 | 外部APIへの呼び出しにタイムアウトやリトライ回数の上限があるかを確認する | 両方存在する。再試行される操作は冪等である |

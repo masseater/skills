@@ -1,31 +1,31 @@
 ---
 name: vite-plus
-description: Install, run, check and test with Vite+'s `vp`. Use when running commands in a repository that uses `vite-plus`, when adding tasks or checks, and when translating generated commands.
+description: Vite+ の `vp` でインストール、実行、確認、テストを行う。`vite-plus` を使用するリポジトリでコマンドを実行する際、タスクやチェックを追加する際、および生成されたコマンドを翻訳する際に使用する。
 ---
 
 # vite-plus
 
-- For usage, read and follow the official `node_modules/vite-plus/AGENTS.md` of the installed version. Leave detailed arguments to `vp help`, `vp <command> --help` and `node_modules/vite-plus/docs`
-- Run commands through `vp`. Do not use `pnpm`, `pnpx` or `npx` directly, and translate `pnpm exec` and `pnpm dlx` in generated blocks and in other tools' documents into `vp exec` and `vp dlx`
-- Work is complete when `vp run verify` passes
+- 使用方法については、インストール済みバージョンの公式 `node_modules/vite-plus/AGENTS.md` を読み、それに従うこと。詳細な引数は `vp help`、`vp <command> --help`、および `node_modules/vite-plus/docs` に任せる。
+- コマンドは `vp` 経由で実行する。`pnpm`、`pnpx`、`npx` を直接使用せず、生成されたブロックや他のツールのドキュメント内の `pnpm exec` および `pnpm dlx` は `vp exec` および `vp dlx` に置き換えること。
+- `vp run verify` がパスすれば作業完了となる。
 
-## Why this skill is needed and the state it should achieve
+## このスキルが必要な理由と、実現すべき状態
 
-This skill is needed because Vite+'s official guidance reaches each repository only by being copied into its AGENTS.md by `vp create` and `vp migrate`. There is no official Vite+ skill ([#2781](https://github.com/voidzero-dev/vite-plus/issues/2781) remains a proposal, and [#560](https://github.com/voidzero-dev/vite-plus/issues/560) was closed on the grounds that the AGENTS.md in the npm package is enough), and copies go stale each time the version goes up.
+このスキルが必要な理由は、Vite+ の公式ガイダンスが `vp create` や `vp migrate` によって AGENTS.md にコピーされて初めて各リポジトリに届くためである。公式の Vite+ スキルは存在せず（[#2781](https://github.com/voidzero-dev/vite-plus/issues/2781) は提案段階のままであり、[#560](https://github.com/voidzero-dev/vite-plus/issues/560) は npm パッケージの AGENTS.md で十分であるという理由でクローズされた）、バージョンが上がるたびにコピーが古くなっていく。
 
-The state this skill should achieve is that the official guidance is read from the original in the package, and only the rules added for masseater's repositories are kept here. Whether run locally, in hooks or in CI, the same `vp` entry point gives the same result.
+このスキルが実現すべき状態とは、公式ガイダンスがパッケージ内のオリジナルから読み込まれ、Masseator のリポジトリ向けに追加されたルールのみがここに保持されている状態である。ローカルで実行しても、フックで実行しても CI で実行しても、同じ `vp` エントリーポイントで同様の結果が得られる。
 
-## Tasks and scripts
+## タスクとスクリプト
 
-- Put only lifecycle scripts such as `prepare` and `prepack` in package.json's scripts. Write other commands in `run.tasks` in that package's `vite.config.ts`. Script strings cannot be type-checked, and you would not notice if a command with a row of arguments broke
-- Do not create tasks that just do the same as a built-in (such as `build: "vp build"`); use `vp build` and `vp pack` directly
-- Run monorepo-aware tools only once at the root. For tests, list the same globs as pnpm-workspace in the root `test.projects` and run `vp test run`; fallow looks at the whole workspace in one run at the root. Do not copy the same check task into each package. Exclude with `!` any directory matched by a `test.projects` glob that is not a package, and do not put files such as `.gitkeep` directly under the workspace. Vitest tries to load both as projects and fails
-- When relying on a task of a specific package, do not create a task that wraps `vp run --filter`; write `<package name>#<task name>` in `dependsOn`. Use `vp run -r` only to run a task in every package that has a task with the same name
-- Set `cache: false` for tasks that write files (build, deploy, generation, measurement)
-- Files called only from tasks are invisible to fallow's analysis, so add them to `entry` in `.fallowrc.jsonc`. fallow picks up binary usage from the task strings written in the root `vite.config.ts`, so do not split `run` into a separate file
+- `prepare` や `prepack` などのライフサイクルスクリプトのみを package.json のスクリプトに記述すること。その他のコマンドは、そのパッケージの `vite.config.ts` 内の `run.tasks` に記述すること。スクリプト文字列は型チェックができず、引数が1行で構成されるコマンドが壊れたとしても気づかない。
+- 組み込みスクリプトと単に同じ処理を行うタスク（`build: "vp build"` など）は作成せず、`vp build` と `vp pack` を直接使用すること。
+- モノレポ対応ツールは、ルートで一度だけ実行すること。テストの場合は、ルートの `test.projects` に pnpm-workspace と同じ glob をリストして `vp test run` を実行すること。fallow はルートで一度の実行でワークスペース全体を対象とする。同じチェックタスクを各パッケージにコピーしないこと。`test.projects` の glob に一致し、かつパッケージではないディレクトリは `!` で除外し、`.gitkeep` などのファイルをワークスペースの直下に置かないこと。Vitest は両方をプロジェクトとして読み込もうとして失敗する。
+- 特定のパッケージのタスクに依存する場合、`vp run --filter` をラップするタスクを作成せず、`dependsOn` に `<package name>#<task name>` と記述すること。`vp run -r` は、同名のタスクを持つすべてのパッケージでタスクを実行する場合にのみ使用すること。
+- ファイルを書き込むタスク（build, deploy, generation, measurement）には `cache: false` を設定すること。
+- タスクから呼び出されたファイルは fallow の解析では見えないため、`.fallowrc.jsonc` の `entry` に追加すること。fallow はルートの `vite.config.ts` に記述されたタスク文字列からバイナリの使用状況を拾うため、`run` を別ファイルに分割しないこと。
 
-## Checks and hooks
+## チェックとフック
 
-- When adding a check, make it a task in `vite.config.ts` and put it in the `dependsOn` of `verify`. Hooks and CI run the same `verify`, so only checks put there take effect on every path
-- Do not skip the pre-push hook with `--no-verify`
-- Do not copy the official guidance into AGENTS.md. Do not pass `--agent` to `vp create` or `vp migrate`. If you do, a Vite+ section is added to AGENTS.md, and every later `vp config` keeps rewriting what is between the `<!--VITE PLUS START-->` markers
+- チェックを追加する際は、`vite.config.ts` のタスクとして記述し、`verify` の `dependsOn` に配置すること。フックと CI は同じ `verify` を実行するため、そこに配置されたチェックのみがすべてのパスで有効になる。
+- `--no-verify` でプリプッシュフックをスキップしないこと。
+- 公式ガイダンスを AGENTS.md にコピーしないこと。`vp create` や `vp migrate` に `--agent` を渡さないこと。これを行うと AGENTS.md に Vite+ セクションが追加され、それ以降のすべての `vp config` で `<!--VITE PLUS START-->` マーカーの間の内容が書き換えられ続ける。

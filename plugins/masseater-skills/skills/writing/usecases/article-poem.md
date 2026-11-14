@@ -1,22 +1,22 @@
-# Writing a poem
+# 詩を書く
 
-Also read [`article`](../references/article.md).
+[`article`](../references/article.md)も参照。
 
-For the owner it is personal musing, not argument. When AI sees a claim it tries to prove it, adds tables of statistics and responses to counterarguments, and turns it into the shape of a paper.
+所有者にとって、これは議論ではなく個人的な思索である。AIは主張を目にすると、それを証明しようとし、統計表や反論への回答を付け加えて、それを論文の形式に仕立て上げる。
 
-- Write the owner's own feelings and premonitions in the first person
-- Do not make the sentences poetic; write them as ordinary sentences, like the other kinds. Calling it a poem means it does not argue; it is not about style
-- Make the owner's experiences and conversations the core
-- The owner's experience includes how the owner reads as a reader. Because it is writing thrown at readers, write as experience what the owner looks at when reading the same kind of writing
-- Do not replace experience with numbers or dates. Write a number only when the number itself is the owner's experience
-- Do not add experiences the owner did not mention, or reactions from when they told others
+- 所有者自身の感情や予感を一人称で記述する。
+- 文章を詩的にせず、他の種類の文章と同様に、普通の文章として書く。これを詩と呼ぶということは、議論をしていないことであり、文体の問題ではない。
+- 所有者の経験や会話を核心とする。
+- 所有者の経験には、読者としてどのように読むかが含まれる。読者に投げかけられる文章であるため、所有者が同様の文章を読む際に何に着目するかを、経験として書き記す。
+- 経験を数値や日付に置き換えないこと。数値そのものを所有者の経験とする場合にのみ、数値を書く。
+- 所有者が言及しなかった経験や、他者に語った際の反応を加えないこと。
 
-## What not to write
+## 書いてはいけないこと
 
-- Tables of statistics or lists of sources that support the claim
-- Responses to unfavorable data, or paragraphs of rebuttal
-- Estimates to prove the claim, such as a breakdown of "80 percent"
+- 統計表や、主張を裏付ける出典のリスト
+- 好ましくないデータへの反論や、反論の段落
+- 主張を証明するための推計値（「80パーセント」の内訳など）
 
-## Material
+## 資料
 
-The material for a poem is in the owner's head and does not come out just by asking. Show the outline, receive the experiences and conversations the owner recalls (such as telling a friend and being told "that's a conspiracy theory"), and use them at the opening or the ending.
+詩の素材は所有者の頭の中にあり、単に問いかけただけでは出てこない。構成案を示し、所有者が思い出す経験や会話（友人に話して「それは陰謀論だ」と言われたことなど）を受け取り、それらを冒頭や結末で活用する。

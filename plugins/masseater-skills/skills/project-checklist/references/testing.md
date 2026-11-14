@@ -1,9 +1,9 @@
 # testing
 
-Confirm that each mechanism has a reproducible way of checking it, and that production code has not been changed just for tests. Even without a way of checking, and even with test-only exports or wrappers, the tests pass and the build passes.
+各メカニズムに再現可能な確認方法があり、テストのためだけに本番コードが変更されていないことを確認すること。確認方法がなくても、テスト専用のエクスポートやラッパーがあっても、テストはパスし、ビルドもパスする。
 
-| Item to check | How to check the current state | Condition for being satisfied |
+| 確認項目 | 現状の確認方法 | 満たすための条件 |
 | --- | --- | --- |
-| Production code that exists only for tests | With fallow's production analysis, list exports used only from tests. Look for functions, wrappers, entry points and arguments that are not called from production and are called only by tests | Production code has no exports, wrappers or entry points that exist only for tests. Tests call through the entry points production uses |
-| Way of checking each mechanism | For each app, tool and workflow, look for tests and checks that run from `vp run verify`. For anything with a screen, look for a check that compares the rendered image with a baseline | Every mechanism has, in verify, a way of checking that returns the same verdict without an agent or a human looking at it. Only the parts that cannot be checked statically (external services in production, real devices, judgments of taste) remain, and it is known what remains |
-| Way of checking behind authentication | For each screen and API with authentication, look for a mechanism by which AI gets in through the same path as the owner's authentication | AI can get in without using a bypass or a service token |
+| テストにのみ存在する本番コード | fallowの本番分析では、テストからのみ使用されるエクスポートを列挙すること。本番から呼び出されず、テストのみで呼び出される関数、ラッパー、エントリポイント、引数を探すこと。 | 本番コードには、テストにのみ存在するエクスポート、ラッパー、エントリポイントがないこと。テストは、本番環境で使用するエントリポイントを通じて呼び出される。 |
+| 各メカニズムの確認方法 | 各アプリ、ツール、ワークフローについて、`vp run verify` から実行されるテストとチェックを探すこと。画面がある場合は、レンダリングされた画像とベースラインを比較するチェックを探すこと。 | すべてのメカニズムには、verifyにおいて、エージェントや人間が確認しなくても同じ判定を返す確認方法がある。静的に確認できない部分（本番環境の外部サービス、実機、味覚の判断）のみが残り、何が残るかは分かっている。 |
+| 認証の裏側での確認方法 | 認証を伴う各画面やAPIについて、AIがオーナーの認証と同じ経路でアクセスするメカニズムを探すこと。 | AIは、バイパスやサービストークンを使用せずにアクセスできる。 |

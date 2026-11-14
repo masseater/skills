@@ -1,9 +1,9 @@
 # data
 
-Confirm where data is stored and how it is changed. When the source of truth is in two places, the contents diverge, and when the schema is changed by hand, production drifts from the definition. Follow the backing services and admin processes of [The Twelve-Factor App](https://12factor.net/) for the approach.
+データの保存場所と変更方法を確認する。真実のソースが2か所にあると内容が乖離し、スキーマを手動で変更すると本番環境が定義から乖離する。アプローチは [The Twelve-Factor App](https://12factor.net/) のバックエンドサービスと管理プロセスに従う。
 
-| Item to check | How to check the current state | Condition for being satisfied |
+| 確認項目 | 現状の確認方法 | 満たされる条件 |
 | --- | --- | --- |
-| Storage location for each piece of data | From the infrastructure definitions and the schema, make a list of storage locations for each kind of data | The source of truth for each piece of data is in one place |
-| Procedure for changing the schema | Check the migration files and the diff check against the schema | The schema is changed only through migrations, and the check fails if there is a diff |
-| Per-viewer data and caches | Check the cache keys and the values that are cached | Values that differ per viewer do not go into a cache shared between viewers |
+| 各データの保存場所 | インフラの定義とスキーマから、データの種類ごとの保存場所をリスト化する | 各データの真実のソースは1か所にある |
+| スキーマを変更する手順 | マイグレーションファイルとスキーマとの差分チェックを確認する | スキーマはマイグレーションでのみ変更され、差分がある場合はチェックが失敗する |
+| ビューアごとのデータとキャッシュ | キャッシュキーとキャッシュされている値を確認する | ビューアごとに異なる値は、ビューア間で共有されるキャッシュには入らない |

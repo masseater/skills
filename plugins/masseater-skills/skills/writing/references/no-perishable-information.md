@@ -1,9 +1,9 @@
-# Eliminating information that goes stale
+# 古くなった情報を排除する
 
-Do not copy by hand into documents the current counts, names and locations that can be derived from code or configuration. What you write is what you essentially want to achieve.
+コードや設定から導出できる現在のカウント、名称、場所を、ドキュメントに手作業でコピーしないこと。記述内容こそが、本質的に実現したいことである。
 
-- Do not copy the number of patterns, the directory structure, file names or function names
-- Write a number or a name itself if it is a requirement, a contract or material for a decision. Write down why it is so alongside it
-- When you need to show the current state, refer to the source of truth or generate it automatically
+- パターンの数、ディレクトリ構造、ファイル名、または関数名をコピーしないこと。
+- 要件や契約、あるいは意思決定の根拠となる場合は、数値や名称そのものを記述すること。なぜそうなのかも併せて書き記すこと。
+- 現在の状態を示す必要がある場合は、信頼できる情報源を参照するか、自動的に生成すること。
 
-Copied information has no guarantee of being synchronized when things change. Once a mismatch appears, readers can no longer tell which one to believe. On top of that, updates start being avoided "because rewriting this makes another place stale". Whether the number is large or small has nothing to do with whether the purpose is achieved.
+コピーされた情報は、状況が変化した際に同期される保証はない。一度不一致が生じると、読者はどちらを信じればよいか判断できなくなる。その上、「これを書き直すと別の箇所が古くなる」という理由で更新が避けられるようになる。数値が大きいか小さいかは、目的が達成されるかどうかとは無関係である。

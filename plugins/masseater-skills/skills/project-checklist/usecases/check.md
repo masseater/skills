@@ -1,25 +1,25 @@
-# Checking and judging the current state of a project
+# プロジェクトの現状の確認・判断
 
-1. Decide the target repository and the production URL. If you are told to use a different repository, work there. If there is no production environment, mark the items checked in production as "unchecked"
-2. Read the target's AGENTS.md and CLAUDE.md, and note any rules that override the conditions for being satisfied
-3. Make a list of pages and APIs from the routing definitions. "Each page" in each file refers to this list
-4. For each file in `references/`, check each item with its "How to check the current state". Note the files you checked, the commands you ran and their output
-5. For a repository created from the template, [match it against the template's skeleton](#matching-against-the-templates-skeleton)
-6. Output a table with the columns area, item, current state, verdict and grounds for each item
-7. After the table, list the items that are "insufficient" and "unchecked"
+1. 対象リポジトリと本番用URLを決める。別のリポジトリを使うよう指示された場合、そこで作業する。本番環境がない場合は、本番で確認した項目を「未確認」とする。
+2. 対象のAGENTS.mdとCLAUDE.mdを読み、満たす条件を上書きするルールがあればメモする。
+3. ルーティング定義からページとAPIのリストを作成する。各ファイルの「各ページ」はこのリストを指す。
+4. `references/` 内の各ファイルについて、「現状の確認方法」で各項目をチェックする。チェックしたファイル、実行したコマンドとその出力をメモする。
+5. テンプレートから作成したリポジトリについては、[テンプレートのスケルトンと照合する](#matching-against-the-templates-skeleton)
+6. 各項目の列領域、項目、現状、判定、根拠を記載したテーブルを出力する。
+7. テーブルの後に、「不十分」かつ「未確認」の項目を列挙する。
 
-Extract and note, as they are, the parts of command output that bear on the verdict. They are the grounds for the verdict.
+コマンド出力のうち、判定に関わる部分をそのまま抽出してメモする。これが判定の根拠となる。
 
-## Matching against the template's skeleton
+## テンプレートのスケルトンとの照合
 
-1. Bring the actual template up to date. If it is in `ghq list -p`, update that clone; if not, get it with `ghq get masseater/typescript-template`. In an environment without ghq, `gh repo clone` it into a temporary directory
-2. Match each element of [`typescript-template`](../references/typescript-template.md), in order, against the actual template
-3. Run `vp install` and then `vp run verify` in the target repository. If verify fails, treat the failed tasks and their output as the first insufficiencies
-4. Align the GitHub-side settings with the procedure in [setup](setup.md), and carry it through "Confirming the changes took effect"
+1. 実際のテンプレートを最新の状態にする。`ghq list -p` にある場合はそのクローンを更新し、ない場合は `ghq get masseater/typescript-template` で取得する。ghq がない環境では、`gh repo clone` して一時ディレクトリにコピーする。
+2. [`typescript-template`](../references/typescript-template.md) の各要素を、順に実際のテンプレートと照合する。
+3. 対象リポジトリで `vp install` を実行し、次に `vp run verify` を実行する。verify が失敗した場合は、失敗したタスクとその出力を最初の不備として扱う。
+4. GitHub側の設定を [setup](setup.md) の手順に合わせ、「変更が反映されたことの確認」まで進める。
 
-For the verdict, mainly use the following material.
+判定には主に以下の資料を使用する。
 
-- Open the skeleton files side by side with the template
-- Check the hook settings with `git config core.hooksPath`
-- Check main's CI with `gh run list --branch main --limit 5` and `gh run view <run-id> --log`
-- Check skills with `skills ls` and `vp exec intent list`
+- スケルトンファイルをテンプレートと並べて開く。
+- フックの設定を `git config core.hooksPath` で確認する。
+- main の CI を `gh run list --branch main --limit 5` と `gh run view <run-id> --log` で確認する。
+- スキルを `skills ls` と `vp exec intent list` で確認する。

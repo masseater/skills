@@ -1,14 +1,14 @@
 ---
 name: measure-postmortem
-description: Read a PR and consider whether its fix could have been prevented or detected if it had been measured in advance. Use when looking back on a PR that fixed a bug, or when looking for gaps in measurement.
+description: PRを読み、その修正が事前に計測されていれば防げた、あるいは検出できたのではないかと検討する。バグを修正したPRを振り返る際や、計測の漏れを探す際に活用する。
 ---
 
 # measure-postmortem
 
-Read a PR and consider whether its fix could have been prevented or detected if it had been measured in advance. Add the measurements you judged would have prevented or detected it, following measure-everything.
+PRを読み、その修正が事前に計測されていれば防げた、あるいは検出できたのではないかと検討する。measure-everything に続いて、防げた、あるいは検出できたと判断した計測を追加する。
 
-## Why this skill is needed and the state it should achieve
+## なぜこのスキルが必要なのか、そしてどのような状態を実現すべきか
 
-This skill is needed because once a PR is merged, the problem is treated as solved, and the lack of measurement that should have reported the problem before anyone else remains as it was. The gap stays invisible until the same kind of problem happens next time.
+このスキルが必要な理由は、PRがマージされると問題は解決済みとして扱われ、誰よりも先に問題を報告すべきだった計測の欠如がそのまま残るからだ。次に同様の問題が発生するまで、その漏れは見えないままとなる。
 
-The state this skill should achieve is that, for each kind of problem that was fixed, measurement will report it before people do next time.
+このスキルが実現すべき状態とは、修正された問題の種類ごとに、次に誰かが報告する前に計測によって報告されるということだ。

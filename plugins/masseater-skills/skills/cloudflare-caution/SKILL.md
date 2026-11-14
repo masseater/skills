@@ -1,78 +1,78 @@
 ---
 name: cloudflare-caution
-description: Avoid designs that inflate the bill on Cloudflare, and choose the shape that stays cheap. Use when designing something to put on Cloudflare, when adding Workers or bindings, when deciding how to serve pages and data, and when writing loops or retries.
+description: Cloudflareの料金を吊り上げるような設計は避け、コストを抑えた形式を選択しよう。Cloudflareにデプロイするものを設計する際、Workerやバインディングを追加する際、ページやデータの提供方法を決定する際、そしてループやリトライを記述する際に活用してほしい。
 metadata:
   derived-from: https://github.com/anantbhandarkar/make-it-right/blob/1e20457d47d6cf4658b131c29204a9a4d1c1d91d/skills/mir-cloud-cloudflare/SKILL.md
 ---
 
 # cloudflare-caution
 
-- Do not run processing whose result is the same on every request
-- Put mechanisms in code and configuration that stop things when they run away
-- Estimate costs in billed units, and confirm with production usage
+- すべてのリクエストで結果が同一になる処理は実行しないこと。
+- 実行時に処理が停止する仕組みをコードや設定に組み込むこと。
+- コストは請求単位単位で見積もり、本番環境での利用状況を確認すること。
 
-## Why this skill is needed and the state it should achieve
+## なぜこのスキルが必要なのか、そしてどのような状態を実現すべきか
 
-This skill is needed because Cloudflare bills by usage in fine-grained units, with no cap on spending. Each unit is cheap, so it does not bother you while writing, but for processing that runs on every view, and for loop and retry bugs, the number of runs becomes the bill as it is.
+このスキルが必要な理由と、実現すべき状態について。Cloudflareは利用量に応じたきめ細かな単位で課金しており、支出に上限はない。単位あたりのコストが低いため、記述時に負担にならないが、すべてのビューで実行される処理や、ループ・リトライのバグについては、実行回数がそのまま請求額となる。
 
-The state this skill should achieve is that the cost of one visit is decided at the design stage. Even when bugs or bots go beyond expectations, code and configuration stop it before it becomes a bill.
+このスキルが実現すべき状態とは、設計段階で1回の訪問コストが決まることだ。バグやボットが想定を超えて発生した場合でも、コードや設定が請求額になる前にそれを阻止してくれる。
 
-## Prebuilding what gives the same result
+## 同じ結果が得られるものを事前構築すること
 
-If you rebuild the same thing on every view, Worker invocations, CPU time and DB rows are billed in proportion to the number of visits. Prebuild and serve whatever can be prebuilt.
+すべてのビューで同じものを再構築すれば、Workerの呼び出し回数、CPU時間、DB行数が訪問回数に比例して請求される。事前構築可能なものはすべて事前構築して提供すること。
 
-- For how to serve public pages that are the same for everyone, follow project-checklist
-- Using CSP nonces means building the HTML per request. For public static pages, do not rely on nonces; move inline scripts into external files and attach a CSP common to all pages with `_headers`. Listing per-page hashes in `_headers` will eventually break down at the rule limit (100)
-- Requests matching static assets are by default [served without invoking a Worker](https://developers.cloudflare.com/workers/static-assets/), so they are not billed. If the compatibility flag `assets_navigation_prefers_asset_serving` (default with compatibility dates from 2025-04-01) is enabled, the navigation fallback does not invoke a Worker either
-- Narrow `assets.run_worker_first` to just the authentication and API paths with an array. Setting it to `true` turns every request for static assets into Worker billing as well
-- Make only the parts that change per viewer dynamic. Do not make the whole page dynamic
-- Put dynamic data in the CDN cache, the Cache API or KV according to how often it changes. Do not call D1 or external APIs on every request
-- On the client, do not refetch while the data does not change. With TanStack Query, set `staleTime`
+- 誰にとっても同じである公開ページの提供方法については、プロジェクトチェックリストに従うこと。
+- CSPノンスを使用するということは、リクエストごとにHTMLを構築することを意味する。公開静的ページではノンスに依存せず、インラインスクリプトを外部ファイルに移動し、すべてのページに共通するCSPを `_headers` でアタッチすること。`_headers` にページごとのハッシュ値を列挙すると、最終的にルールの上限（100）で破綻する。
+- 静的アセットに一致するリクエストは、デフォルトで[Workerを呼び出さずに提供される](https://developers.cloudflare.com/workers/static-assets/)ため、請求されない。互換性フラグ `assets_navigation_prefers_asset_serving`（デフォルト、互換性日は 2025-04-01）が有効な場合、ナビゲーションのフォールバックでもWorkerは呼び出されない。
+- `assets.run_worker_first` を、認証およびAPIパスのみを含む配列に絞り込む。これを `true` に設定すると、静的アセットへのすべてのリクエストがWorkerの請求対象にもなる。
+- ビューアごとに変更される部分のみを動的にする。ページ全体を動的にしない。
+- 動的データは、変更頻度に応じてCDNキャッシュ、Cache API、またはKVに格納する。すべてのリクエストでD1や外部APIを呼び出さない。
+- クライアント側では、データが変更されていない間は再取得しない。TanStack Query を使用する場合は、`staleTime` を設定する。
 
-## Brakes for runaways
+## ランナウェイに対するブレーキ
 
-- Give Workers `limits.cpu_ms` from [Custom limits](https://developers.cloudflare.com/workers/platform/pricing/). This is the only official means of stopping a single execution from running away. Measure the p99 of production CPU time and set the value a little above it. If you raise it to the maximum, an infinite loop becomes the bill as it is
-- Put rate limiting in front of public APIs, authentication and write endpoints. Without rate limiting, every mass access by bots is billed
-- Apply rate limiting with WAF rate limiting rules in repositories that own the zone, and with the Workers [Rate Limiting binding](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/) in repositories that do not. The binding is an approximation per location and may not stop even when the limit is exceeded. When an exact limit is needed, use WAF rate limiting rules or a Durable Object counter
-- Make Queue consumers, Durable Object alarms and retry processing idempotent. Do not re-enqueue yourself
-- Put a cap on the number of re-enqueues and retries
-- Set [budget alerts](https://developers.cloudflare.com/billing/manage/optimize-costs/) on the account. They are not for stopping things but for noticing early
+- Workerには [カスタム制限](https://developers.cloudflare.com/workers/platform/pricing/) に基づき `limits.cpu_ms` を指定する。これは、単一の実行がランナウェイするのを防ぐ唯一の公式な手段である。本番環境のCPU時間のp99を測定し、その値をわずかに上回るように設定する。この値を最大まで上げると、無限ループがそのまま請求対象となる。
+- 公開API、認証、および書き込みエンドポイントの前にレート制限を設ける。レート制限を設けない場合、ボットによるすべての大量アクセスが請求対象となる。
+- ゾーンを所有するリポジトリではWAFのレート制限ルールを、所有していないリポジトリではWorkerの [レート制限バインディング](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/) を用いてレート制限を適用する。このバインディングはロケーションごとの近似値であり、制限を超えた場合でも停止しないことがある。正確な制限が必要な場合は、WAFのレート制限ルールまたはDurable Objectカウンターを使用する。
+- キューコンシューマー、Durable Objectアラーム、およびリトライ処理を冪等にする。自身で再エンキューを行わないこと。
+- 再エンキューおよびリトライの回数に上限を設ける。
+- アカウントに [予算アラート](https://developers.cloudflare.com/billing/manage/optimize-costs/) を設定する。これは停止させるためのものではなく、早期に検知するためのものである。
 
-## Reducing writes and operations
+## 書き込みおよび操作の削減
 
-Write and list operations cost one to three orders of magnitude more than reads.
+書き込みおよびリスト操作のコストは、読み取り操作よりも1〜3桁高い。
 
-- Batch KV writes and row writes to D1 and Durable Objects
-- Do not write if the value has not changed
-- Do not call KV `list()` on every request. Design so that values can be looked up directly by key
-- Let Durable Objects sleep with WebSocket Hibernation and alarms. While awake, 128 MB worth of time is billed even if unused
-- Do not keep a Durable Object awake with `setTimeout` or outbound connections
-- Do not use R2 Infrequent Access for small files with many writes or reads. Its per-operation price is higher than Standard
+- D1およびDurable ObjectへのバッチKV書き込みおよび行書き込み
+- 値が変更されていない場合は書き込みを行わない。
+- すべてのリクエストでKVの `list()` を呼び出さない。キーで直接値を参照できるように設計する。
+- Durable ObjectをWebSocket Hibernationおよびアラーム付きでスリープさせる。スリープ状態では、未使用であっても128 MB分の時間が請求される。
+- `setTimeout` やアウトバウンド接続によって、Durable Objectをスリープさせない。
+- 書き込みや読み取り回数の多い小規模ファイルに対して、R2 Infrequent Accessを使用しない。操作ごとのコストがStandardよりも高くなる。
 
-## Thinning logs and traces
+## ログとトレースの希釈
 
-Both logs and traces are billed by volume.
+ログとトレースの両方をボリューム単位で請求する。
 
-- Do not keep storing logs of every request in Cloudflare. Sample only the amount you need with `head_sampling_rate`
-- If you only send them externally, set `persist: false`
+- Cloudflareにすべてのリクエストのログを保存し続けない。`head_sampling_rate` で必要な量のみをサンプリングする。
+- 外部にのみ送信する場合は、`persist: false` を設定する。
 
-## Estimating and confirming in production
+## 本番環境での見積もりと確認
 
-Follow measure-dont-guess.
+推測ではなく実測に従う。
 
-- Before deciding the design, estimate the monthly cost by multiplying the expected number of visits by the number of Worker invocations, rows, operations and logs per visit
-- After deploying, look at production usage with Billable Usage on the dashboard or the GraphQL Analytics API. If it diverges from the estimate, revisit the design
+- 設計を決定する前に、想定される訪問回数に、1回あたりのWorker呼び出し数、行数、操作数、およびログ数を乗じて月間コストを見積もります。
+- デプロイ後は、ダッシュボードの Billable Usage または GraphQL Analytics API で本番環境の利用状況を確認する。見積もりと乖離がある場合は、設計を見直す。
 
-The billing units and unit prices are as follows. They were confirmed on 2026-10-27 on the [Workers pricing page](https://developers.cloudflare.com/workers/platform/pricing/) and elsewhere. Unit prices change, so confirm them on the pricing pages before using them in an estimate.
+請求単位および単価は以下の通りである。2026-10-27に [Workersの料金ページ](https://developers.cloudflare.com/workers/platform/pricing/) およびその他の箇所で確認済みである。単価は変動するため、見積もりに使用する前に料金ページで確認すること。
 
-| Target | Billing unit | Included amount on Paid and overage |
+| ターゲット | 請求単位 | Paidおよび超過分の含まれる金額 |
 | --- | --- | --- |
-| Workers | Requests and CPU time | 10 million requests per month, overage $0.30 per million. CPU 30 million ms per month, overage $0.02 per million ms |
-| Static assets | Not billed | Free as long as no Worker is invoked |
-| KV | Reads, writes, deletes, list | Reads $0.50 per million; writes, deletes and list $5.00 per million |
-| D1 | Rows read and rows written | Writes 50 million rows per month, overage $1.00 per million rows. Reads $0.001 per million rows |
-| Durable Objects | Requests, time awake (GB-seconds), rows | Time is billed for 128 MB regardless of usage. Not billed while sleeping |
-| Queues | Operations | Splitting into 64 KB chunks and retries each count as one operation |
-| R2 | Class A and Class B operations and storage | Egress is free. Multipart uploads are Class A per part |
-| Workers Logs | Log events | From 2026-12-01 changes to [Cloudflare Observability pricing](https://developers.cloudflare.com/observability/pricing/) (ingested GB and stored GB-months) |
-| Workers Logpush | Requests | 10 million per month, overage $0.05 per million |
+| Workers | リクエストおよびCPU時間 | 月間リクエスト数1,000万件、超過分は100万件あたり0.30ドル。CPUは月間3,000万ms、超過分は100万msあたり0.02ドル。 |
+| 静的アセット | 請求対象外 | Workerが呼び出されない限り無料 |
+| KV | 読み取り、書き込み、削除、一覧 | 読み取りは100万件あたり0.50ドル、書き込み、削除、一覧は100万件あたり5.00ドル。 |
+| D1 | 読み取り行数および書き込み行数 | 書き込みは月間5,000万行、超過分は100万行あたり1.00ドル。読み取りは100万行あたり0.001ドル。 |
+| Durable Object | リクエスト、待機時間（GB-秒）、行数 | 使用量に関わらず、128 MBに対して時間が請求される。スリープ中は請求されない。 |
+| キュー | 操作 | 64 KBのチャンクに分割してリトライする場合、それぞれ1回の操作としてカウントされる。 |
+| R2 | クラスAおよびクラスBの操作とストレージ | エグレスは無料。マルチパートアップロードはパートごとにクラスAとなる。 |
+| Workers ログ | ログイベント | 2026-12-01からの [Cloudflare Observability 料金](https://developers.cloudflare.com/observability/pricing/) の変更（取り込みGBおよび保存GB-月） |
+| Workers Logpush | リクエスト | 月間1,000万件、超過分は100万件あたり0.05ドル |

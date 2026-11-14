@@ -1,37 +1,37 @@
-# Writing context that AI reads
+# AIが読み取るコンテキストの記述
 
-README.md follows readme-md.
+README.mdはreadme-mdを踏襲している。
 
-- Put why it is needed and the state it should achieve at the top, written in human language
-- Give each index entry a one-line summary
-- When sending readers to another file, write "Also read X"
+- なぜ必要なのか、どのような状態を実現すべきかを、人間の言葉で冒頭に記載する。
+- 各インデックス項目に1行の要約を記載する。
+- 読者を別のファイルに送る際は、「Xも読んだ」と記載する。
 
-The structure and frontmatter of a skill follow skill-authoring.
+スキルの構造と前書きは、スキルの記述に従う。
 
-## Readers
+## 読者
 
-Context has two kinds of readers, and they read in opposite ways.
+コンテキストには2種類の読者があり、それぞれ異なる方法で読み取る。
 
-- AI takes what is written exactly as it is, and fills in what is not written with its own knowledge
-- Humans read while filling gaps by guessing, and check whether the AI's understanding and their own have drifted apart
+- AIは記述された内容をそのまま受け取り、書かれていない部分は自身の知識で補完する。
+- 人間は推測で不足分を補いながら読み、AIの理解と自身の理解が乖離していないかを確認する。
 
-If you write with only AI as the reader, humans cannot cross-check. The AI keeps acting without the drift in understanding being found.
+AIのみを読者として記述すると、人間は照合できない。AIは理解の乖離が見つからないまま、動作し続ける。
 
-## Where cross-checking happens
+## 照合が行われる場面
 
-Why it is needed and the state it should achieve are the places humans read first and cross-check against their own understanding. Write them so that reading only these is enough to judge whether they match one's own thinking.
+なぜ必要なのか、どのような状態を実現すべきかは、人間がまず読み、自身の理解と照合する場面である。これらを読むだけで、自身の考えと一致するかどうかを判断できるように記述する。
 
-- Write the mechanism and the final state
-- Write in human language, not jargon
+- 仕組みと最終的な状態を記述する
+- 専門用語ではなく、人間の言葉で記述する。
 
-## Index summaries
+## インデックスの要約
 
-Give the indexes of `references/` and `usecases/` a one-line summary per entry. Make AI read them with "Read all of them". For an index from which one is chosen per situation, make AI read with "Also read the X you chose". Humans scan the summaries and cross-check what the AI is reading against their own understanding. Without summaries, humans cannot know what the AI is following unless they open the files.
+`references/` と `usecases/` のインデックスには、項目ごとに1行の要約を記載する。AIには「すべて読んで」と読ませる。状況に応じて1つを選ぶインデックスには、「選んだXも読んだ」と読ませる。人間は要約をスキャンし、AIが読んでいる内容を自身の理解と照合する。要約がなければ、人間はファイルを開けない限り、AIが何を追っているのかを知ることはできない。
 
-## How to write references
+## 参照の書き方
 
-AI takes "read when ..." and "... is in X" as instructions that it need not read them now. If they are not read, no amount of upkeep matters.
+AIは「～のときに読む」「～がXにある」という指示を、今読む必要はないものとして受け取る。読まれなければ、いくらメンテナンスしても意味がない。
 
-- When sending readers to another file, write "Also read X" at the start of the relevant section
-- Do not leave context that makes it seem fine not to read it
-- It is fine if the context grows. It is enough if, after reading, one can judge that it was unnecessary
+- 読者を別のファイルに送る際は、該当箇所の冒頭に「Xも読んだ」と記述する。
+- 読まなくても構わないと思わせるような文脈は残さない。
+- 文脈が膨らんでも構わない。読んだ後に、不要だったと判断できれば十分である。

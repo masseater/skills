@@ -1,19 +1,19 @@
-# Slimming a skill
+# スキルのスリム化
 
-Do this for a skill that has grown large, a skill that makes readers read details not used in most situations, and a skill whose content has drifted from what it teaches.
+肥大化したスキル、ほとんどの場面で使われない詳細を読者に読ませるスキル、そして教える内容から乖離してしまったスキルに対して、これを行う。
 
-1. Copy the current skill elsewhere as **before**. Record with `wc -c` the size of `description`, `SKILL.md`, and each file in `references/` and `usecases/`
-2. List the users of this skill: skills that link to it, skills that delegate to it by name, AGENTS.md, and tests that read the body
-3. While only **before** exists, write the evaluation scenarios. Choose about ten from requests that actually used this skill, including one each of the scenarios in `usecases/` and `references/`, the "do not" rules, and the areas of irreversible operations
-4. If the skill teaches how to use a tool, remove from the skill the parts that the tool's help and errors cover. For the parts they do not cover, fix the tool if you can, and keep them in the skill if you cannot
-5. Assign each part of the body to a tier of placement
-6. Cut by the "do not fill" criterion, and rewrite by the "style" criterion. End the last paragraph with a rule, not a history aimed at the user
-7. Give **before** and **after** to a new session and have it confirm that each rule in **before** has a place in **after** or was cut by the criterion in 6. For anything that is neither and that none of the scenarios in 3 covers, write one scenario and try it three times with **after**. If it is not correct all three times, restore it
-8. Try the scenarios from 3 in three ways, without the skill, with **before** and with **after**, each in a new session. Rules for scenarios that behaved correctly without the skill may be deleted
-9. Pass `skills-ref validate`, and confirm that the references from the users listed in 2 are not broken
+1. 現在のスキルを**以前**に別の場所にコピーする。`wc -c` で `description`、`SKILL.md`、および各ファイルを `references/` と `usecases/` に記述する。
+2. このスキルのユーザーを列挙する：リンクしているスキル、名前で委任しているスキル、AGENTS.md、および本文を読み取るテスト
+3. **以前**しか存在しない間に、評価シナリオを記述する。`usecases/` と `references/` の各シナリオ、「do not」ルール、および不可逆操作の領域を含め、このスキルを実際に使用したリクエストから10個ほどを選択する。
+4. スキルがツールの使い方を教えている場合は、ツールのヘルプやエラーがカバーしている部分をスキルから削除する。カバーしていない部分については、可能であればツールを修正し、不可能な場合はスキルに残しておく。
+5. 本文の各部分を配置の階層に割り当てる。
+6. 「記入しない」基準でカットし、「スタイル」基準で書き直す。最後の段落の末尾には、ユーザー向けの履歴ではなく、ルールを記述する。
+7. 新しいセッションに**以前**と**以後**を割り当て、**以前**の各ルールが**以後**に配置されているか、あるいは基準6でカットされているかを確認させる。いずれにも該当せず、かつ3のシナリオのいずれもカバーしていないものについては、シナリオを1つ記述し、**以後**で3回試す。3回とも正しくない場合は、復元する。
+8. 3のシナリオを、スキルなしで、**以前**と**以後**のそれぞれ新しいセッションで、3通りの方法で試す。スキルなしで正しく動作したシナリオのルールは削除してもよい。
+9. `skills-ref validate` を通し、2に挙げたユーザーからの参照が破損していないことを確認する。
 
-Land **after** if it is smaller than **before** or fixes a drift, and is not worse than **before** in 8. If a scenario got worse, look in the logs for what the model was missing, and move that to a higher tier before restoring the text.
+**以後**が**以前**より小さい場合、またはドリフトが修正され、かつ 8 で**以前**より悪化していない場合にパスする。シナリオが悪化した場合は、ログでモデルに何が欠けていたかを確認し、テキストを復元する前にそれを上位階層に移動させる。
 
-In the commit message, write the size of each tier before and after, the results of 8, and what was moved where and what was cut.
+コミットメッセージには、以後の各階層のサイズ、8の結果、および何をどこに移動し、何がカットされたかを記述する。
 
-If the slimming reveals errors or gaps in this procedure, fix skill-authoring with [`revise`](revise.md).
+スリム化によってこの手順に誤りや不備が見つかった場合は、[`revise`](revise.md) でスキルの作成を修正する。

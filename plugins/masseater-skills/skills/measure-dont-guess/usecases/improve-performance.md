@@ -1,6 +1,6 @@
-# Improving performance
+# パフォーマンスの向上
 
-1. Make the target measurable with spans and take the value before the improvement
-2. Apply one improvement to the bottleneck that the measurement revealed
-3. Measure again under the same conditions as before the improvement and confirm the value got better. If it did not, go back to step 2 with the next hypothesis
-4. Also measure whether the improvement made another part slower
+1. スパンを用いて対象を測定可能にし、改善前に価値を把握する
+2. 測定によって明らかになったボトルネックに対し、1つの改善を適用する
+3. 改善前と同じ条件で再度測定し、価値が向上したことを確認する。向上しなかった場合は、次の仮説を用いてステップ2に戻る。
+4. また、改善によって別の箇所の動作が遅くなったかどうかも測定する。

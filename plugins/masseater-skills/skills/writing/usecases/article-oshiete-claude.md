@@ -1,13 +1,13 @@
-# Writing an Oshiete Claude article
+# 教えてClaudeの記事を書く
 
-Also read [`article`](../references/article.md).
+[`article`](../references/article.md)も参照。
 
-The series is grouped by the masseater.dev tag "教えてClaude" (Oshiete Claude, "Tell me, Claude"). What readers follow is the flow of what the owner wondered about and what they became curious about next after Claude's explanation, so rewriting the conversation as expository prose erases that flow.
+シリーズは masseater.dev のタグ「教えてClaude」（Oshiete Claude, "Tell me, Claude"）でグループ化されている。読者が追うのは、オーナーが疑問に思ったことと、Claudeの説明を受けて次に何が気になったかという流れなので、会話を解説文に書き換えるとその流れが消える。
 
-- When asked to "turn this into an article" in a session where you bounced ideas around, write it using that session's conversation as material
-- Do not change the order or content of the remarks
-- Enclose the remarks of each speaker in `:::masseater` and `:::claude` blocks
-- Put "教えてClaude" in the frontmatter `tags`, and place the file in `apps/portfolio/content/blogs/`
+- アイデアをやり取りしたセッションで「記事にしてほしい」と頼まれたときは、そのセッションの会話をネタにして書く
+- 発言の順番や内容を変えない
+- 各発言者の発言を `:::masseater` と `:::claude` ブロックで囲む
+- frontmatter の `tags` に「教えてClaude」と入れ、ファイルを `apps/portfolio/content/blogs/` に置く
 
 ```md
 :::masseater
@@ -19,17 +19,17 @@ HTTPS の鍵マークって、結局だれが本物だって保証してるの�
 :::
 ```
 
-## What to tidy
+## 何を片付けるか
 
-| Target | How to tidy |
+| 対象 | 片付け方 |
 | --- | --- |
-| Exchanges other than the brainstorming | Cut digressions, tool results and the request to turn it into an article |
-| The owner's remarks | Fix only typos and hesitations, and keep the tone |
-| Claude's remarks | Shorten them by cutting preambles, repetition and closing summaries. Do not add to the content of the explanation. Make sentence endings consistently the plain "だ・である" style, because masseater.dev's textlint rejects "です・ます" in the body |
-| Headings | Put them only where the topic changes |
+| ブレインストーミング以外のやり取り | 脱線、ツールの結果、記事にしてほしいという要望をカットする |
+| オーナーの発言 | 誤字や言い淀みだけを直し、トーンを保つ |
+| Claudeの発言 | 前置きや繰り返し、締めくくりの要約をカットして短くする。解説の内容に付け加えない。文末は一貫して「だ・である」の平文にする。masseater.dev の textlint が本文中の「です・ます」を拒絶するため。 |
+| 見出し | 話題が変わるところにだけ入れる |
 
-Make the title the owner's question as the shortest noun phrase ("HTTPS の証明書を保証する仕組み", the mechanism that guarantees HTTPS certificates).
+タイトルをオーナーの質問にし、最短の名詞句（「HTTPS の証明書を保証する仕組み」、HTTPS 証明書を保証する仕組み）にする。
 
-## Checking facts
+## 事実の確認
 
-Claude's explanations are sometimes wrong. Before turning it into an article, check the facts in Claude's remarks against primary sources and attach the sources as footnotes. Do not rewrite a remark in which an error is found; attach a footnote to it and write the correct fact and source. This keeps the record of the brainstorming honest.
+Claudeの解説は間違っていることがある。記事にする前に、Claudeの発言の事実を一次資料と照らし合わせ、出典を脚注として添付する。誤りが見つかった発言は書き直さず、そこに脚注を付けて正しい事実と出典を書く。これでブレインストーミングの記録が正直になる。

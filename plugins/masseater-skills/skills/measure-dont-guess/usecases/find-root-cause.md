@@ -1,17 +1,17 @@
-# Finding the root cause of a bug
+# バグの根本原因の特定
 
-Do not write a fix until you know the cause.
+原因が判明するまで修正策を書かないこと。
 
-1. Read the error message and the stack trace to the end. The answer is often written there as it is
-2. Build a procedure that reproduces it reliably. Until it reproduces, add observation points and gather information
-3. Look at recent changes: diffs, commits, dependencies, configuration and differences in environment
-4. For processing that spans multiple layers, log the values coming in and going out at each layer boundary. Identify the broken layer before investigating that layer
-5. Trace an invalid value back through its callers to where it comes from, and fix it there
-6. Look for similar implementations that work in the same codebase, and list every difference from the broken one, however small
-7. Write a failing test first, then apply just one fix
+1. エラーメッセージとスタックトレースを最後まで読むこと。答えは多くの場合、そのまま記載されている。
+2. 確実に再現できる手順を構築する。再現するまでは、観測点を追加し、情報を収集する。
+3. 直近の変更内容（diff、コミット、依存関係、設定、環境の差異）を確認する。
+4. 複数のレイヤーにまたがる処理については、各レイヤー境界で入力・出力される値をログに記録する。そのレイヤーを調査する前に、不具合のあるレイヤーを特定する。
+5. 無効な値を呼び出し元まで遡って追跡し、そこからの経緯を突き止めて修正する。
+6. 同一のコードベースで動作する類似の実装を探し、たとえわずかであっても、不具合のある実装との相違点をすべて列挙する。
+7. まず失敗するテストを書き、その後に修正を1つだけ適用する。
 
-Examples of processing that spans multiple layers are going from CI to build to signing, and from API to service to DB.
+複数のレイヤーにまたがる処理の例としては、CIからビルド、署名、そしてAPIからサービス、DBへと至るものが挙げられる。
 
-Do not mix incidental improvements or refactoring into a fix. If you mix them in, you cannot tell what worked.
+付随的な改善やリファクタリングを修正に混ぜ合わせないこと。混ぜ合わせると、何が機能したのかが分からなくなる。
 
-If three fixes do not fix it, do not try a fourth; doubt the design and consult the user. When every fix breaks another place, it is often a problem of design.
+3つの修正で直らない場合は、4つ目を試さず、設計を疑い、ユーザーに確認すること。あらゆる修正が別の箇所を壊す場合、多くの場合、設計上の問題である。

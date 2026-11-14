@@ -1,21 +1,21 @@
 ---
 name: integrate
-description: Use when introducing a library or a new means of implementation. Do not stop at adding it; go as far as migrating existing code and mechanically enforcing the use of that means.
+description: ライブラリや新しい実装手段を導入する際に使用する。追加するだけで終わらせず、既存のコードを移行し、その手段の使用を機械的に強制するところまで行う。
 ---
 
 # integrate
 
-- Move existing equivalent implementations to the new means
-- Make it impossible to use the old means in new code
-- Unify how the new means is used into one way
-- Delete the old implementations and dependencies that are no longer needed
+- 既存の同等の実装を新しい手段に移行する
+- 新しいコードで古い手段を使用できないようにする
+- 新しい手段の使用方法を一つの方法に統一する
+- 不要になった古い実装や依存関係を削除する
 
-## Why this skill is needed and the state it should achieve
+## なぜこのスキルが必要なのか、どのような状態を実現すべきか
 
-This skill is needed because even after a new means is introduced, the old means remains usable. Workers imitate the old means they are used to and the way nearby existing code is written, so the old and the new keep being used side by side.
+新しい手段を導入しても古い手段が引き続き使えるため、このスキルが必要になる。ワーカーは使い慣れた古い手段や付近の既存コードの書き方を模倣するため、古いものと新しいものが併用され続ける。
 
-The state this skill should achieve is that only the new means is used, and the old means cannot be used even without anyone trying to guard against it.
+このスキルが実現すべき状態は、新しい手段のみが使用され、誰もガードしようとしなくても古い手段は使用できない状態である。
 
-## Stop the old means with mechanical checks
+## 機械的なチェックで古い手段を停止する
 
-What stops the old means is lint, types, CI and constraints on dependencies. `no-restricted-imports` is an example. Documentation, conventions and review comments are mechanisms that rely on the goodwill and effort of workers, so they are not a means of stopping it.
+古い手段を停止させるのは、リント、型、CI、および依存関係の制約である。`no-restricted-imports`がその例である。ドキュメント、規約、レビューコメントはワーカーの善意と労力に依存する仕組みであるため、それらを停止させる手段にはならない。

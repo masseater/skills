@@ -1,23 +1,23 @@
-# Writing a tech article
+# 技術記事の執筆
 
-Also read [`article`](../references/article.md).
+[`article`](../references/article.md)も参照。
 
-AI likes to put its own claim even in an introductory article, and the introduction of the subject is demoted to material for the claim.
+AIは導入記事であっても自らの主張を盛り込む傾向があり、主題の導入部分は主張のための資料へと格下げされる。
 
-- Make the axis what the subject contains and what happens when you use it
-- Introduce the technology itself. Do not make how you use it in your own repository the axis
-- Show behavior with sample code, and base it on both the results you confirmed by actually running it and the descriptions in the official documentation
-- Besides introducing one subject, articles that research and compare several subjects also belong to this kind. When comparing, put the axes of comparison in a table
-- When you cannot prepare a screenshot or figure you want to include, leave `<!-- TODO(media): what to include -->` where it goes and hand it to the owner
-- Write only about the latest version, and do not write the history of older versions
-- Do not write about topics covered in another article; link to that article
+- 軸を、主題の内容とそれを利用した際に何が起こるかにする。
+- 技術そのものを紹介する。自身のリポジトリでどのように利用するかを軸にしない。
+- サンプルコードで挙動を示し、実際に実行して確認した結果と公式ドキュメントの記述の両方に基づいている。
+- 単一の主題を紹介するだけでなく、複数の主題を調査・比較する記事もこの種に属する。比較する際は、比較軸を表にまとめる。
+- 掲載したいスクリーンショットや図を用意できない場合は、`<!-- TODO(media): what to include -->` を記載箇所に残し、オーナーに渡す。
+- 最新バージョンについてのみ記述し、旧バージョンの履歴は書かない。
+- 別の記事で扱われているトピックについては記述せず、その記事へリンクを貼る。
 
-## What not to write
+## 書いてはいけないこと
 
-- Claims that stray from the introduction, such as "What humans write becomes a constraint that machines can execute"
-- Steps for getting started, or a "who it is for" paragraph
-- Paragraphs that merely rephrase what is written in the README. Readers only need to read the README, so there is no point in making it an article
+- 「人間が書くことが機械の実行可能な制約になる」など、導入部から逸脱した主張
+- 導入時の手順、または「誰向けか」の段落
+- READMEに書かれている内容を単に言い換えただけの段落。読者はREADMEを読むだけで十分なので、記事にする意味はない。
 
-## Do not make exceptions
+## 例外を作らない
 
-If the owner's policy is "use it across the board", the writer must not add exceptions such as "small scripts may be excluded". Allowing one exception creates multiple ways of writing, and becomes a hole that enforcement cannot reach.
+オーナーの方針が「一律に使用する」場合、書き手は「小規模なスクリプトは除外してもよい」といった例外を追加してはならない。例外を一つ認めると複数の書き方が生まれ、強制力が及ばない穴となる。

@@ -1,10 +1,10 @@
-# Effects and data
+# 効果とデータ
 
-The only thing you may write in an Effect is synchronization with the outside world that React does not know about: the DOM, measurement, widgets, and subscriptions that are not data. Return a cleanup.
+Effectで記述できるのは、Reactが把握していない外部世界との同期（DOM、計測、ウィジェット、およびデータではないサブスクリプション）のみである。クリーンアップを返してほしい。
 
-| What you want to do | How to write it |
+| やりたいこと | 書き方 |
 | --- | --- |
-| A value that can be computed from props or state | Compute it during render |
-| Reset state when a prop changes | Pass a `key` to the child, or compute it during render |
-| Notify the parent of a change | Call the parent's function in the event handler |
-| Do something only once on mount | First check whether it can be an event or a loader |
+| propsやstateから計算可能な値 | レンダリング時に計算する |
+| propsが変更された際に状態をリセットする | 子要素に `key` を渡すか、レンダリング時に計算する |
+| 親に変更を通知する | イベントハンドラで親の関数を呼び出す |
+| マウント時に一度だけ処理を行う | イベントまたはローダーとして扱えるか最初に確認する |

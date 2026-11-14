@@ -1,10 +1,10 @@
 # accessibility
 
-Confirm that the product can be used with assistive technology and the keyboard. Developers who operate with a mouse and a screen cannot see that some people are unable to use it. Follow AA of [WCAG 2.2](https://www.w3.org/TR/WCAG22/) as the standard.
+製品が支援技術とキーボードで利用可能であることを確認すること。マウスと画面上で操作する開発者は、一部のユーザーが利用できないことに気づかない可能性がある。[WCAG 2.2](https://www.w3.org/TR/WCAG22/) のAAを標準として遵守すること。
 
-| Item to check | How to check the current state | Condition for being satisfied |
+| 確認事項 | 現在の状態を確認する方法 | 充足条件 |
 | --- | --- | --- |
-| Violations found by automated checks | Run Lighthouse's accessibility audit or axe on each production page | There are no violations |
-| Keyboard operation | Go through the main flows using only the keyboard | Every operation can be done, and the focus position is visible |
+| 自動チェックで検出された違反事項 | 各本番ページで Lighthouse のアクセシビリティ監査を実行するか、削除する | 違反事項はない |
+| キーボード操作 | キーボードのみでメインフローを確認する | すべての操作が可能で、フォーカス位置も確認できる |
 
-Automated checks detect only some of the violations, so also check keyboard operation.
+自動チェックでは一部の違反のみが検出されるため、キーボード操作も確認する。

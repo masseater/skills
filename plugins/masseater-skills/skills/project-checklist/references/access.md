@@ -1,11 +1,11 @@
 # access
 
-Confirm who can access each page and API. If a URL meant to be private is public, information leaks without anyone noticing. Follow the authentication and access control chapters of [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) as the standard.
+各ページやAPIに誰がアクセスできるかを確認すること。非公開のはずのURLが公開されていた場合、誰にも気づかれずに情報が漏洩する。[OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/)の認証およびアクセス制御に関する章を標準として遵守すること。
 
-| Item to check | How to check the current state | Condition for being satisfied |
+| 確認項目 | 現在の状態を確認する方法 | 満たすための条件 |
 | --- | --- | --- |
-| Visibility of each page and API | From the routing definitions and authentication settings, make a list that classifies every page and every API as public, logged-in users only, or the owner only | Every page and every API is classified as one of them |
-| Private pages and APIs | Send requests while logged out to production's private URLs and to the URLs the platform issues automatically | No content is returned |
-| Authorization per API | In each API's handler, look for the code that verifies the caller's permissions. Look for tests of calls while logged out and of calls with someone else's permissions | Every API verifies permissions, and there are tests for it |
+| 各ページおよびAPIの可視性 | ルーティング定義と認証設定から、すべてのページおよびすべてのAPIを、公開ユーザーのみ、ログインユーザーのみ、または所有者のみとして分類したリストを作成する。 | すべてのページおよびすべてのAPIを、いずれか一方として分類する |
+| 非公開ページおよびAPI | プロダクションの非公開URLおよびプラットフォームが自動発行するURLに対し、ログアウト状態でリクエストを送信する | コンテンツは返されない |
+| APIごとの認可 | 各APIのハンドラにおいて、呼び出し元の権限を検証するコードを探す。ログアウト状態での呼び出し、および他者の権限による呼び出しのテストを確認する。 | すべてのAPIは権限を検証しており、そのためのテストが存在する。 |
 
-The reason to also check automatically issued URLs is that if authentication sits only in front of the custom domain, those URLs can be accessed without authentication.
+自動発行されるURLも併せて確認すべき理由は、認証がカスタムドメインの前面にのみ配置されている場合、それらのURLに認証なしでアクセスできてしまうためである。

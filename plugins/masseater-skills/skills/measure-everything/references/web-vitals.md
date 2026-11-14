@@ -1,39 +1,21 @@
-# Measuring Web Vitals
+# Web Vitalsの測定
 
-`web-vitals-flow` drives Chrome with a
-[Lighthouse user flow](https://github.com/GoogleChrome/lighthouse/blob/main/docs/user-flows.md).
-For each URL it records a navigation. Then it goes back and records a timespan
-for a click on each same-origin link of the page. Only a timespan measures INP
-in Lighthouse, so INP comes from these link transitions.
+`web-vitals-flow` は [Lighthouse ユーザーフロー](https://github.com/GoogleChrome/lighthouse/blob/main/docs/user-flows.md) を用いて Chrome を駆動する。各 URL に対してナビゲーションを記録する。その後、ページ内の同一オリジンリンクのクリックにかかる時間スパンを記録する。Lighthouse で INP を測定するのは時間スパンのみであるため、INP はこれらのリンク遷移から得られる。
 
 ```sh
 vp dlx @r_masseater/web-vitals-flow https://example.com/
 ```
 
-Measure the deployed production URL, in a job after the deployment.
+デプロイ後のジョブで、デプロイ済みの本番用 URL を測定する。
 
-The flow runs 5 times by default, and each step is judged by its median. This
-follows the
-[variability guidance](https://github.com/GoogleChrome/lighthouse/blob/main/docs/variability.md)
-of Lighthouse. The CPU of CI runners varies widely, so one run is not a
-measurement.
+このフローはデフォルトで 5 回実行され、各ステップはその中央値で判定される。これは Lighthouse の [変動性に関するガイダンス](https://github.com/GoogleChrome/lighthouse/blob/main/docs/variability.md) に準拠している。CI ランナーの CPU 負荷は変動が大きいため、1 回の実行は測定値とはならない。
 
-The command fails when LCP, INP or CLS of a step has a median score below 0.9.
-That is the passing score of Lighthouse. FCP, TTFB and TBT are shown, but they
-do not fail the command.
+ステップの LCP、INP、または CLS の中央値が 0.9 未満の場合、コマンドは失敗する。これが Lighthouse の合格スコアとなる。FCP、TTFB、TBT が表示されるが、これらはコマンドの失敗を意味するものではない。
 
-Each run writes `flow-<run>.html` and `flow-<run>.json` to `--report-dir`. The
-default is `report`. Keep the reports as CI artifacts.
+各実行時には、`--report-dir` に `flow-<run>.html` と `flow-<run>.json` を書き込む。デフォルトは `report` である。レポートは CI アーティファクトとして保持する。
 
-In a sandboxed container, pass Chrome flags such as
-`--chrome-flags="--no-sandbox"`. Behind a proxy, also pass
-`--proxy-server=$HTTPS_PROXY`. Set `CHROME_PATH` when Chrome is not found.
+サンドボックス化されたコンテナでは、`--chrome-flags="--no-sandbox"` などの Chrome フラグを渡す。プロキシの背後でも `--proxy-server=$HTTPS_PROXY` を渡す。Chrome が見つからない場合は `CHROME_PATH` を設定する。
 
-The command emits `web-vitals.flow`, `web-vitals.load`, `web-vitals.transition`,
-`web-vitals.audit` and `web-vitals.judge` spans. It does so when
-`OTEL_TRACES_EXPORTER=otlp` and an endpoint are set. `web-vitals.judge` lists the
-metrics that missed the passing score in `failures` and is an error when any did.
+このコマンドは、`web-vitals.flow`、`web-vitals.load`、`web-vitals.transition`、`web-vitals.audit`、および `web-vitals.judge` のスパンを出力する。これは `OTEL_TRACES_EXPORTER=otlp` かつエンドポイントが設定されている場合に行われる。`web-vitals.judge` は合格スコアに届かなかったメトリクスを `failures` に列挙し、いずれかが失敗した場合はエラーとなる。
 
-Lab data does not replace field data. For what real visitors experience, use
-the analytics of the platform that serves the page. Cloudflare Web Analytics is
-one example.
+ラボデータはフィールドデータを置き換えるものではない。実際の訪問者がどのような体験をするかについては、ページを提供しているプラットフォームのアナリティクスを利用する。Cloudflare Web Analytics がその一例である。

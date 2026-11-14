@@ -1,18 +1,18 @@
-# Revising a skill after feedback
+# フィードバック後のスキルの修正
 
-The body is the result of deriving it from why the skill is needed and the state it should achieve, not a history of additions made in the order requests came in.
+本文は、スキルが必要な理由と達成すべき状態から導き出した結果であり、リクエストがあった順に追加してきた履歴ではない。
 
-1. Read the judgment not from the single sentence that was pointed out but from why the user pointed at that place
-2. If it can be fixed below the skill, fix it there. Stop mechanical errors with tool errors, lint and tests. Use prose only where judgment is needed
-3. If a new session behaves correctly without that rule, add nothing
-4. Decide whether the reason it is needed or the state it should achieve changes, or whether one of the existing rules is insufficient
-5. Derive the whole body again from there. Do not fix it by patching onto the current body
-6. Do not rewrite the parts where the re-derived result is the same as the current body
-7. Fix every other place to which the same reason applies
-8. Try the situation that triggered the feedback again in a new session
+1. 判定は、指摘された一文からではなく、ユーザーがなぜその箇所を指したのかから読み取る。
+2. スキルの下方で修正可能であれば、そこを修正する。ツールエラーやリント、テストによる機械的なエラーは止める。判定が必要な箇所にのみ文章を用いる。
+3. そのルールがなくても新しいセッションが正しく動作する場合は、何も追加しない。
+4. 必要とされる理由や達成すべき状態が変わるのか、あるいは既存のルールのいずれかが不十分なのかを判断する。
+5. そこから改めて本文全体を導き出す。現在の本文にパッチを当てて修正しない。
+6. 再導出した結果が現在の本文と同じである箇所は、書き直さない。
+7. 同じ理由が適用される箇所は、すべて修正する。
+8. フィードバックのきっかけとなった状況を、新しいセッションで再度試す。
 
-The reason not to rewrite the parts that are the same is to avoid breaking the structure readers have memorized.
+同じ箇所を書き直さない理由は、読者が記憶している構造を崩さないためである。
 
-The patching that commonly happens in skills is adding the sentence that was pointed out to the end, and adding one more line to a heading or bullet list to make a separate item. If you fix only the place that was pointed out, other places with the same reason remain, and the same feedback comes again. Instead of adding, fix the line that already carries the same idea.
+スキルでよく行われるパッチ処理は、指摘された一文を末尾に追加し、見出しや箇条書きにもう一行加えて別の項目を作成することだ。指摘された箇所だけを修正すると、同じ理由の箇所が残り、再び同じフィードバックが出る。追加するのではなく、すでに同じ趣旨の行を修正する。
 
-In the commit message, write the event that triggered the feedback and the size of `SKILL.md` (`wc -c`) before and after. Offset any increase by cutting elsewhere. If it has grown by 10 percent or more since the last slimming commit, or the same meaning appears in two places, slim it down with [`diet`](diet.md).
+コミットメッセージには、フィードバックのきっかけとなったイベントと、その前後の `SKILL.md` のサイズ（`wc -c`）を記載する。他の箇所を削ることで、増加分を相殺する。前回のスリム化コミットから10%以上増加した場合や、同じ意味が2箇所に現れた場合は、[`diet`](diet.md) でスリム化する。

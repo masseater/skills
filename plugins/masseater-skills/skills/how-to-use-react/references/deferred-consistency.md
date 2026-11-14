@@ -1,9 +1,9 @@
-# Drop consistency for heavy derivations
+# 重い導出における一貫性の欠如
 
-When the input and a heavy list share the same render, the input does not update until the list has re-rendered. Separate the input from the list.
+入力と重いリストが同じレンダリングを共有する場合、リストが再レンダリングされるまで入力は更新されない。入力とリストを分離すること。
 
-- Write the current input to an Effect Atom immediately
-- Delay the value passed to the list with `useDeferredValue`
-- If you show that it is lagging, use the pending state of `useTransition`
+- 現在の入力を直ちに Effect Atom に書き込む
+- `useDeferredValue` でリストに渡される値を遅延させる
+- 遅延が発生していることを示す場合は、`useTransition` の保留状態を使用する。
 
-Do not use timer debouncing. Replace with `useDeferredValue` anything built from `useRef`, `setTimeout` and duplicated state, any hand-written `useDebounced*`, and the transition-aware homemade debounce from the sequel to the original article.
+タイマーデバウンスは使用しない。`useRef`、`setTimeout` および重複した状態から構築されたもの、手書きの `useDebounced*`、および元の記事の続編にある遷移を考慮した自作のデバウンスを、すべて `useDeferredValue` に置き換える。

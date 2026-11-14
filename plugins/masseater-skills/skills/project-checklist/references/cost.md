@@ -1,11 +1,11 @@
 # cost
 
-Confirm how costs grow when traffic increases. Most pay-as-you-go billing has no cap on spending, and a spike in traffic or the number of executions caused by a bug becomes the bill as it is. Follow the cost optimization pillar of the [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html) for the approach. For anything running on Cloudflare, also follow cloudflare-caution.
+トラフィックが増加した際にコストがどのように膨らむかを確認しておくこと。ほとんどの従量課金方式では支出に上限がなく、トラフィックの急増やバグによる実行回数の増加がそのまま請求額となる。このアプローチにあたっては、[AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html) のコスト最適化の柱に従うこと。Cloudflareで運用しているものについては、cloudflare-caution も併せて参照すること。
 
-| Item to check | How to check the current state | Condition for being satisfied |
+| 確認項目 | 現状の確認方法 | 満たすための条件 |
 | --- | --- | --- |
-| Charges incurred by one visit | List the requests made when opening a public page with the browser's developer tools, and write which billing unit of which service each one falls under | Delivery of an externally published site has no path that is billed by usage |
-| Caps when things run away | Check the settings for the execution time limit, the cap on retries and budget alerts | Infinite loops and retry bugs stop at a cap |
-| Actual billed amount | Check usage per billing unit on the billing dashboard | The estimate and production usage do not diverge |
+| 1回の訪問で発生する料金 | ブラウザの開発者ツールで公開ページを開いた際のリクエストを列挙し、それぞれがどのサービスのどの課金単位に該当するかを記述する | 外部公開サイトの配信には、利用量に応じて課金されるパスが存在しない |
+| 処理が暴走した際の上限 | 実行時間制限、リトライ上限、および予算アラートの設定を確認する | 無限ループやリトライバグは上限で止まる |
+| 実際の請求額 | 請求ダッシュボードで課金単位ごとの使用量を確認する | 見積もりと本番環境の使用量が乖離しない |
 
-"It fits within the free tier" is not a reason for being satisfied. If traffic spikes, the free tier is exceeded.
+「無料枠に収まっている」は満足の理由にはならない。トラフィックが急増した場合、無料枠を超過する。

@@ -1,47 +1,47 @@
-# Writing an essay
+# エッセイを書く
 
-Also read [`article`](../references/article.md).
+[`article`](../references/article.md)も参照してください。
 
-The target is the standard of a Nikkei article: readers should understand the claim just by reading from top to bottom. AI tends to distribute keywords across chapters and line them up, which breaks the order, for example by presenting the solution before the problem.
+対象は日経記事の水準であり、読者は上から下まで読むだけで主張を理解できるべきである。AIはキーワードを章をまたいで分散させて並べる傾向があり、例えば問題の前に解決策を提示するなど、順序が崩れてしまう。
 
-- Confirm the single claim in the owner's words before building the outline
-- Build the outline in causal order, so that the conclusion of each paragraph becomes the premise of the next
-- Place hooks and knowledge that raise questions in the reader's mind at key points
-- Back facts with evidence, and verify them before writing
-- When finished, read from top to bottom and confirm the logic has not broken down
+- 構成案を作成する前に、所有者の言葉で単一の主張を確認すること
+- 各段落の結論が次の段落の前提となるよう、因果関係の順に構成案を作成すること
+- 読者の頭に疑問を抱かせるフックや知識を、要所に配置すること
+- 事実に根拠を添えて裏付けを行い、執筆前に検証すること
+- 書き終えたら、上から順に読み、論理が破綻していないか確認すること
 
-## The claim
+## 主張
 
-- Do not mistake the essence of the claim. Do not promote a concept used for explanation (such as "compound interest") to the claim
-- Do not make a point that does not support the claim (such as "had a fixed version been released?") the axis
+- 主張の本質を間違えないこと。説明に用いる概念（「複利」など）を主張に持ち込まないこと
+- 主張を裏付けない論点（「固定版が発売されていたか？」など）を軸にしないこと
 
-## Paragraphs
+## 段落
 
-Write essay paragraphs in the form of paragraph writing. Readers read while predicting what follows from what was written earlier, so if the claim is shown at the start of the paragraph, they can connect the evidence that follows to that claim ([Basic rules for writing effective topic sentences](https://doi.org/10.15027/55627)).
+エッセイの段落を段落形式で書いてください。読者は先に読んだ内容から次に何が導かれるかを予想しながら読むため、段落の冒頭で主張が示されていれば、その後に続く根拠をその主張に結びつけることができます（[効果的なトピックセンテンスを書くための基本ルール](https://doi.org/10.15027/55627)）。
 
-- State only one claim in one paragraph
-- In the first sentence of the paragraph (the topic sentence), state the paragraph's claim decisively. Not a vague sentence like "Voting is important", but one specific enough that the evidence that follows can be predicted, without the details of cases or numbers
-- In the following sentences (supporting sentences), write specifically the cases and numbers that support the claim, with sources, and do not include sentences unrelated to the first sentence
-- Arrange the evidence in an order readers can follow naturally (chronological, cause to effect)
-- Give the whole article the same shape as a paragraph. Show the article's claim at the opening, and make each paragraph its evidence
+- 1つの段落で主張を1つだけ述べること
+- 段落の最初の文（トピックセンテンス）で、段落の主張を断定的に述べること。「投票は重要だ」のような曖昧な文ではなく、事例や数値の詳細を省き、その後に続く根拠が予測できるほど具体的な文にすること
+- 続く文（裏付け文）では、主張を裏付ける事例や数値を出典とともに具体的に記述し、最初の文と無関係な文は含めないこと。
+- 根拠を読者が自然に辿り着ける順序（時系列、原因から結果へ）で並べること。
+- 記事全体を段落と同じ形式にする。冒頭で記事の主張を示し、各段落をその根拠とする。
 
-## Outline
+## 構成案
 
-- Decide the order by looking at the whole, rather than assigning keywords to chapters
-- Put the presentation of the problem before the solution
-- Do not cut the amount of body text through the outline
+- 章にキーワードを割り当てるのではなく、全体を見て順序を決めること。
+- 解決策よりも先に、問題の提示を行う。
+- 構成案によって本文の分量を削らないこと。
 
-## Evidence
+## 根拠
 
-- Write specific cases and numbers, with source footnotes. Before bringing up a case, write the criteria by which you chose it and the extent to which you verified it
-- Do not use numbers that cannot be verified; replace them with ones that can
-- State decisively what is obvious from the situation
+- 具体的な事例や数値を、出典の脚注付きで記述すること。事例を挙げる前に、それを選んだ理由とどの程度検証したかを記すこと。
+- 検証不可能な数値は使用せず、検証可能な数値に置き換えること。
+- 状況から明らかなことを断定的に述べること。
 
-## Reading through
+## 読み通すこと
 
-When finished, read from the beginning and fix the following.
+読み終えたら、最初から読み直し、以下を固定すること。
 
-- The axis of contrast has drifted from the previous paragraph
-- The topic switches without any lead-in
-- Two different answers are given to the same question
-- A connective such as "even so" refers back to a distant paragraph
+- 対比の軸が前の段落からずれている。
+- 導入なしに話題が切り替わる。
+- 同じ問いに対して、2つの異なる回答が提示されている。
+- 「それでも」といった接続詞が、遠い段落を指している。

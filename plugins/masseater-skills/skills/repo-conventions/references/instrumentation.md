@@ -1,17 +1,17 @@
-# Instrumentation
+# インストルメンテーション
 
-Follow measure-dont-guess for the procedure of deciding by measurement. This file holds the rules for making things measurable.
+測定によって判定する手順については、measure-dont-guessに従うこと。このファイルには、測定可能にするためのルールが記載されている。
 
-- Before feature development, build a mechanism that lets AI debug on its own. It has three parts: a means of reproduction, logs and spans, and a path to read them
-- Make every operation that costs time or money a span. Requests to external APIs and models, child processes and file I/O fall under this
-- On Cloudflare Workers, export Effect spans, TanStack Start requests and server functions, and Elysia routes to Workers traces with `@r_masseater/workers-tracing`
-- For processes other than Workers, export with `OtlpTracer.layerFromConfig`. Effect sends only when `OTEL_TRACES_EXPORTER=otlp` and `OTEL_EXPORTER_OTLP_ENDPOINT` are set
-- When checking in tests the spans, metrics and logs that code actually emitted, set up an OTLP receiver per test file with `@r_masseater/vitest-otlp`
-- Put spans in the operation that actually takes the time. Do not wrap commands or processes just for measurement
-- At the end of every GitHub Actions workflow, put a job that runs `.github/scripts/ci-telemetry.sh`
+- 機能開発に先立ち、AIが自律的にデバッグできる仕組みを構築する。これには3つの要素がある：再現手段、ログとスパン、およびそれらを読み込むためのパスである。
+- 時間やコストがかかるあらゆる操作をスパン化する。外部APIやモデルへのリクエスト、子プロセス、ファイルI/Oがこれに該当する。
+- Cloudflare Workersにおいて、Effectスパン、TanStack Startリクエスト、サーバー関数、およびElysiaが`@r_masseater/workers-tracing`を用いてWorkersへのトレースをルーティングする操作をエクスポートする。
+- Workers以外のプロセスについては、`OtlpTracer.layerFromConfig`でエクスポートする。Effectは、`OTEL_TRACES_EXPORTER=otlp`かつ`OTEL_EXPORTER_OTLP_ENDPOINT`が設定されている場合にのみ送信される。
+- テストでコードが実際に出力したスパン、メトリクス、ログを確認する際は、`@r_masseater/vitest-otlp`を用いてテストファイルごとにOTLPレシーバーを設定する。
+- 実際に時間がかかる操作にスパンを記述する。測定のためだけにコマンドやプロセスをラップしてはならない。
+- すべてのGitHub Actionsワークフローの末尾に、`.github/scripts/ci-telemetry.sh`を実行するジョブを配置する。
 
 ## Web Vitals
 
-- Measure Web Vitals (LCP, INP, CLS, FCP, TTFB, TBT) by running `vp run measure <URL>...` in `tools/web-vitals`, which has `@r_masseater/web-vitals-flow` installed. It measures, five times with a Lighthouse user flow, the load of each URL and the navigation from clicking a same-origin link on that page, and writes flow-<run>.html and flow-<run>.json per run to `report/`. It fails if, by the median of each step, any of LCP, INP or CLS does not reach Lighthouse's passing score (0.9)
-- main's verify measures production at `vars.ZAP_TARGET_URL` after deploying, and keeps the report as an Actions artifact
-- In cloud sessions, add `--chrome-flags="--no-sandbox --proxy-server=$HTTPS_PROXY"`. The session-start hook passes Chrome via `CHROME_PATH`
+- `@r_masseater/web-vitals-flow`がインストールされている`tools/web-vitals`で`vp run measure <URL>...`を実行し、Web Vitals（LCP、INP、CLS、FCP、TTFB、TBT）を測定する。Lighthouseのユーザーフローを用いて5回測定し、各URLの負荷と、そのページ上の同一オリジンリンクのクリックによる遷移を測定し、実行ごとにflow-<run>.htmlおよびflow-<run>.jsonを`report/`に書き出す。各ステップの中央値において、LCP、INP、またはCLSのいずれかがLighthouseの合格スコア（0.9）に達しない場合は失敗する。
+- main's verifyは、デプロイ後に`vars.ZAP_TARGET_URL`で本番環境の測定を行い、レポートをActionsアーティファクトとして保持する。
+- クラウドセッションでは、`--chrome-flags="--no-sandbox --proxy-server=$HTTPS_PROXY"`を追加する。セッション開始フックは、`CHROME_PATH`経由でChromeを通過する。

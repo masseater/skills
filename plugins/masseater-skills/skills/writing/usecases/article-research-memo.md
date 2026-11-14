@@ -1,16 +1,16 @@
-# Writing a research memo
+# 研究メモの作成
 
-Also read [`article`](../references/article.md).
+[`article`](../references/article.md)も参照。
 
-The reader is the owner, so there is no need for sentences that persuade others. AI tends to add an introduction and justification for readers here, and the owner bears the effort of skipping them.
+読者は所有者なので、他人を説得するような文章は不要だ。AIはここで読者への導入や正当化を付け加える傾向があり、所有者はそれらを省く手間を負う。
 
-- Write only the facts and numbers you confirmed
-- Divide subjects with headings, and put items that can be compared from the same viewpoint in a table
-- Attach sources as footnotes to table rows or bullet items
+- 確認した事実と数値のみを書く
+- 主題を見出しで分け、同じ視点から比較できる項目は表にまとめる
+- 表の行や箇条書きの項目に出典を脚注として付ける
 
-## What not to write
+## 書いてはいけないこと
 
-- A preamble preaching the importance of the theme (an introduction such as "When you let AI agents do development, CI consumption changes by an order of magnitude")
-- Paragraphs explaining why a fact is justified, such as "Why is it free?"
-- Recommendations aimed at others
-- Topics the owner said are unnecessary. Do not write them even if they came up as a result of the research
+- テーマの重要性を説く前置き（「AIエージェントに開発を任せると、CIの消費量が桁違いに変わる」といった導入文）
+- 「なぜ無料なのか」など、事実が正当化される理由を説明する段落
+- 他者に向けた推奨事項
+- 所有者が不要だと言ったトピック。研究の結果として出てきたとしても書かない

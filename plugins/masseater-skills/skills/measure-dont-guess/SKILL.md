@@ -1,42 +1,42 @@
 ---
 name: measure-dont-guess
-description: Decide, before implementing or fixing, on a measurement that settles a hypothesis one way or the other, run it, and judge only by its result. Use when investigating the cause of a bug, when comparing performance or behavior, when starting to write a new feature, and when you are about to judge on a "probably".
+description: 実装や修正を行う前に、仮説をどちらに収束させるかを判断し、実行した上で、その結果のみで判断する。バグの原因を調査する際、パフォーマンスや行動を比較する際、新機能の開発に着手する際、そして「おそらく」と判断しようとする際に活用する。
 ---
 
 # measure-dont-guess
 
-- Before measuring, write the hypothesis and the values that would accept it
-- Measure in production, or under the same conditions as production
-- State explicitly that unmeasured claims are guesses
-- When you cannot measure, do not proceed on guesses; tell the user what is missing
+- 測定を行う前に、仮説とそれを受け入れる値を記述する
+- 本番環境、または本番環境と同じ条件で測定する
+- 未測定の主張が推測であることを明示する
+- 測定できない場合は推測で進めず、何が不足しているかをユーザーに伝えること
 
-## Why this skill is needed and the state it should achieve
+## なぜこのスキルが必要なのか、そしてどのような状態を実現すべきか
 
-This skill is needed because guessing gives an answer faster than measuring, and it usually looks reasonable. A change made on a guess leaves no material for noticing that it is wrong.
+推測は測定よりも早く答えを出せる上、通常は妥当に見えるため、このスキルが必要となる。推測に基づいて行った変更では、それが間違っていることに気づくための材料が残らない。
 
-The state this skill should achieve is that every judgment rests on grounds that anyone can reproduce.
+このスキルが実現すべき状態とは、あらゆる判断が誰でも再現可能な根拠に基づいていることである。
 
-## Measuring in production
+## 本番環境での測定
 
-Measurements used as grounds for judgment are done in production. Local and test environments differ in data scale and external services, and can lead to the opposite conclusion from production.
+判断の根拠となる測定は、本番環境で行われる。ローカル環境とテスト環境ではデータ規模や外部サービスが異なり、本番環境とは正反対の結論に至ることがある。
 
-- When you cannot measure in production, build a staging environment and measure there
-- Make staging the same as production in code, configuration, infrastructure, the scale and shape of data, and external services
-- Use measurements in local and test environments only to confirm that the measuring mechanism works
+- 本番環境で測定できない場合は、ステージング環境を構築し、そこで測定を行う。
+- コード、構成、インフラストラクチャ、データの規模や形態、および外部サービスにおいて、ステージングを本番環境と同等にする。
+- ローカル環境およびテスト環境における測定は、測定メカニズムが動作することを確認するためにのみ使用する。
 
-## Recording measurements
+## 測定値の記録
 
-- For measurements used as grounds for a change, write the conditions, commands and results in the commit message
-- If an inconvenient result comes out, report it as it is and revisit the hypothesis
+- 変更の根拠となる測定値については、条件、コマンド、および結果をコミットメッセージに記述する。
+- 不都合な結果が出た場合は、そのまま報告し、仮説を再検討する。
 
-## Use cases
+## ユースケース
 
-Read all of the following too.
+以下についてもすべて読んでください。
 
-- [`measure`](usecases/measure.md). Form hypotheses, measure, and decide by the results
-- [`find-root-cause`](usecases/find-root-cause.md). Find the root cause of a bug
-- [`improve-performance`](usecases/improve-performance.md). Improve performance
+- [`measure`](usecases/measure.md)。仮説を立て、測定し、その結果に基づいて判断する。
+- [`find-root-cause`](usecases/find-root-cause.md)。バグの根本原因を特定する。
+- [`improve-performance`](usecases/improve-performance.md)。パフォーマンスを向上させる。
 
-## References
+## 参考文献
 
-In repositories created from masseater/typescript-template, also read [`typescript-template`](references/typescript-template.md). In other repositories, read it as the equivalent that plays the same role.
+masseater/typescript-template で作成されたリポジトリでは、[`typescript-template`](references/typescript-template.md)も併せて読んでください。その他のリポジトリでは、同様の役割を果たすものとして読んでください。

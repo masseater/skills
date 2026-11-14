@@ -1,10 +1,10 @@
 # rendering
 
-Confirm the rendering method for each page. If you do not decide the method, the framework's default stays, and even pages with the same content for everyone are generated on the server on every request. Follow web.dev's [Rendering on the Web](https://web.dev/articles/rendering-on-the-web) for the classification of methods.
+各ページのレンダリング方式を確認する。方式を決めない場合はフレームワークのデフォルトのままとなり、全員が同じ内容のページであっても、リクエストごとにサーバー上で生成される。方式の分類は web.dev の [Rendering on the Web](https://web.dev/articles/rendering-on-the-web) に従う。
 
-| Item to check | How to check the current state | Condition for being satisfied |
+| 確認項目 | 現在の状態の確認方法 | 満たされる条件 |
 | --- | --- | --- |
-| Method per page | See whether the route settings are prerender, SSR or client-only, and check whether each page's HTML is in the build output | Pages with the same content for everyone have their HTML generated at build time. Only the parts that change per viewer or per request are generated on the server or the client. For a page whose changing parts are generated on the client, it is enough that the HTML of its outer frame is generated at build time |
-| Server processing on static pages | With the hosting provider's analytics API or dashboard, compare the number of server-processing invocations before and after opening a production page several times | Opening a static page does not invoke server processing |
+| ページごとの方式 | ルート設定がプリレンダリングか、SSRかクライアント専用かを確認し、各ページのHTMLがビルド出力に含まれているかを確認する | 全員が同じ内容のページは、ビルド時にHTMLが生成される。ビューワーごと、またはリクエストごとに変更される部分だけがサーバーまたはクライアントで生成される。クライアントで変更箇所が生成されるページは、ビルド時に外側のフレームのHTMLが生成されればよい。 |
+| 静的ページのサーバー処理 | ホスティング事業者の分析APIまたはダッシュボードで、本番ページ公開前後のサーバー処理呼び出し回数を数回比較する | 静的ページの公開はサーバー処理を呼び出さない |
 
-Having HTML in the build output alone is not enough to be satisfied. If prerendered HTML is returned from server processing, the server starts on every request.
+ビルド出力にHTMLがあるだけでは満たされない。サーバー処理からプリレンダリング済みのHTMLが返ってくる場合、リクエストごとにサーバーが起動する。

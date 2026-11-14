@@ -1,8 +1,8 @@
 # privacy
 
-Confirm what personal information is kept for and when it is deleted. Logs and analytics tags collect personal information unintentionally. Follow the [guidelines of the Personal Information Protection Commission](https://www.ppc.go.jp/personalinfo/legal/) as the standard.
+どのような個人情報を何のために保持し、いつ削除するのかを確認する。ログや分析用タグが意図せず個人情報を収集する。[個人情報保護委員会のガイドライン](https://www.ppc.go.jp/personalinfo/legal/)を基準とする。
 
-| Item to check | How to check the current state | Condition for being satisfied |
+| 確認項目 | 現状の確認方法 | 満たす条件 |
 | --- | --- | --- |
-| Personal information collected | From the schema, logs and analytics tags, make a list of the values that count as personal information | The list exists, and the purpose of use of each item is decided |
-| Deletion | Look for the retention period settings and the deletion process | The retention period and deletion method are decided, and it works as decided |
+| 収集した個人情報 | スキーマから、ログや分析用タグを、個人情報に該当する値をリストアップする | リストが存在し、各項目の利用目的を決める |
+| 削除 | 保持期間の設定と削除手順を探す | 保持期間と削除方法を決め、決まった通りに動作する |

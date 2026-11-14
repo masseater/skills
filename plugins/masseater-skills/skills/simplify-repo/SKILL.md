@@ -1,15 +1,15 @@
 ---
 name: simplify-repo
-description: Simplify the whole repository.
+description: リポジトリ全体を簡素化する。
 ---
 
 # simplify-repo
 
-The target is the whole main branch. Do not look only at a diff or only at the part you were in charge of. You may look at the history, the change log and the intentions of the people who did the work, but not as a substitute for looking at the whole.
+対象はメインブランチ全体である。差分だけ、あるいは自分が担当した部分だけを見るのは避けること。履歴や変更履歴、作業を行った担当者の意図を見ることは構わないが、全体を見る代わりにはならない。
 
-1. First check that mechanical detection such as oxlint, fallow and steiger runs over the whole repository
-2. Have simplify-reviewer review the whole of main
-3. Turn the findings into a list of tasks. Decide on every one of them yourself and proceed
-4. Land PRs in units of meaning, in this order: what a machine can assert, consolidation, documentation
-5. When you think you are done, have it review again
-6. If the result does not satisfy it, do not call it complete; fix it and repeat the review
+1. まず、oxlint、fallow、steigerといった機械的な検出ツールがリポジトリ全体を走査しているかを確認する。
+2. simplify-reviewerにメインブランチ全体をレビューさせる。
+3. 検出結果をタスクリストにする。一つひとつを自身で決定し、進める。
+4. PRを意味の単位で、この順に取得する：マシンが主張できること、集約、ドキュメント
+5. 完了したと思ったら、再度レビューしてもらう。
+6. 結果が納得いかない場合は、完了とせず、修正してレビューを繰り返す。

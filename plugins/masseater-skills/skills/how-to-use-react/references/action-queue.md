@@ -1,15 +1,15 @@
-# Mutations that do not block interaction
+# インタラクションをブロックしないミューテーション
 
-Create mutations whose order is part of the specification by passing the same `scope: { id }` to `useMutation`. Mutations with the same `scope.id` run in order. This replaces the queuing with `useActionState` from the original article.
+`useMutation` に同じ `scope: { id }` を渡すことで、順序が仕様の一部となるミューテーションを作成する。同じ `scope.id` を持つミューテーションは順番に実行される。これにより、元の記事のキューイングが `useActionState` に置き換えられる。
 
-- Put a sequence whose order is part of the specification on the same `scope.id`
-- Update the screen immediately with `useOptimistic` and `startTransition`
-- Use pending for effects such as translucency
+- 順序が仕様の一部となるシーケンスを、同じ `scope.id` に配置する。
+- `useOptimistic` と `startTransition` を用いて、直ちに画面を更新する。
+- 半透明などのエフェクトには pending を使用する。
 
-## What not to use
+## 使用すべきではないもの
 
-- Do not stop the whole sequence of operations while pending by disabling buttons. Users want to keep operating
-- Do not put a sequence whose order is part of the specification on `Effect.all` with `concurrency: "unbounded"` or on separate scopes. A later operation finishes first and breaks the server state
-- Do not implement a queue yourself with `useRef` or an Effect Atom. `scope.id` already guarantees the order
+- ボタンを無効化して、pending 中に一連の操作全体を停止させない。ユーザーは操作を継続したいと考えている。
+- 順序が仕様の一部となるシーケンスを、`concurrency: "unbounded"` を指定して `Effect.all` に配置したり、別のスコープに配置したりしない。後続の操作が先に完了し、サーバーの状態が中断される。
+- `useRef` や Effect Atom を用いて、自身でキューを実装しない。`scope.id` がすでに順序を保証している。
 
-A one-off submit form may prevent double submission with `disabled={mutation.isPending}` and `aria-busy={mutation.isPending}`. Apply the rules above only to sequences where you want users to be able to hammer the operation.
+単発の送信フォームでは、`disabled={mutation.isPending}` および `aria-busy={mutation.isPending}` を指定することで、二重送信を防止できる。上記のルールは、ユーザーに操作を集中させて実行させたいシーケンスにのみ適用すること。

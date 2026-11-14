@@ -1,40 +1,40 @@
-# Component APIs
+# コンポーネントAPI
 
-- Name events in the form `onXxxChange`
-- Do not prefix boolean props with `is`, and make them false when omitted
-- Confine visual branching to `variant` and `size`
-- Pass content through `children`, and compose with clusters
-- Make interactive values controlled props by default
+- `onXxxChange` 形式の名前イベント
+- ブール型のpropsの先頭に `is` を付けず、省略した場合は false とする
+- 視覚的な分岐を `variant` と `size` に限定する
+- コンテンツを `children` で渡し、クラスターで合成する
+- インタラクティブな値をデフォルトで制御付きpropsとする
 
-## Events
+## イベント
 
-| Use | Do not use |
+| 使用 | 使用しない |
 | --- | --- |
 | `onChange`, `onOpenChange`, `onValueChange`, `onCheckedChange`, `onConfirm` | `setFoo`, `handleClick`, `changeOpen`, `onScrollTable` |
 
-When returning a value to the parent, pass the current value first. If needed, add the DOM event as the last argument. Do not leak how the parent updates its Effect Atom into the component.
+使用しない
 
-## Booleans and multiple values
+## ブール値および複数値
 
-| Use | Do not use |
+| 使用 | 使用しない |
 | --- | --- |
 | `open`, `disabled`, `checked`, `required`, `readOnly` | `isOpen`, `isLoading`, `hasMultiple` |
-| String unions for `variant` and `size` | A proliferation of booleans for appearance, importing enums |
+| `variant` と `size` に文字列ユニオンを使用する | 見た目のためのブール値の乱立、enum のインポート |
 
-Confine visual branching to `variant` and `size` of `cva`. When behavioral branching grows, do not add booleans; split the component or compose with clusters.
+視覚的な分岐を `variant` と `cva` の `size` に限定する。振る舞いの分岐が増えた場合はブール値を追加せず、コンポーネントを分割するかクラスターで合成する。
 
-## Composition
+## 合成
 
-- Pass content through `children`. Do not make `children` a function or an object
-- Build dialogs, menus and tables with the same clusters as shadcn/ui, in the shape of `DropdownMenu` with `DropdownMenuTrigger`, `DropdownMenuContent` and `DropdownMenuItem`
-- Do not expose slot props such as `header={...}` or `footer={...}`, or `renderHeader`
+- コンテンツを `children` で渡す。`children` を関数やオブジェクトにしない
+- ダイアログ、メニュー、テーブルを shadcn/ui と同じクラスターで構築し、`DropdownMenuTrigger`、`DropdownMenuContent`、`DropdownMenuItem` を用いて `DropdownMenu` の形式で作成する。
+- `header={...}` や `footer={...}`、`renderHeader` などのスロットpropsを公開しない。
 
-## Overriding appearance
+## 見た目のオーバーライド
 
-Do not override color, radius or shadow at the call site. `no-restyle` in `@shadcn/lint` stops it. Only layout and spacing are allowed. When a new appearance is needed, add a `variant` on the component side.
+呼び出し箇所で色、半径、シャドウをオーバーライドしない。`@shadcn/lint` の `no-restyle` で停止する。レイアウトと間隔のみが許可される。新しい見た目が必要な場合は、コンポーネント側で `variant` を追加する。
 
-## Control
+## 制御
 
-Make interactive values controlled props by default: the pairs `value` and `onValueChange`, `checked` and `onCheckedChange`, `open` and `onOpenChange`. Keep the container for temporary values in the caller's Effect Atom, not inside the component.
+インタラクティブな値をデフォルトで制御付きpropsとする。`value` と `onValueChange`、`checked` と `onCheckedChange`、`open` と `onOpenChange` のペア。一時的な値用のコンテナは、コンポーネント内ではなく呼び出し元の Effect Atom 内に保持する。
 
-Only for things whose content is fixed, such as a confirmation dialog with fixed wording, string props such as `title`, `description` and `confirmLabel` are fine.
+文言が固定された確認ダイアログなど、コンテンツが固定されているものに限り、`title`、`description`、`confirmLabel` などの文字列propsは問題ない。

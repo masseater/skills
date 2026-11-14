@@ -1,26 +1,26 @@
-# Writing a novel
+# 小説を書く
 
-Do not apply the norms in `references/`, which are meant for explanatory text, to a novel as they are.
+解説文用の `references/` にある規範を、そのまま小説に適用してはいけない。
 
-- Write the experiences that happen to characters, not information
-- Treat a character not as a generic personality but as a particular bias
+- 情報ではなく、登場人物に起こる体験を書け。
+- 登場人物に起こる体験を、一般的な性格ではなく特定のバイアスとして扱え。
 
-## Events as experience
+## 出来事を体験として捉えよ
 
-Meaning in a novel does not arise just from presenting settings or emotions. A character perceives something, takes it as having a certain meaning, and because of that changes their next action or judgment. That is where information becomes experience and shapes a person.
+小説における意味は、単に設定や感情を提示するだけでは生まれない。登場人物は何かを知覚し、それをある種の意味を持つものとして捉え、それによって次の行動や判断を変える。そこで情報が体験となり、人を形作るのである。
 
-Writing that lines up events and settings is weak not because it looks like bullet points. It is weak because nothing happens inside the characters, and there is no time or causality between the sentences.
+出来事や設定を整合させた文章は、箇条書きのように見えるから弱いのではない。登場人物の内面で何も起きておらず、文同士に時間や因果関係がないから弱いのだ。
 
-- When making the text longer, do not add other information
-- Deepen the time it takes for the same event to happen to the character
+- 文章を長くする際は、他の情報を加えないこと。
+- 同じ出来事が登場人物に起こるまでの時間を延ばすこと。
 
-## A character's bias
+## 登場人物のバイアス
 
-A character is not established by first-person pronouns, sentence endings or personality labels alone. Their bias is what separates the character from other characters.
+登場人物は、一人称代名詞や語尾、性格上のラベルだけで定義されるものではない。そのバイアスこそが、他の登場人物と彼らを分かつものである。
 
-- What they notice, what they do not know, and what they cannot say
-- Whom they try to protect, and which choices they avoid
+- 彼らが気づくこと、知らないこと、そして言えないこと
+- 誰を守ろうとし、どのような選択を避けるか
 
-If you replace this bias with generic reactions to make the text read naturally or to emphasize emotion, the character becomes someone else even if the tone of voice is similar. Restore a character who has been replaced in this way from the bias above.
+このバイアスを、文章を自然に読ませるための一般的な反応や、感情を強調するためのものに置き換えると、口調が似ていても、その登場人物は別の人物になってしまう。上述のバイアスから、このように置き換えられた登場人物を復元せよ。
 
-When dealing with characters who share a face, memories, a role or an origin, do not confuse those similarities with identity of personality. Write them as distinct characters.
+顔や記憶、役割、あるいは出自を共有する登場人物を扱う際は、それらの類似点を性格上のアイデンティティと混同してはならない。彼らを独立した登場人物として記述せよ。

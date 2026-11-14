@@ -1,24 +1,24 @@
 ---
 name: debug-like-a-human
-description: AI gets into post-login screens and production behind Access through the same authentication path as the owner, and checks things itself. Use when building screens, APIs or sites with a login, when investigating production bugs, and when you are about to write "I can't check because it needs the owner's authentication".
+description: AIはオーナーと同じ認証パスを通じて、ログイン後の画面やAccessの本番環境にアクセスし、自ら確認を行う。ログインを伴う画面やAPI、サイトの構築時、本番環境のバグ調査時、および「オーナーの認証が必要なため確認できない」と書きかけの際などに活用する。
 ---
 
 # debug-like-a-human
 
-## Why this skill is needed and the state it should achieve
+## なぜこのスキルが必要なのか、および実現すべき状態
 
-This skill is needed because authentication assumes a human's device and session. An AI session has no means of getting in, so it either stops with "I can't because it needs the owner's authentication" or fills the gap with the pre-login screen or stubs, and post-login bugs are not found until the owner touches them.
+このスキルが必要な理由は、認証が人間のデバイスとセッションを前提としているためである。AIセッションには侵入手段がないため、「オーナーの認証が必要なため確認できない」で止まるか、あるいはログイン前の画面やスタブで不足分を補い、ログイン後のバグはオーナーが手を付けるまで見つからない。
 
-The state this skill should achieve is that AI can get into every path humans use through the same authentication path as the owner, and check things itself. The owner's manual work is reduced to a single initial consent.
+このスキルが実現すべき状態とは、AIがオーナーと同じ認証パスを通じて、人間が利用するあらゆる経路にアクセスし、自ら確認を行うことである。オーナーの手動作業は、最初の一度の同意へと集約される。
 
-## Rules
+## ルール
 
-- Where the owner's authentication is required, prepare on the AI side a mechanism that goes through the same path as the owner's authentication, and get in. Do not stop at "I can't because it needs the owner's authentication"
-- Build that mechanism before the features that have authentication
-- Do not get in by removing authentication. Bypass policies, service tokens and test login endpoints placed in production do not go through the real path
-- Reproduce production bugs by doing the same post-login operation in production yourself before asking the owner
+- オーナーの認証が必要な箇所では、AI側でオーナーの認証と同じ経路を通る仕組みを用意し、アクセスする。「オーナーの認証が必要なため確認できない」で終わらせないこと。
+- 認証を必要とする機能よりも先に、その仕組みを構築すること。
+- 認証を撤廃してアクセスさせないこと。本番環境に配置されたポリシー、サービストークン、テストログインエンドポイントは、実際の経路を通らない。
+- オーナーに依頼する前に、本番環境で同様のログイン後操作を自ら行うことで、本番環境のバグを再現すること。
 
-## Mechanisms to prepare
+## 準備すべき仕組み
 
-- Behind Access: enable Managed OAuth and add the host to `infra/repositories/access-sites.ts` in masseater.dev. Once the owner logs in at `https://credentials.masseater.dev/access-oauth/login?site=<host>`, you can get in by attaching the token from sundries' `get_access_token` with `Authorization: Bearer`, only to requests to that host. Do not enable Managed OAuth for apps that have their own OAuth
-- Passkeys: make the virtual authenticator of Playwright's `browserContext.credentials` the AI's passkey, and go through the app's real registration and login paths. In production, register the AI's passkey with the owner's consent, and keep the key encrypted in the broker
+- 仕組みの準備：Managed OAuthを有効にし、masseater.dev の `infra/repositories/access-sites.ts` にホストを追加する。オーナーが `https://credentials.masseater.dev/access-oauth/login?site=<host>` でログインしたら、sundriesの `get_access_token` から `Authorization: Bearer` でトークンをアタッチすることで、そのホストへのリクエストのみアクセスできるようにする。独自のOAuthを持つアプリではManaged OAuthを有効にしないこと。
+- パスキー：Playwrightの `browserContext.credentials` の仮想認証器をAIのパスキーとし、アプリの実際の登録およびログイン経路を経由させる。本番環境では、オーナーの同意を得てAIのパスキーを登録し、キーはブローカー内で暗号化して保持すること。

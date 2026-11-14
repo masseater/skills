@@ -1,35 +1,35 @@
-# Writing the purpose and the reason
+# 目的と理由の記述
 
-Write the purpose of doing something. With a purpose, readers can apply the criterion and judge even in unexpected situations.
+何かを行う目的を書く。目的があれば、読者は想定外の状況でも基準を適用して判断できる。
 
-- Do not substitute a description of behavior that is obvious from the specification or the code for a reason
-- When a reason is complete in technical terms, trace back until you reach a business or product requirement
-- When working backward from the current state to a reason, state explicitly that it is a guess, and reach agreement with a human
+- 仕様やコードから明らかな動作の説明を、理由に置き換えない
+- 理由が技術的な表現で完結している場合は、ビジネスやプロダクトの要件に至るまで遡る
+- 現状から理由を逆算する場合、推測であることを明示し、人間と合意に至る
 
-## The reason before the technology
+## 技術以前の理由
 
-If A in "We do B because we need to do A" is a technical element, there is a further reason before it: why that technology was adopted. If no grounds are found when you trace back, suspect that the choice itself is overengineering.
-
-```
-This setting is enabled in order to do SSR.
-```
-
-That the setting is for SSR can be found out in a minute of research. The reason SSR is needed is missing. With a reason, you can choose, among the ways of achieving it, the one that fits the purpose.
+「Aをする必要があるからBを行う」のAが技術的な要素である場合、その前にさらに理由がある。なぜその技術が採用されたのか。遡ってみても根拠が見つからない場合は、選択自体がオーバーエンジニアリングであると疑う。
 
 ```
-SSR is needed for SEO.
+この設定はSSRを行うために有効にする。
 ```
 
-It looks good, but why SEO is considered is missing.
+その設定がSSR用であることは、1分ほど調べればわかる。SSRが必要な理由が欠けている。理由があれば、実現方法の中から目的に合うものを選択できる。
 
 ```
-This product is a B2C service. Besides simple marketing traffic, we also want to expect search traffic. Therefore SEO must be considered, so we do SSR.
+SSRはSEOに必要である。
 ```
 
-It includes the background of the requirement, but it is redundant. Writing product-level requirements everywhere duplicates existing information. If it is clear where the overarching principle lives, omit it here and keep the source of truth in one place.
+見た目は良いが、なぜSEOが考慮されるのかが欠けている。
 
 ```
-So that traffic can flow from search results to product pages, crawlers need to be able to get the main product information from the first response. To meet this requirement, product pages are rendered on the server.
+この製品はB2Cサービスである。単純なマーケティングトラフィックだけでなく、検索トラフィックも期待したい。したがって、SEOを考慮する必要があり、SSRを行う。
 ```
 
-"We expect traffic from search engines" is a product requirement. It is not derived backward from technology, so it is where the reason lands. The reason for that requirement itself is a business matter and should not be tied to technical requirements, so it may be omitted.
+要件の背景は含まれているが、冗長である。至る所で製品レベルの要件を記述すると、既存の情報が重複する。大枠の原則がどこにあるかが明確であれば、ここでは省略し、真実の源泉を一箇所にまとめておく。
+
+```
+検索結果から製品ページへトラフィックを誘導するためには、クローラーが最初のレスポンスから主要な製品情報を取得できなければならない。この要件を満たすため、製品ページをサーバー上でレンダリングする。
+```
+
+「検索エンジンからのトラフィックを期待する」は製品要件である。これは技術から逆算して導き出されたものではないため、ここに理由が位置づけられる。その要件の理由自体はビジネス上の事項であり、技術的な要件に紐付けるべきではないため、省略してもよい。

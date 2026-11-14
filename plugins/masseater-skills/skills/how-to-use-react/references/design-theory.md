@@ -1,23 +1,23 @@
-# Declarative UI and transitions
+# 宣言的なUIと遷移
 
-React guarantees consistency and immediacy. When you relax them, declare the relaxation with an API.
+Reactは一貫性と即時性を保証している。それらを緩和する際は、APIで緩和を宣言すること。
 
-- Consistency means that the UI before and after a change never appear together
-- Immediacy means that a state update reaches the screen with top priority
-- Only updates that align React's state with an external change that has already happened are made urgent
+- 一貫性とは、変更前後のUIが決して一緒に現れないことを意味する。
+- 即時性とは、状態の更新が最優先で画面に反映されることを意味する。
+- Reactの状態を、すでに発生した外部の変更と整合させる更新のみが、緊急扱いとなる。
 
-| Relaxation | API | When to use |
+| 緩和 | API | 使用場面 |
 | --- | --- | --- |
-| Immediacy | `useTransition` and `startTransition` | Almost every screen change caused by an event |
-| Consistency | `useDeferredValue` | When the input and a heavy list need not be in the same commit |
+| 即時性 | `useTransition` と `startTransition` | イベントによって引き起こされるほぼすべての画面変更 |
+| 一貫性 | `useDeferredValue` | 入力と重いリストを同じコミットに含める必要がない場合 |
 
-## Suspense
+## サスペンド
 
-A boundary is a constraint of independence: whether things must appear together or may appear separately. Rather than falling back to a skeleton by re-suspending, keep the old screen with a transition.
+境界とは独立性の制約であり、同じものを一緒に見せるべきか、別々に見せてよいかということだ。再サスペンドしてスケルトンに戻るのではなく、遷移付きで古い画面を維持すること。
 
-## Inside a transition
+## 遷移の内部で
 
-- Show what you want to display immediately during a transition with `useOptimistic`. Also use it for pending effects
-- Put a sequence of updates whose order is part of the specification on `useMutation` with the same `scope.id`, and do not block interaction. Also read [`action-queue`](action-queue.md)
+- `useOptimistic` を使用して、遷移中に表示したいものを即座に表示する。保留中のエフェクトにも使用すること。
+- 仕様の一部である更新の順序を、同じ `scope.id` を持つ `useMutation` に記述し、インタラクションをブロックしないようにすること。また、[`action-queue`](action-queue.md) も参照すること。
 
-`isPending` means the transition started by that operation is in progress. Even after `await` finishes, the transition continues as long as a suspension remains.
+`isPending` は、その操作によって開始された遷移が進行中であることを意味する。`await` が終了した後も、サスペンドが継続している限り、遷移は継続する。

@@ -1,9 +1,9 @@
-# Ending headings and bullet points with a noun
+# 見出しや箇条書きを名詞で締めくくる
 
-A heading shows the structure of the text; it is not conversation. End it with a noun, and do not write it in honorifics or in the "〜します" (we will do ...) form.
+見出しは文章の構造を示すものであり、会話ではない。名詞で締めくくり、敬称や「〜します」形では書かないこと。
 
-- End headings with a noun
-- Short bullet points may also end with a noun
-- End body sentences with a predicate
+- 見出しを名詞で締めくくる
+- 短い箇条書きも名詞で締めくくることができる
+- 本文を述語で締めくくる
 
-A heading in the "〜します" form looks extremely strange, because a human would almost never write one that way.
+「〜します」形の見出しは極めて不自然に見える。人間がそのような書き方をすることはまずないからだ。

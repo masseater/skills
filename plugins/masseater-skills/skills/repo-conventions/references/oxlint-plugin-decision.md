@@ -1,7 +1,7 @@
 # oxlint-plugin-decision
 
-- Write lint rules expressed in prose in `decision-rules.ts` with `defineDecisionRule`, and enable them in `vite.config.ts`. Answers are cached in `node_modules/.cache/oxlint-plugin-decision`
-- `vp check` uses `OPENROUTER_API_KEY` from `.env` for judgments
-- Use a paid decider only for rules that the free `openrouter/respan/span-01-lite` cannot judge. Check whether it can judge by clearing the cache and running violation examples and non-violation examples with known answers under `OXLINT_DECISION_EXPLAIN=json`. This is so that you do not pay even for rules that can be judged for free
-- Do not change the model a rule uses without the user's instruction
-- Report as violations only what you are certain of. Accept misses, and do not lower the threshold to catch them
+- `decision-rules.ts` に `defineDecisionRule` で記述したリントルールを文章で書き、`vite.config.ts` で有効化する。回答は `node_modules/.cache/oxlint-plugin-decision` にキャッシュされる。
+- `vp check` は `.env` の `OPENROUTER_API_KEY` を判定に使用する。
+- 無料の `openrouter/respan/span-01-lite` では判定できないルールにのみ、有料のディデッサーを使用する。キャッシュをクリアし、`OXLINT_DECISION_EXPLAIN=json` で違反例と解答が既知の違反例を実行して、判定可能かを確認する。これにより、無料で判定できるルールであっても費用を支払わなくて済むようにする。
+- ユーザーの指示なしに、ルールが使用するモデルを変更しない。
+- 確実に判定できるもののみを違反として報告する。ミスは受理し、それを検知するために閾値を下げない。

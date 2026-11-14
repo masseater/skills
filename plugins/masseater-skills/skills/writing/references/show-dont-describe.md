@@ -1,13 +1,13 @@
-# Show without explaining
+# 説明せずに表示する
 
-Procedural and reference documents such as README, documentation and SKILL.md are a UI that readers operate. Readers find the part they want by its heading and copy commands and settings to use them. Running prose is an obstacle they have to read before using them. Keep a sentence only when readers would actually make a mistake without it.
+README、ドキュメント、SKILL.mdなどの手順書やリファレンスドキュメントは、読者が操作するUIである。読者は見出しから目的の箇所を探し、コマンドや設定をコピーして利用する。文章の実行は、利用前に読まなければならない障壁となる。読者が実際に間違いを犯す可能性がある場合にのみ、一文を残すこと。
 
-- Do not explain what the document or the section is. The title, headings, lists and code blocks convey that
-- Do not narrate the operations. Do not add "run the following" or "write it in ..."; put the code block under the heading
-- Do not write sentences that confirm the result of an operation. Readers can see it on the screen right there. However, when nothing is output on success, or when success and failure look the same, show the output on success in a code block
-- Do not list several means that lead to the same result. Narrow it down to one
-- When there are several results, write only the most important one. Always keep results that cannot be undone
-- Do not write what happens internally. Storage locations, synchronization and background processing are outside the reader's interest
-- Do not write what does not exist or what cannot be done. Keep, in one line, only what readers would try and fail at
-- Make conditions headings, not preambles to sentences. Rather than "When using it in a team", have a section "Using it in a team"
-- Use verbs that make clear what happens. "Install" and "enable" rather than "put in" or "set up"
+- ドキュメントやセクションの内容について説明してはならない。タイトル、見出し、リスト、コードブロックは、それを伝えるものである。
+- 操作手順を説明してはならない。「以下を実行」や「～に書き込む」といった記述は行わず、コードブロックは見出しの下に配置すること。
+- 操作結果を確認する文章を書いてはならない。読者は画面上で直接確認できる。ただし、成功時に何も出力されない場合や、成功と失敗の結果が同一である場合は、成功時の出力をコードブロックで表示すること。
+- 同じ結果に至る手段を複数列挙してはならない。1つに絞り込むこと。
+- 結果が複数ある場合は、最も重要なもののみを書き込むこと。取り返しのつかない結果は常に除外すること。
+- 内部で何が起きているかを書いてはならない。保存場所、同期、バックグラウンド処理などは、読者の関心外である。
+- 存在しないことや不可能なことは書かないこと。保存場所、同期、バックグラウンド処理などは、読者が試して失敗するもののみを1行にまとめること。
+- 条件は文章の前書きではなく、見出しとして記述すること。「チームで使用する際に」ではなく、「チームで使用する際に」というセクションを設けること。
+- 何が起こるかを明確にする動詞を使用すること。「入れる」や「セットアップする」ではなく、「インストール」や「有効化」とすること。

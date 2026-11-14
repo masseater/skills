@@ -1,6 +1,6 @@
-# Writing a scrap
+# スクラップの作成
 
-Also read [`article`](../references/article.md).
+[`article`](../references/article.md)も参照。
 
-- Make the body a one- or two-sentence summary with embedded links
-- Match the shape of the existing scraps in `apps/portfolio/content/scraps/` of masseater.dev
+- 本文をリンクを埋め込んだ1〜2文の要約にする
+- masseater.dev の `apps/portfolio/content/scraps/` にある既存のスクラップの形式に合わせる

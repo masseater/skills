@@ -1,26 +1,26 @@
-# Word order: purpose, then means
+# 語順：目的、次に手段
 
-If A is the means and B is the purpose, write "To B, do A". What should be evaluated first is not whether A is appropriate but whether B needs to be achieved.
+Aを手段、Bを目的とする場合、「Bに対してAを行う」と記述する。まず評価すべきは、Aが適切かどうかではなく、Bを達成する必要があるかどうかである。
 
-- Put the purpose first and the means after it
-- Do not put the purpose in parentheses
-- If the purpose was already shared in the previous sentence, you need not repeat it
+- 目的を先に、手段をその後に配置する
+- 目的を括弧で括らない
+- 前の文で既に目的が共有されている場合は、繰り返す必要はない
 
-## Word order determines the order of evaluation
+## 語順によって評価の順序が決まる
 
-If you write "Do A (to B)", readers take A as already decided. They start evaluating how to carry out A before considering whether B is needed. If you put the purpose first, they can evaluate in the order "if B is unnecessary, A is unnecessary too" and "even if B is necessary, A is not necessarily the best". This prevents continuing to polish a means for an unnecessary purpose, and justifying a purpose on the premise of an existing means.
+「Aを行う（Bに対して）」と記述すると、読者はAが既に決まっていると捉える。Bが必要かどうかを考える前に、Aをどう行うかを評価し始める。目的を先に置けば、「Bが不要ならAも不要」「Bが必要であってもAが必ずしも最善とは限らない」という順序で評価できる。これにより、不要な目的のために手段を磨き続けたり、既存の手段を前提に目的を正当化したりすることを防げる。
 
 ```
-Render product pages on the server (to get traffic from search engines).
-→ To get traffic from search engines to product pages, render product pages on the server.
+サーバー上の商品ページをレンダリングする（検索エンジンからのトラフィックを得るため）。
+→ 検索エンジンから商品ページへのトラフィックを得るため、サーバー上の商品ページをレンダリングする。
 ```
 
-In the original sentence, the rendering method is fixed first and the purpose is tacked on afterward. In the revised sentence, the need for search traffic can be evaluated first, and if it is needed, whether server-side rendering is appropriate can be evaluated.
+元の文では、先にレンダリング方法を固定し、後から目的を付け加えている。修正後の文では、検索トラフィックの必要性を先に評価し、必要であればサーバー側のレンダリングが適切かどうかを評価できる。
 
-## Parentheses
+## 括弧
 
-Use parentheses only for supplements that would not affect a decision if removed from the text. The purpose, which is the grounds for adopting a means, is the most important information, so do not put it in parentheses; write it as a causal relationship in the text.
+本文から削除しても判断に影響しない補足事項にのみ括弧を用いる。手段を採用する根拠となる目的は最も重要な情報であるため、括弧で括らず、本文中の因果関係として記述する。
 
-## Omission
+## 省略
 
-The criterion for omitting is whether readers can still evaluate the means while recognizing the purpose after the omission.
+省略の基準は、省略後も目的を認識した上で手段を評価できるかどうかである。

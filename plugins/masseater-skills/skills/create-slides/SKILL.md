@@ -1,207 +1,137 @@
 ---
 name: create-slides
-description: A procedure that, before making slides, presents defaults for the audience and the occasion and an outline built from the audience's questions, and after making them, writes a speaker script to check the flow of the presentation. Use when asked to make slides or presentation material.
+description: スライドを作成する前に、聴衆や場面に応じたデフォルト設定と聴衆からの質問に基づいて作成した構成案を提示し、作成後にプレゼンテーションの流れを確認するためのスピーカースクリプトを記述する手順。スライドやプレゼンテーション資料の作成を依頼された際に使用する。
 ---
 
-# Making slides
+# スライドの作成
 
-To avoid making slides that miss the point, always decide and present the defaults for the audience and the occasion, and the outline, before making them.
-Proceed through the phases in the order 1 → 2 → 4 → 5 → 6.
-Put the results of phases 1 and 2 in the reply that starts the work, as defaults and an outline, and make the slides without waiting for an answer.
-If the repository has a document that summarizes the feedback received so far and the procedures for checking, or a retrospective on structure, read it before making the slides.
-Before handing them to the owner, review them with the procedure [Reviewing before reporting](usecases/review.md).
-To order the structure and the speaker script in the order the reader's understanding is assembled, build them with the procedure of the `build-explanation` skill.
+要点を外したスライドにならないよう、作成前に必ず聴衆や場面に応じたデフォルト設定と構成案を決定し、提示すること。1 → 2 → 4 → 5 → 6 の順に各フェーズを進める。フェーズ1と2の結果を、作業を開始する返信にデフォルト設定および構成案として記載し、回答を待たずにスライドを作成する。リポジトリにこれまでのフィードバックをまとめた文書や確認手順、あるいは構成の振り返りがある場合は、スライド作成前に目を通しておくこと。オーナーに渡す前に、手順 [報告前の確認](usecases/review.md)でレビューする。読者の理解がまとまった順に構成とスピーカースクリプトを発注するため、`build-explanation` スキルの手順で作成する。
 
-## Components
+## 構成要素
 
-Build slides with the repository's deck component library. If there is none, install this skill's `assets/deck` (slide and icon components; the rules for color and type are in `assets/deck/DESIGN.md`) and `assets/single-html` (Vite settings that export a deck to a single HTML file and a PDF) as git subpath dependencies, such as `vp add github:masseater/skills#path:/plugins/masseater-skills/skills/create-slides/assets/deck`. Do not copy them.
+リポジトリのデッキコンポーネントライブラリでスライドを作成する。ない場合は、本スキルの `assets/deck`（スライドおよびアイコンコンポーネント。色と種類のルールは `assets/deck/DESIGN.md` に記載）と `assets/single-html`（デッキを単一のHTMLファイルとPDFにエクスポートするVite設定）を、`vp add github:masseater/skills#path:/plugins/masseater-skills/skills/create-slides/assets/deck` のように git サブパスの依存関係としてインストールする。コピーはしない。
 
-## The intended reader and the amount of explanation
+## 想定読者と説明量
 
-When there are no instructions about the audience or the occasion, assume as the intended reader someone with no prior knowledge but solid comprehension.
-Make the deck something that person can understand by reading it. Do not make material that cannot be understood without hearing the speaker's explanation, or a memo that only lists key points.
-Do not aim for many or few slides. Include all the information the intended reader needs to understand, and use as many slides as it takes to convey it. Do not add slides that are not needed for understanding.
-People first hold the big picture, and understand by connecting new things to it one at a time. So build the structure to start from the big picture of something the audience already knows, and, as the explanation of the big picture reaches a point where a part is needed, explain that part right there. Do not line up the explanations of parts and basics together first and leave the big picture for later.
-Explain proper nouns and technical terms (token, VLA and so on) right after the word comes up in the talk, unless it has been confirmed that the audience knows them. In the explanatory text of an explanation slide, write first the question the audience has after seeing the previous slide, and introduce the word as the answer to that question. On the explanation slide, write what the word refers to, and where and why it was needed on the previous slide.
-Do not end by merely explaining terms or subjects. Write down the questions readers have when they see the slide, and put answering those questions at the center of the slide. Examples of questions are why it is needed, whether you would not understand it by using it, and which is best after all. Write the lead text as the answer to that question.
-Even for decks that are lists or summaries of kinds, decide what the whole deck wants to convey as one sentence with a subject and predicate, and show that sentence on an early slide. Line up the slides for each item as the grounds for that sentence.
-After making the outline, read the heading and point of each slide from the top from the intended reader's standpoint, and check whether there are words that appear without explanation, or talk that jumps from the previous slide. If you find any, add the explanation.
+聴衆や場面に関する指示がない場合は、想定読者を、事前知識はないが十分に理解している人物とする。その人物が読んで理解できる内容のデッキにする。話し手の説明を聞かなければ理解できない資料や、要点を列挙しただけのメモは作成しない。スライドの枚数は多くなりすぎず、少なすぎないようにする。想定読者が理解するために必要な情報をすべて盛り込み、伝えるために必要な枚数のスライドを使用する。理解に不要なスライドは追加しない。人はまず全体像を把握し、そこに新しい要素を一つずつ結びつけて理解する。したがって、聴衆がすでに知っている全体像から出発し、全体像の説明が必要な箇所に差し掛かったら、その箇所をその場で説明するように構成する。パーツや基本事項の説明を先に並べて、全体像は後回しにしない。固有名詞や専門用語（token、VLAなど）は、聴衆が理解していることが確認できた場合を除き、話の中で出てきた直後に説明する。説明スライドの説明文では、まず前のスライドを見た聴衆が抱いた疑問を書き、その疑問に対する答えとしてその単語を紹介する。説明スライドでは、その単語が何を指し、前のスライドのどこで、なぜ必要だったのかを記述する。単に用語や主題を説明するだけで終わらせない。読者がスライドを見たときに抱く疑問を書き出し、その疑問への回答をスライドの中心に据える。疑問の例としては、「なぜ必要なのか」「使えば理解できないのではないか」「結局どれが最適なのか」などが挙げられる。その疑問に対する答えとしてリードテキストを書く。リスト形式や要約形式のデッキであっても、デッキ全体が伝えたいことを主語と述語を持つ一文として決定し、その一文を初期のスライドで示す。各項目のスライドを、その一文の根拠として並べる。構成案を作成したら、想定読者の視点から各スライドの見出しと要点を上から読み、説明なしに出現する単語や、前のスライドから飛んでくる話がないかを確認する。見つかった場合は、説明を追加する。
 
-## Phase 1: Alignment
+## フェーズ1：アライメント
 
-Confirm the following groups.
-When an earlier answer changes a later question itself, ask only that question first. The choice between a presentation and reading material is an example; the items to ask change depending on the answer.
-Gather items that do not affect each other into one round, attach defaults, and proceed without waiting.
+以下のグループを確認する。前の回答が後の質問自体を変更する場合は、まずその質問のみを問う。プレゼンテーションと読み物のどちらを選ぶかはその一例であり、回答に応じて問う項目が変わる。互いに影響しない項目は1つのラウンドにまとめ、デフォルトを紐付けて、待たずに進める。
 
-| Group | What to confirm |
+| グループ | 確認するもの |
 | --- | --- |
-| Audience | Who they are (one person / several), roles and positions, whether they are a decision-maker, how many |
-| Relationship | First meeting / already acquainted, our position (proposing side, contractor side, colleague, speaker), their attitude (keen, wait-and-see, wary) |
-| Audience's premises | How much they know of internal circumstances and terms, how they perceive the problem, what they expect of us |
-| Occasion | What kind of occasion it is (meeting, interview, talk, internal sharing), the surrounding context, time allotted, whether there is Q&A, screen / print |
-| Goal | What we want them to think, what we want them to decide, what next action we want to happen afterward |
-| Delivery | Spoken, handed over as reading material, or both. Tone (formal, casual) |
-| Sharing and publication | Whether to share it as is after speaking, or make a separate slide deck for publication with supplements; scope of publication (internal, the client company, the public) |
-| Constraints | Information that must not be shown, NDAs, consistency with existing material, notation to follow |
-| Existing material | Whether there are past slides or reference material, and whether to reuse them |
+| 対象 | 誰であるか（1人／複数）、役割と立場、意思決定者であるか、何人 |
+| 関係性 | 初回の打ち合わせ／既に面識がある、こちらの立場（提案側、委託側、同僚、発言者）、相手の態度（熱心、様子見、警戒） |
+| 対象の前提 | 内部事情や条件をどの程度把握しているか、問題をどう捉えているか、こちらに何を求めているか |
+| 機会 | どのような機会か（打ち合わせ、面接、トーク、内部共有）、周囲の状況、割り当てられた時間、質疑応答の有無、画面／印刷 |
+| ゴール | 相手にどう考えてほしいか、何を決めてほしいか、その後どのようなアクションを起こしてほしいか |
+| デリバリー | 口頭、読み物として渡す、またはその両方。トーン（フォーマル、カジュアル） |
+| 共有と公開 | 登壇後にそのまま共有するか、補足資料付きの別スライド資料として公開するか、公開範囲（社内、クライアント企業、一般） |
+| 制約事項 | 見せてはいけない情報、NDA、既存資料との整合性、記載事項 |
+| 既存資料 | 過去のスライドや参考資料の有無、および再利用の有無 |
 
-The language is Japanese unconditionally; do not ask.
-Once it is decided to hand it over as reading material, do not assume spoken explanation; make the slides understandable when read on their own.
+言語は無条件に日本語とし、質問しない。読み物として渡すことが決まったら、口頭での説明を前提とせず、単体で読んだ際に理解できるスライドにする。
 
-Once the answers or defaults are in place, define the taste from them together, and put it in the reply that starts the work along with the outline.
-Define the taste by tone, density of text, ratio of figures to text, strength of decoration, and the tendency of the presentation patterns used.
+回答やデフォルトが整ったら、それらから得られるテイストを共に定義し、作業の開始となる返信にアウトラインと共に記載する。トーン、文章の密度、図と文章の比率、装飾の強弱、使用するプレゼンテーションパターンの傾向によってテイストを定義する。
 
-## Phase 2: Structure
+## フェーズ2：構成
 
-### Three lines to write before making
+### 作成前に書き込む3行
 
-Before dividing into slides, write the following three lines.
+スライドに分ける前に、以下の3行を書く。
 
-1. The audience's question: write what the audience wants to know when they open this deck.
-2. The answer: write the answer to that question as one sentence with a subject and predicate.
-3. The judgment you want from the audience: write what the audience will decide, or become able to do, after reading. A deck for which you cannot write a decision is an explanation or a list, so write what the audience will become able to explain.
+1. 対象者の質問：この資料を開いたときに何を知りたいかを書く。
+2. 答え：その質問に対する答えを、主語と述語を含む一文で書く。
+3. 対象者に求める判断：読んだ後に対象者が何を決め、あるいは何ができるようになるかを書く。判断を書けない資料は説明やリストになるため、対象者が説明できるようになることを書く。
 
-Build the structure in the order that answers this question. Do not build it in the order of the material, such as the order of the request text, the order of Slack comments, or the chapters of a speech.
-If the request text contains the user's line of argument (such as "until now it was ..., but ... is ..."), use that line as the skeleton.
+この質問に答える順序で構成を組む。依頼文の順序、Slackコメントの順序、スピーチの章の順序など、資料の順序で構成しない。依頼文にユーザーの主張の一文（「これまでは……だったが、……は……だ」など）がある場合は、その一文を骨格とする。
 
-### The skeleton for each kind of deck
+### 各種類の資料の骨格
 
-| Kind | Skeleton |
+| 種類 | 骨格 |
 | --- | --- |
-| Request and proposal | Premise (history and why we are talking about this) → the content of the request and what will be built with it (if there are two requests, separate them with a section divider) → comparison on the same criteria, including options not adopted → table of total costs per pattern (including all related contracts) → risks borne by the receiving side and how to lower them (also write the cost of options that eliminate the risk) → what we want decided → summary |
-| Explanation of a new threat or change | A mechanism the audience knows → which part of that mechanism was attacked (cause and effect) → concrete cases → what changes in the audience's environment → possible responses → summary |
-| Explanation with many terms | The audience's question → the big picture seen from something the audience knows → the parts of the big picture, one slide each, in the order they become needed (explain terms right after they appear on that slide) → list of options → individual slides for each option → summary |
-| List | The table of contents may use the chapters of the material. Make each item "quotation of the original (a frame that visibly marks it as original) → laws, budgets or projects actually in motion → explanation" in that order |
+| 依頼と提案 | 前提（経緯となぜこれを話すのか）→依頼内容とそれで何を作るか（依頼が2つある場合はセクション区切りで分ける）→採用しなかった選択肢も含めて同じ基準で比較→パターンごとの総費用表（関連する全契約を含む）→受け手側が負うリスクとその低減方法（リスクを排除する選択肢のコストも書く）→何を決めてほしいか→まとめ |
+| 新たな脅威や変化の説明 | 対象者が知っている仕組み→その仕組みのどの部分が攻撃されたか（因果関係）→具体的な事例→対象者の環境にどのような変化が生じるか→考えられる対応→まとめ |
+| 用語の多い説明 | 対象者の質問→対象者が知っていることから見える全体像→全体像の部分を1スライドずつ、必要になる順に（そのスライドに出た直後に用語を説明する）→選択肢のリスト→選択肢ごとの個別スライド→まとめ |
+| リスト | 目次は資料の章を用いてもよい。各項目は「原文の引用（原本であることを明示する枠）→実際に動いている法律、予算、プロジェクト→説明」の順にする |
 
-### Checks when dividing into slides
+### スライドに分ける際のチェック
 
-- Premises: write down the facts the audience needs to know for the answer sentence to hold, and confirm they are on slides before the answer.
-- What to compare against: always put on a numbers slide whichever of the proportion of the whole, a comparison target and the point in time are needed. Attach the denominator and source to proportions, and choose the latest ones or other options as comparison targets. For cost estimates, align all options to the same conditions on the premise of actual usage.
-- Weight: put a lead sentence on a fact slide that shows what the problem is for the audience. Show weight through a comparison target.
-- Objections: write down at least one objection or alternative the audience is likely to raise first, and put a slide that answers it.
-- The receiving side's questions: for a request deck, write down at least three questions the receiving side is likely to ask first after reading. Always include "How much in total?", "What could happen if we hand it over?" and "What will be built?", and confirm there is a slide that answers each.
-- Separation: do not put two states, such as "until now" and "from now on", or two requests on one slide. After listing the options, explain each option on its own slide.
-- The real thing: decide the real thing to put on each slide before making it. Real things are product names, law names, budget amounts, model names and company names. A slide for which none is decided becomes a summary, so research it or delete it.
-- Axis: look from the audience's side at whether each slide is needed for the answer sentence or the audience's judgment. Move slides that only explain mechanisms and are not needed for judgment into the speaker script. However, do not move explanation slides the intended reader needs to understand the answer sentence. Do not remove cost or risk slides, because even if they look superfluous to the speaker, the audience needs them for judgment.
+- 前提：回答文が成立するために対象者が知っておくべき事実を書き出し、回答の前にスライドに載っていることを確認する。
+- 比較対象：全体の割合、比較対象、時点のうち、いずれかが必要なものは必ず数値スライドにする。割合には分母と出典を添え、最新のものやその他の選択肢を比較対象として選ぶ。費用見積もりについては、実際の利用を前提として、すべての選択肢を同一の条件に合わせる。
+- 重み：対象者にとって何が問題なのかを示すリード文を事実スライドに掲載する。比較対象を用いて重みを示す。
+- 反論：対象者が最初に挙げる可能性が高い反論や代替案を少なくとも1つ書き出し、それに回答するスライドを掲載する。
+- 受け手側の質問：リクエストデッキの場合、読み終えた後に受け手側が最初に尋ねる可能性が高い質問を少なくとも3つ書き出す。「合計でいくらになるか？」「引き渡したらどうなるか？」「何が作られるか？」を必ず含め、それぞれに回答するスライドがあることを確認する。
+- 分離：「今まで」と「これから」のように2つの状態や、1枚のスライドに2つのリクエストを掲載しない。選択肢を列挙した後、各選択肢を個別のスライドで説明する。
+- 本番：作成前に、各スライドに掲載する本番の項目を決定する。本番とは、製品名、法律名、予算額、モデル名、会社名などを指す。いずれも決定していないスライドは要約となるため、調査するか削除する。
+- 軸：各スライドが回答文に必要か、あるいは対象者の判断に必要かを、対象者側の視点から検討する。仕組みの説明のみで判断に不要なスライドは、スピーカースクリプトに移動させる。ただし、想定読者が回答文を理解するために必要な説明スライドは移動させない。費用やリスクに関するスライドは削除しない。たとえスピーカーにとって不要に思えても、対象者が判断に必要とするためである。
 
-### How to present the outline
+### アウトラインの提示方法
 
-List the three lines and, for each slide, the heading and one sentence of what it wants to say, and put them in the reply that starts the work. Do not make it a question; start making without waiting for an answer.
-Polish the outline with the yomiyasu skill before putting it in. Likewise polish the slide text and speaker script before handing them over.
-When adding slides after feedback, rearrange the outline as it will be after the addition, and confirm there are no slides off the axis before adding them.
+3行のリストを作成し、各スライドについて伝えたい内容の見出しと1文をまとめ、作業の冒頭となる返信文に盛り込む。質問形式にせず、回答を待たずに作成を開始する。配置する前に、読みやすさスキルでアウトラインをブラッシュアップする。同様に、スライドの本文とスピーカースクリプトもブラッシュアップしてから手渡す。フィードバックを受けてスライドを追加する際は、追加後のアウトラインに再構成し、追加前に軸から外れたスライドがないか確認する。
 
-### How to write the list
+### リストの書き方
 
-List the number of slides and the role of each slide.
-Attach to the list the presentation pattern (a layout from the deck component library) used for each slide.
-Build exactly as the outline you showed, and do not add slides that were not instructed. If the user fixes the outline, rebuild to match that shape.
-Put only one topic on a slide. If there are two topics, split the slide, or change one slide with animation.
-Order the slides so that each answers the question the audience has next after seeing the previous slide. Make both sides of a comparison slide use the same subject matter.
-Put the summary of the deck on the last slide, and make its heading plainly "まとめ" (Summary), not decorated like "この資料のまとめ" (Summary of this material). Do not make a slide that collects sources.
+スライドの枚数と各スライドの役割を記載する。各スライドで使用したプレゼンテーション形式（デッキコンポーネントライブラリのレイアウト）をリストに添付する。提示したアウトライン通りに作成し、指示されていないスライドは追加しない。ユーザーがアウトラインを修正した場合は、それに合わせて再構築する。1枚のスライドに掲載するトピックは1つだけにする。トピックが2つある場合はスライドを分割するか、1枚のスライドをアニメーション付きで変更する。前のスライドを見た後、対象者が次に抱く疑問にそれぞれ答えられるよう、スライドの順序を整える。比較スライドの両面には、同じ題材を使用する。デッキの要約を最後のスライドに配置し、見出しは「この資料のまとめ」のように装飾せず、シンプルに「まとめ」とする。資料をまとめただけのスライドは作成しない。
 
-## How to show proper nouns and services
+## 固有名詞とサービスの表記方法
 
-So that it is visually clear, when a proper noun appears, bring in and place its official logo if one is available.
-If the talk contains a service that can be pictured concretely (Slack, GitHub, Twitter and so on), actively make slides that reproduce that service's screen layout.
-Reproduce the real screen as it is. Do not turn it into something else by pulling its colors or the arrangement of its parts toward the design system.
+視覚的に分かりやすくするため、固有名詞が現れた際は、公式ロゴがある場合はそれを配置する。トークに具体的にイメージできるサービス（Slack、GitHub、Twitterなど）が含まれている場合は、そのサービスの画面レイアウトを再現したスライドを積極的に作成する。実際の画面をそのまま再現すること。色やパーツの配置をデザインシステムに合わせて調整し、別のものへと作り変えてはならない。
 
-## Figures and graphs
+## 図表・グラフ
 
-When showing a flow of input and output in a figure, do not leave the arrows static; show it actually flowing with animation. Move flowing points and labels only between the starting point and the arrival point, and do not let them pass through the box at the arrival point.
-After writing an animation, open the built HTML with the Playwright chromium used for PDF output, and record the target slide with the recording feature (recordVideo) for longer than one cycle of the animation. Look at the recorded video with the frames laid out in one image, as in `ffmpeg -i x.webm -vf "fps=2,scale=640:-1,tile=5x5" -frames:v 1 sheet.png`. Look at the order of going and returning, whether things stop inside the arrival box, and whether they pass through boxes or text on the way, judge whether the expression is appropriate, and fix it before pushing.
-Separately from checking animations, before reporting, open the built HTML with the same chromium and capture the state of every slide at every click. Look for misalignment, overlap, unnatural wrapping and gaps yourself, and fix what you find. When checking rendering, crop and enlarge each figure.
-When a slide has only a figure, center the figure.
-Do not attach icons to slides that merely list item names. Use icons to show figure elements as pictures.
-Do not draw figure elements as boxes with only text in them. For things that can be pictured, such as a government office, a server, the internet, a PC, a document, a person or a key, draw icons with the icon component of the deck component library so that what concept they are is clear at a glance. When the picture you want is not among the components, add it to the component library rather than making one per deck.
-Use step-by-step reveals only where you show a change, and show at once what may be shown together.
-Make sure the arrows and short words in figures do not show stronger causation or relationships than the facts you researched, and do not drop conditions or possibilities.
-Put only one graph on a slide, and draw it large across the full width of the body. Do not make it small by placing explanatory text or a column of items beside the graph, or by stacking two graphs vertically.
-Do not split the same metric into separate graphs; combine it into one graph, drawn in a form like the common AI benchmark images.
-When comparing numbers between models, use a line graph, which is more visually clear than a bar graph.
-For line graphs of benchmark progress, do not connect the top score at each point in time with a single line; split the lines by developer, such as OpenAI, Anthropic and Google.
-When including evaluations such as the weight of risks or returns, write the grounds so they do not look arbitrary.
-For talk about where a range begins and ends, such as national borders or network routes, add a figure that shows the range visually.
-For technical terms the audience does not know, such as law names, put an explanation slide such as "CLOUD Actとは" (What is the CLOUD Act) before using the word.
+入力と出力の流れを図で示す際は、矢印を静止させず、アニメーションで実際に流れる様子を見せること。流れる点やラベルは、始点と到達点の間のみで移動させ、到達点のボックスを通り抜けさせないこと。アニメーションを書き終えたら、PDF出力用のPlaywright ChromiumでビルドしたHTMLを開き、録画機能（recordVideo）で対象のスライドをアニメーションの1サイクル分より長く録画する。`ffmpeg -i x.webm -vf "fps=2,scale=640:-1,tile=5x5" -frames:v 1 sheet.png`のように、フレームが1つの画像に配置された録画映像を確認すること。進む・戻るの順序、到達ボックス内で止まるか、途中でボックスやテキストを通り抜けるかを確認し、表現が適切か判断してプッシュする前に修正すること。アニメーションの確認とは別に、報告前に同じChromiumでビルドしたHTMLを開き、クリックするたびにすべてのスライドの状態をキャプチャする。位置のずれ、重なり、不自然な折り返しや隙間は自ら探し、見つけたものを修正すること。レンダリングを確認する際は、各図を切り抜き、拡大すること。スライドに図しかない場合は、図を中央揃えにする。単に項目名を列挙しただけのスライドにアイコンを付けないこと。図の要素を絵として示すためにアイコンを使用すること。図の要素を、テキストだけが書かれたボックスとして描かないこと。役所、サーバー、インターネット、PC、文書、人物、鍵など、イメージできるものについては、デッキコンポーネントライブラリのアイコンコンポーネントでアイコンを描き、どの概念であるかが一目で分かるようにすること。見たい絵がコンポーネントにない場合は、デッキごとに作成せず、コンポーネントライブラリに追加すること。ステップバイステップの公開は、変更箇所のみを示し、まとめて表示できるものは一度に示すこと。図中の矢印や短い単語が、調査した事実よりも強い因果関係や関係性を示さないようにし、条件や可能性を省略しないこと。1枚のスライドにグラフは1つだけ配置し、本体の幅いっぱいに大きく描くこと。グラフの横に説明文や項目の列を配置したり、2つのグラフを縦に積み重ねたりして小さくしないこと。同じ指標を別々のグラフに分けず、共通のAIベンチマーク画像のような形式で描いた1つのグラフにまとめること。モデル間で数値を比較する場合は、棒グラフよりも視覚的に分かりやすい折れ線グラフを使用すること。ベンチマークの進捗の折れ線グラフでは、各時点の最高スコアを1本の線で結ばず、OpenAI、Anthropic、Googleのように開発者ごとに線を分けること。リスクやリターンの重みなどの評価を含める場合は、恣意的に見えないよう根拠を記述すること。国境やネットワークルートなど、範囲の始まりと終わりを示す話については、範囲を視覚的に示す図を追加すること。法律名など対象者が知らない専門用語については、「CLOUD Actとは」という説明スライドを添えた上で使用すること。
 
-## Headings
+## 見出し
 
-In a heading, write in a short phrase what is on the slide, that is, what the figure, table or body shows.
-Do not put a fact or claim as a sentence in the heading. Restating in the heading a fact written in the body or figure does not move the talk forward at all.
-For example, for a slide with a graph of the number of CVEs per month, make the heading "2026年までのCVE数の変化" (Change in the number of CVEs up to 2026). Do not put a factual sentence such as "公開されるCVEは2026年7月に月1万件を超えた" (Published CVEs exceeded 10,000 per month in July 2026), nor a topic name that does not show the content, such as "OSSの配布" (Distribution of OSS).
-On slides where the figure tells what follows, an opening that states only a condition or scene suits better than a label that names the figure's content. "ライブラリを使わずに作るもの" (What you build without libraries) becomes "ライブラリを使わずに作ると" (If you build without libraries), and "家づくりの部品と職人の仕事" (The parts of building a house and the work of craftsmen) becomes "例えば家を作る時" (For example, when building a house).
-In decks that explain mechanisms, put in the heading the question the reader has before that slide (such as "なぜ答えは少しずつ表示されるのか", why does the answer appear little by little), and answer that question in the first sentence of the body. Readers take in answers when they have a question.
-Headings of this form do not line up nouns with commas, so they do not fall under the ban on "〜、〜 (noun ending)".
-Do not add headings to slides that do not need them, such as the cover, screen reproductions, and slides that get across with the figure alone.
-Do not attach fade-in sentences to everything. Do not attach them to slides that are clear from the figure; attach them only to slides that do not get across without words to supplement them.
+見出しには、スライドの内容、つまり図表や本文が何を示しているかを簡潔なフレーズで記述する。見出しに事実や主張を文章として盛り込んではならない。本文や図表に書かれた事実を見出しで言い換えても、話が全く前に進むことはない。例えば、月間のCVE数のグラフが掲載されているスライドの場合、見出しを「2026年までのCVE数の変化」とする（Change in the number of CVEs up to 2026）。「公開されるCVEは2026年7月に月1万件を超えた」（Published CVEs exceeded 10,000 per month in July 2026）のような事実的な文章や、「OSSの配布」のように内容を示さないトピック名は記載しない。図表がその後の内容を伝えているスライドでは、図の内容を列挙したラベルよりも、条件やシーンのみを記述した書き出しの方が適している。「ライブラリを使わずに作るもの」は「ライブラリを使わずに作ると」となり、「家づくりの部品と職人の仕事」は「例えば家を作る時」となる。仕組みを説明するデッキでは、そのスライドの前に読者が抱く疑問（「なぜ答えは少しずつ表示されるのか」、why does the answer appear little by little）を見出しに盛り込み、本文の最初の一文でその疑問に答える。読者は疑問を持ったときに答えを受け止めるものである。このような形式の見出しは、名詞をカンマで区切らないため、「〜、〜（名詞語尾）」の禁止事項には当てはまらない。表紙や画面再現、図表だけで伝わるスライドなど、見出しが不要なスライドには見出しを付けない。すべてにフェードイン文を添えないこと。図表から明らかなスライドには添えず、言葉がないと伝わらないスライドにのみ添えて補完する。
 
-## Sentence form
+## 文形式
 
-Do not use the form "〜、〜 (noun ending)", which separates with a comma and ends with a noun, anywhere without exception: headings, body, text in figures, or the speaker script.
-For example, rewrite "ボトルネック、人のやり取り" (bottleneck, human interaction) as a sentence with a subject and predicate, such as "ボトルネックは人のやり取りだった" (the bottleneck was human interaction).
+見出し、本文、図中のテキスト、話者の台本など、「〜、〜（名詞語尾）」という、カンマで区切り、名詞で終わる形式は、例外なくどこにも使用しないこと。例えば、「ボトルネック、人のやり取り」を、「ボトルネックは人のやり取りだった」のように、主語と述語を持つ文として書き換える。
 
-Make the text on slides, not just headings but also text and labels in figures, phrases that name what is there. Do not put spoken-language sentences such as "〜だ" or "〜よね" on slides; write the words to be spoken in the speaker script.
-For example, do not make a figure label "Claudeが読める範囲もこれと同じだ" (the range Claude can read is the same as this); make it "Claudeが読める範囲" (the range Claude can read).
-Do not put closing words such as an appeal to the audience on the closing slide.
-Do not add sentences, disclaimers or supplements that were not instructed. If you want to add one, do not make it; ask in one line in the report.
+スライド上のテキストは、見出しだけでなく、図中のテキストやラベル、そこにあるものを指し示すフレーズも例外なく作成すること。「〜だ」や「〜よね」といった話し言葉の文をスライドに載せず、話す言葉は話者の台本に記述すること。例えば、図のラベルを「Claudeが読める範囲もこれと同じだ」とせず、「Claudeが読める範囲」とすること。締めくくりのスライドに、聴衆への呼びかけなどの結びの言葉を記載しないこと。指示されていない文や免責事項、補足を付け加えないこと。付け加えたい場合は作成せず、レポート内で1行で求めること。
 
-Write real names the audience can search for later, and write features by their official names. Choose technology examples that are in use now.
-Assign one word to one concept, and write the full name of an abbreviation at its first occurrence.
-When the audience is not engineers, do not show source code or file names. Choose figurative words the audience will not misunderstand.
+聴衆が後で検索できる本名を書き、特徴については正式名称で記載すること。現在使用されている技術例を選ぶこと。1つの概念に1つの単語を割り当て、略称の最初の出現箇所にフルネームを記載すること。聴衆がエンジニアでない場合は、ソースコードやファイル名を表示しないこと。聴衆が誤解しない比喩的な言葉を選ぶこと。
 
-## Phase 4: Gathering information
+## フェーズ4：情報収集
 
-After the structure is settled, ask the owner only about the missing items.
-Do not fill in a picture of the owner by guessing from public information.
-Do not hand over a deliverable with holes marked [要確認] (to be confirmed). Write out fully what can be written from other slides in the same deck, past decks, and the owner's remarks, and make the places written by guesswork identifiable as guesses in the speaker script.
-On slides that mention AI, confirm the latest release information on the web on the day you make them before writing, and leave the date of confirmation and the source in the speaker script. Three months' difference makes the available models and their performance something else entirely, so do not write from memory or from information in past material.
-For the numbers of rankings and leaderboards, open the ranking itself, not a roundup article, on the day you make the slides, and confirm the date it was last updated and the newly listed models. Do not stop at the date of a roundup article.
-For benchmarks, apart from the date you researched, confirm when the numbers were measured, and use only ones that compare the latest models with each other.
-When introducing a case, do not put the source link in a separate place; make the introductory text of the case itself a clickable link to the source.
+構成が決まったら、オーナーに不足している項目のみを確認すること。公開情報から推測してオーナーの写真を埋めないこと。[要確認]と穴が開いている成果物を渡さないこと。同じデッキ内の他のスライドや過去のデッキ、オーナーの備考から書けることをすべて書き出し、推測で書かれた箇所を話者の台本上の推測として特定できるようにすること。AIに言及しているスライドについては、作成当日にウェブ上の最新リリース情報を確認してから書き、確認日と出典を話者の台本に残しておくこと。3ヶ月の差があると、利用可能なモデルやその性能が全く別物になるため、記憶や過去の資料の情報から書かないこと。ランキングやリーダーボードの数値については、まとめ記事ではなくランキング自体をスライド作成当日に開き、最終更新日と新たに掲載されたモデルを確認すること。まとめ記事の日付で終わらせないこと。ベンチマークについては、調べた日付とは別に、数値が計測された時期を確認し、最新モデル同士を比較できるもののみを使用すること。事例を紹介する際は、出典リンクを別の場所に貼らず、事例の紹介文自体を出典へのクリック可能なリンクにすること。
 
-## Phase 5: Speaker script
+## フェーズ5：話者の台本
 
-After making the slides, always write a speaker script.
-Make the script text that can be presented just by reading it aloud. Do not make it notes of key points.
-Do not cut the script slide by slide; write it as one continuous talk from the cover to the close. Include in the script the connecting words that take up the talk of the previous slide and move to the next.
-On each slide, talk about the reason you think so along with what you want to say.
-Imagine what the audience thinks when they see the slide and where they get stuck, and write in the order that answers those questions.
-Make the talk connect with the slides alone, even without reading the script. If there is a leap explained only in the script, fix the slides.
+スライドを作成したら、必ず話者の台本を書くこと。読み上げるだけで提示できる台本のテキストを作成すること。要点をメモにまとめないこと。台本をスライドごとに切り取らず、表紙から最後まで一つの話として書くこと。前のスライドの話から次のスライドへつなぐ言葉を台本に含めること。各スライドでは、そう考える理由と伝えたいことを話すこと。聴衆がスライドを見てどう思い、どこでつまずいたかを想像し、その質問に答える順序で書くこと。台本を読まなくても、スライドだけで話がつながるようにすること。台本だけで説明されている飛躍がある場合は、スライドを修正すること。
 
-## Phase 6: Checking and fixing the flow
+## フェーズ6：流れの確認と修正
 
-When the script is done, check whether the axis and core of the presentation get across to the audience if presented exactly as written.
-If there are places that do not get across, fix both the script and the slides, and check again straight through from the beginning.
-The viewpoints for checking were taken from well-regarded books on presentation structure.
+台本が完成したら、書いた通りに提示してプレゼンテーションの軸や核心が聴衆に伝わっているかを確認する。伝わっていない箇所があれば、台本とスライドの両方を修正し、最初からもう一度確認すること。確認の視点は、プレゼンテーション構成に関する定評のある書籍から引用した。
 
-| Viewpoint | What to check | Source |
+| 視点 | 確認事項 | 出典 |
 | --- | --- | --- |
-| Can the core be said in one sentence? | Can what you most want to convey in the presentation be written as one sentence with a subject and predicate? If not, revisit the structure. Does every part of the script support that sentence? Delete parts that do not | Duarte's Big Idea, the Heath brothers' Commander's Intent |
-| Does it start from where the audience is now? | Does the opening start from what the audience already knows or can agree with, and arrive at the core sentence as an answer by way of a change or a problem from there? | Minto's SCQ (Situation, Complication, Question), Atkinson's Act One |
-| Does it go back and forth between the present and the changed future? | Does the middle proceed by going back and forth between the contrast of "this is how it is now" and "this is how it could be", and end with what you want the audience to do? | Duarte's sparkline |
-| Does the line hold with just the one sentence of each point? | Extract from the script one sentence of what you want to say on each slide and line them up; can the line of the talk be followed with these alone? Fix the order or content where they do not connect | Minto's horizontal logic, Atkinson's headlines |
-| Are premises you know skipped? | Are there premises or terms you omitted because you know them? Read the script from the audience's standpoint and pick out words that appear without explanation | The Heath brothers' Curse of Knowledge |
+| 核心を一文で言えるか？ | プレゼンテーションで最も伝えたいことを、主語と述語を持つ一文で書けるか？書けない場合は、構成を見直すこと。台本のすべての箇所がその一文を裏付けているか？裏付けられていない箇所は削除すること。 | ドゥアルテの大構想、ヒース兄弟の指揮官の意図 |
+| 聴衆が今いる場所から始まっているか？ | 冒頭は、聴衆がすでに知っていることや同意できることから出発し、そこから変化や問題という形で核心となる一文に至るか？ | ミントのSCQ（Situation, Complication, Question）、アトキンソンの第一幕 |
+| 現在と変化した未来の間を行き来しているか？ | 中盤は、「今はこうである」という対比と「こうなり得る」という対比を行き来しながら進み、最後に聴衆にやってほしいことで締めくくられているか？ | ドゥアルテのスパークライン |
+| 各ポイントの一文だけで成立しているか？ | 台本から各スライドで伝えたいことを一文ずつ抽出して並べる。話の流れをこれらだけで追うことができるか？つながらない箇所の順序や内容を修正すること。 | ミントの水平論理、アトキンソンの見出し |
+| 既知の前提は省略されているか？ | 知っているがゆえに省略した前提や用語はあるか？聴衆の視点から台本を読み、説明なしに出現する単語を抽出する。 | ヒース兄弟の「知識の呪い」 |
 
-The core sentence is a tool for checking. Do not put it on a summary slide.
-The question of SCQ is also a tool for checking the order of the talk; do not make a slide titled "問い" (Question).
-Show the owner the results of the check and the places you fixed, together with the core sentence.
+核心となる一文は確認のためのツールである。要約スライドには載せないこと。SCQという問いも話の順序を確認するためのツールである。「問い」というタイトルのスライドは作成しないこと。確認の結果と修正した箇所を、核心となる一文と共にオーナーに提示すること。
 
-## References
+## 参考文献
 
-| Reference | What was taken from it |
+| 参考文献 | そこから抜粋したもの |
 | --- | --- |
-| Nancy Duarte, "Resonate" (2010; Japanese translation "The Presentation", Diamond) [explanation](https://www.duarte.com/blog/ultimate-guide-to-contrast/) | Write the Big Idea as one sentence with a subject and predicate, and cut everything else. The sparkline that goes back and forth between "what is" and "what could be" |
-| Barbara Minto, "The Pyramid Principle" (Japanese translation "Kangaeru Gijutsu, Kaku Gijutsu", Diamond) [explanation](https://modelthinkers.com/mental-model/minto-pyramid-scqa) | Build the introduction in the order situation, complication, question, answer. Line up one sentence of each slide's point and check whether the line can be followed |
-| Chip Heath and Dan Heath, "Made to Stick" (2007; Japanese translation "Idea no Chikara", Nikkei BP) [explanation](https://actionablebooks.com/summaries/made-to-stick/) | Narrow the core with the Commander's Intent of "if nothing else, at least this". The Curse of Knowledge, by which those who know more skip premises |
-| Cliff Atkinson, "Beyond Bullet Points" (O'Reilly) [bibliography](https://www.oreilly.com/library/view/beyond-bullet-points/9780735660052/) | In Act One, show a scene and the current state the audience can relate to. Make each slide's point a sentence with a subject and predicate, and connect what comes before and after |
+| ナンシー・ドゥアルテ、「Resonate」（2010年；日本語訳「ザ・プレゼンテーション」、Diamond）[解説](https://www.duarte.com/blog/ultimate-guide-to-contrast/) | 大アイデアを主語と述語を持つ一文で書き、それ以外はすべて削る。「何であるか」と「何になり得るか」を行き来するスパークライン |
+| バーバラ・ミント、「The Pyramid Principle」（日本語訳「考える技術、考える技術」、Diamond）[解説](https://modelthinkers.com/mental-model/minto-pyramid-scqa) | 導入部を状況、複雑化、問い、答えの順に構成する。各スライドの要点を一文ずつ並べ、その順序が守れるかを確認する。 |
+| チップ・ヒース、ダン・ヒース、「Made to Stick」（2007年；日本語訳「アイデアの力」、日経BP）[解説](https://actionablebooks.com/summaries/made-to-stick/) | 指揮官の意図「他に何もなくても、少なくともこれだけは」という言葉で核心を絞り込む。より多くのことを知っている者が前提を飛ばす「知識の呪い」 |
+| クリフ・アトキンソン、「Beyond Bullet Points」（O'Reilly）[参考文献](https://www.oreilly.com/library/view/beyond-bullet-points/9780735660052/) | 第1幕では、観客が共感できる場面と現状を示す。各スライドの要点を主語と述語を持つ一文とし、前後の内容をつなげる。 |
 
-## Turning feedback into rules
+## フィードバックをルール化する
 
-When writing feedback down as a rule, gather one good example and one bad example in the words of the person who gave the feedback before writing it. Generalizing by guesswork from a few words produces a rule opposite to the intent.
-When you receive the same feedback twice, before adding a prose rule, investigate whether it can be stopped by a mechanical check such as a textlint rule or a hook. Rules broken by the model's habits do not stop being broken by adding prose.
+フィードバックをルールとして書き出す際は、フィードバックを出した本人の言葉から、良い例を1つ、悪い例を1つ集める。いくつかの単語から推測で一般化すると、意図とは正反対のルールになる。同じフィードバックを2回受け取った場合、文章ルールを追加する前に、textlintルールやフックなどの機械的なチェックで止められるかどうかを調べる。モデルの癖で破られたルールは、文章を追加しても破られるのを止められない。
 
-## Handling sharing
+## 共有の扱い
 
-Slides that were presented orally are, as a rule, published as they are.
-Only when necessary, make a separate slide deck for publication with supplements.
+口頭で提示されたスライドは、原則としてそのまま公開する。必要な場合に限り、補足資料を添えた公開用のスライド資料を別途作成する。
 
-When showing a deck to the owner, as a rule and without being told, attach all three of the PDF, the HTML and the speaker script together to the report.
+オーナーに資料を提示する際は、原則として、指示なくPDF、HTML、スピーカースクリプトの3つすべてをレポートに添付する。

@@ -1,14 +1,14 @@
-# Where things go in masseater.dev
+# masseater.dev の配置先
 
-Also read the "Articles" section of AGENTS.md in masseater/masseater.dev.
+また、masseater/masseater.dev の AGENTS.md にある「Articles」セクションも参照すること。
 
-| Kind | Location |
+| 種類 | 場所 |
 | --- | --- |
-| Research memos, poems, essays, tech articles, Oshiete Claude | `apps/portfolio/content/blogs/` |
+| 研究メモ、詩、エッセイ、技術記事、教えてClaude | `apps/portfolio/content/blogs/` |
 | scrap | `apps/portfolio/content/scraps/` |
-| Tech articles published on Zenn | `apps/zenn-articles/articles/` |
+| Zenn で公開されている技術記事 | `apps/zenn-articles/articles/` |
 
-- Frontmatter fields follow `Frontmatter` in `apps/portfolio/src/entities/entry/model/entry.ts`
-- Text in `apps/portfolio/content/` must pass the `.textlintrc` checks. The body is in the plain "である" style
-- Zenn articles are not checked by textlint, and the existing articles are written in the polite "です・ます" style
-- Hand over a blog post written by AI as a PR or a draft. The owner revises a blog post before publishing it
+- フロントマターフィールドは `apps/portfolio/src/entities/entry/model/entry.ts` の `Frontmatter` に従う
+- `apps/portfolio/content/` 内のテキストは `.textlintrc` チェックに合格する必要がある。本文は単純な「である」スタイルである。
+- Zenn の記事は textlint によるチェックを受けず、既存の記事は丁寧な「です・ます」スタイルで記述されている。
+- AI が執筆したブログ記事を PR または下書きとして渡す。オーナーはブログ記事を公開する前に修正を行う。

@@ -1,14 +1,14 @@
-# Form hypotheses, measure, and decide by the results
+# 仮説を立て、測定し、結果に基づいて判断する
 
-1. Pose one question whose answer is determined by facts
-2. List every conceivable hypothesis
-3. For each hypothesis, write down before measuring what to measure, and which values would accept it and which would reject it
-4. Build a means of reproduction and an observation point, and confirm with inputs whose results are known that you can measure correctly
-5. Change only one condition when measuring. Measure time and performance several times and also look at the variance
-6. Keep the conditions, the commands and the raw results
-7. Decide by the criteria from step 3. If the result differs from your expectation, doubt the hypothesis
-8. After the change, measure again with the same mechanism and confirm the effect
+1. 事実によって答えが決まる問いを1つ立てる
+2. 考えられるすべての仮説を列挙する
+3. 各仮説について、測定する前に何を測定すべきか、またどの値であれば受け入れられ、どの値であれば拒絶されるかを書き出す
+4. 再現手段と観測点を構築し、結果が分かっている入力を用いて、正しく測定できることを確認する
+5. 測定の際は、条件を1つだけ変更する。時間と性能を数回測定し、分散も確認する。
+6. 条件、コマンド、および生の結果を保持する。
+7. ステップ3の基準に基づいて判断する。結果が想定と異なる場合は、仮説を疑う。
+8. 変更後、同様の手法で再度測定し、効果を確認する。
 
-If you decide the criteria after seeing the results, you will read them in a convenient way. That is why step 3 is written before measuring.
+結果を確認してから基準を決定すれば、都合の良い方法で読み取ることができる。そのため、測定前にステップ3を記述している。
 
-- If no hypothesis is settled, add more things to measure and go back to step 3
+- 仮説が定まらない場合は、測定すべき項目を追加し、ステップ3に戻る。

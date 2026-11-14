@@ -1,13 +1,13 @@
 # security
 
-Confirm the countermeasures against attacks and information leaks. The application runs even if any of them is missing, so you will not notice unless you check with detection tools. Follow [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) and the [OWASP Top 10](https://owasp.org/www-project-top-ten/) as the standard.
+攻撃や情報漏洩への対策を確認する。どれか一つでも欠けていてもアプリケーションは動作するため、検知ツールで確認しない限り気づかない。[OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/)と[OWASP Top 10](https://owasp.org/www-project-top-ten/)を標準として従う。
 
-| Item to check | How to check the current state | Condition for being satisfied |
+| 確認項目 | 現状の確認方法 | 満たされる条件 |
 | --- | --- | --- |
-| Where secrets are kept | Run a secret detection tool such as Betterleaks against the entire history of the repository | Nothing is detected. Secrets exist only in a secret storage service |
-| Vulnerabilities in dependency packages | Run the package manager's audit | There are no advisories. Only advisories without a fixed version are excluded, with a reason |
-| Response headers | Send `curl -I` to each production page that returns HTML, and check CSP, HSTS, X-Content-Type-Options, Referrer-Policy and Permissions-Policy | All of them are set |
-| Dynamic scanning | Run a ZAP scan against production | There are no alerts, including warnings |
-| Mass requests to write and authentication endpoints | Look for rate limiting settings | There is rate limiting in front of writes, authentication and public APIs |
+| 秘密が保管されている場所 | Betterleaksなどの秘密検知ツールをリポジトリの全履歴に対して実行する | 何も検知されない。秘密は秘密保管サービスにのみ存在する |
+| 依存パッケージの脆弱性 | パッケージマネージャーの監査を実行する | アドバイザリがない。バージョンが固定されていないアドバイザリのみが、理由付きで除外される |
+| レスポンスヘッダー | HTMLを返す各本番ページに対して`curl -I`を実行し、CSP、HSTS、X-Content-Type-Options、Referrer-Policy、Permissions-Policyを確認する | すべて設定されている |
+| 動的スキャン | 本番環境に対してZAPスキャンを実行する | 警告を含むアラートがない |
+| 書き込みおよび認証エンドポイントへの大量リクエスト | レート制限設定を確認する | 書き込み、認証、公開APIの前にレート制限設定がある |
 
-The reason to target the entire history is that secrets you thought you deleted remain in past commits.
+全履歴を対象にする理由は、削除したはずの秘密が過去のコミットに残っているためである。

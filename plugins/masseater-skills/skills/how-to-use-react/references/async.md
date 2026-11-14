@@ -1,39 +1,39 @@
-# Eliminating async waterfalls
+# 非同期ウォーターフォールの排除
 
-Do not wait in sequence for operations that do not use the previous result.
+直前の結果を使用しない操作を順次待機しない。
 
-- Start independent operations at the same time
-- Wait after entering the branch that uses the result
-- Check conditions you already have first
-- When only part depends on something, make only the dependent part wait
-- Do not hold the shell until the data completes
+- 独立した操作を同時開始する
+- 結果を使用する分岐に入った後に待機する
+- 既にある条件を先に確認する
+- 一部のみが何かに依存する場合、依存部分のみを待機させる
+- データが完了するまでシェルを保持しない
 
-## Wait after entering the branch that uses it
+## それを使用する分岐に入った後に待機する
 
-If there is a branch that does not use the result, wait after entering the branch that does. If you wait first, even a branch that returns immediately stops until the I/O finishes.
+結果を使用しない分岐がある場合は、使用する分岐に入った後に待機する。先に待機すると、即座に戻る分岐であってもI/Oが終わるまで停止する。
 
-## Check cheap conditions first
+## 安価な条件を先に確認する
 
-When you need both a network or DB result and a condition you already have, as in `flag && localCondition`, check the local condition first.
+ネットワークまたはDBの結果と、`flag && localCondition`のように既にある条件の両方が必要な場合は、ローカル条件を先に確認する。
 
-Keep the original order in the following cases.
+以下の場合では、元の順序を維持する。
 
-- When the local condition depends on the result of the flag
-- When the condition is the heavier one
-- When the order of side effects is part of the specification
+- ローカル条件がフラグの結果に依存する場合
+- 条件の方が重い場合
+- 副作用の順序が仕様の一部である場合
 
-## When only part depends on something
+## 一部のみが何かに依存する場合
 
-Even when `profile` waits for `user`, do not make `config` wait for `user`. How to write it is as in the example in `SKILL.md`.
+`profile` が `user` を待機する場合でも、`config` を `user` を待機させない。書き方は `SKILL.md` の例の通りである。
 
-## APIs and server processing
+## APIとサーバー処理
 
-Do not line up reads that do not need a session behind authentication. Make authentication the dependency, and build it in the same shape as when only part depends on something. The same goes for Elysia routes and TanStack Start server functions.
+認証の背後にセッションを必要としない読み取りを並ばせない。認証を依存関係とし、一部のみが何かに依存する場合と同じ形式で構築する。ElysiaルートやTanStack Startサーバー関数についても同様である。
 
-## Do not hold the shell until the data completes
+## データが完了するまでシェルを保持しない
 
-Do not hold the rendering of navigation, headers and footers until the main data finishes.
+メインデータが完了するまで、ナビゲーション、ヘッダー、フッターのレンダリングを保持しない。
 
-- Put only the parts that need data inside `<Suspense>`
-- Wait outside the shell only for values required to branch the layout
-- For a small query where the Suspense switch would be more noticeable, you may wait together with the shell
+- データを必要とする部分のみを `<Suspense>` 内に配置する。
+- レイアウトを分岐させるために必要な値のみをシェルの外で待機する。
+- Suspenseスイッチがより顕著に現れるような小規模なクエリでは、シェルと一緒に待機してもよい。

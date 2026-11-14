@@ -1,38 +1,38 @@
-# Measuring in typescript-template
+# TypeScriptテンプレートでの計測
 
-## How to emit signals
+## シグナルの出力方法
 
-Emit server signals with Effect's APIs, and collect them in Cloudflare Workers Observability.
+EffectのAPIでサーバーシグナルを出力し、Cloudflare WorkersのObservabilityに収集する方法。
 
-- `apps/web/src/pages/home/api/tracing.server.ts` copies `Effect.withSpan` into Workers traces
-- `Effect.log*` goes into Workers Logs
-- Cloudflare automatically turns D1 and fetch calls into spans
-- For metrics, use Workers' request count, error count, CPU time and duration
-- The observability settings and sampling rate are in `observability` in `apps/web/alchemy.run.ts`
+- `apps/web/src/pages/home/api/tracing.server.ts` は `Effect.withSpan` を Workers のトレースにコピーする
+- `Effect.log*` は Workers のログに出力される
+- Cloudflare は D1 および fetch 呼び出しを自動的にスパン化する
+- メトリクスには、Workers のリクエスト数、エラー数、CPU 時間および所要時間を使用する
+- オブザーバビリティの設定とサンプリングレートは、`apps/web/alchemy.run.ts` の `observability` 内にある。
 
-| Problem | What to emit |
+| 問題 | 出力するもの |
 | ------- | ------------ |
-| Bug | Emit inputs and branches with `Effect.logInfo` with `Effect.annotateLogs`, look at the path with `Effect.withSpan`, and reproduce with a test |
-| Slowness | Compare the duration of `Effect.withSpan` before and after the change, and compare the logic alone with `vp test bench` |
-| New feature | In addition to acceptance tests, emit success and failure in logs with `Effect.annotateLogs`, and count them in Workers Logs |
+| バグ | `Effect.logInfo` で入力と分岐を `Effect.annotateLogs` で出力し、`Effect.withSpan` でパスを確認し、テストで再現する |
+| 低速化 | 変更前後の `Effect.withSpan` の所要時間を比較し、ロジックのみを `vp test bench` で比較する |
+| 新機能 | 受入テストに加え、`Effect.annotateLogs` で成功・失敗をログに出力し、Workers のログでカウントする |
 
-## Samples
+## サンプル
 
-Logs and traces keep only some requests as samples.
+ログとトレースでは、一部のリクエストのみをサンプルとして保持する。
 
-- Raise the sampling rate only during measurement, and restore it afterward
-- With a judgment, also state whether the number of samples is sufficient
+- サンプリングレートは計測時のみ引き上げ、その後は復元する
+- 判定時に、サンプル数が十分かどうかも明示する
 
-## Where to query
+## どこでクエリするか
 
-- Query production logs, traces and metrics with the `cloudflare-observability` MCP server in `.mcp.json`
-- Call other Cloudflare APIs with the `cloudflare-api` MCP server
-- Both use the credentials of the Alchemy profile
-- To stream the logs of a deployed Worker, use `vp exec alchemy logs --tail` in `apps/web`
-- Effect logs and the browser console also appear in the terminal of `vp run dev`
+- `.mcp.json` の `cloudflare-observability` MCP サーバーで、本番ログ、トレース、メトリクスをクエリする
+- `cloudflare-api` MCP サーバーで他の Cloudflare API を呼び出す
+- どちらも Alchemy プロファイルの認証情報を使用する
+- デプロイ済みの Worker のログをストリーミングするには、`apps/web` で `vp exec alchemy logs --tail` を使用する。
+- Effect のログとブラウザコンソールは、`vp run dev` のターミナルにも表示される。
 
-## Browser
+## ブラウザ
 
-Operate it with `vp dlx @playwright/cli`, and observe with `console`, `requests` and `snapshot`. In cloud environments, write the Chromium in `/opt/pw-browsers` to `launchOptions.executablePath` in `.playwright/cli.config.json`.
+`vp dlx @playwright/cli` で実行し、`console`、`requests`、`snapshot` で観測する。クラウド環境では、`/opt/pw-browsers` の Chromium を `.playwright/cli.config.json` の `launchOptions.executablePath` に書き込む。
 
-If `alchemy dev` stops with `CredentialsUnavailable`, proceed with what can be measured with tests and logs. Tell the user that the screen has not been measured.
+`alchemy dev` が `CredentialsUnavailable` で停止した場合は、テストとログで測定可能な処理を進める。ユーザーには画面が計測されていないことを伝える。

@@ -1,55 +1,55 @@
-# Articles published under masseater's name
+# masseater名義で公開された記事
 
-## Why articles need this and the state they should achieve
+## 記事にこれが必要な理由と実現すべき状態
 
-AI builds an article not from who reads it and for what, but from the plausible article shapes it learned. As a result, a memo for oneself gets a preamble and justification for readers, a poem that pours out a personal claim gets responses to counterarguments and tables of data, and a contributed-level article piles up previews such as "what can be read from ..." and sentences that merely rephrase the same claim. The same habits appear even when the model is changed, so the owner ends up repeating the same feedback for every article.
+AIが記事を構築するのは、誰が何を読むかではなく、学習した妥当な記事の形からだ。その結果、自分向けのメモには読者への前置きや正当化が付き、個人の主張をぶちまけた詩には反論やデータの表が返され、寄稿レベルの記事には「……から何が読めるか」といったプレビューや、同じ主張を言い換えただけの文章が積み上がる。モデルを変えても同じ癖が現れるため、オーナーは結局、どの記事に対しても同じフィードバックを繰り返すことになる。
 
-The state to achieve is that the thoughts in the owner's head and the facts they researched become text, in a form suited to that kind of article, that the owner can publish without fixing.
+実現すべき状態とは、オーナーの頭の中の思考や調べた事実が、そうした記事にふさわしい形で、オーナーが修正せずに公開できるテキストになることだ。
 
-## Write from what you want to convey
+## 伝えたいことから書け
 
-Before writing, decide what the whole article wants to convey and what each paragraph wants to convey. Sentences are placed to convey that to readers; do not write sentences that do not contribute to it. AI tends to fix wording and conformity to individual rules part by part, and text fixed that way conforms to the rules sentence by sentence but no longer shows what each paragraph wants to convey.
+書く前に、記事全体が何を伝え、各段落が何を伝えようとしているかを決めよ。文章は読者に伝えるために配置されるものであり、それに寄与しない文章を書くな。AIは文言や個々のルールへの準拠を部分ごとに修正する傾向があり、そのように修正されたテキストは、一文ずつはルールに従うものの、各段落が伝えたいことを示さなくなる。
 
-- For each paragraph, confirm that you can say what it wants to convey in one sentence before writing it
-- Place cases and numbers as grounds for what you want to convey. Do not start with a case and leave readers to infer what you want to convey
-- When fixing after feedback too, do not replace just that sentence; rebuild the sentences from what the paragraph wants to convey
-- The rules below and [`ai-style`](ai-style.md) are for checking the text you built, not for replacing sentences to fit the rules
+- 各段落について、伝えたいことを一文で言えるかを確認してから書け。
+- 伝えたいことの根拠として、格や数字を添えよ。格から始めて、伝えたいことを読者に推測させるな。
+- フィードバックを受けて修正する場合も、単にその一文を置き換えるのではなく、段落が伝えたいことから文章を再構築せよ。
+- 以下のルールや [`ai-style`](ai-style.md) は、構築したテキストをチェックするためのものであり、ルールに合わせて文章を置き換えるためのものではない。
 
-## Structure
+## 構造
 
-Structure every kind mainly with headings and tables.
+あらゆる種類の構造は、主に見出しと表を用いて構築せよ。
 
-- Add only as many headings as the map of the whole needs; do not add one per paragraph
-- Put items being compared in a table
-- Keep bullet points within 15% of the body. This is because the yomiyasu lint in masseater.dev's verify fails when it goes over that
-- Put only one claim in one paragraph, and leave a hook to the next paragraph
-- If there is a way to convey something without prose, such as a figure, table or code, use it
+- 見出しは、全体のニーズをカバーできる分だけ追加せよ。段落ごとに1つ追加するな。
+- 比較対象を表にまとめよ。
+- 箇条書きは本文の15%以内に抑えよ。masseater.dev の verify で yomiyasu lint が失敗するのは、それを超えると発生するためだ。
+- 1つの段落には主張を1つだけ盛り込み、次の段落へのフックを残せ。
+- 図や表、コードなど、文章を使わずに何かを伝える方法があるなら、それを活用せよ。
 
-## Titles and headings
+## タイトルと見出し
 
-Make the title the shortest noun phrase that shows what the article is about. Write it like "typescript-template の中身（2026年10月24日時点）" (the contents of typescript-template, as of October 24, 2026), and do not add an explanation of the content with a subtitle such as ": start a TypeScript app that runs on Cloudflare with checks and CI in place". Leave the explanation to the description and the opening of the body. For articles that depend on a point in time, keep "（YYYY年M月D日時点）" (as of YYYY-MM-DD).
+タイトルは、記事の内容を示す最短の名詞句にせよ。「typescript-template の中身（2026年10月24日時点）」のように書き、「: start a TypeScript app that runs on Cloudflare with checks and CI in place」といったサブタイトルを付けて内容の説明を追加してはならない。説明は説明文と本文の冒頭に委ねよ。特定の時点に依存する記事の場合は、「（YYYY年M月D日時点）」（YYYY-MM-DD時点）とせよ。
 
-Keep headings short in the same way, without piling up modifiers and supplements.
+見出しも同様に短くし、修飾語や補足を積み重ねるな。
 
-## Rules common to all kinds
+## あらゆる種類に共通するルール
 
-Also read [`ai-style`](ai-style.md). After writing, check against the tables in [`evidence`](evidence.md).
+[`ai-style`](ai-style.md) も参照せよ。執筆後、[`evidence`](evidence.md) の表と照らし合わせよ。
 
-- Do not write modifiers and supplements that do not contribute to the claim. Do not squeeze numbers out of things such as the repository history for backing
-- Do not add claims of your own that stray from the axis of the request. Confirm the axis of the article in the owner's words, and do not replace it with your own summary
-- Do not paraphrase the owner's words. If they said "複利" (compound interest), write "複利", and do not extend it to metaphors such as debt or interest payments
-- Write English terms such as EOL, shared responsibility model and penetration test as they are. Replacing them with plain Japanese makes them look like something else to readers
-- Do not create coined compressed expressions; write in ordinary business terms. Write "停止した" (suspended) rather than "止めた" (stopped), and "決断する" (make a decision) rather than "決める" (decide)
-- Attach sources as footnotes with named labels such as `[^codmon-retrospective]` at the place where the fact is written. Numbers are assigned automatically in order of appearance at render time and gathered into the list at the end, so write neither numbers nor the list by hand
-- Separate sources from links readers follow. Make sources that show grounds footnotes, and embed destinations you want readers to open, such as the official site of a tool being introduced or related articles, in a word of the body with `[text](URL)`
-- Do not write sentences that only list cases; link to an article that collects them
-- Do not list configuration values that can be learned by reading the code (plugin names, banned libraries, task lists and so on). Write only the mechanism and the intent
-- At the end of an article, do not write how readers can get started, what to do next, or calls to action. Do not include them even at the outline stage
-- Before writing, ask the owner only about the axis of the article, and receive the rest by showing the outline. Material does not come out just by asking; it is recalled by seeing the outline
-- Put half-width spaces before and after Latin-alphabet words, but not around numbers ("PHP 8.1 以前", "21日9時")
-- Do not write items that can act as constraints, such as a target character count, in either the outline or the body
-- Do not write notes of the writer's interpretation or items to confirm in the outline or the body. Ask disclaimers such as "I interpreted CVA as a typo for CVE" in the reply to the owner
+- 主張に寄与しない修飾語や補足を書くな。裏付けとなるリポジトリ履歴などから数値を無理に絞り出すな。
+- リクエストの軸から外れた独自の主張を追加してはならない。記事の軸はオーナーの言葉で確認し、自身の要約で置き換えるな。
+- オーナーの言葉を言い換えるな。「複利」と言ったのであれば「複利」と書き、借金や利息の支払いといった比喩に発展させるな。
+- EOL、共有責任モデル、ペネトレーションテストなどの英語表現はそのまま書け。平易な日本語に置き換えると、読者には別のもののように見えてしまう。
+- 造語の圧縮表現は作らず、普通のビジネス用語で書け。「止めた」ではなく「停止した」と書き、「決める」ではなく「決断する」と書け。
+- 出典は、事実が記述されている箇所に `[^codmon-retrospective]` のような名前付きラベルを付けて脚注として添付せよ。数値はレンダリング時の出現順に自動的に割り当てられ、最後にリストにまとめられるため、数値もリストも手書きするな。
+- 読者が辿るリンクと出典は分けておけ。出典には根拠を示す脚注を付け、紹介するツールの公式サイトや関連記事など、読者に開いてほしいリンク先を本文の一文に `[text](URL)` で埋め込め。
+- 事例を列挙するだけの文章は書くな。事例をまとめた記事へリンクを貼れ。
+- コードを読めば学習できる設定値（プラグイン名、禁止ライブラリ、タスクリストなど）を列挙するな。仕組みと意図だけ書け。
+- 記事の末尾に、読者がどうやって始めればよいか、次に何をすべきか、行動喚起などを書くな。アウトラインの段階であっても含めてはならない。
+- 文章を書く前に、読者がどうやって取り組めばよいか、次に何をすべきか、行動喚起などはオーナーにだけ尋ね、残りはアウトラインを見せて受け取れ。資料は聞くだけでは出てこない。アウトラインを見て思い出すものだ。
+- ラテン文字の単語の前後には半角スペースを入れ、数字の周囲には入れない（「PHP 8.1 以前」、「21日9時」）。
+- アウトラインにも本文にも、目標文字数などの制約になり得る項目は書くな。
+- アウトラインや本文に、書き手の解釈や確認事項を記すな。オーナーへの返信には「CVAをCVEの誤記と解釈しました」といった免責事項を記せ。
 
-## Where it goes
+## どこへ行くか
 
-Also read [`masseater-dev`](masseater-dev.md).
+[`masseater-dev`](masseater-dev.md)も読め。

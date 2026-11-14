@@ -1,11 +1,11 @@
 # observability
 
-Confirm that what happened in production, and who uses it and how, can be understood from outside. If it cannot, you end up fixing every bug by guesswork. Follow [Google SRE's Production Readiness Review](https://sre.google/sre-book/evolving-sre-engagement-model/) for the approach.
+本番環境で何が起きたのか、誰がどうやってそれを使っているのかを、外部から理解できるか確認せよ。それができなければ、あらゆるバグを勘で修正することになる。アプローチについては [Google SRE's Production Readiness Review](https://sre.google/sre-book/evolving-sre-engagement-model/) に従え。
 
-| Item to check | How to check the current state | Condition for being satisfied |
+| 確認項目 | 現状の確認方法 | 満たされる条件 |
 | --- | --- | --- |
-| Tracing production requests | Pick one request that failed in production and follow what happened from the logs and spans | Where and what happened is known without redeploying |
-| Measuring processing that costs time or money | Check whether there are spans where external APIs, models, DBs and child processes are called | All of them are spans |
-| Detecting failures | Look for settings for error rates and failure notifications | That a failure happened is notified to a place people look at |
-| CI run records | Check whether there is a job at the end of the workflow that sends the execution times of jobs and steps | The execution times of jobs and steps are recorded |
-| User analytics | Check that the production page HTML has an analytics beacon and that views reach the analytics dashboard | Every public page is measured by default from the start of the project. Choose one that does not use cookies and has no usage-based billing (such as Cloudflare Web Analytics) |
+| 本番リクエストの追跡 | 本番環境で失敗したリクエストを1つ選び、ログやスパンから何が起きたかを追跡する | 再デプロイせずにどこで何が起きたかが判明している |
+| 時間やコストがかかる処理の測定 | 外部API、モデル、DB、子プロセスが呼び出されるスパンがあるかを確認する | すべてスパンである |
+| 障害の検出 | エラー率や障害通知の設定を確認する | 障害が発生したことが、人々が確認する場所に通知される |
+| CI実行記録 | ワークフローの最後に、ジョブの実行時間やステップを送信するジョブがあるかを確認する | ジョブやステップの実行時間が記録される |
+| ユーザー分析 | 本番ページのHTMLにアナリティクスビーコンがあり、ビューがアナリティクスダッシュボードに届いているかを確認する | すべての公開ページは、プロジェクト開始時からデフォルトで計測される。Cookieを使用せず、従量課金（Cloudflare Web Analyticsなど）がないページを選択する。 |
