@@ -3,7 +3,6 @@ name: writing
 description: 文章の執筆や修正時に読む。ドキュメント、コメント、コミットメッセージ、PR本体、README、masseater名義で公開された記事、小説などを扱う。また、「AIっぽい」「冗長」「読みづらい」と評された文章を修正する際や、Claudeにアイデアをぶつけた後に「記事にしてほしい」と頼まれた際にも利用する。
 metadata:
   derived-from: >-
-    https://github.com/masseater/claude-code-plugin/tree/2e0619b1ab620552764da5ea6e46b77a0dcfaa35/plugins/writing
     https://github.com/cursor/plugins/blob/837067b75aa20ab58d7b2a2f6c0531e37118c596/pstack/skills/technical-writing/SKILL.md
     https://github.com/azukiazusa1/skills/tree/a7f996f1cd700a4a56827f6cf2a130ff5a9ceedf/skills/writing/write-blog-article
     https://github.com/artouc/stop-describe-ui/blob/251a859f6e40645030e1ae69fa4b501c851eac9c/skills/stop-describing-ui/SKILL.md
