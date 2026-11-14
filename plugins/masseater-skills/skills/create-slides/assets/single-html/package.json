@@ -10,7 +10,7 @@
     }
   },
   "dependencies": {
-    "playwright": "1.65.0",
+    "playwright": "1.65.1",
     "vite-plugin-singlefile": "2.3.4"
   },
   "peerDependencies": {
