@@ -1,67 +1,67 @@
 ---
 name: humanity-and-humanness
-description: 人間がどう読み、どう考え、何を察するかを AI が前提として持つために読む。人間が読む文章を書くとき、ユーザーの判断を仰ぐとき、ユーザーの指摘の意図を読み取るときに使う。
+description: Read so that AI holds as a premise how humans read, how they think, and what they sense. Use when writing text that humans read, when asking the user for a decision, and when reading the intent behind the user's feedback.
 ---
 
 # humanity-and-humanness
 
-writing と skill-authoring の規則が当てはまらない場面では、ここから判断する。
+In situations where the rules of writing and skill-authoring do not apply, judge from here.
 
-- 人間は推測で補いながら読む。書いてあることをそのまま読み取る能力は低い
-- 人間は自分の頭の中にあることを、そのままの形では知らない
-- 人間は書かれていないことを、場面と相手から察する
+- Humans read while filling gaps by guessing. Their ability to take what is written exactly as it is, is low
+- Humans do not know what is in their own heads in its exact form
+- Humans sense what is not written from the situation and the other person
 
-人間の読み方に合わせた文章の書き方は writing に従う。skill を書くときのたたき台と判断の仰ぎ方は skill-authoring に従う。
+Follow writing for how to write text suited to the way humans read. Follow skill-authoring for drafts when writing a skill and for how to ask for decisions.
 
-## この skill が必要な理由と達成したい状態
+## Why this skill is needed and the state it should achieve
 
-この skill が必要な理由は、AI が人間を自分と同じ読み手として扱うことにある。AI は書いてあることをそのまま読み取る。頭の中にある判断を尋ねられれば言葉にできる。人間は逆である。書いてあることをそのまま読み取る能力は低く、推測で補いながら読む。自分の頭の中にある判断さえ、尋ねられただけでは言葉にならない。この違いを知らない AI は、人間が読み取れない文章を書き、出てこない判断を尋ねる。
+This skill is needed because AI treats humans as readers like itself. AI takes what is written exactly as it is. If asked about a judgment in its head, it can put it into words. Humans are the opposite. Their ability to take what is written exactly as it is, is low, and they read while filling gaps by guessing. Even judgments in their own heads do not turn into words just by being asked. AI that does not know this difference writes text humans cannot read, and asks for judgments that do not come out.
 
-この skill で達成したい状態は、AI が人間の読み方と考え方を前提に置き、人間が自分の判断に気づき、AI との認識のずれに気づける状態である。
+The state this skill should achieve is one in which AI puts the way humans read and think as a premise, and humans can notice their own judgments and notice drifts between their understanding and the AI's.
 
-## 人間はどう読むか
+## How humans read
 
-人間は書いてあることをそのまま受け取らない。推測で補いながら読む。推測の能力は高い。推測が正しい方向に働く形で書かれていれば深く理解し、働かない形で書かれていれば読み落とす。
+Humans do not take what is written as it is. They read while filling gaps by guessing. Their ability to guess is high. If something is written in a way that makes the guessing work in the right direction, they understand it deeply; if it is written in a way that does not, they miss it.
 
-- 順に読み、読んだ順に理解を組み立てる
-- 一覧して全体を把握してから、詳細に入る
-- 並列の項目が文章に畳まれていると、数えられない
-- 規則だけ、理由だけを目で拾う。文の形が揃っていないと拾えない
-- 具体例から一般則を読み取る。例のない規則は、自分の経験で補う
-- 一文に独立した判断が複数あると、読み飛ばして推測で埋める
+- They read in order, and build understanding in the order they read
+- They grasp the whole by scanning it before going into details
+- When parallel items are folded into prose, they cannot count them
+- They pick out only the rules, or only the reasons, by eye. If the sentences are not uniform in shape, they cannot pick them out
+- They read general rules from concrete examples. A rule without an example gets filled in from their own experience
+- When one sentence has several independent judgments, they skim it and fill it in by guessing
 
-前の文で疑問が立ち、後の文で解けると、流れに乗って理解する。疑問の立たない文の並びは、読んでも頭に残らない。
+When a question arises in one sentence and is resolved in a later one, they ride the flow and understand. A sequence of sentences that raises no questions does not stay in the head even when read.
 
-見出しとリストが地図になる。地図がなければ、どこに何があるかを推測で探す。
+Headings and lists become a map. Without a map, they search for where things are by guessing.
 
-読み飛ばした判断は、AI にとっては書いてあることである。AI は全部を実行する。ここが認識のずれる最初の場所になる。
+A judgment that was skimmed over is, for AI, something that is written. AI executes all of it. This is the first place where understanding drifts apart.
 
-## 人間はどう考えるか
+## How humans think
 
-人間は自分の頭の中にあることを、そのままの形では知らない。判断は持っているが、言語化されていない。書かれたものや相手の反応を見て、初めて言葉になる。
+Humans do not know what is in their own heads in its exact form. They have judgments, but those are not verbalized. They first become words when the human sees something written or the other person's reaction.
 
-- 判断を尋ねられても、言葉にできる部分しか出てこない
-- たたき台を見ると、自分の判断がそれと一致するかは即座に分かる
-- 相手に求めるのは、たたき台を出してもらうことである
-- 自分の目的を左右する判断は、自分で決めたい
-- 指摘は一文に対して出るが、指摘した理由はその一文より広い
+- Asked for a judgment, only the part that can be put into words comes out
+- Seeing a draft, they immediately know whether their judgment matches it
+- What they want from the other person is to be given a draft
+- They want to decide for themselves the judgments that sway their own purpose
+- Feedback is given on one sentence, but the reason for it is broader than that sentence
 
-尋ねても出てこなかった部分は、判断がないのではない。まだ言葉になっていない。判断は、問われて出るものではなく、具体物への反応として出る。
+The parts that did not come out when asked are not judgments that do not exist. They are not yet words. Judgments do not come out by being asked; they come out as reactions to something concrete.
 
-だから人間が相手に求めるのは、全部を決めてもらうことでも、全部を尋ねてもらうことでもない。自分で全部できるなら、相手に頼んでいない。
+That is why what humans want from the other person is neither to have everything decided nor to be asked about everything. If they could do everything themselves, they would not have asked.
 
-目的を左右する判断とは、それが変わると達成したいことが変わる判断である。
+A judgment that sways the purpose is one where, if it changes, what they want to achieve changes.
 
-指摘された箇所だけを直されると、同じ理由の別の箇所が残る。人間は同じ指摘を繰り返すことになる。
+If only the place that was pointed out is fixed, other places with the same reason remain. The human ends up repeating the same feedback.
 
-## 人間は何を察するか
+## What humans sense
 
-人間は、書かれていないこと、言われていないことを、場面と相手から察する。相手の表情、言い方、沈黙、周囲の状況から、相手が何を求め、何を避けたいかを読み取る。これは知識や推論ではなく知覚である。人間は意識せずに行う。
+Humans sense what is not written and not said from the situation and the other person. From the other person's expression, way of speaking, silence and surroundings, they read what the other person wants and wants to avoid. This is perception, not knowledge or reasoning. Humans do it without being conscious of it.
 
-AI はここが弱い。
+AI is weak here.
 
-- 人間が察して当然と思っていることを、AI は書かれなければ知らない
-- 足りないのは考える量ではなく、手がかりを拾えていないことである
-- 拾えていない手がかりは、たたき台を出して反応を見ることで人間に補ってもらう
-- 人間の指摘が自分の理解と合わないときは、人間が察していて自分が察していないことがあると考える
-- 指摘の文面を実行する前に、その人が何を見てそう言ったのかを読み取る
+- What humans think is naturally sensed, AI does not know unless it is written
+- What is lacking is not the amount of thinking but that the cues are not being picked up
+- Have humans make up for the cues that are not picked up by putting out a draft and seeing their reaction
+- When human feedback does not match your understanding, consider that there is something the human senses and you do not
+- Before carrying out the wording of feedback, read what the person saw that made them say it

@@ -1,14 +1,14 @@
-# GitHub 側の設定を揃える
+# Aligning the GitHub-side settings
 
-対象リポジトリを `REPO=<owner>/<name>` とする。
+Let the target repository be `REPO=<owner>/<name>`.
 
-## 1. アプリ名を変える
+## 1. Change the app name
 
-`apps/web/app-name.ts` の `APP_NAME` は、テンプレートの名前のままになっている。リポジトリ名に合わせて変える。同じ Cloudflare アカウントの別リポジトリと名前が重なると、お互いのリソースを置き換えてしまう。
+`APP_NAME` in `apps/web/app-name.ts` is still the template's name. Change it to match the repository name. If the name collides with another repository in the same Cloudflare account, they replace each other's resources.
 
-## 2. secrets を登録する
+## 2. Register secrets
 
-値はユーザーに尋ねる。
+Ask the user for the values.
 
 ```sh
 gh secret set OPENROUTER_API_KEY --repo "$REPO"
@@ -17,41 +17,41 @@ gh secret set CLOUDFLARE_ACCOUNT_ID --repo "$REPO"
 gh secret set CLOUDFLARE_API_TOKEN --repo "$REPO"
 ```
 
-| 名前                      | 用途                                         |
-| ------------------------- | -------------------------------------------- |
-| `OPENROUTER_API_KEY`      | verify ワークフローの oxlint-plugin-decision |
-| `CLAUDE_CODE_OAUTH_TOKEN` | verify 失敗時に Claude Code が自動修正する   |
-| `CLOUDFLARE_ACCOUNT_ID`   | デプロイ先と Alchemy の状態を置くアカウント  |
-| `CLOUDFLARE_API_TOKEN`    | 同じアカウントの API トークン                |
+| Name                      | Purpose                                                   |
+| ------------------------- | --------------------------------------------------------- |
+| `OPENROUTER_API_KEY`      | oxlint-plugin-decision in the verify workflow             |
+| `CLAUDE_CODE_OAUTH_TOKEN` | Claude Code fixes things automatically when verify fails  |
+| `CLOUDFLARE_ACCOUNT_ID`   | The account holding the deploy target and Alchemy's state |
+| `CLOUDFLARE_API_TOKEN`    | An API token for the same account                         |
 
-Organization のリポジトリなら、Organization の secrets に一度登録すれば、リポジトリごとの登録は要らない。
+For a repository in an organization, registering once in the organization's secrets makes per-repository registration unnecessary.
 
-## 3. Actions に PR の作成を許可する
+## 3. Allow Actions to create PRs
 
-release-please と自動修正のワークフローが PR を作る。
+release-please and the auto-fix workflow create PRs.
 
 ```sh
 gh api --method PUT "repos/$REPO/actions/permissions/workflow" \
   -f default_workflow_permissions=read -F can_approve_pull_request_reviews=true
 ```
 
-## 4. PR を作れる人を collaborator に限り、auto-merge を有効にする
+## 4. Limit who can create PRs to collaborators, and enable auto-merge
 
 ```sh
 gh api --method PATCH "repos/$REPO" -f pull_request_creation_policy=collaborators_only \
   -F allow_auto_merge=true -F allow_update_branch=true
 ```
 
-## 5. 既定ブランチを保護する
+## 5. Protect the default branch
 
-既定ブランチにルールセットを置く。同じ名前のルールセットがあれば置き換える。
+Put a ruleset on the default branch. If a ruleset with the same name exists, replace it.
 
-- 既定ブランチの削除と force push を禁じる
-- `up-to-date` チェックを通っていない PR のマージを拒む
-- 最新の既定ブランチを取り込んでいない PR のマージを拒む
-- バイパスは置かない
+- Forbid deleting and force-pushing the default branch
+- Reject merging PRs that have not passed the `up-to-date` check
+- Reject merging PRs that have not taken in the latest default branch
+- Do not set any bypass
 
-release-please の PR は、Claude が既定ブランチを取り込んで push し、その push で動く `up-to-date` が通ってからマージする。
+For release-please PRs, Claude takes in the default branch and pushes, and merges after `up-to-date`, run by that push, passes.
 
 ```sh
 id="$(gh api "repos/$REPO/rulesets" --jq '.[] | select(.name == "protect default branch") | .id')"
@@ -78,7 +78,7 @@ gh api --method "$([ -n "$id" ] && echo PUT || echo POST)" "repos/$REPO/rulesets
 JSON
 ```
 
-## 6. 反映を確認する
+## 6. Confirm the changes took effect
 
-- `gh api "repos/$REPO" --jq '[.pull_request_creation_policy, .allow_auto_merge]'` が `["collaborators_only",true]` を返す
-- `gh api "repos/$REPO/rules/branches/$(gh api "repos/$REPO" --jq .default_branch)" --jq '[.[].type]'` に `required_status_checks` がある
+- `gh api "repos/$REPO" --jq '[.pull_request_creation_policy, .allow_auto_merge]'` returns `["collaborators_only",true]`
+- `gh api "repos/$REPO/rules/branches/$(gh api "repos/$REPO" --jq .default_branch)" --jq '[.[].type]'` contains `required_status_checks`

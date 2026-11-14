@@ -1,13 +1,13 @@
 # security
 
-攻撃と情報漏えいへの対策を確認する。どれも欠けていてもアプリケーションは動くので、検出ツールで確認しないと気づかない。基準は [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) と [OWASP Top 10](https://owasp.org/www-project-top-ten/) に従う。
+Confirm the countermeasures against attacks and information leaks. The application runs even if any of them is missing, so you will not notice unless you check with detection tools. Follow [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) and the [OWASP Top 10](https://owasp.org/www-project-top-ten/) as the standard.
 
-| 確認する事項 | 現状の確認方法 | 充足条件 |
+| Item to check | How to check the current state | Condition for being satisfied |
 | --- | --- | --- |
-| シークレットの保管場所 | Betterleaks などのシークレット検出ツールを、リポジトリの全履歴に対して実行する | 検出がない。シークレットはシークレットの保管サービスにだけある |
-| 依存パッケージの脆弱性 | パッケージマネージャーの audit を実行する | 勧告がない。修正版のない勧告だけが、理由とともに除外されている |
-| レスポンスヘッダー | 本番の HTML を返す各ページに `curl -I` でリクエストし、CSP、HSTS、X-Content-Type-Options、Referrer-Policy、Permissions-Policy を確認する | すべて付与されている |
-| 動的スキャン | 本番環境に ZAP のスキャンを実行する | 警告を含めてアラートがない |
-| 書き込みと認証のエンドポイントへの大量リクエスト | レート制限の設定を探す | 書き込み、認証、公開 API の前段にレート制限がある |
+| Where secrets are kept | Run a secret detection tool such as Betterleaks against the entire history of the repository | Nothing is detected. Secrets exist only in a secret storage service |
+| Vulnerabilities in dependency packages | Run the package manager's audit | There are no advisories. Only advisories without a fixed version are excluded, with a reason |
+| Response headers | Send `curl -I` to each production page that returns HTML, and check CSP, HSTS, X-Content-Type-Options, Referrer-Policy and Permissions-Policy | All of them are set |
+| Dynamic scanning | Run a ZAP scan against production | There are no alerts, including warnings |
+| Mass requests to write and authentication endpoints | Look for rate limiting settings | There is rate limiting in front of writes, authentication and public APIs |
 
-全履歴を対象にするのは、削除したつもりのシークレットが過去のコミットに残るからである。
+The reason to target the entire history is that secrets you thought you deleted remain in past commits.

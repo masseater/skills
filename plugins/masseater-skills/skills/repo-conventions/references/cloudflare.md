@@ -1,25 +1,25 @@
-# Cloudflare にデプロイするリポジトリ
+# Repositories that deploy to Cloudflare
 
-費用を抑える設計は cloudflare-caution に従う。
+Follow cloudflare-caution for designs that keep costs down.
 
-- Workers Paid プランを前提にする。Paid でしか使えない機能や上限を前提に設計してよい
-- ゾーンの WAF カスタムルールと Logpush のジョブは、masseater.dev ゾーンの持ち主の masseater/masseater.dev だけが持つ。ほかのリポは持たず、`OWNED_ZONE` は `Option.none()` のままにする。2 つのリポが同じゾーンの設定を持つと、デプロイのたびに互いの設定を上書きするからである
-- Worker にはすべて `logpush: true` を付ける
-- Bot Fight Mode は使わない
-- Cloudflare などのクラウドの認証は Alchemy のプロファイルで管理する
-- `APP_NAME` やスタック名を変えると、リソースは作り直される
+- Assume the Workers Paid plan. You may design on the premise of features and limits available only on Paid
+- The zone's WAF custom rules and the Logpush job are owned only by masseater/masseater.dev, the owner of the masseater.dev zone. Other repositories do not own them and leave `OWNED_ZONE` as `Option.none()`. If two repositories own settings for the same zone, they overwrite each other's settings on every deploy
+- Add `logpush: true` to every Worker
+- Do not use Bot Fight Mode
+- Manage authentication for clouds such as Cloudflare with Alchemy profiles
+- Changing `APP_NAME` or the stack name recreates the resources
 
-## 公開の静的ページ
+## Public static pages
 
-誰にでも見せるページで、リクエストごとに中身が変わらないものは、masseater/typescript-template の `apps/lp` と同じ形で作る。
+Pages shown to everyone whose content does not change per request are built in the same shape as `apps/lp` in masseater/typescript-template.
 
-- TanStack Start のプリレンダーで HTML にし、`main` を渡さない `Website.StaticSite` で静的アセットだけとして配る。Worker の SSR、`runWorkerFirst`、R2 からの配信は使わない
-- CSP は nonce に頼らない。`apps/lp/inline-scripts.ts` の Vite プラグインが inline の script を外部ファイルに出し、`security-headers` の `STATIC_PAGE_HEADERS` を `_headers` で付ける
+- Turn them into HTML with TanStack Start's prerendering, and serve them as static assets only with `Website.StaticSite` without passing `main`. Do not use Worker SSR, `runWorkerFirst` or serving from R2
+- Do not rely on nonces for CSP. The Vite plugin in `apps/lp/inline-scripts.ts` moves inline scripts into external files, and `STATIC_PAGE_HEADERS` from `security-headers` is attached with `_headers`
 
-## アクセス解析
+## Analytics
 
-Cloudflare Web Analytics を既定で有効にする。
+Enable Cloudflare Web Analytics by default.
 
-- サイトはホストごとに Cloudflare の API で一度だけ作り、そのトークンを `alchemy.run.ts` の `CF_BEACON_TOKEN` に置く
-- CI のトークンに Account Settings Write を足さないため、`Rum.Site` は使わない
-- SSR のアプリは、Worker の `CF_BEACON_TOKEN` から `start.ts` が HTML にビーコンを足す。静的ページは、ビルド時の `VITE_CF_BEACON_TOKEN` から root の `head` で入れる。ゾーンの自動挿入は Workers の応答に効かない
+- Create a site only once per host with the Cloudflare API, and put its token in `CF_BEACON_TOKEN` in `alchemy.run.ts`
+- Do not use `Rum.Site`, so as not to add Account Settings Write to the CI token
+- For SSR apps, `start.ts` adds the beacon to the HTML from the Worker's `CF_BEACON_TOKEN`. For static pages, it is inserted in the root `head` from `VITE_CF_BEACON_TOKEN` at build time. The zone's automatic injection does not apply to Workers responses

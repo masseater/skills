@@ -1,13 +1,13 @@
-# 説明せずに示す
+# Show without explaining
 
-README、ドキュメント、SKILL.md のような手順と参照の文書は、読み手が操作するための UI である。読み手は見出しで目的の箇所を探し、コマンドや設定を写して使う。地の文は、使う前に読まなければならない障害になる。文は、ないと読み手が実際に間違えるときだけ残す。
+Procedural and reference documents such as README, documentation and SKILL.md are a UI that readers operate. Readers find the part they want by its heading and copy commands and settings to use them. Running prose is an obstacle they have to read before using them. Keep a sentence only when readers would actually make a mistake without it.
 
-- 何の文書か、何の節かを説明しない。題、見出し、一覧、コードブロックが伝える
-- 操作を実況しない。「次を実行する」「〜に書く」を付けず、見出しの下にコードブロックを置く
-- 操作の結果を確かめる文を書かない。読み手はその場で画面を見て分かる。ただし、成功しても何も出ないときや、成功と失敗が同じ見た目になるときは、成功したときの出力をコードブロックで示す
-- 同じ結果になる手段を並べない。1 つに絞る
-- 結果がいくつもあるときは、最も重要な 1 つだけを書く。取り返しのつかない結果は必ず残す
-- 内部で何が起きるかは書かない。保存先、同期、背後の処理は読み手の関心の外にある
-- 無いこと、できないことを書かない。読み手が試して失敗するものだけを、1 行で残す
-- 条件は、文の前置きにせず見出しにする。「チームで使うときは」ではなく「チームで使う」の節を置く
-- 動詞は、何が起きるかを特定できるものにする。「入れる」「設定する」より「インストールする」「有効にする」
+- Do not explain what the document or the section is. The title, headings, lists and code blocks convey that
+- Do not narrate the operations. Do not add "run the following" or "write it in ..."; put the code block under the heading
+- Do not write sentences that confirm the result of an operation. Readers can see it on the screen right there. However, when nothing is output on success, or when success and failure look the same, show the output on success in a code block
+- Do not list several means that lead to the same result. Narrow it down to one
+- When there are several results, write only the most important one. Always keep results that cannot be undone
+- Do not write what happens internally. Storage locations, synchronization and background processing are outside the reader's interest
+- Do not write what does not exist or what cannot be done. Keep, in one line, only what readers would try and fail at
+- Make conditions headings, not preambles to sentences. Rather than "When using it in a team", have a section "Using it in a team"
+- Use verbs that make clear what happens. "Install" and "enable" rather than "put in" or "set up"

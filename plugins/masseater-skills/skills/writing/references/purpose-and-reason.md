@@ -1,35 +1,35 @@
-# 目的と理由の記述
+# Writing the purpose and the reason
 
-そうする目的を書く。目的があれば、読者は想定外の状況でも基準を当てはめて判断できる。
+Write the purpose of doing something. With a purpose, readers can apply the criterion and judge even in unexpected situations.
 
-- 仕様やコードを見ればすぐ分かる動作の説明は、理由の代わりにしない
-- 技術用語で理由が完結するときは、ビジネスやプロダクトの要件に届くまで遡る
-- 今の状態から理由を逆算するときは、推測であると明示し、人間と合意を取る
+- Do not substitute a description of behavior that is obvious from the specification or the code for a reason
+- When a reason is complete in technical terms, trace back until you reach a business or product requirement
+- When working backward from the current state to a reason, state explicitly that it is a guess, and reach agreement with a human
 
-## 技術の手前にある理由
+## The reason before the technology
 
-「A する必要があるため B している」の A が技術的な要素なら、その技術を採用した理由がさらに手前にある。遡っても根拠が見つからなければ、その選択自体がオーバーエンジニアリングではないかを疑う。
-
-```
-SSR を行うためにこの設定を有効にしている。
-```
-
-設定が SSR のためであることは 1 分調べれば分かる。SSR が必要な理由が抜けている。理由があれば、実現方法の中から目的に合うものを選べる。
+If A in "We do B because we need to do A" is a technical element, there is a further reason before it: why that technology was adopted. If no grounds are found when you trace back, suspect that the choice itself is overengineering.
 
 ```
-SEO のために SSR を行う必要がある。
+This setting is enabled in order to do SSR.
 ```
 
-良く見えるが、なぜ SEO を考慮するのかが抜けている。
+That the setting is for SSR can be found out in a minute of research. The reason SSR is needed is missing. With a reason, you can choose, among the ways of achieving it, the one that fits the purpose.
 
 ```
-本プロダクトは BtoC サービスである。単純なマーケティング流入のほか検索流入も期待したい。そのため SEO を考慮する必要があるので、SSR を行う。
+SSR is needed for SEO.
 ```
 
-要件の背景まで含んでいるが、冗長である。プロダクトレベルの要件を各所に書くと、既存の情報と重複する。大原則の置き場所が明確ならそこは省き、正本を 1 か所に保つ。
+It looks good, but why SEO is considered is missing.
 
 ```
-検索結果から商品ページへ流入できるよう、クローラーが初回応答から主要な商品情報を取得できる必要がある。この要件を満たすため、商品ページはサーバー側で描画する。
+This product is a B2C service. Besides simple marketing traffic, we also want to expect search traffic. Therefore SEO must be considered, so we do SSR.
 ```
 
-「検索エンジンからの流入を期待する」はプロダクトの要件である。技術から逆算されたものではないので、理由の着地点になる。その要件自体の理由はビジネス上のもので、技術的要件と結び付けるべきではないため省いてよい。
+It includes the background of the requirement, but it is redundant. Writing product-level requirements everywhere duplicates existing information. If it is clear where the overarching principle lives, omit it here and keep the source of truth in one place.
+
+```
+So that traffic can flow from search results to product pages, crawlers need to be able to get the main product information from the first response. To meet this requirement, product pages are rendered on the server.
+```
+
+"We expect traffic from search engines" is a product requirement. It is not derived backward from technology, so it is where the reason lands. The reason for that requirement itself is a business matter and should not be tied to technical requirements, so it may be omitted.

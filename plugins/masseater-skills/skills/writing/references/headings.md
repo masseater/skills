@@ -1,9 +1,9 @@
-# 見出しと箇条書きの体言止め
+# Ending headings and bullet points with a noun
 
-見出しは会話ではなく、文章の構造を示すものである。体言止めにし、敬語や「〜します」で書かない。
+A heading shows the structure of the text; it is not conversation. End it with a noun, and do not write it in honorifics or in the "〜します" (we will do ...) form.
 
-- 見出しは体言止めにする
-- 短い箇条書きも体言止めでよい
-- 本文は述語で終える
+- End headings with a noun
+- Short bullet points may also end with a noun
+- End body sentences with a predicate
 
-「〜します」の見出しは、人間はまずそう書かないので、ひどく奇妙に見える。
+A heading in the "〜します" form looks extremely strange, because a human would almost never write one that way.

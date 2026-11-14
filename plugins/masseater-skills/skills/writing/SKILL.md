@@ -1,6 +1,6 @@
 ---
 name: writing
-description: 文章を書く・推敲するときに読む。ドキュメント、コメント、コミットメッセージ、PR 本文、README、masseater の名前で出す記事、小説が対象である。「AI っぽい」「冗長」「読みにくい」と言われた文章を直すとき、Claude との壁打ちを「記事化して」と言われたときにも使う。
+description: Read when writing or revising text. Covers documentation, comments, commit messages, PR bodies, READMEs, articles published under masseater's name, and novels. Also use when fixing text described as "AI-like", "redundant" or "hard to read", and when asked to "turn this into an article" after bouncing ideas off Claude.
 metadata:
   derived-from: >-
     https://github.com/masseater/claude-code-plugin/tree/2e0619b1ab620552764da5ea6e46b77a0dcfaa35/plugins/writing
@@ -11,85 +11,85 @@ metadata:
 
 # writing
 
-- 読者である人間の読み方と考え方は humanity-and-humanness に従う
-- 日本語の言い回しは philtzjp/skills の [`japanese`](https://github.com/philtzjp/skills/blob/main/.agents/skills/japanese/SKILL.md) に従う
-- この skill の規範は、その上に足すものである
+- Follow humanity-and-humanness for how human readers read and think
+- Follow [`japanese`](https://github.com/philtzjp/skills/blob/main/.agents/skills/japanese/SKILL.md) in philtzjp/skills for Japanese phrasing
+- The norms of this skill are added on top of those
 
-## この skill が必要な理由と達成したい状態
+## Why this skill is needed and the state it should achieve
 
-この skill が必要な理由は、AI が文を、読者に何を判断させるかからではなく、学習した説明文の形から反射的に組み立てることにある。さらに AI は、書いてあることをそのまま読み取れる自分を読者の模型にするので、推測で補いながら読む人間には、読んでも頭に残らない文章になる。
+This skill is needed because AI reflexively builds sentences from the shapes of explanatory text it learned, not from what it wants readers to judge. Moreover, AI takes as its model of the reader itself, which can take what is written exactly as it is, so for humans, who read while filling gaps by guessing, the text does not stay in the head even when read.
 
-この skill で達成したい状態は、読者が一度読むだけで書き手の判断とその理由を受け取り、最後まで読み進められる文章になっていることである。
+The state this skill should achieve is text from which readers receive the writer's judgments and their reasons in a single reading, and which they keep reading to the end.
 
-## 大原則
+## Overarching principles
 
-規範は、文型や禁止事項として機械的に当てはめるものではない。先に決めるのは「どう直すか」ではなく「その修正で文章の何を守るのか」である。形式ではなく、文章が果たしている働きで判断する。
+The norms are not to be applied mechanically as sentence patterns or prohibitions. What to decide first is not "how to fix it" but "what in the text this fix protects". Judge by the function the text performs, not by its form.
 
-### 読み手の読み方に合わせた構成
+### Structure suited to how readers read
 
-人間は順に読み、読んだ順に理解を組み立てる。一覧して全体を把握してから詳細に入る。構成はその読み方に合わせる。
+Humans read in order, and build understanding in the order they read. They grasp the whole by scanning it before going into details. Fit the structure to that way of reading.
 
-- 1 つの文書には 1 つの種類だけを入れる
-- 規則を並べる前に、その規則がなければ何が起きるかを書く
-- 題と冒頭だけで、何の文書で何を守るかが分かるようにする
-- 何の文書かは短い文の段落で書き、守ることは箇条書きで並べる
-- 並列の項目はリストにする。文章に畳まない
-- 別のファイルや節への索引には、一行の要約を付ける
-- 一文に置く独立した判断は 1 つにする
-- 同じ段の見出しは、同じ問いに答える
-- 見出しには話題名ではなく要点を持たせる。手順の見出しは動詞句、概念の見出しは名詞句にする
+- Put only one kind into one document
+- Before listing rules, write what would happen without those rules
+- Make it possible to tell from the title and opening alone what the document is and what it protects
+- Write what the document is in a paragraph of short sentences, and list what it protects as bullet points
+- Make parallel items a list. Do not fold them into prose
+- Give indexes to other files and sections a one-line summary
+- Put only one independent judgment in one sentence
+- Headings at the same level answer the same question
+- Give headings the point, not the topic name. Make procedural headings verb phrases and conceptual headings noun phrases
 
-文書の種類は 4 つある。仕事のための手順、仕事のための事実である参照、理解のための説明、学習のための手順である。読み手は種類ごとに読み方を変えるので、手順の中に背景を、参照の中に説得を書くと、読み手は読み方を切り替えられない。混ぜたくなったら文書を分けてリンクする。
+There are four kinds of documents: procedures for work, references that are facts for work, explanations for understanding, and procedures for learning. Readers change how they read for each kind, so if you write background inside a procedure or persuasion inside a reference, readers cannot switch how they read. If you feel like mixing them, split the documents and link them.
 
-同じ段の見出しの観点が揃っていないと、読み手は一覧しても何を軸に分けてあるのか掴めない。規則の節と手順の節と対象の節を同じ段に並べない。
+If the viewpoints of headings at the same level are not aligned, readers cannot grasp what axis things are divided on even when scanning. Do not line up rule sections, procedure sections and subject sections at the same level.
 
-規則を先に並べて理由を後から添えると、疑問が立たないので流れが生まれない。
+If you list rules first and add reasons afterward, no questions arise, so no flow is created.
 
-### 緩急の設計
+### Designing rhythm
 
-[`rhythm`](references/rhythm.md) も読むこと。
+Also read [`rhythm`](references/rhythm.md).
 
-密度の高い文章が退屈になるのは、情報が多いからではない。全文が同じ認知モードで書かれているからである。読者の認知モードを、観察する、迷う、確信する、確かめ直すのあいだで切り替え、常に「続きを読む理由」を残す。
+Dense text becomes boring not because there is a lot of information. It is because all of it is written in the same cognitive mode. Switch the reader's cognitive mode among observing, hesitating, being convinced and rechecking, and always leave a "reason to keep reading".
 
-- 緩急は情報量の増減ではなく、認知モードの切替として設計する
-- 未回収の緊張を、常に 1 つは開いておく
-- 完成した結論を解説する声ではなく、考えながら進む当事者の声で書く
-- 拍、緊張、緩みの材料は、状況の側からだけ取る
-- 装置は内容で実現し、宣言しない
-- 拍を作るために文を削らない
+- Design rhythm not as an increase or decrease in information but as switching of cognitive modes
+- Always keep at least one unresolved tension open
+- Write not in the voice of explaining a finished conclusion but in the voice of a participant moving forward while thinking
+- Take the material for beats, tension and release only from the side of the situation
+- Realize devices through content, and do not declare them
+- Do not cut sentences to create beats
 
-緊張がすべて閉じた瞬間に、読者は読むのをやめられる。未回収の緊張とは、答えの出ていない問い、裏の取れていない確信、あとで返すと約束した答えである。
+The moment all tensions close, readers can stop reading. Unresolved tensions are questions not yet answered, convictions not yet verified, and answers promised for later.
 
-状況とは、対象世界の出来事、データ、発言、語り手の判断状態である。場面のない説明文では、対象そのものの性質と、読者が抱く推論や反問が状況にあたる。状況に材料がない位置は、何も足さず平坦なまま残す。本文自身を話題にした文でリズムを作るのは、規範の違反である。
+The situation is the events, data and remarks of the subject world, and the state of judgment of the narrator. In explanatory text without scenes, the properties of the subject itself and the inferences and counter-questions readers have are the situation. Leave positions where the situation offers no material flat, without adding anything. Creating rhythm with sentences that make the text itself the topic violates the norms.
 
-「先に答えを半分だけ置く」のように、これからやる操作を述べた文は、それ自体が駄文である。装置が機能していれば、読者は装置の存在に気づかない。
+A sentence that states an operation about to be performed, such as "put half the answer first", is itself bad writing. If a device works, readers do not notice its existence.
 
-範囲、観点、比較軸、未確定事項といった導入に必要な文脈を削って短くするのは、緩急ではなく欠落である。密度を上げる編集は、共有済みの文脈の上でだけ行う。
+Shortening by cutting the context needed for an introduction, such as scope, viewpoint, axes of comparison and undecided items, is not rhythm but omission. Edit to raise density only on top of already shared context.
 
-## 規範
+## Norms
 
-説明文を書くときは、次もすべて読むこと。
+When writing explanatory text, read all of the following too.
 
-- [`purpose-and-reason`](references/purpose-and-reason.md)。目的と理由を書く
-- [`no-perishable-information`](references/no-perishable-information.md)。コードから導出できる情報を文書に複製しない
-- [`punctuation`](references/punctuation.md)。句読点は役割の境界と、意味が確定する場所に打つ
-- [`purpose-before-means`](references/purpose-before-means.md)。手段より目的を先に置く
-- [`headings`](references/headings.md)。見出しと箇条書きは体言止めにする
-- [`show-dont-describe`](references/show-dont-describe.md)。手順と参照の文書は UI として扱い、説明せずに見出しとコードブロックで示す
+- [`purpose-and-reason`](references/purpose-and-reason.md). Write the purpose and the reason
+- [`no-perishable-information`](references/no-perishable-information.md). Do not copy into documents information derivable from code
+- [`punctuation`](references/punctuation.md). Place punctuation at the boundaries of roles and where the meaning is settled
+- [`purpose-before-means`](references/purpose-before-means.md). Put the purpose before the means
+- [`headings`](references/headings.md). End headings and bullet points with a noun
+- [`show-dont-describe`](references/show-dont-describe.md). Treat procedural and reference documents as a UI, and show with headings and code blocks without explaining
 
-## 用途
+## Use cases
 
-選んだ手順も読むこと。
+Also read the procedure you chose.
 
-- [`ai-context`](usecases/ai-context.md)。SKILL.md、AGENTS.md、CLAUDE.md のように AI が読む文書を書く
-- [`readme-md`](usecases/readme-md.md)。人間が使うかを決めて使い始めるための README.md を書く
-- [`novel`](usecases/novel.md)。小説を書く
+- [`ai-context`](usecases/ai-context.md). Write documents AI reads, such as SKILL.md, AGENTS.md and CLAUDE.md
+- [`readme-md`](usecases/readme-md.md). Write a README.md for humans to decide whether to use something and to start using it
+- [`novel`](usecases/novel.md). Write a novel
 
-masseater の名前で出す記事は、次の 6 つの種類から 1 つを選んで書く。依頼の言葉から決まらないときは、たたき台を書く前に本人に確かめる。種類を取り違えると、構成から書き直しになるためである。
+For articles published under masseater's name, choose one of the following six kinds and write it. If the kind is not determined by the wording of the request, confirm with the owner before writing a draft. If you mistake the kind, you have to rewrite from the structure up.
 
-- [`article-research-memo`](usecases/article-research-memo.md)。**調査メモ**：自分向けに調べた事実の記録。前置きと正当化を書かない
-- [`article-poem`](usecases/article-poem.md)。**ポエム**：個人の主張を一人称の実感で吐き出す文章。論証しない
-- [`article-essay`](usecases/article-essay.md)。**論説**：外部の人に読んでもらう寄稿レベルの記事。根拠を置き、読み手の疑問をつなぎながら主張へ進む
-- [`article-tech-article`](usecases/article-tech-article.md)。**技術記事**：リポジトリ、ライブラリ、ツールの紹介と解説。対象が軸で、独自の主張を足さない
-- [`article-scrap`](usecases/article-scrap.md)。**scrap**：外部の記事や事実へのリンクに、要約を 1、2 文添えたもの
-- [`article-oshiete-claude`](usecases/article-oshiete-claude.md)。**教えてClaude**：本人が素朴な疑問を Claude と壁打ちした会話を、軽く整えてそのまま載せたもの
+- [`article-research-memo`](usecases/article-research-memo.md). **Research memo**: a record of facts researched for oneself. Do not write a preamble or justification
+- [`article-poem`](usecases/article-poem.md). **Poem**: text that pours out a personal claim with first-person feeling. Does not argue
+- [`article-essay`](usecases/article-essay.md). **Essay**: a contributed-level article for outside readers. Places evidence and proceeds to the claim while connecting the reader's questions
+- [`article-tech-article`](usecases/article-tech-article.md). **Tech article**: introduction and explanation of a repository, library or tool. The subject is the axis; do not add claims of your own
+- [`article-scrap`](usecases/article-scrap.md). **scrap**: a link to an external article or fact with a one- or two-sentence summary
+- [`article-oshiete-claude`](usecases/article-oshiete-claude.md). **Oshiete Claude**: a conversation in which the owner bounced a naive question off Claude, lightly tidied and published as is

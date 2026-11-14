@@ -1,118 +1,118 @@
-# AI 文体
+# AI style
 
-事実を言わない文と、同じことを二度言う文は、読み手の時間を使うだけで判断を増やさない。
+Sentences that do not state facts and sentences that say the same thing twice only use up the reader's time without adding to their judgment.
 
-ここの形は、伝えたいことから組み立てた文章を確かめるために使う。悪い例の文だけを良い例の形に差し替えても、段落の伝えたいことが決まっていなければ直らない。
+Use the forms here to check text you built from what you want to convey. Even if you replace just the sentence in the bad example with the shape of the good example, it will not be fixed unless what the paragraph wants to convey is decided.
 
-- 一つの事実は一度だけ書く
-- 材料の役割を予告せず、選んだ理由を書く
-- 煽らず、伝えたいことをそのまま書く
-- 接続詞で因果をつなぎ、一文に主語と理由を入れる
-- 文末を一つの形に揃えない
+- Write one fact only once
+- Do not preview the role of material; write why you chose it
+- Do not hype; write what you want to convey as it is
+- Connect causes with conjunctions, and put the subject and the reason in one sentence
+- Do not make all sentence endings the same form
 
-## 一つの事実は一度だけ書く
+## Write one fact only once
 
-- 単純な主張をそれらしく見せるための言い回しを足さない
-- 直前の文を言い換えただけの文を足さない
-- 同じ主張をするだけの段落を続けない。続いたら 1 段落にまとめる
-- 締めの総括段落を書かない
-- 「では〜は何が違うのか」のような自問を挟まない
-- 出典の時系列や事実を、そのまま写して並べた段落を書かない。出典は脚注で示せば足りる
-- 自分の感覚であることを「手で感じていた」のような言い回しで強調しない。読者は文脈から自分の感覚だと分かる
+- Do not add phrasing that makes a simple claim look impressive
+- Do not add sentences that merely rephrase the previous sentence
+- Do not continue with paragraphs that only make the same claim. If they continue, merge them into one paragraph
+- Do not write a closing wrap-up paragraph
+- Do not insert self-questions such as "So what is different about ...?"
+- Do not write paragraphs that copy and line up the chronology or facts of a source as they are. Showing the source in a footnote is enough
+- Do not emphasize that something is your own feeling with phrasing such as "I had felt it with my hands". Readers can tell from context that it is your own feeling
 
-悪い例:
+Bad example:
 
-> METR は、AI が一人でこなせる作業の長さが 4 か月ほどで倍になると計測している[^metr]。この数字を読む前に、僕は手で感じていた。
+> METR has measured that the length of tasks AI can complete on its own doubles in about four months[^metr]. Before reading this number, I had felt it with my hands.
 
-良い例:
+Good example:
 
-> METR は、AI が一人でこなせる作業の長さが 4 か月ほどで倍になると計測している[^metr]が、これは間違いないだろう。
+> METR has measured that the length of tasks AI can complete on its own doubles in about four months[^metr], and this is surely right.
 
-## 材料の役割を予告せず、選んだ理由を書く
+## Do not preview the role of material; write why you chose it
 
-事例や資料を持ち出すとき、読み手が知りたいのは、なぜその事例なのかと、その話がどこから来たかである。「〜から読み取れる」のように材料がこれから何を示すかを述べるだけの文は、どちらにも答えず、事実も言っていない。
+When bringing up a case or a document, what readers want to know is why that case, and where the story comes from. A sentence that only states what the material will show, such as "can be read from ...", answers neither and states no fact.
 
-- 事例を選んだ基準を、比べた結果として先に書く。「最も早く停止を決断した」のように書き、「象徴的な」「代表的な」で済ませない
-- 基準を確かめた範囲を書く。全数を調べていなければ「筆者が確認したなかで」と添え、読み手が基準の確かさを測れるようにする
-- その資料から引く理由を書く。当事者が経緯を公開している、のように、なぜその資料を根拠にできるかを書く
-- 「〜から読み取れる」「〜を並べると差が見える」「ここで問題は〜に出る」のような、材料の役割を予告するだけの文を書かない
-- 「理由は四つある」「具体的には三つある」のような列挙の予告を書かない。理由をそのまま続けて書く
-- 話題を移すときは、読み手が抱く問いを一つ置けば足り、「この問いに答えておかないと〜」のような、その話題を扱う正当化を足さない
+- Write the criterion by which you chose the case first, as the result of a comparison. Write something like "decided to suspend the earliest", and do not settle for "symbolic" or "representative"
+- Write the extent to which you verified the criterion. If you did not examine everything, add "among those the author checked" so that readers can gauge how firm the criterion is
+- Write why you cite that document. Write why it can be used as grounds, for example that the party involved has published the circumstances
+- Do not write sentences that only preview the role of the material, such as "can be read from ...", "lining up ... shows the difference" or "here the problem appears in ..."
+- Do not write previews of enumerations such as "there are four reasons" or "specifically, there are three". Write the reasons directly
+- When moving to a topic, placing one question that readers would have is enough; do not add justification for covering that topic, such as "unless we answer this question ..."
 
-悪い例:
+Bad example:
 
-> 公開前に停止した組織の内側で何が起きていたかは、保育 ICT サービスのコドモンが公開した振り返りから読み取れる。
+> What was happening inside the organizations that suspended their services before the fix was published can be read from the retrospective published by Codmon, a childcare ICT service.
 
-良い例:
+Good example:
 
-> 筆者が確認したなかで、日本で最も早く停止を決断したサービスはコドモンであった。同社は対応後にどういった動きで決断したかをまとめた記事を公開しているため、こちらから引用する[^codmon-retrospective]。
+> Among the services the author checked, the one in Japan that decided to suspend the earliest was Codmon. The company published an article summarizing how it moved to that decision after responding, so I quote from it[^codmon-retrospective].
 
-悪い例:
+Bad example:
 
-> 脆弱性はなぜ、出荷した後になって見つかるのか。開発時に検査したはずのソフトウェアから、何年も経って重大な欠陥が見つかる。この問いに答えておかないと、脆弱性対応を「作りが悪かったから起きる、たまの事故」と誤解したまま話が進む。
+> Why are vulnerabilities found only after shipping? Serious defects are found years later in software that should have been inspected during development. Unless we answer this question, the discussion proceeds with the misunderstanding that vulnerability response is "an occasional accident caused by poor construction".
 
-良い例:
+Good example:
 
-> そもそも、なぜ脆弱性はソフトウェアが公開された後に見つかるのか。
+> Why are vulnerabilities found after software is published in the first place?
 
-## 煽らず、伝えたいことをそのまま書く
+## Do not hype; write what you want to convey as it is
 
-「両者を分けたものは何か」のような問いは、伝えたいことを答えとして隠し、読み手の関心を引くためだけに置かれている。「すでに始まっていた」「ようやく」「止められなかった」のような評価の言葉も、事実の代わりに読み手の感情を動かそうとする点で同じである。伝えたいことをそのまま主張として書き、事例と数字をその根拠として続ける。
+A question such as "What separated the two?" hides what you want to convey as its answer, and is placed only to draw the reader's interest. Evaluative words such as "had already begun", "finally" or "could not stop" are the same in that they try to move the reader's feelings instead of stating facts. Write what you want to convey directly as a claim, and follow it with cases and numbers as its grounds.
 
-- 伝えたいことを問いで隠さない
-- 事実に評価の言葉を足して煽らない
-- 対比の相手には、反対側に当てはまる事例だけを出す。適切に対応した組織を「止められなかった組織」の側に置かない
+- Do not hide what you want to convey behind a question
+- Do not hype facts by adding evaluative words
+- For the other side of a contrast, bring up only cases that fit that opposite side. Do not put an organization that responded appropriately on the side of "organizations that could not stop"
 
-悪い例:
+Bad example:
 
-> これだけの組織が自らサービスを止めた。一方で、止められなかった組織もある。両者を分けたものは何か。
+> This many organizations stopped their services themselves. On the other hand, some organizations could not stop. What separated the two?
 
-良い例:
+Good example:
 
-> 修正版の公開を待たずに停止できた組織には、当日のうちに停止を決断できる体制があった。コドモンでは経営メンバーが午前のうちに即時停止まで合意しており、攻撃が成立すると分かった昼過ぎに停止した[^codmon-retrospective]。
+> The organizations that could suspend without waiting for the fix to be published had a structure that let them decide to suspend on the same day. At Codmon, the management members agreed in the morning on everything up to an immediate suspension, and suspended in the early afternoon when it became clear the attack would succeed[^codmon-retrospective].
 
-良い例は、段落で伝えたい主張を先頭の文で言い切り、事例をその根拠として続けている。
+The good example states the claim the paragraph wants to convey decisively in the first sentence, and follows with the case as its grounds.
 
-状況から明らかなことは断言してよい。同じ業種の競合 3 社が同じ夜にそろってメンテナンスを始めたなら、告知に理由が書かれていなくても原因として書く。
+You may assert what is obvious from the situation. If three competitors in the same industry all started maintenance on the same night, write it as the cause even if the announcements give no reason.
 
-## 接続詞で因果をつなぐ
+## Connect causes with conjunctions
 
-次の形を避ける。
+Avoid the following forms.
 
-- 「〜に書いた」のような、英語を直訳した言い回し
-- ツールやコードを擬人化する書き方（「型が教えてくれる」「lint が止める」）。「型エラーになる」「lint で検出される」のように、起きる事象として書く
-- 短文を畳んで余韻を作る書き方
-- 一文で書ける内容を、句点で短文に刻む書き方
-- 意味の切れ目でない位置に読点を打つ書き方。句読点は [`punctuation`](punctuation.md) に従う
-- 「問われるのは〜だ」のような、誰が何をするのかが分からない警句調の文。主体を書く
-- 「X。Y のことである。」の種明かし型
-- 「両者を分けたのは〜である」「〜したのは〜だった」のように、要点を文末まで隠す強調構文。分裂文と呼ばれるこの形は、要点を後ろに回す効果を持つ（[ニュース言語の分裂文の研究](https://kansaigaidai.repo.nii.ac.jp/record/8109/files/r117_07.pdf)）。主張は「A は B である」の普通の語順で書く。「分かれた」「分けた」のように、対比を結果の言葉で演出しない
-- 「しかも」「そして」で畳む接続
-- サービス名に役割を添えて並べる列挙（「コードホスティングの GitLab、エラー監視の Sentry、…」）
+- Phrasing translated literally from English, such as "〜に書いた" (wrote in ...)
+- Writing that personifies tools and code ("the types tell you", "lint stops it"). Write them as events that happen, such as "it becomes a type error" or "it is detected by lint"
+- Writing that folds short sentences to create a lingering effect
+- Writing that chops content that could be written in one sentence into short sentences with periods
+- Writing that places commas where there is no break in meaning. Follow [`punctuation`](punctuation.md) for punctuation
+- Aphoristic sentences in which it is unclear who does what, such as "What is asked is ...". Write the agent
+- The reveal pattern "X. That is Y."
+- Emphatic constructions that hide the point until the end of the sentence, such as "What separated the two was ..." or "What did ... was ...". This form, called the cleft sentence, has the effect of pushing the point to the back ([a study of cleft sentences in news language](https://kansaigaidai.repo.nii.ac.jp/record/8109/files/r117_07.pdf)). Write claims in the ordinary word order "A is B". Do not stage a contrast with words of result such as "diverged" or "separated"
+- Folding connectives with "moreover" and "and"
+- Enumerations that line up service names with their roles attached ("GitLab for code hosting, Sentry for error monitoring, ...")
 
-悪い例:
+Bad example:
 
-> パスワードを預けるサービスが、自分のソースコードを全部公開している。Bitwarden のことである。サーバーもクライアントもブラウザ拡張も、GitHub で誰でも読める。しかもそれを隠すどころか、製品の売りにしている。
+> A service you entrust your passwords to publishes all of its own source code. That is Bitwarden. The server, the client and the browser extension can all be read by anyone on GitHub. Moreover, far from hiding it, it makes it a selling point of the product.
 
-良い例:
+Good example:
 
-> パスワード管理サービスの Bitwarden は、サーバー、クライアント、ブラウザ拡張のソースコードをすべて GitHub で公開しており[^bitwarden-github]、それを利用者が預けてよいと判断する根拠に挙げている[^bitwarden-security]。
+> The password management service Bitwarden publishes all the source code of its server, client and browser extension on GitHub[^bitwarden-github], and cites this as grounds on which users can judge that it is safe to entrust it with their passwords[^bitwarden-security].
 
-悪い例:
+Bad example:
 
-> PHP2Shell も同じだ。問題の箇所は PHP が Web リクエストを受け取る最も基本的な経路にあり、PHP 5 以降のすべての環境が対象になり得た。十数年前に書かれたコードが 2026 年に発火した。
+> PHP2Shell is the same. The problem was in the most basic path by which PHP receives web requests, and every environment from PHP 5 onward could be affected. Code written more than a decade ago went off in 2026.
 
-悪い例:
+Bad example:
 
-> 脆弱性は必ず後から出る。問われるのは出荷時の品質ではなく、出荷後に直し続けられるかどうかだ。
+> Vulnerabilities always come out later. What is asked is not the quality at shipping, but whether you can keep fixing after shipping.
 
-接続詞で因果をつなぎ、一文に主語と理由が入る自然な長さで書く。
+Connect causes with conjunctions, and write at a natural length where one sentence contains the subject and the reason.
 
-## 文末を一つの形に揃えない
+## Do not make all sentence endings the same form
 
-本人は「である」ばかりの文章も、「だ」ばかりで「である」が出てこない文章も、どちらも不自然だと指摘している。同じ文末が続くと単調で幼く見え、同じ文末は 2 回まで、3 回続けないのが一般的な目安とされる（[EAT TREAT](https://eat-treat.jp/columns/1104)）。新聞は白書や国会会議録より文末の種類が多い（[国立国語研究所の調査](https://www2.ninjal.ac.jp/past-events/2009_2021/event/specialists/project-meeting/files/JCLWorkshop_no2_papers/JCLWorkshop2012_2_25.pdf)）。
+The owner has pointed out that text made only of "である" and text made only of "だ" with no "である" are both unnatural. When the same ending continues, the text looks monotonous and childish, and the common guideline is to use the same ending at most twice and not three times in a row ([EAT TREAT](https://eat-treat.jp/columns/1104)). Newspapers have more kinds of sentence endings than white papers and Diet records ([a survey by the National Institute for Japanese Language and Linguistics](https://www2.ninjal.ac.jp/past-events/2009_2021/event/specialists/project-meeting/files/JCLWorkshop_no2_papers/JCLWorkshop2012_2_25.pdf)).
 
-- 同じ文末を 3 回続けない
-- 出来事は「〜した」「〜している」のように動詞で終える
-- 「だ」「である」は、書き手の判断を述べる文に使う
-- 文末を変えるときは語尾だけを差し替えず、前後の文の組み立てから直す
+- Do not use the same ending three times in a row
+- End events with verbs, as in "〜した" (did) or "〜している" (is doing)
+- Use "だ" and "である" for sentences that state the writer's judgment
+- When changing an ending, do not just swap the final word; fix it from how the surrounding sentences are built

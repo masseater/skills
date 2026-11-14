@@ -1,10 +1,10 @@
 # delivery
 
-変更がチェックを通って本番に反映されるまでの経路を確認する。経路が手元の環境に依存していると、チェックを通っていない変更が本番に出る。考え方は [The Twelve-Factor App](https://12factor.net/) の build, release, run と config に従う。
+Confirm the path a change takes from passing checks to reaching production. If the path depends on a local environment, changes that have not passed the checks reach production. Follow build, release, run and config of [The Twelve-Factor App](https://12factor.net/) for the approach.
 
-| 確認する事項 | 現状の確認方法 | 充足条件 |
+| Item to check | How to check the current state | Condition for being satisfied |
 | --- | --- | --- |
-| チェックの実行場所 | ワークフローとフックの設定を確認し、main の最新の実行結果を確認する | main への push でチェックが実行され、最新の実行が成功している |
-| デプロイの経路 | ワークフローのデプロイジョブを確認する | 手元の環境に依存せず、チェックを通ったものだけがデプロイされる |
-| ロールバック | 前のバージョンを再デプロイする手順を探す | 手順があり、実際に一度ロールバックできている |
-| 環境変数 | `.env.example` とワークフローの環境変数を確認する | 環境ごとに変わる値だけが環境変数で、変わらない値はコードか設定ファイルにある |
+| Where checks run | Check the workflow and hook settings, and check the latest run results on main | Checks run on push to main, and the latest run succeeded |
+| Deployment path | Check the deploy job of the workflow | It does not depend on a local environment, and only what passed the checks is deployed |
+| Rollback | Look for a procedure to redeploy the previous version | There is a procedure, and a rollback has actually been done once |
+| Environment variables | Check `.env.example` and the workflow's environment variables | Only values that differ per environment are environment variables, and values that do not change are in code or configuration files |

@@ -1,137 +1,137 @@
 ---
 name: build-explanation
-description: 人に何かを説明するときに、読み手が知っていることから始め、読み手が次に抱く疑問に答える順で話を組み立てる手順。スライドの構成と読み上げ原稿、解説、提案、報告の文章を組み立てるときに使う。
+description: A procedure for building an explanation to someone that starts from what the reader knows and proceeds in the order that answers the questions the reader will have next. Use when building the structure and speaker script of slides, and the text of explanations, proposals and reports.
 ---
 
-# 説明の組み立て
+# Building an explanation
 
-説明が伝わるかは、中身の正しさより、読み手の頭の中で理解が組み上がる順に話が並んでいるかで決まる。
-このスキルは、人が新しいことを理解する仕組みに合わせて話の順序を決める手順を定める。
-スライドでは、create-slidesのフェーズ2(構成)とフェーズ5(読み上げ原稿)でこのスキルを使う。見た目や言葉づかいの決まりはcreate-slidesにあり、文の推敲はyomiyasuで行うので、ここでは扱わない。
+Whether an explanation gets across is decided less by the correctness of its content than by whether it is ordered the way understanding is assembled in the reader's head.
+This skill sets out a procedure for deciding the order of a talk according to how people understand new things.
+For slides, this skill is used in phase 2 (structure) and phase 5 (speaker script) of create-slides. Rules for appearance and wording are in create-slides, and sentences are polished with yomiyasu, so they are not covered here.
 
-## 人が説明を理解する仕組み
+## How people understand explanations
 
-手順はすべて、次の7つの性質から導いている。出典は末尾の参考文献にある。
+Every step is derived from the following seven properties. The sources are in the references at the end.
 
-| 性質                                                             | 説明にとっての意味                                                                                                           |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| 新しい情報は、すでに知っていることにつないだときにだけ理解できる | 話は読み手が知っているものから始める。何の話かを知らずに読んだ文章は、一文ずつは分かっても全体が理解できず、記憶にも残らない |
-| 一度に頭に置いておけるのは4つ前後の要素である                    | 何に使うか分からない部品を先に並べると、読み手は意味のない要素を抱えたまま読み進めることになる                               |
-| 人は問いを持ったときに答えを取り込む                             | 答えより先に、読み手がその答えを知りたくなる問いを置く。大人は特に、なぜそれを知る必要があるかが分かるまで学ぼうとしない     |
-| 具体から抽象へ進むと理解しやすい                                 | 身近な例や実物を先に見せ、そこから一般化した言葉や仕組みへ進む                                                               |
-| 物語の形の文章は、説明文より理解され記憶に残る                   | 項目を並べるより、出発点から問いと答えをつないで進む一続きの話にする                                                         |
-| 読み手が持っている誤解は、正しい説明を足すだけでは消えない       | ありがちな誤解を名指しして否定し、なぜ違うかを示す                                                                           |
-| 何が分かりやすいかは、読み手の知識で変わる                       | 想定読者を決めてから順序を決める。知っている人に効く省略は、知らない人には飛躍になる                                         |
+| Property | What it means for an explanation |
+| --- | --- |
+| New information can be understood only when connected to what is already known | Start the talk from something the reader knows. Text read without knowing what it is about can be understood sentence by sentence but not as a whole, and does not stay in memory |
+| What can be held in the head at once is about four elements | If you line up parts whose use is unknown first, readers have to read on while holding meaningless elements |
+| People take in answers when they have a question | Put, before the answer, a question that makes readers want to know that answer. Adults in particular do not try to learn until they see why they need to know it |
+| Going from concrete to abstract makes things easier to understand | Show familiar examples or the real thing first, and move from there to generalized words and mechanisms |
+| Text in narrative form is understood and remembered better than expository text | Rather than listing items, make it one continuous story that proceeds from a starting point by linking questions and answers |
+| Misconceptions readers hold do not disappear just by adding a correct explanation | Name the common misconception, deny it, and show why it is wrong |
+| What is easy to understand depends on the reader's knowledge | Decide the intended reader before deciding the order. An omission that works for those who know becomes a leap for those who do not |
 
-## 手順
+## Procedure
 
-### 1. 芯の一文を決める
+### 1. Decide the core sentence
 
-読み手が読み終えたときに持ち帰ってほしい理解を、主語と述語のある一文で書く。
-スライドでは、create-slidesの「作る前に書く3行」の答えがこの一文にあたる。
-芯が決まらないまま用語や事実を並べると、個々の説明は正しくても、何の話だったのかが読み手に残らない。
+Write, as one sentence with a subject and predicate, the understanding you want readers to take home when they finish.
+For slides, the answer to create-slides' "three lines to write before making" is this sentence.
+If you line up terms and facts without deciding the core, readers are left without knowing what it was about, even if each explanation is correct.
 
-### 2. 読み手の出発点を決める
+### 2. Decide the reader's starting point
 
-想定読者がすでに知っていて、この話につながる具体的なものを1つ選んで書き出す。
-出発点は概念より体験や実物がよい。たとえばLLMの仕組みなら、「ChatGPTに質問すると、文章が少しずつ表示されて返ってくる」という誰もが見た場面が出発点になる。
-出発点は、言葉で触れるだけで済ませず、実際に動いている様子を最初に見せる。ChatGPTの中の仕組みを話すなら、質問を入れて答えが少しずつ表示される画面を、仕組みの話より前に置く。読み手は見た現象を手がかりにして、後から出てくる仕組みをその現象に結びつける。
-出発点が決まらないときは、想定読者が知っている範囲を取り違えている。先に想定読者を書き直してから、この手順に戻る。
+Choose and write down one concrete thing that the intended reader already knows and that connects to this talk.
+An experience or a real thing is better than a concept as a starting point. For example, for how LLMs work, the scene everyone has seen, "when you ask ChatGPT a question, the text comes back appearing little by little", becomes the starting point.
+Do not settle for mentioning the starting point in words; show it actually working first. If you talk about the mechanism inside ChatGPT, put the screen where a question is entered and the answer appears little by little before the talk about the mechanism. Readers use the phenomenon they saw as a cue and connect the mechanism that comes later to it.
+If you cannot decide a starting point, you have mistaken the range of what the intended reader knows. Rewrite the intended reader first, then come back to this step.
 
-### 3. 読み手に疑問を持たせる
+### 3. Make the reader have a question
 
-出発点の現象を見せたら、答えを話す前に、その現象について読み手の頭に「なぜだろう」が浮かぶ問いを立てて見せる。問いを持たないまま読む説明は、読み手にとって答えが並んでいるだけの情報になる。
-ゆっくり実況のような解説動画は、この形で進む。聞き手役がまず疑問を口にし、説明役がそれに答える。説明役が先に答えを話し始めることはない。
-問いは、読み手が当たり前だと思っていたのに、言われてみると不思議な点から作る。ChatGPTなら「なぜ答えが1語ずつ表示されるのか」や「教わっていないはずのことをなぜ答えられるのか」が問いになる。
-問いは書き手の頭の中で使うだけで終わらせない。スライドなら本文や図の中の文字、読み上げ原稿の語りかけとして、読み手に見える形で出す。
+After showing the phenomenon at the starting point, before telling the answer, raise and show a question that makes "why is that?" come to the reader's mind about the phenomenon. An explanation read without a question is, for the reader, just information with answers lined up.
+Explainer videos in the style of Yukkuri commentary proceed in this form. The listener character first voices a question, and the explainer answers it. The explainer never starts talking about the answer first.
+Make the question from a point that readers took for granted but that seems strange once pointed out. For ChatGPT, "why does the answer appear one word at a time?" or "how can it answer things it should not have been taught?" become questions.
+Do not use the question only in the writer's head. On slides, put it out in a form visible to readers, as text in the body or a figure, or as a direct address in the speaker script.
 
-### 4. 問いの連鎖を書く
+### 4. Write the chain of questions
 
-出発点から芯の一文までを、「読み手が次に抱く疑問」と「その答え」の対で一列に並べる。
-各段の答えが、次の段の疑問を生むようにつなぐ。どの疑問にも答えていない段は、読み手にとって唐突なので削るか、それを必要とする疑問が出た場所へ移す。
-スライドでは、この一列がそのまま枚の並びになる。各枚の冒頭で、前の枚から来た疑問を受ける。
+Line up, from the starting point to the core sentence, pairs of "the question the reader will have next" and "its answer" in a single column.
+Link them so that each step's answer gives rise to the next step's question. A step that answers no question is abrupt for the reader, so delete it or move it to where a question that needs it arises.
+For slides, this column becomes the order of the slides as it is. At the start of each slide, take up the question coming from the previous slide.
 
-LLMの仕組みを説明する場合の例を示す。
+Here is an example of explaining how LLMs work.
 
-| 読み手の疑問                                 | 答え                                                                             |
-| -------------------------------------------- | -------------------------------------------------------------------------------- |
-| (出発点) ChatGPTに質問すると文章が返ってくる |                                                                                  |
-| 中で何が起きているのか                       | 次に来る言葉の確率を計算し、1語ずつ足して文章にしている                          |
-| その確率はどうやって計算しているのか         | 大量の数値を使った掛け算と足し算で計算している。この数値をパラメータと呼ぶ       |
-| その数値は誰が決めたのか                     | 人が決めたのではなく、大量の文章で答え合わせを繰り返して直した。これを学習と呼ぶ |
+| The reader's question | Answer |
+| --- | --- |
+| (Starting point) Asking ChatGPT a question returns text | |
+| What is happening inside? | It computes the probability of the next word, and adds one word at a time to make text |
+| How does it compute that probability? | It computes with multiplications and additions using a huge number of numerical values. These values are called parameters |
+| Who decided those values? | Not people; they were corrected by repeatedly checking answers against a huge amount of text. This is called training |
 
-この例では、「中の数値」が話に出てきた直後に、初めてパラメータという名前を与えている。冒頭で「パラメータとは」から始めると、読み手はなぜその話を聞いているのかが分からない。
+In this example, the name "parameters" is given for the first time right after "the values inside" come up in the talk. If you start with "What are parameters?" at the opening, readers do not know why they are hearing about it.
 
-### 5. 用語は問いの答えとして出す
+### 5. Introduce terms as answers to questions
 
-用語の説明は、その語の指すものが話に出てきたところで行う。冒頭に「〜とは」の枚や段落をまとめて置かない。
-順序は、まず指すものの働きや役割を見せ、その後に名前を与える。名前を先に出すと、読み手は中身の分からないラベルを抱えることになる。
-説明では、その語が何を指すかより先に、なぜそれが要るのか、それがないと何が困るのかを書く。読み手が引っかかるのは定義よりも必要性である。
-例外は、全体の流れを一度見せた後で細部に入るときである。このときは、細部で使う部品の名前を、その直前で短くまとめて見せてよい。全体の流れを見せる前の用語集は、この扱いに入らない。
+Explain a term where the thing it refers to comes up in the talk. Do not put "What is ...?" slides or paragraphs together at the opening.
+The order is to first show the function or role of what it refers to, and then give the name. If the name comes first, readers have to hold a label whose content they do not know.
+In the explanation, write why it is needed and what goes wrong without it before what the word refers to. What snags readers is necessity more than definition.
+The exception is when going into details after showing the overall flow once. In that case, you may briefly show together, just before, the names of the parts used in the details. A glossary before showing the overall flow does not fall under this treatment.
 
-### 6. 全体を見せてから部分に入る
+### 6. Show the whole before going into the parts
 
-仕組みや動作原理を説明するときは、部品から積み上げない。まず「そもそもどう動いているかを見てみよう」と全体の流れを一度通して見せ、その後で各部分を詳しく見る。
-部分に入るときは、それが全体のどこにあたるかを毎回示す。読み手は全体の流れを地図として持ち、その上に部分を置いて理解する。
+When explaining a mechanism or principle of operation, do not build it up from the parts. First show the overall flow once through, as in "let's first see how it works at all", and then look at each part in detail.
+When going into a part, show each time where it falls in the whole. Readers hold the overall flow as a map and understand by placing the parts on it.
 
-### 7. 具体から抽象へ進む
+### 7. Go from concrete to abstract
 
-先に具体例や実物を見せ、後から一般化した言葉や仕組みで言い直す。抽象的な定義から始めて例を後に添える順にはしない。
-仕組みを説明するときの具体とは、その仕組みが動いた結果として読み手の目に見える現象である。仕組みの図より先に、画面や出力や動きといった現象そのものを見せる。
-たとえ話を使うときは、元の話とどこが対応し、どこが違うかを明示する。対応を示さないたとえ話は、読み手に間違った推論をさせることがある。
+Show concrete examples or the real thing first, and rephrase them afterward in generalized words and mechanisms. Do not start from an abstract definition and add examples afterward.
+When explaining a mechanism, the concrete is the phenomenon visible to the reader as the result of that mechanism working. Show the phenomenon itself, such as a screen, output or motion, before the diagram of the mechanism.
+When using an analogy, state explicitly where it corresponds to the original and where it differs. An analogy without the correspondence shown can lead readers to wrong inferences.
 
-### 8. 読み手が引っかかる点を先回りする
+### 8. Anticipate where readers will get stuck
 
-構成案を作ったら、想定読者になったつもりで頭から読み、各段で浮かぶ疑問を書き出す。次の3つは必ず確かめる。
+After making the outline, read it from the top as if you were the intended reader, and write down the questions that come up at each step. Always check the following three.
 
-- なぜそれが必要なのか
-- 他のやり方ではなぜだめなのか
-- それで読み手にとって何が変わるのか
+- Why is it needed?
+- Why won't other ways do?
+- What does it change for the reader?
 
-書き出した疑問のうち、芯の一文を理解するのに要るものは本文で答える。答える場所は、その疑問が浮かぶ段の直後にする。
-想定読者が持っていそうな誤解(「AIは検索して答えを探している」など)があれば、その誤解を名指しし、なぜ違うのかを根拠と合わせて示す。正しい説明を書くだけでは、読み手は自分の誤解と結びつけずに読み流す。
+Of the questions written down, answer in the body those needed to understand the core sentence. Answer each right after the step where the question comes up.
+If there is a misconception the intended reader is likely to have (such as "AI searches for the answer"), name that misconception and show, with grounds, why it is wrong. If you only write the correct explanation, readers skim it without connecting it to their own misconception.
 
-### 9. 新しい要素を1つずつ出す
+### 9. Introduce new elements one at a time
 
-1枚のスライドや1つの段落で新しく出す概念は1つにする。
-新しい概念を出すときは、それを理解するのに要る前提が直前までに出ているかを確かめる。出ていなければ、前提を先に出すか、新しい概念を後ろへ動かす。
+Introduce only one new concept per slide or per paragraph.
+When introducing a new concept, confirm that the premises needed to understand it have appeared before it. If not, introduce the premises first, or move the new concept later.
 
-### 10. 主張には根拠と読み手にとっての意味を添える
+### 10. Attach grounds and meaning for the reader to claims
 
-説得したい主張には、根拠と、それが読み手にとって何を意味するかを添える。
-読み手が自分に関係があると感じた話ほど、読み手は根拠の質を吟味する。強い根拠は説得力を増すが、弱い根拠や飾りの言葉は逆効果になる。主張を強く見せるために、調べた事実より強い言い方をしない。
+Attach to a claim you want to persuade with its grounds and what it means for the reader.
+The more readers feel a talk concerns them, the more they scrutinize the quality of the grounds. Strong grounds increase persuasiveness, but weak grounds and decorative words backfire. Do not state things more strongly than the facts you researched to make a claim look strong.
 
-## 確認
+## Checking
 
-構成案と原稿ができたら、想定読者になったつもりで頭から読み、次を確かめる。見つけた箇所は直してから渡す。
+When the outline and script are done, read from the top as if you were the intended reader, and check the following. Fix what you find before handing it over.
 
-| 確かめること                                                           | 見つけたときの直し方                                 |
-| ---------------------------------------------------------------------- | ---------------------------------------------------- |
-| 最初の段は、読み手が知っているものから始まっているか                   | 出発点を決め直し、そこから問いの連鎖を書き直す       |
-| 仕組みを話す前に、その仕組みが動いている様子を見せているか             | 実物の画面や動きを見せる段を、仕組みの段より前に足す |
-| 各段の冒頭で、読み手はなぜ今これを読むのかが分かるか                   | 前の段の答えから出る疑問を、その段の冒頭に置く       |
-| 説明のないまま出てくる語や、使う場所から離れて説明されている語はないか | 説明を、その語が初めて出てきた段へ動かす             |
-| 問いの連鎖が途中で切れていないか                                       | 抜けている疑問と答えを足すか、段の順序を入れ替える   |
-| 想定読者の誤解に触れないまま進んでいないか                             | 誤解を名指しして否定する段を足す                     |
-| どの段も芯の一文に向かっているか                                       | 芯に向かわない段を削る                               |
+| What to check | How to fix it when found |
+| --- | --- |
+| Does the first step start from something the reader knows? | Decide the starting point again, and rewrite the chain of questions from there |
+| Before talking about a mechanism, is it shown working? | Add a step that shows the real screen or motion before the mechanism step |
+| At the start of each step, does the reader know why they are reading this now? | Put the question arising from the previous step's answer at the start of that step |
+| Are there words that appear without explanation, or words explained far from where they are used? | Move the explanation to the step where the word first appears |
+| Is the chain of questions broken somewhere? | Add the missing question and answer, or swap the order of steps |
+| Does it proceed without touching the intended reader's misconceptions? | Add a step that names and denies the misconception |
+| Is every step heading toward the core sentence? | Delete steps that do not head toward the core |
 
-## 参考文献
+## References
 
-| 文献                                                                                                                                                                                                                              | 取り入れたこと                                                                                                                          |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| Bransford, J. D., & Johnson, M. K. (1972). Contextual prerequisites for understanding. _Journal of Verbal Learning and Verbal Behavior_, 11(6). [DOI](<https://doi.org/10.1016/S0022-5371(72)80006-4>)                            | 何の話かを先に知らされなかった人は、同じ文章を理解できず思い出せなかった。話の文脈を最初に示す                                          |
-| Ausubel, D. P. (1960). The use of advance organizers in the learning and retention of meaningful verbal material. _Journal of Educational Psychology_, 51(5). [DOI](https://doi.org/10.1037/h0046669)                             | 新しい内容の前に、読み手の既有知識とつなぐ枠組み(先行オーガナイザー)を置く                                                              |
-| Haviland, S. E., & Clark, H. H. (1974). _Journal of Verbal Learning and Verbal Behavior_, 13(5). [DOI](<https://doi.org/10.1016/S0022-5371(74)80003-4>)                                                                           | 読み手は既に知っている情報を手がかりに新しい情報をつなぐ。既知から未知の順に書く                                                        |
-| Cowan, N. (2001). The magical number 4 in short-term memory. _Behavioral and Brain Sciences_, 24(1). [DOI](https://doi.org/10.1017/S0140525X01003922)                                                                             | 一度に保持できるのは4つ前後の要素である                                                                                                 |
-| Sweller, J., van Merriënboer, J. J. G., & Paas, F. (2019). Cognitive architecture and instructional design: 20 years later. _Educational Psychology Review_, 31. [DOI](https://doi.org/10.1007/s10648-019-09465-5)                | 認知負荷理論。互いに関係する要素を同時に扱うほど負荷が上がる。初心者に効く手立てが、詳しい人には逆効果になる(expertise reversal effect) |
-| Loewenstein, G. (1994). The psychology of curiosity. _Psychological Bulletin_, 116(1). [DOI](https://doi.org/10.1037/0033-2909.116.1.75)                                                                                          | 好奇心は、知っていることと知りたいことの間の隙間に気づいたときに生じる                                                                  |
-| Kang, M. J., et al. (2009). The wick in the candle of learning. _Psychological Science_, 20(8). [PubMed](https://pubmed.ncbi.nlm.nih.gov/19619181/)                                                                               | 好奇心を持った問いの答えは、後でよく思い出された                                                                                        |
-| Richland, L. E., Kornell, N., & Kao, L. S. (2009). The pretesting effect. _Journal of Experimental Psychology: Applied_, 15(3). [PDF](https://learninglab.uchicago.edu/Pre-Testing_files/RichlandKornellKao.pdf)                  | 答えを読む前に問いに向き合うと、答えの学習が進んだ。問いを答えより先に置く                                                              |
-| Knowles, M. S. のアンドラゴジー(成人学習論) [解説](https://tecfa.unige.ch/themes/sa2/act-app-dos2-fic-andragog.htm)                                                                                                               | 大人は、なぜそれを学ぶ必要があるかを知ってから学ぶ                                                                                      |
-| Reigeluth, C. M. の精緻化理論 [解説](https://www.instructionaldesign.org/?p=133)                                                                                                                                                  | 全体を簡単な形で一度見せ、そこから部分を詳しくしていく                                                                                  |
-| Mayer, R. E. の事前訓練の原則 [書誌](https://www.cambridge.org/core/books/abs/multimedia-learning/pretraining-principle/01791D57F5D4164251269E6DF56A8BF1)                                                                         | 仕組みの流れを説明する直前に部品の名前と働きを示すと理解が進む。手順5の例外の根拠にした                                                 |
-| Fyfe, E. R., McNeil, N. M., Son, J. Y., & Goldstone, R. L. (2014). Concreteness fading in mathematics and science instruction. _Educational Psychology Review_, 26. [DOI](https://doi.org/10.1007/s10648-014-9249-3)              | 具体的なものから始め、段階的に抽象へ移る                                                                                                |
-| Gentner, D. (1983). Structure-mapping. _Cognitive Science_, 7(2). [DOI](https://doi.org/10.1207/s15516709cog0702_3)                                                                                                               | たとえ話は、要素どうしの関係の対応で理解される。対応を明示する                                                                          |
-| Mar, R. A., et al. (2021). Memory and comprehension of narrative versus expository texts. _Psychonomic Bulletin & Review_, 28. [DOI](https://doi.org/10.3758/s13423-020-01853-1)                                                  | 33,000人超を集めたメタ分析で、物語は説明文よりよく理解され記憶された(g=0.55)                                                            |
-| Schroeder, N. L., & Kucera, A. C. (2022). Refutation text facilitates learning. _Educational Psychology Review_, 34. [DOI](https://doi.org/10.1007/s10648-021-09656-z)                                                            | 誤解を名指しして否定する文章は、通常の説明より学習を促した(g=0.41)                                                                      |
-| Petty, R. E., Cacioppo, J. T., & Goldman, R. (1981). Personal involvement as a determinant of argument-based persuasion. _Journal of Personality and Social Psychology_, 41(5). [DOI](https://doi.org/10.1037/0022-3514.41.5.847) | 自分に関係する話ほど、人は論拠の質で説得される。手順10の根拠にした                                                                      |
+| Reference | What was taken from it |
+| --- | --- |
+| Bransford, J. D., & Johnson, M. K. (1972). Contextual prerequisites for understanding. _Journal of Verbal Learning and Verbal Behavior_, 11(6). [DOI](<https://doi.org/10.1016/S0022-5371(72)80006-4>) | People not told first what it was about could not understand or recall the same text. Show the context of the talk first |
+| Ausubel, D. P. (1960). The use of advance organizers in the learning and retention of meaningful verbal material. _Journal of Educational Psychology_, 51(5). [DOI](https://doi.org/10.1037/h0046669) | Before new content, put a framework (advance organizer) that connects it to the reader's prior knowledge |
+| Haviland, S. E., & Clark, H. H. (1974). _Journal of Verbal Learning and Verbal Behavior_, 13(5). [DOI](<https://doi.org/10.1016/S0022-5371(74)80003-4>) | Readers connect new information using information they already know as a cue. Write from known to unknown |
+| Cowan, N. (2001). The magical number 4 in short-term memory. _Behavioral and Brain Sciences_, 24(1). [DOI](https://doi.org/10.1017/S0140525X01003922) | About four elements can be held at once |
+| Sweller, J., van Merriënboer, J. J. G., & Paas, F. (2019). Cognitive architecture and instructional design: 20 years later. _Educational Psychology Review_, 31. [DOI](https://doi.org/10.1007/s10648-019-09465-5) | Cognitive load theory. The more interrelated elements are handled at once, the higher the load. Measures that work for novices backfire for experts (expertise reversal effect) |
+| Loewenstein, G. (1994). The psychology of curiosity. _Psychological Bulletin_, 116(1). [DOI](https://doi.org/10.1037/0033-2909.116.1.75) | Curiosity arises when one notices a gap between what one knows and what one wants to know |
+| Kang, M. J., et al. (2009). The wick in the candle of learning. _Psychological Science_, 20(8). [PubMed](https://pubmed.ncbi.nlm.nih.gov/19619181/) | Answers to questions people were curious about were recalled better later |
+| Richland, L. E., Kornell, N., & Kao, L. S. (2009). The pretesting effect. _Journal of Experimental Psychology: Applied_, 15(3). [PDF](https://learninglab.uchicago.edu/Pre-Testing_files/RichlandKornellKao.pdf) | Engaging with a question before reading the answer improved learning of the answer. Put the question before the answer |
+| Knowles, M. S.'s andragogy (adult learning theory) [explanation](https://tecfa.unige.ch/themes/sa2/act-app-dos2-fic-andragog.htm) | Adults learn after knowing why they need to learn it |
+| Reigeluth, C. M.'s elaboration theory [explanation](https://www.instructionaldesign.org/?p=133) | Show the whole once in a simple form, and elaborate the parts from there |
+| Mayer, R. E.'s pretraining principle [bibliography](https://www.cambridge.org/core/books/abs/multimedia-learning/pretraining-principle/01791D57F5D4164251269E6DF56A8BF1) | Showing the names and functions of parts just before explaining the flow of a mechanism improves understanding. Used as the grounds for the exception in step 5 |
+| Fyfe, E. R., McNeil, N. M., Son, J. Y., & Goldstone, R. L. (2014). Concreteness fading in mathematics and science instruction. _Educational Psychology Review_, 26. [DOI](https://doi.org/10.1007/s10648-014-9249-3) | Start from the concrete, and move gradually to the abstract |
+| Gentner, D. (1983). Structure-mapping. _Cognitive Science_, 7(2). [DOI](https://doi.org/10.1207/s15516709cog0702_3) | Analogies are understood through the correspondence of relations between elements. Make the correspondence explicit |
+| Mar, R. A., et al. (2021). Memory and comprehension of narrative versus expository texts. _Psychonomic Bulletin & Review_, 28. [DOI](https://doi.org/10.3758/s13423-020-01853-1) | In a meta-analysis of more than 33,000 people, narratives were understood and remembered better than expository text (g=0.55) |
+| Schroeder, N. L., & Kucera, A. C. (2022). Refutation text facilitates learning. _Educational Psychology Review_, 34. [DOI](https://doi.org/10.1007/s10648-021-09656-z) | Text that names and denies misconceptions promoted learning more than ordinary explanation (g=0.41) |
+| Petty, R. E., Cacioppo, J. T., & Goldman, R. (1981). Personal involvement as a determinant of argument-based persuasion. _Journal of Personality and Social Psychology_, 41(5). [DOI](https://doi.org/10.1037/0022-3514.41.5.847) | The more a talk concerns people, the more they are persuaded by the quality of the arguments. Used as the grounds for step 10 |

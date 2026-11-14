@@ -1,118 +1,118 @@
 ---
 name: repo-conventions
-description: masseater のリポジトリに共通の決まり。masseater/typescript-template から作ったリポジトリや、AGENTS.md がこの skill を指すリポジトリで作業を始めるときに読む。
+description: Rules common to masseater's repositories. Read when starting work in a repository created from masseater/typescript-template, or in a repository whose AGENTS.md points to this skill.
 ---
 
 # repo-conventions
 
-- リポジトリの AGENTS.md と CLAUDE.md の決まりは、この skill より優先する
-- コマンドの実行は vite-plus に、計測は measure-dont-guess に、既存のものを探すのは dont-it-yourself に従う
-- 作業の完了は `vp run verify` が通ることである
+- The rules in the repository's AGENTS.md and CLAUDE.md take precedence over this skill
+- Follow vite-plus for running commands, measure-dont-guess for measurement, and dont-it-yourself for finding what already exists
+- Work is complete when `vp run verify` passes
 
-## この skill が必要な理由と達成したい状態
+## Why this skill is needed and the state it should achieve
 
-この skill が必要な理由は、masseater のリポジトリがどれも同じテンプレートから作られ、同じ決まりを持つことにある。決まりを各リポジトリの AGENTS.md に写すと、直すたびに全リポジトリを書き換えることになり、直し忘れたリポジトリから古い決まりのまま作業が進む。
+This skill is needed because masseater's repositories are all created from the same template and share the same rules. If the rules are copied into each repository's AGENTS.md, every fix means rewriting every repository, and work proceeds under old rules in the repositories that were missed.
 
-この skill で達成したい状態は、どのリポジトリでも同じ決まりで作業が進み、AGENTS.md にはそのリポジトリにしか無いことだけが残っていることである。
+The state this skill should achieve is that work proceeds under the same rules in every repository, and only what is specific to that repository remains in its AGENTS.md.
 
-## 手段の選び方
+## How to choose means
 
-強制・推奨・指示の手段は次の順で選ぶ。自作するときは、何を探して何が合わなかったかをコミットメッセージに残す。
+Choose means of enforcement, recommendation and instruction in the following order. When building something yourself, record in the commit message what you looked for and what did not fit.
 
-1. ライブラリ公式の統合手段。lint ルール、skill、plugin、CLI、diagnostics などである
-2. それを実現している既存のライブラリやツール
-3. 方針を提言しているブログ・issue・discussion
-4. 自作
+1. The library's official means of integration: lint rules, skills, plugins, CLIs, diagnostics and so on
+2. Existing libraries and tools that achieve it
+3. Blogs, issues and discussions that propose a policy
+4. Building it yourself
 
-どこまでを自作し、どこからを借りるかの境目と、技術スタックの完成形は masseater-ecosystem に従う。
+Follow masseater-ecosystem for the boundary of how much to build yourself and from where to borrow, and for the finished form of the tech stack.
 
-検査を通すために設定を無効化・簡易化したり、閾値を下げたり、抑止ディレクティブを使ったりしない。数値の設定はツールの既定値を保ち、既定値で検査が機能しないときだけ公式の指針で設定する。緩めた検査は、通っても何も保証しないからである。
+Do not disable or simplify settings, lower thresholds, or use suppression directives to make checks pass. Keep numeric settings at the tool's defaults, and set them by the official guidelines only when the check does not work with the defaults. A loosened check guarantees nothing even when it passes.
 
-## Python を使わない
+## Do not use Python
 
-Python は使わない。コード・スクリプト・CI・検証・依存のどれにも置かない。言語を TypeScript と Rust に絞っていて、Python を 1 か所でも置くと、そのためのランタイムとパッケージ管理と版の固定を、セッションと CI の両方で持ち続けることになるからである。
+Do not use Python. Put it nowhere in code, scripts, CI, verification or dependencies. The languages are narrowed to TypeScript and Rust, and putting Python in even one place means keeping a runtime, package management and version pinning for it in both sessions and CI.
 
-- `.py`・`.ipynb`・`pyproject.toml`・`requirements.txt`・`uv.lock` のような Python のファイルを置かない
-- ワークフロー・フック・タスク・スクリプトから `python`・`pip`・`pipx`・`uv`・`uvx`・`poetry` を呼ばない。`actions/setup-python` と `astral-sh/setup-uv` も使わない
-- mise・renovate・MCP の設定に Python とそのツールを書かない
-- Python でしか動かないライブラリやツールが要るときは、TypeScript か Rust で動く別の手段に置き換える。置き換えられないものは使うのをやめ、何をやめたかを報告に書く
-- 一度きりの調査や変換も Python で書かない
-- msch がこれらを検出して `vp run verify` を落とす
+- Do not put Python files such as `.py`, `.ipynb`, `pyproject.toml`, `requirements.txt` or `uv.lock`
+- Do not call `python`, `pip`, `pipx`, `uv`, `uvx` or `poetry` from workflows, hooks, tasks or scripts. Do not use `actions/setup-python` or `astral-sh/setup-uv` either
+- Do not write Python or its tools in mise, renovate or MCP settings
+- When a library or tool that only runs on Python is needed, replace it with another means that runs on TypeScript or Rust. Stop using what cannot be replaced, and write what you stopped in the report
+- Do not write even one-off investigations or conversions in Python
+- msch detects these and fails `vp run verify`
 
-## 確かめ方を先に作る
+## Build the way of checking first
 
-機能・ツール・ワークフロー・画面・インフラのような仕組みを作るときは、それが動いていることを確かめる方法を最初に決めて作り、実装はその後に始める。確かめ方を後回しにすると、確かめられない形のまま作り終え、確認がそのたびのエージェントの目視になるからである。
+When building a mechanism such as a feature, tool, workflow, screen or infrastructure, decide and build the method of confirming that it works first, and start the implementation after that. If the way of checking is postponed, the thing gets finished in a form that cannot be checked, and confirmation becomes an agent eyeballing it each time.
 
-- 確かめ方は、コマンド 1 つで誰でも再現でき、同じ入力に同じ判定を返すものにし、`vp run verify` に入れる。テスト・型・lint・スナップショットの比較がこれにあたる。verify に入らない確認は、次の変更で誰も動かさない
-- 見た目は、ヘッドレスで描画した画像を基準の画像と画素で比べる。操作はテストから送る
-- エージェントや人がそのたびに動かして見て判断する確認は、確かめ方にしない。遅く、費用がかかり、判定が揺れるからである
-- 今の環境に確かめる手段が無ければ、ヘッドレスの描画・スタブ・テスト用のホストのような手段を用意することを最初の作業にする
-- ログインや Access の背後にある部分を「本人の認証が要るので確かめられない」として残さない。本人の認証と同じ経路を通って AI が入る仕組みを計画の最初の手順にして作る。計画を書く前に debug-like-a-human を読み込むこと
-- 受け入れ条件を確かめるテストを先に書き、失敗することを確かめてから実装する
-- 本番の外部サービス・実機・聴感・好みの判断のように静的に確かめられない部分だけを残し、何が残ったかを報告に書く
+- Make the way of checking something anyone can reproduce with one command, returning the same verdict for the same input, and put it in `vp run verify`. Tests, types, lint and snapshot comparisons fall under this. A check that is not in verify will not be run by anyone at the next change
+- For appearance, compare images rendered headlessly with baseline images pixel by pixel. Send operations from tests
+- Do not make a check that an agent or a person runs and looks at each time to judge into the way of checking. It is slow, costs money, and its verdict wavers
+- If the current environment has no means of checking, make preparing such a means, such as headless rendering, stubs or a test host, the first piece of work
+- Do not leave the parts behind a login or Access as "cannot be checked because it needs the owner's authentication". Make building a mechanism by which AI gets in through the same path as the owner's authentication the first step of the plan. Load debug-like-a-human before writing the plan
+- Write tests that confirm the acceptance criteria first, confirm that they fail, and then implement
+- Leave only the parts that cannot be checked statically, such as external services in production, real devices, listening and judgments of taste, and write what remains in the report
 
-## 文書
+## Documents
 
-- 手書きの文章は、ルートの CLAUDE.md・README.md・ARCHITECTURE.md・DESIGN.md と docs/ に限る。コードを読めば分かることは書かない
-- ARCHITECTURE.md には、ワークスペースと層の地図と、依存してよい向きなどの不変条件だけを短く書く。頻繁に変わることは書かず、名前はリンクにしない。変わるたびに同期させず、境界や不変条件が変わるときだけ直す
-- 「なぜ」はコミットメッセージに書く
-- デプロイ先や外部に公開しているもの（サイト、API、npm パッケージなど）があれば、その URL を README に一覧で載せる
+- Hand-written prose is limited to the root CLAUDE.md, README.md, ARCHITECTURE.md and DESIGN.md, and docs/. Do not write what can be learned by reading the code
+- In ARCHITECTURE.md, write briefly only the map of workspaces and layers and invariants such as the allowed directions of dependency. Do not write what changes often, and do not make names links. Do not sync it every time things change; fix it only when boundaries or invariants change
+- Write the "why" in commit messages
+- If there are deploy targets or things published externally (sites, APIs, npm packages and so on), list their URLs in the README
 
-## 配置
+## Placement
 
-- 設定を含め、すべてワークスペース内に置く
-- ワークスペースは apps・libs・tools・infra に分け、アプリのデプロイ設定は apps に置いて infra の部品を使う
-- アプリの src/ 直下には FSD のレイヤーだけを置く。使われる場所の近くに置き、再利用されるまで切り出さない
-- 定数・設定値・スキーマ・ルールの ID は一か所で定義し、ほかはそこから参照する
+- Put everything, including configuration, inside the workspace
+- Divide the workspace into apps, libs, tools and infra, put apps' deploy settings in apps, and use components from infra
+- Put only FSD layers directly under an app's src/. Place things near where they are used, and do not extract them until they are reused
+- Define constants, configuration values, schemas and rule IDs in one place, and refer to them from there everywhere else
 
-## コード
+## Code
 
-- UI 状態は effect-atom、サーバー状態は TanStack Query だけで扱う
-- 状態は排他的な status を持つ判別共用体で表し、boolean フラグの組を使わない
-- ライブラリが型を提供する値は、その型のまま `Schema.decode*` に渡す。`unknown` で受けると、ライブラリの型と Schema の食い違いをコンパイラが見つけられなくなる
-- ライブラリが export する型・スキーマ・enum・定数を書き写さない
-- 外部 API のクライアントは手で包まず、Effect 公式のパッケージ、distilled.cloud（Cloudflare は `@distilled.cloud/cloudflare`）、公開 OpenAPI から `@effect/openapi-generator` で生成、の順に選ぶ
-- 環境変数は環境ごとに変わる値だけにする。変わらない値はコードか Alchemy の設定に、ツールにフラグがあればフラグにする。環境変数が 1 つ増えるたびに、どの環境で何を設定するかの考慮が増えるからである
-- Alchemy に足りない設定は、alchemy にパッチを当てず、カスタムリソースで定義する
+- Handle UI state only with effect-atom and server state only with TanStack Query
+- Represent state as a discriminated union with an exclusive status, and do not use sets of boolean flags
+- Pass values whose types a library provides to `Schema.decode*` with those types as they are. If you receive them as `unknown`, the compiler can no longer find mismatches between the library's types and the Schema
+- Do not copy types, schemas, enums or constants that a library exports
+- Do not wrap clients for external APIs by hand; choose in this order: official Effect packages, distilled.cloud (`@distilled.cloud/cloudflare` for Cloudflare), generation from a published OpenAPI with `@effect/openapi-generator`
+- Make environment variables only the values that change per environment. Put values that do not change in code or Alchemy settings, or in flags if the tool has them. Each additional environment variable adds consideration of what to set in which environment
+- For settings Alchemy lacks, define a custom resource rather than patching alchemy
 
 ## CI
 
-- ワークフローの手順は masseater/typescript-template の `.github/actions/` にある composite action（verify・autofix・skills-lock・update-branches・credentials・ci-telemetry）を `masseater/typescript-template/.github/actions/<名前>@<sha>` で参照する。手順を各リポに写すと、直すたびに全リポを書き換えることになるからである。sha は renovate が上げる
-- リポ固有のツール（go・weaver・apt の依存など）は、そのリポの `.github/actions/setup` に置き、ジョブからは `$/.github/actions/setup` で呼ぶ。actionlint はまだ `$/` を知らないので、`.github/actionlint.yaml` でその 1 件だけを無視する
-- Cloudflare・OpenRouter・Claude のトークンは credentials action が credentials.masseater.dev から受け取る。GitHub の Secrets に置かない
-- bot がブランチへ push するワークフロー（autofix・skills-lock・update-branches）は、broker が出す GitHub App のトークンで push する。`GITHUB_TOKEN` で push すると、`pull_request` の `up-to-date` が承認待ち（action_required）で止まり、PR がマージされないまま残るからである。broker はワークフローのファイル名で権限を出すので、bot のワークフローを足したら masseater.dev の `credential-grants.ts` の `WORKFLOW_GITHUB_GRANTS` にも足す
-- bot の PR は auto-merge で出す。main が進んで遅れた PR には `update-branches.yml` が main を取り込む
-- `.claude/skills` は `.agents/skills` へのリンクなので、`.agents/skills/.gitkeep` を追跡する。リンク先が無いと Actions が composite action を取り込むときに落ちる
+- For workflow steps, refer to the composite actions in `.github/actions/` of masseater/typescript-template (verify, autofix, skills-lock, update-branches, credentials, ci-telemetry) as `masseater/typescript-template/.github/actions/<name>@<sha>`. If the steps are copied into each repository, every fix means rewriting every repository. renovate bumps the sha
+- Put repository-specific tools (go, weaver, apt dependencies and so on) in that repository's `.github/actions/setup`, and call it from jobs as `$/.github/actions/setup`. actionlint does not know `$/` yet, so ignore just that one case in `.github/actionlint.yaml`
+- The credentials action receives the Cloudflare, OpenRouter and Claude tokens from credentials.masseater.dev. Do not put them in GitHub Secrets
+- Workflows in which a bot pushes to a branch (autofix, skills-lock, update-branches) push with the GitHub App token issued by the broker. If they push with `GITHUB_TOKEN`, the `up-to-date` of `pull_request` stops waiting for approval (action_required), and the PR stays unmerged. The broker issues permissions by workflow file name, so when you add a bot workflow, also add it to `WORKFLOW_GITHUB_GRANTS` in `credential-grants.ts` in masseater.dev
+- Open bot PRs with auto-merge. For PRs that fell behind as main advanced, `update-branches.yml` takes in main
+- `.claude/skills` is a link to `.agents/skills`, so track `.agents/skills/.gitkeep`. Without the link target, Actions fails when taking in the composite actions
 
-## PR とマージ
+## PRs and merging
 
-- PR のレビュー、PR ごとの CI・動作検証・デプロイはしない。動作は main にマージしてデプロイした本番で確かめる
-- マージ前に base を取り込み、手元の `vp run verify` を通してから自分でマージする。マージしてよいかは聞かない
-- ルールセットのバイパスや `--admin` は使わない
-- release-please のリリース PR は `verify` を手動実行して作り直す。手動実行では App のトークンで PR を作るので、`up-to-date` は承認なしで動く
+- Do not do PR reviews, or per-PR CI, behavior verification or deploys. Confirm behavior in production after merging into main and deploying
+- Before merging, take in the base, pass `vp run verify` locally, and merge yourself. Do not ask whether you may merge
+- Do not use ruleset bypasses or `--admin`
+- Recreate release-please's release PR by running `verify` manually. A manual run creates the PR with the App's token, so `up-to-date` runs without approval
 
-## 脆弱性
+## Vulnerabilities
 
-- ZAP のアラートは警告も含めすぐ直す。誤検知だけを `.github/zap/rules.tsv` に書く
-- `audit` は `vp pm audit --fix` で直す。修正版の無い勧告だけを `audit.ignore` に載せ、理由をコミットメッセージに書く
+- Fix ZAP alerts right away, including warnings. Write only false positives in `.github/zap/rules.tsv`
+- Fix `audit` with `vp pm audit --fix`. Put only advisories without a fixed version in `audit.ignore`, and write the reason in the commit message
 
-## スキル
+## Skills
 
-- 編集の前に、リポジトリのルートで `vp exec intent list` を実行する。合う skill があれば `vp exec intent load <package>#<skill>` で読む。`intent` が無いときはインストールせず、不足を報告する
-- 複数リポで使う自作スキルは masseater/skills に置き、skills CLI で入れる
+- Before editing, run `vp exec intent list` at the repository root. If a skill fits, read it with `vp exec intent load <package>#<skill>`. If `intent` is not available, do not install it; report the gap
+- Put your own skills used across multiple repositories in masseater/skills, and install them with the skills CLI
 
-## セッションの始め
+## Starting a session
 
-ユーザーと対話するセッションを始めたら、テンプレート更新の確認を求められていればそれを済ませてから、引数なしの `/loop` を起動する。内容はリポジトリの `.claude/loop.md` にある。
+When starting a session that interacts with the user, if you are asked to check for template updates, finish that first, then start `/loop` with no arguments. Its content is in the repository's `.claude/loop.md`.
 
-## 参照
+## References
 
-当てはまるリポジトリでは、次も読むこと。
+In repositories where they apply, also read the following.
 
-- [`cloudflare`](references/cloudflare.md)。Cloudflare にデプロイするリポジトリの決まり
-- [`oxlint-plugin-decision`](references/oxlint-plugin-decision.md)。`vp check` で decision ルールを使うリポジトリの決まり
-- [`instrumentation`](references/instrumentation.md)。スパン、CI の計測、Web Vitals の決まり。Workers のトレースは `@r_masseater/workers-tracing`、テストでのテレメトリの検査は `@r_masseater/vitest-otlp`、Web Vitals は `@r_masseater/web-vitals-flow` で行う
+- [`cloudflare`](references/cloudflare.md). Rules for repositories that deploy to Cloudflare
+- [`oxlint-plugin-decision`](references/oxlint-plugin-decision.md). Rules for repositories that use decision rules in `vp check`
+- [`instrumentation`](references/instrumentation.md). Rules for spans, CI measurement and Web Vitals. Workers traces use `@r_masseater/workers-tracing`, checking telemetry in tests uses `@r_masseater/vitest-otlp`, and Web Vitals use `@r_masseater/web-vitals-flow`
 
-## 用途
+## Use cases
 
-- [`publish-npm-package`](usecases/publish-npm-package.md)。npm にパッケージを出す
+- [`publish-npm-package`](usecases/publish-npm-package.md). Publish a package to npm

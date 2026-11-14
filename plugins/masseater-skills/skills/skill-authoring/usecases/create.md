@@ -1,12 +1,12 @@
-# skill を作る
+# Creating a skill
 
-1. skills CLI の `skills init <name>` で `SKILL.md` を作る
-2. 本文を、必要な理由と達成したい状態から導いて書く
-3. `skills-ref validate <dir>` を通す
-4. 参照するファイルと、名前で委ねた skill が存在することを確かめる
-5. 構造的な内容ならテストケースを書く。主観的な内容なら書かない
-6. リポジトリの手順で PR を出す
+1. Create `SKILL.md` with `skills init <name>` from the skills CLI
+2. Write the body by deriving it from why the skill is needed and the state it should achieve
+3. Pass `skills-ref validate <dir>`
+4. Confirm that the referenced files and the skills delegated to by name exist
+5. Write test cases if the content is structural. Do not write them if it is subjective
+6. Open a PR following the repository's procedure
 
-複数のリポジトリで使う skill は masseater/skills の `skills/` に置く。ここに置いた skill は Claude Code プラグイン `masseater-skills` にも入る。
+A skill used across multiple repositories goes in `skills/` of masseater/skills. A skill placed there is also included in the Claude Code plugin `masseater-skills`.
 
-返答には、skill の要約、主な設計判断、検証の結果を書く。
+In the reply, write a summary of the skill, the main design decisions, and the results of the validation.

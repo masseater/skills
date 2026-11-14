@@ -1,6 +1,6 @@
 ---
 name: how-to-use-react
-description: React 19.3 のコンポーネント、ローダー、サーバー処理を書く・直す・レビューするときに読む。状態の置き場所、非同期の組み方、並行 UI の API の使いどころ、props の形を決める。
+description: Read when writing, fixing or reviewing React 19.3 components, loaders and server processing. Decides where state lives, how to structure async work, where to use the concurrent UI APIs, and the shape of props.
 metadata:
   derived-from: >-
     https://github.com/vercel-labs/agent-skills/tree/063bee94c3f4df8453406c830b0a7df0f2860278/skills/react-best-practices
@@ -15,48 +15,48 @@ metadata:
 
 # how-to-use-react
 
-masseater/typescript-template から作ったリポジトリ向けに、原典を読み替えてある。原典と食い違うときは、読み替えを採る。
+The originals have been adapted for repositories created from masseater/typescript-template. Where they conflict with the originals, the adaptation wins.
 
-- 状態は Effect Atom と TanStack Query に置き分ける
-- 非同期の瀑布を消す
-- React Compiler があるリポジトリでは `useMemo`、`useCallback`、`memo` を書かない
-- 原典にある Next.js、SWR、Redux、`better-all` は採らない
+- Split state between Effect Atom and TanStack Query
+- Eliminate async waterfalls
+- In repositories with React Compiler, do not write `useMemo`, `useCallback` or `memo`
+- Do not adopt Next.js, SWR, Redux or `better-all` from the originals
 
-## この skill が必要な理由と達成したい状態
+## Why this skill is needed and the state it should achieve
 
-この skill が必要な理由は、React が同じ画面を何通りにも書け、どの書き方でも初めは動くことにある。違いはデータが増え、通信が遅れ、操作が重なったときに出るので、書いた時点では悪い書き方を選んだことに気づけない。
+This skill is needed because React lets the same screen be written many ways, and every way works at first. The differences show up when data grows, communication is slow, and operations overlap, so at the time of writing you cannot notice that you chose a bad way.
 
-この skill で達成したい状態は、画面がユーザーの操作を止めず、待たせず、どの状態もどこに置くか迷わないことである。
+The state this skill should achieve is that screens do not block or keep the user waiting, and there is no hesitation about where to put any state.
 
-## 置き分け
+## Where things go
 
-| やりたいこと | 使うもの | 使わないもの |
+| What you want to do | What to use | What not to use |
 | --- | --- | --- |
-| 画面の一時状態、フォームの値、ツリーをまたいで共有する値 | Effect Atom（`Atom.make`、`useAtom`、`useAtomValue`） | `useState`、`useReducer`、`createContext`、`useContext`（`no-restricted-imports` が拒否する） |
-| サーバーデータ | TanStack Query（`queryOptions` は FSD の `api` セグメント） | `use(promise)` での取得、`useEffect` と `fetch` の組み合わせ、Atom にサーバー応答を載せる |
-| ミューテーションの pending と error | TanStack Query の `useMutation` | 自前の pending フラグ、`useActionState`、`useFormStatus` |
-| 順番が仕様のミューテーション | 同じ `scope.id` を持つ `useMutation` | 自前のキュー、ボタンを無効にして操作列を止める |
-| 楽観更新 | `useOptimistic` | 自前の巻き戻し状態 |
-| 急がない更新・重い派生 | `useTransition` / `startTransition` / `useDeferredValue` | タイマーデバウンス |
-| ref | 関数の props | `forwardRef`、文字列 ref |
-| 隠しても状態を残す | `<Activity mode="hidden">` | 条件付きアンマウントで状態を捨てる |
-| 遷移のアニメーション | `<ViewTransition>` | |
-| Effect で最新の props を使う | `useEffectEvent` | その関数を依存配列に足して購読をやり直す、ハンドラを ref にしまう |
+| Temporary screen state, form values, values shared across the tree | Effect Atom (`Atom.make`, `useAtom`, `useAtomValue`) | `useState`, `useReducer`, `createContext`, `useContext` (rejected by `no-restricted-imports`) |
+| Server data | TanStack Query (`queryOptions` in FSD's `api` segment) | Fetching with `use(promise)`, combining `useEffect` and `fetch`, putting server responses in an Atom |
+| Mutation pending and error | TanStack Query's `useMutation` | Homemade pending flags, `useActionState`, `useFormStatus` |
+| Mutations whose order is part of the specification | `useMutation` with the same `scope.id` | A homemade queue, disabling buttons to stop the sequence of operations |
+| Optimistic updates | `useOptimistic` | Homemade rollback state |
+| Non-urgent updates and heavy derivations | `useTransition` / `startTransition` / `useDeferredValue` | Timer debouncing |
+| ref | A function prop | `forwardRef`, string refs |
+| Keeping state while hidden | `<Activity mode="hidden">` | Throwing state away with conditional unmounting |
+| Transition animations | `<ViewTransition>` | |
+| Using the latest props in an Effect | `useEffectEvent` | Adding that function to the dependency array and resubscribing, stashing the handler in a ref |
 
-## メモ化
+## Memoization
 
-- React Compiler が有効なリポジトリでは `useMemo`、`useCallback`、`memo` を書かない
-- Compiler が無いリポジトリでは、`react-perf` のルールが指摘した箇所にだけ `useCallback` か `useMemo` を書く
-- それ以外は、計測で遅いと分かってから足す
+- In repositories with React Compiler enabled, do not write `useMemo`, `useCallback` or `memo`
+- In repositories without the Compiler, write `useCallback` or `useMemo` only where the `react-perf` rules point
+- Otherwise, add it only after measurement shows something is slow
 
-## 非同期の瀑布
+## Async waterfalls
 
-[`async`](references/async.md) も読むこと。React の他の性能の話より先に、この節を当てる。
+Also read [`async`](references/async.md). Apply this section before React's other performance topics.
 
-- 前の結果を使わない処理は、`Effect.all` か `Effect.forEach` に `{ concurrency: "unbounded" }` を渡して同時に始める
-- 順番が仕様なら `{ concurrency: 1 }` と書く。省略しない
-- Effect の外の Promise なら `Promise.all` を使う
-- 一部だけ依存するときは、依存する側を `Effect.flatMap` で組み、依存しない側と一つの `Effect.all` に載せる
+- Start operations that do not use a previous result at the same time by passing `{ concurrency: "unbounded" }` to `Effect.all` or `Effect.forEach`
+- If the order is part of the specification, write `{ concurrency: 1 }`. Do not omit it
+- For Promises outside Effect, use `Promise.all`
+- When only part depends on something, build the dependent side with `Effect.flatMap` and put it in one `Effect.all` with the independent side
 
 ```ts
 const loaded = Effect.all(
@@ -68,25 +68,25 @@ const loaded = Effect.all(
 );
 ```
 
-## 採らない原典の箇所
+## Parts of the originals not adopted
 
-| 原典 | 代わり |
+| Original | Instead |
 | --- | --- |
-| Next.js（`next/dynamic`、`after()`、React `cache()` をリクエストをまたいで使う） | TanStack Start のローダー |
+| Next.js (`next/dynamic`, `after()`, using React `cache()` across requests) | TanStack Start loaders |
 | SWR | TanStack Query |
 | `better-all` | `Effect.all` |
-| Redux の Action / Reducer / Selector | Effect Atom と TanStack Query、FSD の `model` / `api` / `ui` |
+| Redux Action / Reducer / Selector | Effect Atom and TanStack Query, FSD's `model` / `api` / `ui` |
 
-不確かな API の形は react.dev の該当リファレンスを見る。原典の例を、上の表が使わないとしたフックのまま写さない。
+For API shapes you are unsure of, look at the relevant reference on react.dev. Do not copy examples from the originals as they are with hooks that the table above says not to use.
 
-## 参照
+## References
 
-次もすべて読むこと。
+Read all of the following too.
 
-- [`effects-and-data`](references/effects-and-data.md)。Effect に書いてよいものと、データの置き場所
-- [`design-theory`](references/design-theory.md)。トランジションと Suspense の設計の前提
-- [`action-queue`](references/action-queue.md)。操作を止めないミューテーション
-- [`deferred-consistency`](references/deferred-consistency.md)。重い一覧と入力の分離
-- [`concurrent-ux`](references/concurrent-ux.md)。`<Activity>`、`<ViewTransition>`、`useEffectEvent`
-- [`component-apis`](references/component-apis.md)。props の形
-- [`naming`](references/naming.md)。名前とファイル
+- [`effects-and-data`](references/effects-and-data.md). What may be written in an Effect, and where data lives
+- [`design-theory`](references/design-theory.md). The premises of the design of transitions and Suspense
+- [`action-queue`](references/action-queue.md). Mutations that do not block interaction
+- [`deferred-consistency`](references/deferred-consistency.md). Separating heavy lists from input
+- [`concurrent-ux`](references/concurrent-ux.md). `<Activity>`, `<ViewTransition>`, `useEffectEvent`
+- [`component-apis`](references/component-apis.md). The shape of props
+- [`naming`](references/naming.md). Names and files

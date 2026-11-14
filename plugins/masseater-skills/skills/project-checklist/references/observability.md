@@ -1,11 +1,11 @@
 # observability
 
-本番で起きたことと、誰がどう使っているかを外部から把握できるかを確認する。把握できないと、不具合のたびに推測で修正することになる。考え方は [Google SRE の Production Readiness Review](https://sre.google/sre-book/evolving-sre-engagement-model/) に従う。
+Confirm that what happened in production, and who uses it and how, can be understood from outside. If it cannot, you end up fixing every bug by guesswork. Follow [Google SRE's Production Readiness Review](https://sre.google/sre-book/evolving-sre-engagement-model/) for the approach.
 
-| 確認する事項 | 現状の確認方法 | 充足条件 |
+| Item to check | How to check the current state | Condition for being satisfied |
 | --- | --- | --- |
-| 本番リクエストの追跡 | 本番で失敗したリクエストを 1 件選び、ログとスパンから経緯をたどる | 再デプロイせずに、どこで何が起きたかが分かる |
-| 時間か費用のかかる処理の計測 | 外部 API、モデル、DB、子プロセスを呼び出す箇所にスパンがあるかを確認する | すべてスパンになっている |
-| 障害の検知 | エラー率や失敗の通知の設定を探す | 障害が起きたことが、人が見る場所に通知される |
-| CI の実行記録 | ワークフローの最後に、ジョブとステップの実行時間を送信するジョブがあるかを確認する | ジョブとステップの実行時間が記録される |
-| 利用者のアクセス解析 | 本番のページの HTML に解析のビーコンがあり、解析のダッシュボードに閲覧が届いているかを確認する | 公開ページのすべてで、プロジェクトの開始時から既定で計測されている。Cookie を使わず従量課金の無いもの（Cloudflare Web Analytics など）を選ぶ |
+| Tracing production requests | Pick one request that failed in production and follow what happened from the logs and spans | Where and what happened is known without redeploying |
+| Measuring processing that costs time or money | Check whether there are spans where external APIs, models, DBs and child processes are called | All of them are spans |
+| Detecting failures | Look for settings for error rates and failure notifications | That a failure happened is notified to a place people look at |
+| CI run records | Check whether there is a job at the end of the workflow that sends the execution times of jobs and steps | The execution times of jobs and steps are recorded |
+| User analytics | Check that the production page HTML has an analytics beacon and that views reach the analytics dashboard | Every public page is measured by default from the start of the project. Choose one that does not use cookies and has no usage-based billing (such as Cloudflare Web Analytics) |

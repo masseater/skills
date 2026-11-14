@@ -1,9 +1,9 @@
 # publishing
 
-外部に公開しているものと、その撤去手順を確認する。一覧にない公開先は、更新も削除もされないまま残る。
+Confirm what is published externally and the procedure for taking it down. A publishing destination missing from the list stays behind without being updated or deleted.
 
-| 確認する事項 | 現状の確認方法 | 充足条件 |
+| Item to check | How to check the current state | Condition for being satisfied |
 | --- | --- | --- |
-| 公開しているもの | README の公開先一覧を、インフラの定義にある外部からアクセスできる URL、DNS、パッケージの公開先と照合する | 外部からアクセスできる URL と公開したパッケージが、すべて一覧に載っている |
-| URL の変更 | 移動したページのリダイレクト設定を探す | 古い URL から新しい URL へリダイレクトされる |
-| 撤去手順 | インフラの定義から作成したリソースの一覧を作り、撤去手順の記述と照合する | 撤去手順が書いてあり、DNS、認証の設定、公開先一覧を含めて、作成したすべてのリソースを網羅している |
+| What is published | Match the list of publishing destinations in the README against the externally accessible URLs, DNS and package destinations in the infrastructure definitions | Every externally accessible URL and every published package is in the list |
+| URL changes | Look for redirect settings for pages that moved | The old URL redirects to the new URL |
+| Takedown procedure | Make a list of the resources created from the infrastructure definitions and match it against the description of the takedown procedure | The takedown procedure is written, and it covers every created resource, including DNS, authentication settings and the list of publishing destinations |

@@ -1,6 +1,6 @@
 ---
 name: skill-authoring
-description: Agent Skills の skill、つまり `SKILL.md` とそのディレクトリを作る・直す・添削するときに読む。本文を skill が必要な理由と達成したい状態から導いて書き、直すときも全体を導き直す。
+description: Read when creating, fixing or correcting an Agent Skills skill, that is, a `SKILL.md` and its directory. Write the body by deriving it from why the skill is needed and the state it should achieve, and when fixing, derive the whole again.
 metadata:
   derived-from: >-
     https://github.com/cursor/plugins/blob/bebaffe14f8f442b98e9c409e960aedad59b5fc8/pstack/skills/poteto-mode/playbooks/authoring-a-skill.md
@@ -9,115 +9,115 @@ metadata:
 
 # skill-authoring
 
-- 構成と frontmatter は https://agentskills.io/specification に従う
-- 文章は writing に従う
-- ユーザーの読み方と考え方は humanity-and-humanness に従う
-- 読み手の model 向けの書き方は https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices と、そこから辿れるガイドに従う
+- Follow https://agentskills.io/specification for structure and frontmatter
+- Follow writing for prose
+- Follow humanity-and-humanness for how the user reads and thinks
+- For how to write for the reading model, follow https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices and the guides reachable from it
 
-## この skill が必要な理由と達成したい状態
+## Why this skill is needed and the state it should achieve
 
-この skill が必要な理由は、skill を書く AI がユーザーの判断を持っていないことにある。書く AI は足りない部分を自分の知識や一般的な文書の型で埋め、埋めた記述はユーザーの判断と同じ顔で skill に残る。読んだ AI は、それをユーザーの判断として実行する。
+This skill is needed because the AI writing a skill does not have the user's judgments. The writing AI fills the missing parts with its own knowledge or generic document templates, and what it filled in remains in the skill looking just like the user's judgments. The AI that reads it executes them as the user's judgments.
 
-この skill で達成したい状態は、skill がユーザーの判断だけでできていることである。
+The state this skill should achieve is that a skill consists only of the user's judgments.
 
-## 必要な理由と達成したい状態のセクション
+## The section on why it is needed and the state it should achieve
 
-規則が当てはまらない場面で、モデルはこのセクションから判断する。だから本文に 1 つ置き、手順や規則と分ける。
+In situations where the rules do not apply, the model judges from this section. So put one in the body, separate from procedures and rules.
 
-- 「この skill が必要な理由は」で書き出す段落を 1 つ置く
-- 「この skill で達成したい状態は」で書き出す段落を 1 つ置く
-- この skill が何をするかは書かない。それは本文の規則そのものである
+- Put one paragraph that begins with "This skill is needed because"
+- Put one paragraph that begins with "The state this skill should achieve is"
+- Do not write what this skill does. That is the rules of the body themselves
 
-必要な理由には、何が困るかだけでなく、それがなぜ起きるかの仕組みを書く。仕組みが書けていれば、想定していない場面でも、同じ仕組みが働くかで判断できる。
+For why it is needed, write not only what goes wrong but the mechanism by which it happens. If the mechanism is written, even in unexpected situations you can judge by whether the same mechanism is at work.
 
-達成したい状態には、skill に従い続けた先の状態を、手段に縛られない形で書く。手順や具体的な基準は規則に任せる。
+For the state to achieve, write the state reached by continuing to follow the skill, in a form not tied to means. Leave procedures and concrete criteria to the rules.
 
-2 つが同じことの裏返しになったら、困りごとの解像度が足りない。症状だけを書くと、達成したい状態はその否定にしかならない。仕組みまで書けない skill は、まだ作る段階にない。
+If the two become flip sides of the same thing, the resolution of the problem is insufficient. If you write only the symptom, the state to achieve can only be its negation. A skill whose mechanism cannot be written is not yet at the stage of being made.
 
-## 何を書くか
+## What to write
 
-本文に書くのは、ユーザーが依頼と指摘で示した判断と、必要な理由と達成したい状態から導けることだけである。判断はユーザーのものであり、それをどう文章にするかはあなたが責任を持つ。
+What you write in the body is only the judgments the user showed through requests and feedback, and what can be derived from why it is needed and the state it should achieve. The judgments belong to the user; you are responsible for how to put them into text.
 
-### 置き場所
+### Placement
 
-各事実は、モデルが必要とする前に届く段のうち、いちばん読まれる回数の少ない段に置く。上の段ほど多くの場面で読まれ、そのたびにコンテキストを使う。
+Put each fact in the tier that reaches the model before it needs it and is read the fewest times. The higher the tier, the more situations it is read in, and it uses context each time.
 
-- `description` は全セッションで読まれる。使う場面を見分けるきっかけだけを置く
-- `SKILL.md` は skill を使うたびに読まれる。必要な理由と達成したい状態と、どの場面でも要る規則を置く
-- `usecases/` には、一部の場面でしか要らない手順を置く。見出しは「〜するとき」ではなく「〜する」の動詞句にする
-- `references/` には、一部の場面でしか要らない参照を置く。特定のリポジトリや環境に固有の参照と、規則の詳細がこれにあたる
-- ほとんどの場面で読む `usecases/` や `references/` は `SKILL.md` に上げる
-- スクリプト、雛形、素材は読ませず、実行させるか写させる
+- `description` is read in every session. Put only the cues for recognizing when to use it
+- `SKILL.md` is read every time the skill is used. Put why it is needed, the state it should achieve, and the rules needed in every situation
+- In `usecases/`, put procedures needed only in some situations. Make the headings verb phrases of "do ...", not "when doing ..."
+- In `references/`, put references needed only in some situations. References specific to a particular repository or environment, and the details of rules, fall under this
+- Move up into `SKILL.md` any `usecases/` or `references/` that are read in most situations
+- Do not make the model read scripts, templates or materials; have it run or copy them
 
-`usecases/` と `references/` へのリンクは writing の ai-context に従って書く。どの場面で読むかは、リンクを置く節で決まる。
+Write links to `usecases/` and `references/` following ai-context in writing. Which situation they are read in is determined by the section where the link is placed.
 
-### 判断の引き出し方
+### Drawing out judgments
 
-ユーザーは自分の判断をすべて言語化できていない。尋ねるだけでは出てこない。
+Users have not verbalized all their judgments. Just asking does not bring them out.
 
-- たたき台を書いて見せ、反応から判断を読み取る
-- 全部を自分で決めない。全部を尋ねもしない
-- 必要な理由や達成したい状態を左右する判断は、たたき台に埋め込まない。選択肢と自分の推奨を示し、ユーザーに決めさせる
+- Write a draft and show it, and read the judgments from the reaction
+- Do not decide everything yourself. Do not ask about everything either
+- Do not embed in the draft judgments that sway why it is needed or the state it should achieve. Present the options and your recommendation, and let the user decide
 
-### 埋めない
+### Do not fill
 
-ユーザーが決めていないところを、自分の知識や文書の一般的な型で埋めない。埋めがちなのは次のものである。
+Do not fill places the user has not decided with your own knowledge or generic document templates. What tends to get filled in is the following.
 
-- 頼まれていない前提、注意、補足の節
-- 念押し
-- 書き手にしか通じない言い回し
+- Sections of premises, cautions and supplements that were not requested
+- Reminders
+- Phrasing only the writer understands
 
-消すのは次のものである。迷ったら消す。
+Delete the following. When in doubt, delete.
 
-- 判断を変えない文と、削っても動きが変わらない語
-- 言われなくてもモデルがやること。定義、一般的な慣行、自明な考えの例がこれにあたる
-- 人間だけが要るもの。経緯、きっかけになった出来事、計測値はコミットメッセージに書く
-- 同じ意味の 2 つめ。`SKILL.md`、`references/`、`usecases/`、ツールの文書を通して、1 つの意味は 1 か所に置く
+- Sentences that do not change judgments, and words whose removal does not change behavior
+- What the model does without being told. Definitions, common practices and examples of obvious ideas fall under this
+- What only humans need. Write history, the events that triggered something, and measured values in commit messages
+- A second instance of the same meaning. Across `SKILL.md`, `references/`, `usecases/` and tool documentation, put each meaning in one place
 
-ただし、書き込み、マシンの外へのデータ送信、有料の枠のように取り返しのつかない操作には、モデルが知っていることでも安全の規則を 2、3 行残す。
+However, for irreversible operations such as writes, sending data off the machine and paid quotas, keep two or three lines of safety rules even if the model knows them.
 
-すべての行がモデルの動きを変え、同じ意味が 2 度出てこなければ、書き終わりである。
+When every line changes the model's behavior and no meaning appears twice, the writing is done.
 
-### 委ねる
+### Delegating
 
-- 他の skill に委ねるときは skill 名だけを書く。中身は言い直さない
-- 型、README、設定のような構造的な情報源は指し示す。写さない
-- ツールの使い方を教える skill では、正確な名前、引数、値をツールの help とエラーに任せる。skill には、よく使う呼び出しと、モデルが間違える呼び出しの形だけを書く
-- 繰り返す指示は文を足さず、lint、メタデータ、実行時の検査、スクリプトにする
-- 繰り返し踏むのに skill になっていない手順があれば、新しい skill を提案する
+- When delegating to another skill, write only the skill name. Do not restate its content
+- Point to structural sources of information such as types, READMEs and settings. Do not copy them
+- In a skill that teaches how to use a tool, leave exact names, arguments and values to the tool's help and errors. Write in the skill only the commonly used calls and the shapes of calls the model gets wrong
+- For instructions that repeat, do not add sentences; turn them into lint, metadata, runtime checks or scripts
+- If there is a procedure you step through repeatedly that is not yet a skill, propose a new skill
 
-## 書きぶり
+## Style
 
-モデルは理由から、書いていない場面にも規則を広げる。だから規則には理由を添える。
+The model extends rules from their reasons to situations that are not written. So attach a reason to each rule.
 
-- 規則には理由を一文添える。理由がなくても読み違えようのない規則には付けない
-- 規則には、モデルが既に知っている短い名前を付ける。多くの規則を覆う既知の標準があれば、標準の名前とどこまで従うかを書く
-- 場合を並べず、それらを生む考え方を書く
-- 「〜しない」を並べず、代わりに何をするかを 1 つの基準で書く。禁止の形は、肯定の形にできない安全の規則にだけ使う
-- 避けてほしい形は一般論にせず、具体的に名指しする
-- 思考や検証の量を増やす指示は書かない。確かめ方を決めたいときは、量ではなく方法を書く
+- Attach one sentence of reason to each rule. Do not attach one to rules that cannot be misread even without a reason
+- Give rules short names the model already knows. If there is a known standard that covers many rules, write the standard's name and how far to follow it
+- Instead of listing cases, write the idea that produces them
+- Instead of listing "do not ...", write what to do instead as a single criterion. Use the prohibitive form only for safety rules that cannot be put in an affirmative form
+- Do not generalize the forms you want avoided; name them concretely
+- Do not write instructions that increase the amount of thinking or verification. When you want to decide how to check something, write the method, not the amount
 
-確かめる方法の例は「代わりのものでなく実物を見る」である。
+An example of a method of checking is "look at the real thing, not a substitute".
 
 ## frontmatter
 
-- `name` はディレクトリ名と同じにする。本文の最初の見出しも同じ名前にする
-- `description` には何をするかと、いつ使うかを書く。使う場面の語を入れる。全セッションで読まれるので、場面ごとにきっかけを 1 つだけ書く
-- ユーザーしか起動しない skill には `disable-model-invocation: true` を付け、`description` をユーザー向けの一文にする。起動されるまでコンテキストを使わなくなる
-- `description` に本文の目次を書かない。`references/` や `usecases/` が増えるたびに直すことになる
-- `license` は書かない。LICENSE ファイルも作らない
+- Make `name` the same as the directory name. Make the first heading of the body the same name too
+- In `description`, write what it does and when to use it. Include the words of the situations where it is used. It is read in every session, so write only one cue per situation
+- For a skill only the user invokes, add `disable-model-invocation: true` and make `description` one sentence for the user. It stops using context until invoked
+- Do not write a table of contents of the body in `description`. You would have to fix it every time `references/` or `usecases/` grows
+- Do not write `license`. Do not create a LICENSE file either
 
 ### metadata.derived-from
 
-`metadata.derived-from` には、この skill の原典の URL だけを書く。原典とは、その内容を取り込み、読み替えてこの skill にしたものである。skill でも記事でもよく、取り込んだ後に書き直していても原典である。
+In `metadata.derived-from`, write only the URLs of this skill's originals. An original is something whose content was taken in and adapted into this skill. It may be a skill or an article, and it is still an original even if it was rewritten after being taken in.
 
-- 書くときに読んだだけの資料は原典ではない。本文にリンクを書く
-- 本文で根拠として引く資料は原典ではない。引く箇所にリンクを書く
-- 本文から名前で委ねる skill は原典ではない
-- GitHub の URL はコミットを指定した permalink にする
-- 原典の URL、作者、バージョンは本文と `references/` に書かない
+- Material you only read while writing is not an original. Link to it in the body
+- Material cited in the body as grounds is not an original. Link to it where it is cited
+- Skills the body delegates to by name are not originals
+- Make GitHub URLs permalinks that specify a commit
+- Do not write the originals' URLs, authors or versions in the body or `references/`
 
-`metadata` の値は文字列だけなので、複数の URL は空白区切りの 1 つの文字列にする。
+`metadata` values are strings only, so put multiple URLs in one string separated by whitespace.
 
 ```yaml
 metadata:
@@ -126,10 +126,10 @@ metadata:
     https://github.com/<owner>/<repo>/tree/<commit>/path/another-skill
 ```
 
-## 用途
+## Use cases
 
-次もすべて読むこと。
+Read all of the following too.
 
-- [`create`](usecases/create.md)。skill を作る
-- [`revise`](usecases/revise.md)。指摘を受けて skill を直す
-- [`diet`](usecases/diet.md)。skill 全体を減量する
+- [`create`](usecases/create.md). Create a skill
+- [`revise`](usecases/revise.md). Revise a skill after feedback
+- [`diet`](usecases/diet.md). Slim down a whole skill

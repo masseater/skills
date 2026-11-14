@@ -1,11 +1,11 @@
 # performance
 
-ページと API の速度を計測して確認する。開発者の手元の環境と回線では、遅さに気づかない。指標は [Web Vitals](https://web.dev/articles/vitals) に従う。
+Measure and confirm the speed of pages and APIs. With the developer's local environment and connection, slowness goes unnoticed. Follow [Web Vitals](https://web.dev/articles/vitals) for the metrics.
 
-| 確認する事項 | 現状の確認方法 | 充足条件 |
+| Item to check | How to check the current state | Condition for being satisfied |
 | --- | --- | --- |
-| LCP、INP、CLS | 本番の各ページの読み込みと、ページ内のリンクをクリックした遷移を、Lighthouse の user flow で複数回計測する | 各ステップの中央値が、Lighthouse の合格ラインである 0.9 以上である |
-| FCP、TTFB、TBT | 同じ計測の結果を確認する | 数値が記録されている |
-| サーバーの応答時間 | 本番のスパンかログから、API ごとの p95 を算出する | 要件の時間内に収まっている |
+| LCP, INP, CLS | Measure several times, with a Lighthouse user flow, the load of each production page and the navigation caused by clicking a link on the page | The median of each step is 0.9 or higher, which is Lighthouse's passing line |
+| FCP, TTFB, TBT | Check the results of the same measurement | The numbers are recorded |
+| Server response time | Compute the p95 for each API from production spans or logs | It is within the time in the requirements |
 
-複数回計測して中央値で判定するのは、Lighthouse の数値が計測するマシンの負荷によって変動するからである。
+The reason to measure several times and judge by the median is that Lighthouse's numbers vary with the load on the machine doing the measurement.

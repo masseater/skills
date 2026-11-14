@@ -1,76 +1,76 @@
-# 出典で裏の取れた AI 文体の特徴
+# Features of AI writing style confirmed by sources
 
-2026年10月25日に、AI が書いた文章の特徴（77 件）、日本語の文章術（49 件）、随筆とコラムの書き方（45 件）の出典を集めて数えた結果である。
+These are the results of collecting and counting, on October 25, 2026, sources on the features of text written by AI (77 sources), Japanese writing technique (49 sources), and how to write essays and columns (45 sources).
 
-- 書いたあとに、段落の頭の文と文末を全部抜き出して下の表に当てる
-- 1 つでも当たれば、その文を差し替えず、段落の伝えたいことから組み直す
-- 出典の数は、その特徴を挙げた記事や論文の件数である
+- After writing, extract every first sentence of a paragraph and every sentence ending, and check them against the tables below
+- If even one matches, do not replace that sentence; rebuild from what the paragraph wants to convey
+- The number of sources is the number of articles and papers that listed that feature
 
-## AI が書きがちで、読み手が嫌う形
+## Forms AI tends to write and readers dislike
 
-| 特徴 | 見つけ方 | 直し方 | 出典数 |
+| Feature | How to find it | How to fix it | Sources |
 | --- | --- | --- | --- |
-| 抽象語と一般論で中身を言わない | 「重要」「本質」「前提」「状態」「形式」「手段」が主語か述語になっている | 固有名詞、数字、実際にした行動に置き換える | 41 |
-| 語尾と文の長さが均一 | 同じ文末が 3 文続く。文の長さがそろう | 出来事は動詞で、判断は「だ／である」で終え、否定形も混ぜる | 33 |
-| 一次情報がない | 本人の経験や感覚が 1 つもない段落 | 本人がしたこと、感じたことから書き出す。裏付けのための数字を探して足さない | 31 |
-| 文頭の接続詞 | 「だから」「しかし」「一方で」「つまり」「ただ」で文が始まる | 消して通るなら消す | 21 |
-| 断定の回避 | 「〜と思う」「〜だろう」「〜かもしれない」 | 言い切る。言い切れないなら書かない | 20 |
-| 定型の締めと総括 | 最後の段落が前の段落の言い換え | 具体の一文で終える | 19 |
-| 定型の前置きと構造宣言 | 「答えは 2 つある」「1 つめは」「理由は 3 つ」 | 宣言を消して中身から書く | 17 |
-| 同義反復 | 直前の文の言い換え、結論の繰り返し | 一度だけ書く | 16 |
-| 三項列挙 | 何でも 3 つ並べる | 必要な数だけ書く | 13 |
-| 翻訳調と無生物主語 | 「規則が守らせる」「レビューが担保してくれる」「〜を示している」 | 人か組織を主語にする | 12 |
-| 「A ではなく B」 | 否定の対比が 2 回以上 | 肯定文に直し、残すのは記事に 1 つまで | 10 |
-| 読点の多さと位置 | 「〜は、」「〜に、」「〜ではなく、」の反射的な読点 | 長い修飾語の境界と、語順が逆のときだけ打つ | 30 位 |
-| 短文の連打と格言調 | 「事業会社がこれを許容してはいけない。」のような決め台詞 | 理由と主体を同じ文に入れる | 23 位、29 位 |
+| Not saying the substance, with abstract words and generalities | "重要" (important), "本質" (essence), "前提" (premise), "状態" (state), "形式" (form) or "手段" (means) is the subject or predicate | Replace with proper nouns, numbers and actions actually taken | 41 |
+| Uniform sentence endings and lengths | The same ending three sentences in a row. Sentence lengths are uniform | End events with verbs and judgments with "だ／である", and mix in negative forms | 33 |
+| No first-hand information | A paragraph with not a single experience or feeling of the owner | Start from what the owner did and felt. Do not search for numbers to add as backing | 31 |
+| Conjunctions at the start of sentences | Sentences start with "だから" (so), "しかし" (but), "一方で" (on the other hand), "つまり" (in other words) or "ただ" (however) | If it works without it, delete it | 21 |
+| Avoiding assertion | "〜と思う" (I think), "〜だろう" (probably), "〜かもしれない" (might) | State it decisively. If you cannot, do not write it | 20 |
+| Stock closings and wrap-ups | The last paragraph rephrases the previous paragraphs | End with one concrete sentence | 19 |
+| Stock preambles and structural declarations | "答えは 2 つある" (there are two answers), "1 つめは" (the first is), "理由は 3 つ" (there are three reasons) | Delete the declaration and write from the substance | 17 |
+| Tautology | Rephrasing the previous sentence, repeating the conclusion | Write it only once | 16 |
+| Lists of three | Lining up three of everything | Write as many as needed | 13 |
+| Translationese and inanimate subjects | "規則が守らせる" (the rules make people keep them), "レビューが担保してくれる" (review guarantees it), "〜を示している" (shows ...) | Make a person or organization the subject | 12 |
+| "Not A but B" | Two or more negative contrasts | Rewrite as affirmative sentences, and keep at most one in an article | 10 |
+| Number and position of commas | Reflexive commas such as "〜は、", "〜に、", "〜ではなく、" | Place them only at the boundaries of long modifiers and when the word order is reversed | 30th |
+| Barrages of short sentences and an aphoristic tone | Punchlines such as "事業会社がこれを許容してはいけない。" (businesses must not tolerate this) | Put the reason and the agent in the same sentence | 23rd, 29th |
 
-読点は、人間が「AI らしい」と感じた箇所と計測が一致した唯一の特徴である（広島大学の卒業論文、2026年）。体言止めは実測では人間の文章のほうが多い（fyve、2026年9月）ので、体言止めの有無で AI らしさは判定しない。
+Commas are the only feature where the places humans felt were "AI-like" matched the measurements (a Hiroshima University graduation thesis, 2026). Noun-ending sentences are actually more frequent in human text by measurement (fyve, September 2026), so do not judge AI-likeness by the presence of noun-ending sentences.
 
-## 日本語の文章術で出典が多かった規則
+## Rules with many sources in Japanese writing technique
 
-| 規則 | 出典数 |
+| Rule | Sources |
 | --- | --- |
-| 一文は 40〜60 字。長くても 100 字 | 22 |
-| 「〜することができる」「〜という」などの冗長語を削る | 15 |
-| 主語と述語を近づける | 14 |
-| 同じ語尾を 3 回続けない | 12 |
-| 接続詞を多用しない | 11 |
-| 結論を先に書く | 11 |
-| 段落は 1 主張、冒頭に主題文 | 10 |
-| 長い修飾語が 2 つ以上あるときだけ、その境界に読点を打つ（本多勝一） | 9 |
-| 抽象語を具体語に | 9 |
-| 逆接でない「が」で文をつながない | 7 |
-| ぼかし表現を避けて言い切る | 7 |
-| 受け身を避け、動作の主体を主語にする | 6 |
+| A sentence is 40 to 60 characters. 100 at the longest | 22 |
+| Cut redundant phrases such as "〜することができる" (be able to do) and "〜という" (called) | 15 |
+| Bring the subject and predicate close together | 14 |
+| Do not use the same ending three times in a row | 12 |
+| Do not overuse conjunctions | 11 |
+| Write the conclusion first | 11 |
+| One claim per paragraph, with a topic sentence at the start | 10 |
+| Place a comma at the boundary only when there are two or more long modifiers (Honda Katsuichi) | 9 |
+| Replace abstract words with concrete ones | 9 |
+| Do not join sentences with a "が" that is not adversative | 7 |
+| Avoid hedging and state things decisively | 7 |
+| Avoid the passive, and make the agent of the action the subject | 6 |
 
-## 随筆とコラムの技法で出典が多かったもの
+## Techniques with many sources for essays and columns
 
-| 技法 | 出典数 |
+| Technique | Sources |
 | --- | --- |
-| 抽象の理屈でなく、具体の出来事と数字で感じ取らせる | 9 |
-| 場面か事実から書き出し、前置きを置かない | 8 |
-| 説明しすぎず、二度書かない | 8 |
-| 会話や肉声を取り込む | 7 |
-| 「〜と思う」を削って言い切る | 5 |
-| 結びでまとめず、具体で終える | 5 |
-| 主張を押しつけず、読み手に余地を残す | 5 |
-| 言い切るには自分の体験という根拠が要る | 4 |
+| Let readers feel it through concrete events and numbers, not abstract reasoning | 9 |
+| Start from a scene or a fact, with no preamble | 8 |
+| Do not over-explain, and do not write things twice | 8 |
+| Bring in conversation and real voices | 7 |
+| Cut "〜と思う" (I think) and state things decisively | 5 |
+| Do not sum up at the end; end with something concrete | 5 |
+| Do not force the claim; leave room for readers | 5 |
+| Stating things decisively requires the grounds of your own experience | 4 |
 
-## 主な出典
+## Main sources
 
 - [@textlint-ja/textlint-rule-preset-ai-writing](https://github.com/textlint-ja/textlint-rule-preset-ai-writing)
-- [「なんとなくAIっぽい」の正体を180本の記事で特定した](https://qiita.com/kenimo49/items/f47bcf915e4e00140ddf)
-- [生成AI以前と以後でエンジニアの文章はどう変わったのか: Qiitaの7万記事を数えてみた話](https://nyosegawa.com/posts/qiita-writing-before-after-ai/)
+- [Identifying what "somehow AI-like" is, from 180 articles](https://qiita.com/kenimo49/items/f47bcf915e4e00140ddf)
+- [How did engineers' writing change before and after generative AI: counting 70,000 Qiita articles](https://nyosegawa.com/posts/qiita-writing-before-after-ai/)
 - [iKora128/stop-ai-slop-jp](https://github.com/iKora128/stop-ai-slop-jp)
-- [「AIっぽい文章の特徴」は本当か｜実測で検証する](https://fyve.co.jp/ai-advisor/articles/ai-text-detection-myths-japan)
+- [Are the "features of AI-like text" true? Verifying by measurement](https://fyve.co.jp/ai-advisor/articles/ai-text-detection-myths-japan)
 - [Zaitsu & Jin (2023) Japanese stylometric analysis of ChatGPT-generated papers](https://pmc.ncbi.nlm.nih.gov/articles/PMC10411719)
 - [Wang et al. (2025) Is Human-Like Text Liked by Humans?](https://arxiv.org/abs/2502.11614)
 - [Pangram, 9 Signs of AI Writing, Backed by Data](https://www.pangram.com/signs-of-ai-writing)
-- [語順とテンの原則 - 本多勝一『実戦・日本語の作文技術』](https://tanokura.blog.jp/archives/79247637.html)
-- [『理科系の作文技術』講義資料（群馬大学）](https://mems.mst.st.gunma-u.ac.jp/lecture/monodzukuri_13.pdf)
-- [公用文作成の考え方（文化審議会、2022年）](https://www.bunka.go.jp/seisaku/bunkashingikai/kokugo/hokoku/pdf/93731901_01.pdf)
+- [Principles of word order and commas - Honda Katsuichi, "Jissen Nihongo no Sakubun Gijutsu"](https://tanokura.blog.jp/archives/79247637.html)
+- [Lecture material for "Rikakei no Sakubun Gijutsu" (Gunma University)](https://mems.mst.st.gunma-u.ac.jp/lecture/monodzukuri_13.pdf)
+- [Approach to writing official documents (Council for Cultural Affairs, 2022)](https://www.bunka.go.jp/seisaku/bunkashingikai/kokugo/hokoku/pdf/93731901_01.pdf)
 - [textlint-rule-preset-ja-technical-writing](https://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing)
-- [今日から使える文章校正テクニック（DevelopersIO）](https://dev.classmethod.jp/articles/proofreading-pattern-for-engineer/)
-- [エッセイは入り口と出口が9割！書き出しと結びの実例とコツ（公募ガイド）](https://koubo.jp/article/22352)
-- [エッセイがうまく書けない理由はこれ！よくある6つの落とし穴と対策（公募ガイド）](https://koubo.jp/article/22349)
-- [プロ作家になるための4つの心得（PRESIDENT Online）](https://president.jp/articles/-/6877)
+- [Proofreading techniques you can use today (DevelopersIO)](https://dev.classmethod.jp/articles/proofreading-pattern-for-engineer/)
+- [90% of an essay is the entrance and exit! Examples and tips for openings and endings (Koubo Guide)](https://koubo.jp/article/22352)
+- [This is why you can't write essays well! Six common pitfalls and countermeasures (Koubo Guide)](https://koubo.jp/article/22349)
+- [Four principles for becoming a professional writer (PRESIDENT Online)](https://president.jp/articles/-/6877)

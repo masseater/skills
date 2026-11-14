@@ -1,9 +1,9 @@
-# 既存のものを探す
+# Finding what already exists
 
-1. Effect のモジュール、リポジトリにすでに入っている依存、masseater の自作パッケージ、npm の順に探す。自作パッケージは `vp pm search maintainer:r_masseater` で一覧でき、README は `https://unpkg.com/<name>/README.md` で読める
-2. リポジトリのルートで `vp exec intent list` を実行し、入っている依存が同梱する skill に合うものがあれば `vp exec intent load <package>#<skill>` で読む
-3. 規格や広く使われている形式を扱う処理は、ライブラリがある前提で npm を検索する。RFC、W3C、ECMA、ISO などの規格の名前と番号、形式の名前、扱うデータの名前で引く
-4. 候補が見つかったら、リポジトリの `packages/` や npm の scope にあるパッケージの一覧を直接見て、何が揃っているかを確かめる
-5. 候補が複数あれば、今もメンテナンスされていて、型定義があり、依存が少ないものを選ぶ
+1. Search in this order: Effect's modules, dependencies already in the repository, masseater's own packages, npm. You can list masseater's own packages with `vp pm search maintainer:r_masseater`, and read a README at `https://unpkg.com/<name>/README.md`
+2. Run `vp exec intent list` at the repository root, and if a skill bundled with an installed dependency fits, read it with `vp exec intent load <package>#<skill>`
+3. For processing that handles a standard or a widely used format, search npm on the assumption that a library exists. Look it up by the name and number of a standard such as RFC, W3C, ECMA or ISO, the name of the format, and the name of the data it handles
+4. When you find a candidate, look directly at the list of packages in the repository's `packages/` or in the npm scope, and confirm what is available
+5. If there are several candidates, choose one that is still maintained, has type definitions and has few dependencies
 
-検索結果の要約は、パッケージの一部しか挙げないことがある。要約で範囲を決めつけると、揃っているものを無いと判断して自作する。だから手順 4 で一覧を直接見る。
+A summary of search results sometimes lists only some of the packages. If you decide the scope from the summary, you will judge something available to be missing and build it yourself. That is why step 4 looks at the list directly.

@@ -1,26 +1,26 @@
-# 小説を書く
+# Writing a novel
 
-説明文向けの `references/` の規範は、小説にはそのまま当てはめない。
+Do not apply the norms in `references/`, which are meant for explanatory text, to a novel as they are.
 
-- 情報ではなく、人物に起きる経験を書く
-- 人物を一般的な性格ではなく、固有の偏りとして扱う
+- Write the experiences that happen to characters, not information
+- Treat a character not as a generic personality but as a particular bias
 
-## 経験としての出来事
+## Events as experience
 
-小説の意味は、設定や感情を提示しただけでは生まれない。人物が何かを知覚し、それをある意味として受け取り、そのために次の行動や判断を変える。そこで情報が経験になり、人を形成する。
+Meaning in a novel does not arise just from presenting settings or emotions. A character perceives something, takes it as having a certain meaning, and because of that changes their next action or judgment. That is where information becomes experience and shapes a person.
 
-出来事や設定を並べる文章が弱いのは、箇条書きに見えるからではない。人物の中で何も起きておらず、文同士に時間と因果がないからである。
+Writing that lines up events and settings is weak not because it looks like bullet points. It is weak because nothing happens inside the characters, and there is no time or causality between the sentences.
 
-- 文章を長くするときは、別の情報を増やさない
-- 同じ出来事が人物に起きるまでの時間を深くする
+- When making the text longer, do not add other information
+- Deepen the time it takes for the same event to happen to the character
 
-## 人物の偏り
+## A character's bias
 
-人物は、一人称、語尾、性格ラベルだけでは成立しない。その偏りが、人物を他の人物から分けている。
+A character is not established by first-person pronouns, sentence endings or personality labels alone. Their bias is what separates the character from other characters.
 
-- 何に気づき、何を知らず、何を言えないか
-- 誰を守ろうとし、どの選択を避けるか
+- What they notice, what they do not know, and what they cannot say
+- Whom they try to protect, and which choices they avoid
 
-文章を自然に整えたり感情を強調したりするために、この偏りを一般的な反応へ置き換えると、口調が似ていても別人になる。置き換えてしまった人物は、上の偏りから元に戻す。
+If you replace this bias with generic reactions to make the text read naturally or to emphasize emotion, the character becomes someone else even if the tone of voice is similar. Restore a character who has been replaced in this way from the bias above.
 
-顔、記憶、役割、起源が似た人物を扱うときは、それらの一致を人格の同一性と混同しない。別の人物として書き分ける。
+When dealing with characters who share a face, memories, a role or an origin, do not confuse those similarities with identity of personality. Write them as distinct characters.

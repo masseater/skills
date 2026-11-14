@@ -1,19 +1,19 @@
-# 並行 UI
+# Concurrent UI
 
-設計の前提は [`design-theory`](design-theory.md) も読むこと。
+Also read [`design-theory`](design-theory.md) for the premises of the design.
 
-- 遷移の出入りは `<ViewTransition>` に乗せる
-- 行き来しても状態を残したい画面は `<Activity>` で隠す
-- 購読のたびに最新でなくてよい値は `useEffectEvent` に移す
+- Put the entering and leaving of transitions on `<ViewTransition>`
+- Hide screens whose state should survive going back and forth with `<Activity>`
+- Move values that do not need to be the latest on every subscription into `useEffectEvent`
 
 ## ViewTransition
 
-遷移、Suspense の表示、deferred 更新に乗る出入りは `<ViewTransition>` で包む。`startTransition` の中で状態を変える。
+Wrap entering and leaving that ride on transitions, Suspense reveals and deferred updates in `<ViewTransition>`. Change state inside `startTransition`.
 
 ## Activity
 
-タブ、サイドバー、行き来しても入力を残したい画面は `<Activity mode={open ? "visible" : "hidden"}>` で切り替える。`hidden` のあいだ Effect は破棄される。
+Switch tabs, sidebars and screens whose input should survive going back and forth with `<Activity mode={open ? "visible" : "hidden"}>`. While `hidden`, Effects are torn down.
 
 ## useEffectEvent
 
-Effect が購読する対象は依存配列に残す。購読のたびに最新でなくてよい値は `useEffectEvent` に移す。その関数は依存配列に入れない。同一性がレンダーごとに変わり、Effect が毎レンダー実行し直すためである。
+Keep what an Effect subscribes to in the dependency array. Move values that do not need to be the latest on every subscription into `useEffectEvent`. Do not put that function in the dependency array. Its identity changes on every render, so the Effect would re-run on every render.

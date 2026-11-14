@@ -1,9 +1,9 @@
-# 陳腐化する情報の排除
+# Eliminating information that goes stale
 
-コードや設定から導出できる現在の個数、名称、配置を、手作業で文書に複製しない。書くのは、本質的に達成したいことである。
+Do not copy by hand into documents the current counts, names and locations that can be derived from code or configuration. What you write is what you essentially want to achieve.
 
-- パターンの数、ディレクトリ構造、ファイル名、関数名は複製しない
-- 数値や名称そのものが要件、契約、判断材料なら書く。なぜそうなのかを併記する
-- 現在の状態を示す必要があるときは、正本を参照するか自動生成する
+- Do not copy the number of patterns, the directory structure, file names or function names
+- Write a number or a name itself if it is a requirement, a contract or material for a decision. Write down why it is so alongside it
+- When you need to show the current state, refer to the source of truth or generate it automatically
 
-複製した情報は、変更時に同期される保証がない。不一致が生まれた時点で、読者はどちらを信じるべきか判断できなくなる。さらに「書き換えると別の箇所が陳腐化する」という理由で、更新が避けられるようになる。数が多いか少ないかは、目的を達成できているかに関係しない。
+Copied information has no guarantee of being synchronized when things change. Once a mismatch appears, readers can no longer tell which one to believe. On top of that, updates start being avoided "because rewriting this makes another place stale". Whether the number is large or small has nothing to do with whether the purpose is achieved.

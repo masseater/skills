@@ -1,23 +1,23 @@
-# 宣言的 UI とトランジション
+# Declarative UI and transitions
 
-React は一貫性と即時性を保証する。緩めるときは、その緩和を API で宣言する。
+React guarantees consistency and immediacy. When you relax them, declare the relaxation with an API.
 
-- 一貫性は、変化前と変化後の UI が同居しないことである
-- 即時性は、ステート更新が最優先で画面に出ることである
-- 緊急にするのは、すでに起きた外部の変化に React の状態を合わせる更新だけである
+- Consistency means that the UI before and after a change never appear together
+- Immediacy means that a state update reaches the screen with top priority
+- Only updates that align React's state with an external change that has already happened are made urgent
 
-| 緩和 | API | 使うとき |
+| Relaxation | API | When to use |
 | --- | --- | --- |
-| 即時性 | `useTransition` と `startTransition` | イベントで起きる画面の変化のほぼ全部 |
-| 一貫性 | `useDeferredValue` | 入力と重い一覧を同じコミットに載せなくてよいとき |
+| Immediacy | `useTransition` and `startTransition` | Almost every screen change caused by an event |
+| Consistency | `useDeferredValue` | When the input and a heavy list need not be in the same commit |
 
 ## Suspense
 
-境界は、一緒に出すか別々に出してよいかという独立性の制約である。再サスペンドでスケルトンに戻すより、トランジションで古い画面を残す。
+A boundary is a constraint of independence: whether things must appear together or may appear separately. Rather than falling back to a skeleton by re-suspending, keep the old screen with a transition.
 
-## トランジションの中で
+## Inside a transition
 
-- トランジション中にすぐ見せたい表示は `useOptimistic` で出す。pending の演出にも使う
-- 順番が仕様の更新列は同じ `scope.id` の `useMutation` に載せ、操作を止めない。[`action-queue`](action-queue.md) も読むこと
+- Show what you want to display immediately during a transition with `useOptimistic`. Also use it for pending effects
+- Put a sequence of updates whose order is part of the specification on `useMutation` with the same `scope.id`, and do not block interaction. Also read [`action-queue`](action-queue.md)
 
-`isPending` は、その操作が起こした遷移の最中であることを表す。`await` が終わっても、サスペンドが残っていればトランジションは続く。
+`isPending` means the transition started by that operation is in progress. Even after `await` finishes, the transition continues as long as a suspension remains.

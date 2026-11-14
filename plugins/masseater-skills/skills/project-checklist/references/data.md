@@ -1,9 +1,9 @@
 # data
 
-データの保存先と変更手順を確認する。正本が 2 か所にあると内容が食い違い、スキーマを手作業で変更すると本番と定義がずれる。考え方は [The Twelve-Factor App](https://12factor.net/) の backing services と admin processes に従う。
+Confirm where data is stored and how it is changed. When the source of truth is in two places, the contents diverge, and when the schema is changed by hand, production drifts from the definition. Follow the backing services and admin processes of [The Twelve-Factor App](https://12factor.net/) for the approach.
 
-| 確認する事項 | 現状の確認方法 | 充足条件 |
+| Item to check | How to check the current state | Condition for being satisfied |
 | --- | --- | --- |
-| データごとの保存先 | インフラの定義とスキーマから、データの種類ごとの保存先の一覧を作る | 1 つのデータの正本が 1 か所にある |
-| スキーマの変更手順 | マイグレーションのファイルと、スキーマとの差分チェックを確認する | スキーマはマイグレーション経由でのみ変更され、差分があればチェックが失敗する |
-| 閲覧者ごとのデータとキャッシュ | キャッシュのキーと、キャッシュする値を確認する | 閲覧者ごとに変わる値が、閲覧者間で共有されるキャッシュに入らない |
+| Storage location for each piece of data | From the infrastructure definitions and the schema, make a list of storage locations for each kind of data | The source of truth for each piece of data is in one place |
+| Procedure for changing the schema | Check the migration files and the diff check against the schema | The schema is changed only through migrations, and the check fails if there is a diff |
+| Per-viewer data and caches | Check the cache keys and the values that are cached | Values that differ per viewer do not go into a cache shared between viewers |

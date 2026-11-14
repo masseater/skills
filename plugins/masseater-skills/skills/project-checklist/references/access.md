@@ -1,11 +1,11 @@
 # access
 
-ページと API ごとに、誰がアクセスできるかを確認する。非公開のつもりの URL が公開されていると、気づかないまま情報が漏えいする。基準は [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) の認証とアクセス制御の章に従う。
+Confirm who can access each page and API. If a URL meant to be private is public, information leaks without anyone noticing. Follow the authentication and access control chapters of [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) as the standard.
 
-| 確認する事項 | 現状の確認方法 | 充足条件 |
+| Item to check | How to check the current state | Condition for being satisfied |
 | --- | --- | --- |
-| ページと API ごとの公開範囲 | ルーティングの定義と認証の設定から、全ページと全 API を、公開、ログインユーザーのみ、本人のみに分類した一覧を作る | 全ページと全 API が、いずれかに分類されている |
-| 非公開のページと API | 本番の非公開 URL と、プラットフォームが自動で発行する URL に、未ログインの状態でリクエストする | 内容が返らない |
-| API ごとの認可 | 各 API のハンドラーで、呼び出し元の権限を検証する処理を探す。未ログインでの呼び出しと、他人の権限での呼び出しのテストを探す | すべての API が権限を検証し、そのテストがある |
+| Visibility of each page and API | From the routing definitions and authentication settings, make a list that classifies every page and every API as public, logged-in users only, or the owner only | Every page and every API is classified as one of them |
+| Private pages and APIs | Send requests while logged out to production's private URLs and to the URLs the platform issues automatically | No content is returned |
+| Authorization per API | In each API's handler, look for the code that verifies the caller's permissions. Look for tests of calls while logged out and of calls with someone else's permissions | Every API verifies permissions, and there are tests for it |
 
-自動で発行される URL も確認するのは、独自ドメインの前段だけに認証を置くと、その URL からは認証なしでアクセスできるからである。
+The reason to also check automatically issued URLs is that if authentication sits only in front of the custom domain, those URLs can be accessed without authentication.

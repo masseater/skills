@@ -1,10 +1,10 @@
 # dependencies
 
-利用しているものの出所と利用条件、実行環境のバージョンを確認する。ライセンスや利用条件に違反していても、古い Node.js のままでも、ビルドは通る。
+Confirm where what you use comes from, its terms of use, and the version of the runtime environment. The build passes even if a license or terms of use are violated, and even on an old Node.js.
 
-| 確認する事項 | 現状の確認方法 | 充足条件 |
+| Item to check | How to check the current state | Condition for being satisfied |
 | --- | --- | --- |
-| 依存パッケージの選定 | 自作した処理のうち、既存のライブラリで置き換えられるものを探す | dont-it-yourself に従っている |
-| 依存パッケージのライセンス | ライセンス一覧を出力するツールで、依存パッケージのライセンスを列挙する | 配布形態と矛盾しない |
-| 第三者の素材 | 画像、音声、文章の出所と利用条件を確認する | 公開が許可された素材だけが、公開リポジトリと公開先にある |
-| Node.js のバージョン | `.node-version`、`mise.toml`、CI の `setup-node` と `setup-vp`、Dockerfile の `FROM`、`package.json` の `engines.node` を確認する。npm などに公開するパッケージは、その `package.json` の `engines.node` と README の動作要件も確認する | 開発、CI、本番の Node.js が 26 以上である。公開するパッケージは `engines.node` が `>=26` で、README も 26 以上だけを動作要件にしている |
+| Choice of dependency packages | Among the processing you built yourself, look for what can be replaced by an existing library | It follows dont-it-yourself |
+| Licenses of dependency packages | List the licenses of the dependency packages with a tool that outputs a license list | They do not contradict the form of distribution |
+| Third-party materials | Check the origin and terms of use of images, audio and text | Only materials whose publication is permitted are in public repositories and publishing destinations |
+| Node.js version | Check `.node-version`, `mise.toml`, `setup-node` and `setup-vp` in CI, `FROM` in the Dockerfile, and `engines.node` in `package.json`. For packages published to npm and the like, also check `engines.node` in their `package.json` and the requirements in the README | Node.js in development, CI and production is 26 or later. Published packages have `engines.node` set to `>=26`, and the README also lists only 26 or later as a requirement |

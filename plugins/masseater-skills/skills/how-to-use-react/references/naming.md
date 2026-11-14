@@ -1,23 +1,23 @@
-# 名前とファイル
+# Names and files
 
-原典の Redux、`.jsx`、`*Screen` は採らない。
+Do not adopt the original article's Redux, `.jsx`, or `*Screen`.
 
-## 識別子
+## Identifiers
 
-| 対象 | 形式 | 例 |
+| Target | Format | Examples |
 | --- | --- | --- |
-| コンポーネント | PascalCase | `Button`、`LoginPage`、`LoginDialog` |
-| ページコンポーネント | `[Name]Page` | `LoginPage` |
-| 定数 | `SCREAMING_SNAKE` | `DEFAULT_STATE`、`MAX_PAGES_WITHOUT_GAPS` |
+| Component | PascalCase | `Button`, `LoginPage`, `LoginDialog` |
+| Page component | `[Name]Page` | `LoginPage` |
+| Constant | `SCREAMING_SNAKE` | `DEFAULT_STATE`, `MAX_PAGES_WITHOUT_GAPS` |
 
-## ファイル
+## Files
 
-| 対象 | 形式 | 例 |
+| Target | Format | Examples |
 | --- | --- | --- |
-| ソース | kebab-case の `.ts` か `.tsx` | `login-page.tsx`、`button.tsx` |
-| テスト | `*.test.ts` か `*.test.tsx` | `filter.test.ts` |
+| Source | kebab-case `.ts` or `.tsx` | `login-page.tsx`, `button.tsx` |
+| Test | `*.test.ts` or `*.test.tsx` | `filter.test.ts` |
 
-アプリの `src/` は FSD のレイヤーだけを置く。
+An app's `src/` contains only FSD layers.
 
-- ページは `pages/<slice>/ui/*-page.tsx`
-- Atom は `model` セグメント
+- Pages are `pages/<slice>/ui/*-page.tsx`
+- Atoms are in the `model` segment

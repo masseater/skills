@@ -1,45 +1,45 @@
-# 認識の単位を区切る句読点
+# Punctuation that marks units of recognition
 
-句読点は、音読の息継ぎや口語の調子のために打つものではない。読者が文をどの単位で認識し、どの語句を結び付け、どこで意味を確定すべきかを示すために打つ。
+Punctuation is not placed for breathing when reading aloud or for the tone of speech. It is placed to show readers in what units to recognize a sentence, which phrases to connect, and where the meaning should be settled.
 
-- 読点は、役割の異なる領域の境界に打つ
-- 句点は、1 つの主張、判断、因果関係が完了した場所に打つ
-- 短い修飾句や対比句の直後には、反射的に読点を打たない
-- 読点を足しても解釈が複数残るなら、語順や文を組み直す
+- Place the comma (読点, "、") at the boundary between regions with different roles
+- Place the period (句点, "。") where one claim, judgment or causal relationship is complete
+- Do not reflexively place a comma right after a short modifier or a contrastive phrase
+- If several interpretations remain even after adding a comma, rework the word order or the sentence
 
-## 読点
+## The comma
 
-役割の異なる領域とは、条件、理由、対比、列挙、主節である。
+Regions with different roles are conditions, reasons, contrasts, enumerations and the main clause.
 
-ひとまとまりの語句を途中で区切ると、読者は一度で認識できる内容を分解して組み直すことになる。役割の異なる領域を区切らずにつなぐと、どの条件や理由がどの結論にかかるかを推測させることになる。
+Splitting a cohesive phrase in the middle makes readers take apart and reassemble content they could recognize in one go. Joining regions with different roles without separating them makes readers guess which condition or reason applies to which conclusion.
 
 ```
 ユーザーが入力した、値を検証して、問題がなければ、保存する。
 → ユーザーが入力した値を検証し、問題がなければ保存する。
 ```
 
-「ユーザーが入力した値」は 1 つの認識領域で、分割する理由がない。元の文は音読の間に機械的に打ったため、単語の並びが分断されている。直した文では、値を検証する処理と、その結果を条件に保存する処理が区切られている。
+"ユーザーが入力した値" (the value the user entered) is one region of recognition, and there is no reason to split it. In the original sentence, the commas were placed mechanically at the pauses of reading aloud, so the sequence of words is broken up. In the revised sentence, the processing that validates the value and the processing that saves it on the condition of that result are separated.
 
 ```
 障害が起きた場合にデータを失わないために処理結果を先に保存する。
 → 障害が起きた場合にもデータを失わないよう、処理結果を先に保存する。
 ```
 
-元の文は条件、目的、主となる処理が連続し、読者が境界を探すことになる。直した文では目的の領域と処理の領域が分かれている。
+In the original sentence, the condition, the purpose and the main processing run together, and readers have to look for the boundaries. In the revised sentence, the region of the purpose and the region of the processing are separated.
 
-## 句点
+## The period
 
-長くなったから切るのではない。読者がそこで意味を確定できるかで決める。
+You do not cut a sentence because it got long. Decide by whether readers can settle the meaning there.
 
-- 独立した主張は一文に詰め込まない
-- 1 つの因果関係は、読みやすさのためだけに分割しない
-- 一文で表せる対比を短い文に割って、重みや余韻を演出しない
+- Do not cram independent claims into one sentence
+- Do not split one causal relationship just for readability
+- Do not split a contrast that can be expressed in one sentence into short sentences to stage weight or a lingering effect
 
-「A ではない。B である」のような分割は、意味上独立していないなら演出である。
+A split such as "A ではない。B である" (It is not A. It is B) is staging if the two are not semantically independent.
 
-## 反射的な読点
+## Reflexive commas
 
-学習データの説明文には「ではなく」の直後に読点を置く文が多い。AI はそこを反射的に区切る。短く構造の明白な文ではその読点に役割がなく、論理関係をいちいち指差す典型的な AI 文体になる。「〜ではなくて、」「〜よりも、」「〜するために、」「〜の場合は、」も同じである。誤読を防ぐ必要がない限り、短い修飾句や対比句の直後には読点を打たない。
+Many explanatory sentences in training data put a comma right after "ではなく" (not ... but). AI reflexively breaks the sentence there. In short sentences with an obvious structure, that comma has no role, and it becomes the typical AI style of pointing at every logical relationship. The same goes for "〜ではなくて、", "〜よりも、", "〜するために、" and "〜の場合は、". Unless it is needed to prevent misreading, do not place a comma right after a short modifier or contrastive phrase.
 
 ```
 形式ではなく、文章が果たしている働きから判断する。
@@ -47,16 +47,16 @@
 → 形式ではなく文章の働きで判断する。
 ```
 
-「ではなく」の両側が述語を持つ対比は、役割の異なる領域の境界なので読点を打つ。
+A contrast where both sides of "ではなく" have a predicate is a boundary between regions with different roles, so place a comma.
 
 ```
 長くなったから切るのではなく、読者がそこで意味を確定できるかで決める。
 ```
 
-## 音読の間
+## Pauses when reading aloud
 
-音読したときの間は、確認の補助にはなるが基準にはしない。話すときの間は話者で変わる。文章で認識させるべき意味の関係は変わらない。
+Pauses when reading aloud can help confirm, but are not the criterion. Pauses in speech vary by speaker. The relationships of meaning that writing should make readers recognize do not change.
 
-## 組み直し
+## Reworking
 
-読点を足しても複数の解釈が残るなら、句読点で無理に読ませない。語順や文を組み直す。句読点は、書き手が整理した意味の構造を読者に同じ単位で認識させるためのものである。構造を後付けで作るものではない。
+If several interpretations remain even after adding commas, do not force the reading with punctuation. Rework the word order or the sentence. Punctuation exists to make readers recognize, in the same units, the structure of meaning the writer organized. It is not something that builds structure after the fact.

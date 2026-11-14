@@ -1,23 +1,23 @@
-# 技術記事を書く
+# Writing a tech article
 
-[`article`](../references/article.md) も読むこと。
+Also read [`article`](../references/article.md).
 
-AI は紹介記事にも独自の主張を据えたがり、対象の紹介が主張の材料に格下げされる。
+AI likes to put its own claim even in an introductory article, and the introduction of the subject is demoted to material for the claim.
 
-- 対象に何が入っていて、使うと何が起きるかを軸にする
-- 紹介するのは技術そのものにする。自分のリポジトリでどう使っているかを軸にしない
-- 動きはサンプルコードで示し、実際に動かして確かめた結果と、公式ドキュメントの記述の両方を根拠にする
-- 一つの対象の紹介のほかに、複数の対象を調べて比べる記事もこの種類に含める。比べるときは比べる軸を表にする
-- 載せたいスクリーンショットや図を用意できないときは、置く位置に `<!-- TODO(media): 何を載せるか -->` を残し、本人に渡す
-- 最新バージョンだけを対象に書き、旧バージョンでの経緯を書かない
-- 別の記事で扱う話題は書かず、その記事にリンクする
+- Make the axis what the subject contains and what happens when you use it
+- Introduce the technology itself. Do not make how you use it in your own repository the axis
+- Show behavior with sample code, and base it on both the results you confirmed by actually running it and the descriptions in the official documentation
+- Besides introducing one subject, articles that research and compare several subjects also belong to this kind. When comparing, put the axes of comparison in a table
+- When you cannot prepare a screenshot or figure you want to include, leave `<!-- TODO(media): what to include -->` where it goes and hand it to the owner
+- Write only about the latest version, and do not write the history of older versions
+- Do not write about topics covered in another article; link to that article
 
-## 書かないもの
+## What not to write
 
-- 「人間が書くものは機械が実行できる制約になる」のような、紹介から外れた主張
-- 使い始める手順や「向く人」の段落
-- README に書いてあることを言い換えただけの段落。読者は README を読めば足りるので、記事にする意味がない
+- Claims that stray from the introduction, such as "What humans write becomes a constraint that machines can execute"
+- Steps for getting started, or a "who it is for" paragraph
+- Paragraphs that merely rephrase what is written in the README. Readers only need to read the README, so there is no point in making it an article
 
-## 例外を作らない
+## Do not make exceptions
 
-本人の方針が「全面的に使う」なら、「小さなスクリプトは除外してよい」のような例外を書き手が足さない。例外を一つ認めると書き方が複数生まれ、強制の届かない穴になるためである。
+If the owner's policy is "use it across the board", the writer must not add exceptions such as "small scripts may be excluded". Allowing one exception creates multiple ways of writing, and becomes a hole that enforcement cannot reach.

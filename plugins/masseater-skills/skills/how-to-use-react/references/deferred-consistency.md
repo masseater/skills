@@ -1,9 +1,9 @@
-# 重い派生は一貫性を外す
+# Drop consistency for heavy derivations
 
-入力と重い一覧を同じレンダーに載せると、入力の反映が一覧の再レンダーまで遅れる。入力と一覧を分ける。
+When the input and a heavy list share the same render, the input does not update until the list has re-rendered. Separate the input from the list.
 
-- いまの入力は Effect Atom にすぐ書く
-- 一覧に渡す値は `useDeferredValue` で遅らせる
-- 遅れていることを示すなら `useTransition` の pending を使う
+- Write the current input to an Effect Atom immediately
+- Delay the value passed to the list with `useDeferredValue`
+- If you show that it is lagging, use the pending state of `useTransition`
 
-タイマーデバウンスは使わない。`useRef` と `setTimeout` と二重の state で作るものも、手書きの `useDebounced*` も、原典の続編にあるトランジション対応の自前デバウンスも、`useDeferredValue` で置き換える。
+Do not use timer debouncing. Replace with `useDeferredValue` anything built from `useRef`, `setTimeout` and duplicated state, any hand-written `useDebounced*`, and the transition-aware homemade debounce from the sequel to the original article.

@@ -1,26 +1,26 @@
-# 目的→手段の語順
+# Word order: purpose, then means
 
-A が手段で B が目的なら「B のため A する」と書く。最初に評価すべきなのは A の妥当性ではなく、B を達成する必要があるかだからである。
+If A is the means and B is the purpose, write "To B, do A". What should be evaluated first is not whether A is appropriate but whether B needs to be achieved.
 
-- 目的を先に、手段を後に置く
-- 目的を括弧に入れない
-- 直前の文で目的が共有済みなら、繰り返さなくてよい
+- Put the purpose first and the means after it
+- Do not put the purpose in parentheses
+- If the purpose was already shared in the previous sentence, you need not repeat it
 
-## 語順が評価の順を決める
+## Word order determines the order of evaluation
 
-「A する（B のため）」と書くと、読者は A が決まったものとして受け取る。B の必要性を検討する前に、A の実行方法の評価へ入る。目的を先に置けば、「B が不要なら A も不要」「B が必要でも A が最適とは限らない」という順で評価できる。不要な目的のために手段を磨き続けることや、既存の手段を前提に目的を正当化することを防げる。
+If you write "Do A (to B)", readers take A as already decided. They start evaluating how to carry out A before considering whether B is needed. If you put the purpose first, they can evaluate in the order "if B is unnecessary, A is unnecessary too" and "even if B is necessary, A is not necessarily the best". This prevents continuing to polish a means for an unnecessary purpose, and justifying a purpose on the premise of an existing means.
 
 ```
-商品ページをサーバー側で描画する（検索エンジンからの流入を得るため）。
-→ 検索エンジンから商品ページへの流入を得るため、商品ページをサーバー側で描画する。
+Render product pages on the server (to get traffic from search engines).
+→ To get traffic from search engines to product pages, render product pages on the server.
 ```
 
-元の文では描画方法が先に確定し、目的が後から付け足されている。直した文では検索流入の必要性を先に評価し、必要ならサーバー側描画が適切かを評価できる。
+In the original sentence, the rendering method is fixed first and the purpose is tacked on afterward. In the revised sentence, the need for search traffic can be evaluated first, and if it is needed, whether server-side rendering is appropriate can be evaluated.
 
-## 括弧
+## Parentheses
 
-括弧は、本文から取り除いても判断に影響しない補足にだけ使う。手段を採用する根拠である目的は最重要の情報なので、括弧に入れず本文の因果関係として書く。
+Use parentheses only for supplements that would not affect a decision if removed from the text. The purpose, which is the grounds for adopting a means, is the most important information, so do not put it in parentheses; write it as a causal relationship in the text.
 
-## 省略
+## Omission
 
-省略の基準は、省略しても読者が目的を認識したまま手段を評価できるかである。
+The criterion for omitting is whether readers can still evaluate the means while recognizing the purpose after the omission.

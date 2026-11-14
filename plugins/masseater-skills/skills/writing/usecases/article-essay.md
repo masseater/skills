@@ -1,47 +1,47 @@
-# 論説を書く
+# Writing an essay
 
-[`article`](../references/article.md) も読むこと。
+Also read [`article`](../references/article.md).
 
-目標は日経の記事の水準で、読み手が上から順に読むだけで主張を理解できることを求める。AI はキーワードを章に配って並べがちで、そうすると解決策が問題より先に出るような順序の崩れが起きる。
+The target is the standard of a Nikkei article: readers should understand the claim just by reading from top to bottom. AI tends to distribute keywords across chapters and line them up, which breaks the order, for example by presenting the solution before the problem.
 
-- 主張を本人の言葉で 1 つに確かめてから骨子を組む
-- 骨子は、各段落の結論が次の段落の前提になる因果の順に組む
-- 読み手の疑問になるフックや知識を、要所に置く
-- 事実には根拠を添え、裏を取ってから書く
-- 書き上げたら、上から順に読んで論理が崩れていないかを確かめる
+- Confirm the single claim in the owner's words before building the outline
+- Build the outline in causal order, so that the conclusion of each paragraph becomes the premise of the next
+- Place hooks and knowledge that raise questions in the reader's mind at key points
+- Back facts with evidence, and verify them before writing
+- When finished, read from top to bottom and confirm the logic has not broken down
 
-## 主張
+## The claim
 
-- 主張の本質を取り違えない。説明に使う概念（「複利」など）を主張に格上げしない
-- 主張の根拠にならない論点（「修正版は出ていたか」など）を軸にしない
+- Do not mistake the essence of the claim. Do not promote a concept used for explanation (such as "compound interest") to the claim
+- Do not make a point that does not support the claim (such as "had a fixed version been released?") the axis
 
-## 段落
+## Paragraphs
 
-論説の段落は、パラグラフライティングの型で書く。読み手は先に書かれた内容から続きを予測しながら読むので、段落の先頭で主張を示すと、続く根拠をその主張に結び付けて読める（[効果的なトピック・センテンスを書くための基本ルール](https://doi.org/10.15027/55627)）。
+Write essay paragraphs in the form of paragraph writing. Readers read while predicting what follows from what was written earlier, so if the claim is shown at the start of the paragraph, they can connect the evidence that follows to that claim ([Basic rules for writing effective topic sentences](https://doi.org/10.15027/55627)).
 
-- 一つの段落では一つの主張だけを述べる
-- 段落の先頭の文（トピックセンテンス）で、その段落の主張を言い切る。「投票は重要だ」のような漠然とした文ではなく、続く根拠を予測できるだけの具体性を持たせ、事例や数字の細部は入れない
-- 続く文（サポーティングセンテンス）には、主張を支える事例と数字を出典つきで具体的に書き、先頭の文と関係しない文を入れない
-- 根拠は、読み手が自然に追える順（時系列、原因から結果）に並べる
-- 記事全体も段落と同じ形にする。冒頭で記事の主張を示し、各段落がその根拠になる
+- State only one claim in one paragraph
+- In the first sentence of the paragraph (the topic sentence), state the paragraph's claim decisively. Not a vague sentence like "Voting is important", but one specific enough that the evidence that follows can be predicted, without the details of cases or numbers
+- In the following sentences (supporting sentences), write specifically the cases and numbers that support the claim, with sources, and do not include sentences unrelated to the first sentence
+- Arrange the evidence in an order readers can follow naturally (chronological, cause to effect)
+- Give the whole article the same shape as a paragraph. Show the article's claim at the opening, and make each paragraph its evidence
 
-## 骨子
+## Outline
 
-- キーワードを章に割り振るのではなく、全体を俯瞰して順序を決める
-- 問題の提示を、解決策より先に置く
-- 本文の分量を骨子で絞らない
+- Decide the order by looking at the whole, rather than assigning keywords to chapters
+- Put the presentation of the problem before the solution
+- Do not cut the amount of body text through the outline
 
-## 根拠
+## Evidence
 
-- 具体的な事例と数字を、出典の脚注つきで書く。事例は、選んだ基準と確かめた範囲を書いてから持ち出す
-- 裏の取れない数字は使わず、取れる数字に差し替える
-- 状況から明らかなことは断言する
+- Write specific cases and numbers, with source footnotes. Before bringing up a case, write the criteria by which you chose it and the extent to which you verified it
+- Do not use numbers that cannot be verified; replace them with ones that can
+- State decisively what is obvious from the situation
 
-## 通読
+## Reading through
 
-書き上げたら頭から読み、次の箇所を直す。
+When finished, read from the beginning and fix the following.
 
-- 前の段落と対比の軸がずれている
-- 話題が前置きなしに切り替わる
-- 同じ問いに二通りの答えを出している
-- 「それでも」のような接続が、遠くの段落を受けている
+- The axis of contrast has drifted from the previous paragraph
+- The topic switches without any lead-in
+- Two different answers are given to the same question
+- A connective such as "even so" refers back to a distant paragraph

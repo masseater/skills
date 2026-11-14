@@ -1,10 +1,10 @@
 # requirements
 
-利用者と目的、想定する規模を確認する。これが決まっていないと、ほかの領域の充足条件も決まらない。考え方は [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html) に従い、負荷と要件から設計を決める。
+Confirm the users, the purpose and the expected scale. Unless these are decided, the conditions for satisfying the other areas cannot be decided either. Follow the approach of the [AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html) and decide the design from the load and the requirements.
 
-| 確認する事項 | 現状の確認方法 | 充足条件 |
+| Item to check | How to check the current state | Condition for being satisfied |
 | --- | --- | --- |
-| 利用者と目的 | README と docs を読む | 誰が使い、何ができるかが書いてある |
-| 想定する規模 | 規模の記述と、本番のアクセス解析の数値を比較する | 次の段階の利用者数、リクエスト数、データ量が数値で書いてあり、本番の実測値と取得日が添えてある |
+| Users and purpose | Read the README and docs | It says who uses it and what they can do |
+| Expected scale | Compare the description of scale with the numbers from production analytics | The number of users, requests and amount of data at the next stage are written as numbers, accompanied by measured production values and the date they were taken |
 
-現在の規模ではなく次の段階の規模を書くのは、設計を変更するより先に規模が変わるからである。
+The reason to write the scale of the next stage rather than the current one is that the scale changes before the design does.

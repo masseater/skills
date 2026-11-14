@@ -1,21 +1,21 @@
 ---
 name: integrate
-description: ライブラリや新しい実装手段を導入するときに使う。追加するだけで終わらせず、既存コードの移行と、その手段を使わせる機械的な強制まで行う。
+description: Use when introducing a library or a new means of implementation. Do not stop at adding it; go as far as migrating existing code and mechanically enforcing the use of that means.
 ---
 
 # integrate
 
-- 既存の同等の実装を、新しい手段へ移す
-- 新規コードで旧手段を使えないようにする
-- 新しい手段の使い方を 1 つに揃える
-- 不要になった旧実装と依存を消す
+- Move existing equivalent implementations to the new means
+- Make it impossible to use the old means in new code
+- Unify how the new means is used into one way
+- Delete the old implementations and dependencies that are no longer needed
 
-## この skill が必要な理由と達成したい状態
+## Why this skill is needed and the state it should achieve
 
-この skill が必要な理由は、新しい手段を入れても、旧手段が使える状態のまま残ることにある。作業者は手に馴染んだ旧手段や、近くの既存コードの書き方を真似るので、新旧が並んで使われ続ける。
+This skill is needed because even after a new means is introduced, the old means remains usable. Workers imitate the old means they are used to and the way nearby existing code is written, so the old and the new keep being used side by side.
 
-この skill で達成したい状態は、新しい手段だけが使われ、旧手段は守ろうとしなくても使えないことである。
+The state this skill should achieve is that only the new means is used, and the old means cannot be used even without anyone trying to guard against it.
 
-## 旧手段は機械的な検査で止める
+## Stop the old means with mechanical checks
 
-旧手段を止めるのは、lint、型、CI、依存関係の制約である。`no-restricted-imports` がその例である。ドキュメント、慣習、レビューでの指摘は、作業者の善意と労力で守る仕組みにあたるので、止める手段にならない。
+What stops the old means is lint, types, CI and constraints on dependencies. `no-restricted-imports` is an example. Documentation, conventions and review comments are mechanisms that rely on the goodwill and effort of workers, so they are not a means of stopping it.

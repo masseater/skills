@@ -1,22 +1,22 @@
-# ポエムを書く
+# Writing a poem
 
-[`article`](../references/article.md) も読むこと。
+Also read [`article`](../references/article.md).
 
-本人にとっては個人の戯言で、論述ではない。AI は主張を見ると論証しようとし、統計の表と反論への応答を足して論文の形にしてしまう。
+For the owner it is personal musing, not argument. When AI sees a claim it tries to prove it, adds tables of statistics and responses to counterarguments, and turns it into the shape of a paper.
 
-- 一人称で、本人の実感と予感を書く
-- 文は詩的にせず、ほかの種類と同じ普通の文で書く。ポエムと呼ぶのは論証しないという意味で、文体のことではない
-- 本人の体験や会話を芯にする
-- 本人の経験は、本人が読み手としてどう読むかも含む。読み手に投げかける文章なので、本人が同じ種類の文章を読むときに何を見ているかを経験として書く
-- 経験を数字や日付に置き換えない。数字は、それ自体が本人の経験であるときだけ書く
-- 本人が言っていない体験や、人に話したときの反応を足さない
+- Write the owner's own feelings and premonitions in the first person
+- Do not make the sentences poetic; write them as ordinary sentences, like the other kinds. Calling it a poem means it does not argue; it is not about style
+- Make the owner's experiences and conversations the core
+- The owner's experience includes how the owner reads as a reader. Because it is writing thrown at readers, write as experience what the owner looks at when reading the same kind of writing
+- Do not replace experience with numbers or dates. Write a number only when the number itself is the owner's experience
+- Do not add experiences the owner did not mention, or reactions from when they told others
 
-## 書かないもの
+## What not to write
 
-- 主張を支える統計の表や出典の一覧
-- 不利なデータへの応答や、反論の段落
-- 「8 割」の内訳のような、主張を論証するための試算
+- Tables of statistics or lists of sources that support the claim
+- Responses to unfavorable data, or paragraphs of rebuttal
+- Estimates to prove the claim, such as a breakdown of "80 percent"
 
-## 材料
+## Material
 
-ポエムの材料は本人の頭の中にあり、尋ねただけでは出てこない。骨子を見せて、本人が思い出した体験や会話（友人に話して「陰謀論だ」と返された、など）を受け取り、それを冒頭や結びに使う。
+The material for a poem is in the owner's head and does not come out just by asking. Show the outline, receive the experiences and conversations the owner recalls (such as telling a friend and being told "that's a conspiracy theory"), and use them at the opening or the ending.

@@ -1,13 +1,13 @@
-# 教えてClaude を書く
+# Writing an Oshiete Claude article
 
-[`article`](../references/article.md) も読むこと。
+Also read [`article`](../references/article.md).
 
-シリーズは masseater.dev のタグ「教えてClaude」で束ねる。読み手が追うのは、本人が何を疑問に思い、Claude の説明を受けて次に何が気になったかという流れなので、会話を解説文に書き直すとその流れが消える。
+The series is grouped by the masseater.dev tag "教えてClaude" (Oshiete Claude, "Tell me, Claude"). What readers follow is the flow of what the owner wondered about and what they became curious about next after Claude's explanation, so rewriting the conversation as expository prose erases that flow.
 
-- 壁打ちをしたセッションで「記事化して」と言われたら、そのセッションの会話を材料にして書く
-- 発言の順序と中身は変えない
-- 発言は話者ごとに `:::masseater` と `:::claude` のブロックで囲む
-- frontmatter の `tags` に「教えてClaude」を入れ、置き場所は `apps/portfolio/content/blogs/` にする
+- When asked to "turn this into an article" in a session where you bounced ideas around, write it using that session's conversation as material
+- Do not change the order or content of the remarks
+- Enclose the remarks of each speaker in `:::masseater` and `:::claude` blocks
+- Put "教えてClaude" in the frontmatter `tags`, and place the file in `apps/portfolio/content/blogs/`
 
 ```md
 :::masseater
@@ -19,17 +19,17 @@ HTTPS の鍵マークって、結局だれが本物だって保証してるの�
 :::
 ```
 
-## 整える範囲
+## What to tidy
 
-| 対象 | 整え方 |
+| Target | How to tidy |
 | --- | --- |
-| 壁打ち以外のやりとり | 脱線、ツールの実行結果、記事化の依頼を削る |
-| 本人の発言 | 誤字と言い淀みだけを直し、口調は残す |
-| Claude の発言 | 前置き、繰り返し、締めの要約を削って縮める。説明の中身は足さない。文末は「だ・である」調にそろえる。masseater.dev の textlint が本文の「です・ます」を落とすためである |
-| 見出し | 話題が切り替わる所にだけ置く |
+| Exchanges other than the brainstorming | Cut digressions, tool results and the request to turn it into an article |
+| The owner's remarks | Fix only typos and hesitations, and keep the tone |
+| Claude's remarks | Shorten them by cutting preambles, repetition and closing summaries. Do not add to the content of the explanation. Make sentence endings consistently the plain "だ・である" style, because masseater.dev's textlint rejects "です・ます" in the body |
+| Headings | Put them only where the topic changes |
 
-タイトルは本人の疑問を最短の名詞句にしたもの（「HTTPS の証明書を保証する仕組み」）にする。
+Make the title the owner's question as the shortest noun phrase ("HTTPS の証明書を保証する仕組み", the mechanism that guarantees HTTPS certificates).
 
-## 事実の確認
+## Checking facts
 
-Claude の説明は誤っていることがある。記事にする前に、Claude の発言に含まれる事実を一次資料で確かめ、出典を脚注で付ける。誤りが見つかった発言は書き換えず、その発言に脚注を付けて正しい事実と出典を書く。壁打ちの記録としての正直さを保つためである。
+Claude's explanations are sometimes wrong. Before turning it into an article, check the facts in Claude's remarks against primary sources and attach the sources as footnotes. Do not rewrite a remark in which an error is found; attach a footnote to it and write the correct fact and source. This keeps the record of the brainstorming honest.

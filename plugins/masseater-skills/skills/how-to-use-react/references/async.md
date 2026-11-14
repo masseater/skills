@@ -1,39 +1,39 @@
-# 非同期の瀑布を消す
+# Eliminating async waterfalls
 
-前の結果を使わない処理を、順番に待たない。
+Do not wait in sequence for operations that do not use the previous result.
 
-- 独立した処理は同時に始める
-- 結果を使う枝に入ってから待つ
-- 手元にある条件を先に見る
-- 一部だけ依存するときは、依存する側だけを待たせる
-- 殻をデータの完了まで止めない
+- Start independent operations at the same time
+- Wait after entering the branch that uses the result
+- Check conditions you already have first
+- When only part depends on something, make only the dependent part wait
+- Do not hold the shell until the data completes
 
-## 使う枝に入ってから待つ
+## Wait after entering the branch that uses it
 
-結果を使わない枝があるなら、その枝に入ってから待つ。先に待つと、すぐ戻る枝でも I/O が終わるまで止まる。
+If there is a branch that does not use the result, wait after entering the branch that does. If you wait first, even a branch that returns immediately stops until the I/O finishes.
 
-## 安い条件を先に見る
+## Check cheap conditions first
 
-`flag && localCondition` のように、ネットワークや DB の結果と、既に手元にある条件の両方が要るときは、手元の条件を先に見る。
+When you need both a network or DB result and a condition you already have, as in `flag && localCondition`, check the local condition first.
 
-次のときは、元の順番を保つ。
+Keep the original order in the following cases.
 
-- 手元の条件が flag の結果に依存するとき
-- 条件の方が重いとき
-- 副作用の順番が仕様のとき
+- When the local condition depends on the result of the flag
+- When the condition is the heavier one
+- When the order of side effects is part of the specification
 
-## 一部だけ依存するとき
+## When only part depends on something
 
-`profile` が `user` を待つときも、`config` は `user` を待たせない。書き方は `SKILL.md` の例のとおりである。
+Even when `profile` waits for `user`, do not make `config` wait for `user`. How to write it is as in the example in `SKILL.md`.
 
-## API とサーバー処理
+## APIs and server processing
 
-セッションが要らない読み取りを、認証の後ろに並べない。認証を依存元として、一部だけ依存するときと同じ形で組む。Elysia のルートも TanStack Start のサーバー関数も同じである。
+Do not line up reads that do not need a session behind authentication. Make authentication the dependency, and build it in the same shape as when only part depends on something. The same goes for Elysia routes and TanStack Start server functions.
 
-## 殻をデータの完了まで止めない
+## Do not hold the shell until the data completes
 
-ナビ、ヘッダー、フッターは、本体のデータが終わるまで描画を止めない。
+Do not hold the rendering of navigation, headers and footers until the main data finishes.
 
-- データが要る部分だけ `<Suspense>` の内側に置く
-- レイアウトの分岐に必須な値だけ、殻の外で待つ
-- 小さなクエリで Suspense の切り替わりの方が目立つときは、殻と一緒に待ってよい
+- Put only the parts that need data inside `<Suspense>`
+- Wait outside the shell only for values required to branch the layout
+- For a small query where the Suspense switch would be more noticeable, you may wait together with the shell

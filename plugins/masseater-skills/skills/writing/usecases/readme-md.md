@@ -1,54 +1,54 @@
-# README.md を書く
+# Writing README.md
 
-[`show-dont-describe`](../references/show-dont-describe.md) も読むこと。
+Also read [`show-dont-describe`](../references/show-dont-describe.md).
 
-README.md は人間に向けて書く。AI への指示は AGENTS.md や CLAUDE.md に置き、ai-context に従う。
+Write README.md for humans. Put instructions for AI in AGENTS.md or CLAUDE.md, following ai-context.
 
-README に書くのは次の 2 つだけである。どちらも端的に書く。
+A README contains only the following two things. Write both concisely.
 
-- このプロジェクトが何を実現するものか
-- どうすれば使えるのか
+- What this project achieves
+- How to use it
 
-性能や精度を比べた計測の結果は、使うかどうかの判断材料なので「何を実現するものか」に含める。測った日付と環境を添え、測り直すコマンドを示す。
+Measurement results comparing performance or accuracy are material for deciding whether to use it, so include them in "what it achieves". Add the date and environment of the measurement, and show the command to measure again.
 
-## 読み手
+## Readers
 
-README を開く人は、このプロジェクトを使うかどうかを決めようとしている。知りたいのは、自分の問題が解けるかと、すぐ使い始められるかである。中でどう動いているかは、使うと決めるまで関心の外にある。
+People who open a README are trying to decide whether to use this project. What they want to know is whether it solves their problem and whether they can start using it right away. How it works inside is outside their interest until they decide to use it.
 
-仕組みの説明が混ざると、読み手は自分に関係のない文を読み飛ばしながら答えを探すことになる。冒頭で判断できなければ、続きは読まれずに閉じられる。
+When explanations of the mechanism are mixed in, readers have to look for the answer while skipping sentences that do not concern them. If they cannot decide at the opening, they close it without reading further.
 
-## 何を実現するもの
+## What it achieves
 
-題と冒頭だけで、使うかどうかを決められるようにする。
+Make it possible to decide whether to use it from the title and the opening alone.
 
-- 一文目で、何を実現するものかを言う。作った経緯や技術の選定から始めない
-- 誰の、どんな問題を解くのかを書く
-- 公開先やインストール先があれば、冒頭の近くに URL を置く
+- In the first sentence, say what it achieves. Do not start with how it was made or how the technology was chosen
+- Write whose problem it solves and what problem that is
+- If there is a place where it is published or installed from, put the URL near the opening
 
-## どうすれば使えるか
+## How to use it
 
-使い方の節は、読み手が手を動かしながら読む節である。
+The usage section is the section readers read while working with their hands.
 
-- 前提になるランタイムやアカウントを、手順より先に書く
-- コマンドは、コピーしてそのまま動く形で書く
-- 最小の動く例を 1 つ示す
-- 手順の途中に背景や設計の説明を挟まない
+- Write the runtimes and accounts it presupposes before the steps
+- Write commands in a form that works as is when copied
+- Show one minimal working example
+- Do not insert background or design explanations in the middle of the steps
 
-箇条書きは、並列で順序のない項目だけに使う。前提や手順の流れは文で書き、箇条書きは本文の 15% 以内に収める。masseater のリポジトリの verify に入っている yomiyasu の `--strict` が、それを超えると落とすためである。
+Use bullet points only for parallel items with no order. Write premises and the flow of steps in sentences, and keep bullet points within 15% of the body. This is because yomiyasu's `--strict`, which is in the verify of masseater's repositories, fails when it goes over that.
 
-## 既存の README を直す
+## Fixing an existing README
 
-README の事実は、コードや設定が変わっても自動では直らない。言い回しを直す前に、書いてある事実を実物と突き合わせる。
+Facts in a README are not fixed automatically when the code or settings change. Before fixing the wording, check the written facts against the real thing.
 
-- コマンドは、`package.json` や `vite.config.ts` に今もあるタスクか確かめる
-- secrets や環境変数の表は、ワークフローとコードが今も読んでいるか確かめる
-- 消えた事実は消し、変わった事実は直す
+- Confirm that commands are tasks that still exist in `package.json` or `vite.config.ts`
+- Confirm that the tables of secrets and environment variables are still read by the workflows and the code
+- Delete facts that have disappeared, and fix facts that have changed
 
-## 書かないこと
+## What not to write
 
-使うかどうかの判断と使い始めることに要らない情報は、置き場所がほかにあっても無くても書かない。
+Do not write information that is unnecessary for deciding whether to use it and for starting to use it, whether or not there is another place for it.
 
-- アーキテクチャ、データの流れ、ディレクトリ構成、内部のモジュール
-- API の一覧や設定項目のように、コードから導出できる情報。no-perishable-information に従って指し示す
-- 設計の理由。コミットメッセージや DESIGN.md に置く
-- AI への指示や作業の決まり。AGENTS.md や CLAUDE.md に置く
+- Architecture, data flow, directory structure, internal modules
+- Information derivable from the code, such as API lists and configuration options. Point to it following no-perishable-information
+- Reasons for the design. Put them in commit messages or DESIGN.md
+- Instructions for AI and working rules. Put them in AGENTS.md or CLAUDE.md

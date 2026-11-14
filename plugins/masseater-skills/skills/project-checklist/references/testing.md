@@ -1,9 +1,9 @@
 # testing
 
-仕組みごとに再現できる確かめ方があるかと、テストのためだけに本番コードを変えていないかを確認する。確かめ方が無くても、テスト専用の export やラッパーがあっても、テストは通り、ビルドも通る。
+Confirm that each mechanism has a reproducible way of checking it, and that production code has not been changed just for tests. Even without a way of checking, and even with test-only exports or wrappers, the tests pass and the build passes.
 
-| 確認する事項 | 現状の確認方法 | 充足条件 |
+| Item to check | How to check the current state | Condition for being satisfied |
 | --- | --- | --- |
-| テストのためだけの本番コード | fallow の production 解析で、テストからしか使われていない export を列挙する。本番から呼ばれず、テストだけが呼ぶ関数、ラッパー、入口、引数を探す | 本番コードにテストのためだけの export、ラッパー、入口が無い。テストは本番が使う入口から呼んでいる |
-| 仕組みごとの確かめ方 | apps・tools・ワークフローごとに、`vp run verify` から動くテストや検査を探す。画面を持つものは、描画した画像を基準と比べる検査を探す | どの仕組みにも、エージェントや人の目視なしに同じ判定を返す確かめ方が verify にある。静的に確かめられない部分（本番の外部サービス、実機、好みの判断）だけが残り、何が残っているかが分かる |
-| 認証の背後の確かめ方 | 認証のある画面と API ごとに、本人の認証と同じ経路を通って AI が入る仕組みを探す | bypass や service token を使わずに AI が入れる |
+| Production code that exists only for tests | With fallow's production analysis, list exports used only from tests. Look for functions, wrappers, entry points and arguments that are not called from production and are called only by tests | Production code has no exports, wrappers or entry points that exist only for tests. Tests call through the entry points production uses |
+| Way of checking each mechanism | For each app, tool and workflow, look for tests and checks that run from `vp run verify`. For anything with a screen, look for a check that compares the rendered image with a baseline | Every mechanism has, in verify, a way of checking that returns the same verdict without an agent or a human looking at it. Only the parts that cannot be checked statically (external services in production, real devices, judgments of taste) remain, and it is known what remains |
+| Way of checking behind authentication | For each screen and API with authentication, look for a mechanism by which AI gets in through the same path as the owner's authentication | AI can get in without using a bypass or a service token |

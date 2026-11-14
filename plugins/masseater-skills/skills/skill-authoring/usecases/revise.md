@@ -1,18 +1,18 @@
-# 指摘を受けて skill を直す
+# Revising a skill after feedback
 
-本文は必要な理由と達成したい状態から導いた結果であり、依頼を受けた順に足した履歴ではない。
+The body is the result of deriving it from why the skill is needed and the state it should achieve, not a history of additions made in the order requests came in.
 
-1. 指摘された一文ではなく、ユーザーがなぜそこを指摘したのかから判断を読み取る
-2. skill より下で直せるなら、そこで直す。機械的な誤りは、ツールのエラー、lint、テストで止める。文章は判断の要るところにだけ使う
-3. 新しいセッションがその規則なしで正しく動くなら、何も足さない
-4. 必要な理由と達成したい状態のどちらかが変わるのか、既存の規則のどれかが足りないのかを決める
-5. 本文全体をそこから導き直す。今の本文に継ぎ足して直さない
-6. 導き直した結果が今の本文と同じ部分は書き換えない
-7. 同じ理由が当たるほかの箇所をすべて直す
-8. 指摘のきっかけになった場面を、新しいセッションでもう一度試す
+1. Read the judgment not from the single sentence that was pointed out but from why the user pointed at that place
+2. If it can be fixed below the skill, fix it there. Stop mechanical errors with tool errors, lint and tests. Use prose only where judgment is needed
+3. If a new session behaves correctly without that rule, add nothing
+4. Decide whether the reason it is needed or the state it should achieve changes, or whether one of the existing rules is insufficient
+5. Derive the whole body again from there. Do not fix it by patching onto the current body
+6. Do not rewrite the parts where the re-derived result is the same as the current body
+7. Fix every other place to which the same reason applies
+8. Try the situation that triggered the feedback again in a new session
 
-同じ部分を書き換えないのは、読み手が覚えた構成を崩さないためである。
+The reason not to rewrite the parts that are the same is to avoid breaking the structure readers have memorized.
 
-skill でよく起きる継ぎ足しは、指摘された一文を末尾に足すことと、見出しや箇条書きを一行増やして別項にすることである。指摘された箇所だけを直すと、同じ理由の別の箇所が残り、同じ指摘を繰り返すことになる。足す代わりに、同じ考えを既に受け持っている行を直す。
+The patching that commonly happens in skills is adding the sentence that was pointed out to the end, and adding one more line to a heading or bullet list to make a separate item. If you fix only the place that was pointed out, other places with the same reason remain, and the same feedback comes again. Instead of adding, fix the line that already carries the same idea.
 
-コミットメッセージには、指摘のきっかけになった出来事と、`SKILL.md` の大きさ（`wc -c`）の前後を書く。増えた分は、ほかを削って相殺する。前回の減量のコミットより 1 割以上大きくなったか、同じ意味が 2 か所に出てきたら、[`diet`](diet.md) で減量する。
+In the commit message, write the event that triggered the feedback and the size of `SKILL.md` (`wc -c`) before and after. Offset any increase by cutting elsewhere. If it has grown by 10 percent or more since the last slimming commit, or the same meaning appears in two places, slim it down with [`diet`](diet.md).

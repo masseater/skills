@@ -1,14 +1,14 @@
 ---
 name: masseater-ecosystem
-description: masseater の技術スタックの完成形と、自作するものと借りるものの境目。技術やサービスを選ぶとき、自作するか既存のものを使うかを決めるとき、新しい言語・形式・配布先を足すとき、リポジトリの構成を変えるときに読む。
+description: The finished form of masseater's tech stack, and the boundary between what is built in-house and what is borrowed. Read when choosing a technology or service, when deciding whether to build something yourself or use an existing one, when adding a new language, format or distribution target, and when changing the structure of a repository.
 ---
 
 # masseater-ecosystem
 
-- 技術スタックの完成形と、自作と借用の境目は [`tech-stack`](references/tech-stack.md) に従う
+- Follow [`tech-stack`](references/tech-stack.md) for the finished form of the tech stack and the boundary between building and borrowing
 
-## この skill が必要な理由と達成したい状態
+## Why this skill is needed and the state it should achieve
 
-この skill が必要な理由は、AI が技術を選ぶとき、一般的な開発者向けの答えで埋めることにある。一般的な答えは、多くの人に影響する OSS の更新フローに乗り、他の環境でも動く汎用の選択を勧める。masseater は自分専用に作り、ベンダーロックインを歓迎し、気になったところは AI ですぐ直すので、その答えは合わない。逆に AI にとって書くのは速いので、境目が無いと言語仕様に従う中核まで作り始め、道具づくりそのものが目的になる。
+This skill is needed because when AI chooses a technology, it fills the gap with answers meant for typical developers. Typical answers recommend general-purpose choices that ride on the update flow of OSS affecting many people and that work in other environments too. masseater builds things only for themselves, welcomes vendor lock-in, and fixes whatever bothers them right away with AI, so those answers do not fit. Conversely, writing is fast for AI, so without a boundary it starts building even the core that follows a language specification, and building tools becomes the goal in itself.
 
-この skill で達成したい状態は、masseater が「これが欲しい」と言うだけで、手作業なしに作られて動くことである。
+The state this skill should achieve is that when masseater just says "I want this", it is built and runs without any manual work.

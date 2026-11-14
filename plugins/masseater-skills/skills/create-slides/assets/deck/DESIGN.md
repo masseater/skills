@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: masseater-deck
-description: 黒鉛色の骨格に桜色を一点。端まで届く罫線と大きな文字で組む、余白の少ないスライド用デザインシステム。
+description: A graphite skeleton with a single point of cherry-blossom pink. A design system for slides with little whitespace, built from rules that reach the edges and large type.
 colors:
   primary: "oklch(0.6 0.16 3)"
   on-primary: "oklch(0.99 0.01 3)"
@@ -19,7 +19,7 @@ colors:
   outline: "oklch(0.86 0.006 330)"
   error: "oklch(0.52 0.19 30)"
   on-error: "oklch(0.98 0.01 30)"
-  # ダークテーマ。名前の末尾に -dark を付けた同名トークン
+  # Dark theme. Tokens with the same names plus a -dark suffix
   primary-dark: "oklch(0.78 0.12 3)"
   on-primary-dark: "oklch(0.25 0.06 3)"
   secondary-dark: "oklch(0.82 0.005 285)"
@@ -37,7 +37,7 @@ colors:
   error-dark: "oklch(0.72 0.16 30)"
   on-error-dark: "oklch(0.2 0.05 30)"
 typography:
-  # サイズは 1280 x 720 のスライドを基準にした値
+  # Sizes are values based on a 1280 x 720 slide
   headline-display:
     fontFamily: "Noto Sans JP Variable, sans-serif"
     fontSize: 128px
@@ -133,74 +133,74 @@ components:
 
 ## Overview
 
-「Sakura Graphite × Swiss Rules」。黒鉛色(グラファイト)の文字と罫線で骨格を作り、団子の桜色を強調の一点にだけ使う。スライドは外側の余白をほとんど取らず、端から端まで届く罫線と大きな文字で情報を並べる。飾りは3分割の縦の補助線と罫線だけにする。ただし図の中で役所、サーバー、インターネットのように絵にできるものは、文字だけの箱にせずアイコンを描く。
+"Sakura Graphite × Swiss Rules". Build the skeleton with graphite-colored text and rules, and use the dango cherry-blossom pink only as a single point of emphasis. Slides take almost no outer margin, and lay out information with rules that reach from edge to edge and large type. The only decoration is the vertical guide lines that divide the slide into thirds, and rules. However, things in a figure that can be drawn as pictures, such as a government office, a server or the internet, are drawn with icons rather than as text-only boxes.
 
-見出しはスライドの一番上に置き、下に端まで届く太い罫線を引く。見出しの上に小さなラベル(アイブロウ)は置かない。今どの話題かは、フッター左端の話題名で示す。ページ番号はフッター右端の角の近くに置く。見出しのないスライド(文章だけ、数字だけ、図だけ)も積極的に使う。
+Put the heading at the very top of the slide, and draw a thick rule under it that reaches the edges. Do not put a small label (eyebrow) above the heading. Show which topic is current with the topic name at the left end of the footer. Put the page number near the corner at the right end of the footer. Actively use slides without headings too (text only, numbers only, figures only).
 
 ## Colors
 
-ライトとダークで同じトークン名を使い、値だけを差し替える(ダークの値は `-dark` を付けた名前で定義)。色はoklchで定義する。
+Use the same token names for light and dark, swapping only the values (dark values are defined with names suffixed with `-dark`). Define colors in oklch.
 
-| トークン                           | 役割                                                                                                   |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| primary(桜色)                      | 強調の一点。今いる項目、推奨案、番号、強調語だけに使う。1枚のスライドで面として使うのは1か所までにする |
-| secondary、inverse-surface(黒鉛色) | 骨格。層の図の中段のような濃い面に使う                                                                 |
-| tertiary(青緑)                     | 補助。図の中でprimaryと並べて区別したいときだけ使う                                                    |
-| surface、surface-container         | surfaceは背景、surface-containerはその上に置く面                                                       |
-| outline                            | 補助線と細い区切り線                                                                                   |
+| Token                                   | Role                                                                                                                                         |
+| --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| primary (cherry-blossom pink)           | The single point of emphasis. Use only for the current item, the recommended option, numbers and emphasized words. Use it as a fill in at most one place per slide |
+| secondary, inverse-surface (graphite)   | The skeleton. Use for dark fills such as the middle tier of a layer diagram                                                                  |
+| tertiary (blue-green)                   | Auxiliary. Use only when you want to distinguish something from primary side by side in a figure                                            |
+| surface, surface-container              | surface is the background, and surface-container is a fill placed on top of it                                                              |
+| outline                                 | Guide lines and thin dividers                                                                                                                |
 
 ## Typography
 
-本文と見出しはNoto Sans JP、ラベルと番号は等幅のJetBrains Monoを使う。等幅の書体が持たない和文はNoto Sans JPで出す。どちらもFontsourceのnpmパッケージをlibs/designから読み込み、単一HTMLへ埋め込む。OSの書体に頼らないので、HTMLとPDFはどの環境で開いても同じ書体で出る。サイズは1280 x 720のスライドを基準にした値で、実装ではスライド幅に対する割合(cqw)に換算して拡大縮小する。
+Use Noto Sans JP for body text and headings, and the monospaced JetBrains Mono for labels and numbers. Japanese characters that the monospaced typeface lacks are rendered in Noto Sans JP. Both are loaded from Fontsource npm packages in libs/design and embedded into the single HTML. Because nothing relies on OS typefaces, the HTML and PDF show the same typefaces in any environment. Sizes are values based on a 1280 x 720 slide, and the implementation converts them to a proportion of the slide width (cqw) to scale.
 
-見出しはheadline-lgを使い、表紙だけheadline-displayにする。headline-lgは56pxの太さ800で、字間を-0.03em詰める。本文はbody-lgとbody-mdで、スライドでは22px未満の文字を使わない(フッターと注記を除く)。番号とラベルは等幅のlabel-*を使い、英字ラベルは大文字にして字間を空ける。
+Use headline-lg for headings, and headline-display only for the cover. headline-lg is 56px at weight 800, with letter spacing tightened by -0.03em. Body text is body-lg and body-md, and slides use no text smaller than 22px (except the footer and notes). Use the monospaced label-* for numbers and labels, and set Latin labels in uppercase with wider letter spacing.
 
 ## Layout
 
-スライドは16:9である。内側の余白は上18px・左右38px・下76px(フッター分)と小さく取る。見出しの罫線と箇条書きの行区切りは、左右の余白を突き抜けてスライドの端まで引く。
+Slides are 16:9. The inner margins are kept small: 18px at the top, 38px left and right, and 76px at the bottom (for the footer). The heading rule and the row dividers of bullet lists are drawn through the left and right margins to the edges of the slide.
 
-背景には縦の補助線を2本引いて3分割し、要素はこの3列を目安に揃える。フッターは下端から18pxに置き、左に話題名と作者名、右にページ番号を並べる。
+Draw two vertical guide lines on the background to divide it into thirds, and align elements roughly to these three columns. Put the footer 18px from the bottom edge, with the topic name and author name on the left and the page number on the right.
 
 ## Elevation & Depth
 
-影は使わない。面の差(surfaceとsurface-container)と罫線だけで重なりを表す。
+Do not use shadows. Express layering only with the difference between fills (surface and surface-container) and rules.
 
 ## Shapes
 
-角丸は小さめ(sm 6px / md 10px / lg 14px)。ページ番号の四角は角丸なし。円は手順・年表の点など、位置を示す印にだけ使う。
+Corner radii are small (sm 6px / md 10px / lg 14px). The page number square has no rounded corners. Use circles only as marks that indicate position, such as the points of steps and timelines.
 
 ## Components
 
-スライドの部品は `libs/deck` に実装している。一覧は `vp run slides` で `apps/slides/dist/decks/deck-catalog.html` と `.pdf` に出力される。
+Slide components are implemented in `libs/deck`. `vp run slides` outputs a catalog to `apps/slides/dist/decks/deck-catalog.html` and `.pdf`.
 
-| 種類           | 部品                                                              |
-| -------------- | ----------------------------------------------------------------- |
-| 見出しあり     | 箇条書き・2カラム・目次・手順・横と縦のタイムライン・比較・選択肢 |
-| 見出しなし     | 表紙・中扉・文章だけ・中央揃え・一語・数字・引用・問いかけ・締め  |
-| 見出しなしの図 | 流れ・層・4象限                                                   |
+| Kind                  | Components                                                                                    |
+| --------------------- | --------------------------------------------------------------------------------------------- |
+| With heading          | Bullets, two columns, agenda, steps, horizontal and vertical timelines, comparison, options   |
+| Without heading       | Cover, section divider, text only, centered, single word, number, quote, question, closing    |
+| Figures without heading | Flow, layers, four quadrants                                                                |
 
-アイコンは `libs/deck` の `Icon` で描き、画像は `@material-symbols/svg-400` のSVGを渡す。選択肢・手順・比較の部品は、項目ごとに `icon` を受け取る。
+Draw icons with `Icon` from `libs/deck`, passing SVGs from `@material-symbols/svg-400` as images. The options, steps and comparison components accept an `icon` per item.
 
-アプリ用の部品は `libs/ui` に実装している。一覧は同じ `deck-catalog.html` の後半にある。
+App components are implemented in `libs/ui`. The catalog is in the second half of the same `deck-catalog.html`.
 
-| 部品    | 決まり                                                          |
-| ------- | --------------------------------------------------------------- |
-| Button  | primary・secondary・ghostの3種類。primaryは1画面に1つまでにする |
-| Badge   | neutral・primary・tertiary・errorの4種類                        |
-| Card    | 上端の太い罫線とsurface-containerの面で区切る                   |
-| Callout | note(tertiary)・important(primary)・caution(error)の3種類       |
-| Table   | 見出し行の下に太い罫線を引き、行は細い区切り線で分ける          |
-| Code    | inverse-surfaceの面に等幅で置き、言語名をprimaryで添える        |
+| Component | Rules                                                                              |
+| --------- | ---------------------------------------------------------------------------------- |
+| Button    | Three kinds: primary, secondary and ghost. At most one primary per screen          |
+| Badge     | Four kinds: neutral, primary, tertiary and error                                   |
+| Card      | Separated by a thick rule at the top and a surface-container fill                  |
+| Callout   | Three kinds: note (tertiary), important (primary) and caution (error)              |
+| Table     | Draw a thick rule under the header row, and divide rows with thin dividers         |
+| Code      | Set in monospace on an inverse-surface fill, with the language name in primary     |
 
 ## Do's and Don'ts
 
-|       | 決まり                                                         |
-| ----- | -------------------------------------------------------------- |
-| Do    | 1枚で言いたいことを1つに絞り、文字を大きくする                 |
-| Do    | 強調はprimaryの一点だけにする。今の項目・推奨案・強調語に使う  |
-| Do    | 話題名はフッターに置き、見出しの上には何も置かない             |
-| Do    | 図の要素は、何の概念かが絵で分かるようにアイコンを付ける       |
-| Don't | スライドの外周に大きな余白を取らない                           |
-| Don't | 影、グラデーション、装飾だけのアイコンを使わない               |
-| Don't | 図の要素を、文字を入れただけの箱で描かない                     |
-| Don't | 色の値をコンポーネントに直接書かない。必ずトークン名で参照する |
+|       | Rules                                                                                     |
+| ----- | ----------------------------------------------------------------------------------------- |
+| Do    | Narrow what one slide says to one thing, and make the text large                         |
+| Do    | Limit emphasis to a single point of primary. Use it for the current item, the recommended option and emphasized words |
+| Do    | Put the topic name in the footer, and put nothing above the heading                      |
+| Do    | Give figure elements icons so that what concept they are is clear from the picture       |
+| Don't | Do not take large margins around the outside of the slide                                 |
+| Don't | Do not use shadows, gradients or purely decorative icons                                  |
+| Don't | Do not draw figure elements as boxes with only text in them                               |
+| Don't | Do not write color values directly in components. Always refer to them by token name      |

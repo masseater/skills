@@ -1,19 +1,19 @@
-# skill を減量する
+# Slimming a skill
 
-大きくなった skill、ほとんどの場面で使わない詳細を読ませている skill、教えている対象から内容がずれた skill に行う。
+Do this for a skill that has grown large, a skill that makes readers read details not used in most situations, and a skill whose content has drifted from what it teaches.
 
-1. 今の skill を **before** として別の場所に写す。`description`、`SKILL.md`、`references/` と `usecases/` の各ファイルの大きさを `wc -c` で記録する
-2. この skill を使う側を挙げる。リンクしている skill、名前で委ねている skill、AGENTS.md、本文を読むテストがこれにあたる
-3. **before** しか無いうちに、評価の場面を書く。実際にこの skill を使った依頼から 10 前後を選び、`usecases/` と `references/` の各場面、「〜しない」の規則、取り返しのつかない操作の領域を 1 つずつ含める
-4. ツールの使い方を教える skill なら、ツールの help とエラーで足りる部分を skill から外す。足りない部分は、ツールを直せるなら直し、直せなければ skill に残す
-5. 本文の各部分を、置き場所の段に振り分ける
-6. 「埋めない」の基準で削り、「書きぶり」の基準で書き直す。最後の段落はユーザー向けの経緯ではなく、規則で終える
-7. 新しいセッションに **before** と **after** を渡し、**before** の各規則が **after** に置き場所を持つか、6 の基準で削ったものかを確かめさせる。どちらでもないもので、3 のどの場面も覆わないものは、場面を 1 つ書いて **after** で 3 回試す。3 回とも正しくなければ戻す
-8. 3 の場面を、skill なし・**before**・**after** の 3 つで、それぞれ新しいセッションで試す。skill なしで正しく動いた場面の規則は消してよい
-9. `skills-ref validate` を通し、2 で挙げた使う側の参照が切れていないことを確かめる
+1. Copy the current skill elsewhere as **before**. Record with `wc -c` the size of `description`, `SKILL.md`, and each file in `references/` and `usecases/`
+2. List the users of this skill: skills that link to it, skills that delegate to it by name, AGENTS.md, and tests that read the body
+3. While only **before** exists, write the evaluation scenarios. Choose about ten from requests that actually used this skill, including one each of the scenarios in `usecases/` and `references/`, the "do not" rules, and the areas of irreversible operations
+4. If the skill teaches how to use a tool, remove from the skill the parts that the tool's help and errors cover. For the parts they do not cover, fix the tool if you can, and keep them in the skill if you cannot
+5. Assign each part of the body to a tier of placement
+6. Cut by the "do not fill" criterion, and rewrite by the "style" criterion. End the last paragraph with a rule, not a history aimed at the user
+7. Give **before** and **after** to a new session and have it confirm that each rule in **before** has a place in **after** or was cut by the criterion in 6. For anything that is neither and that none of the scenarios in 3 covers, write one scenario and try it three times with **after**. If it is not correct all three times, restore it
+8. Try the scenarios from 3 in three ways, without the skill, with **before** and with **after**, each in a new session. Rules for scenarios that behaved correctly without the skill may be deleted
+9. Pass `skills-ref validate`, and confirm that the references from the users listed in 2 are not broken
 
-**after** が **before** より小さいか、ずれを直していて、8 で **before** より悪くならなければ入れる。悪くなった場面があれば、ログからモデルに足りなかったものを探し、文章を戻す前に、それをより上の段へ移す。
+Land **after** if it is smaller than **before** or fixes a drift, and is not worse than **before** in 8. If a scenario got worse, look in the logs for what the model was missing, and move that to a higher tier before restoring the text.
 
-コミットメッセージには、段ごとの大きさの前後、8 の結果、何をどこへ移し何を削ったかを書く。
+In the commit message, write the size of each tier before and after, the results of 8, and what was moved where and what was cut.
 
-減量で、この手順の誤りや不足が分かったら、[`revise`](revise.md) で skill-authoring を直す。
+If the slimming reveals errors or gaps in this procedure, fix skill-authoring with [`revise`](revise.md).

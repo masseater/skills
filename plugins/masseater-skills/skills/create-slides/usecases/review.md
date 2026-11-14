@@ -1,42 +1,42 @@
-# 報告の前に見直す
+# Reviewing before reporting
 
-デッキを作り終えたら、本人に渡す前に次の順で見直す。決まりそのものは SKILL.md にあり、ここでは守れているかを確かめる手順だけを書く。どれも書き手の頭の中で確かめず、抜き出した一覧や撮った画像を見て確かめる。
+When you finish making a deck, review it in the following order before handing it to the owner. The rules themselves are in SKILL.md; this file only describes the procedure for confirming that they are followed. Confirm none of them in the writer's head; confirm them by looking at extracted lists and captured images.
 
-## 構成
+## Structure
 
-1. 出来上がった各枚の見出しを並べ、承認された構成案と 1 行ずつ突き合わせる。構成案にない枚と、構成案にあって作っていない枚を探す
-2. 各枚について、その前で聞き手が抱く疑問を書き出し、その枚が答えになっているかを見る。答える疑問のない枚は素材の言い換えなので、削るか実物に置き換える
-3. 1 枚に話題が 2 つあれば分ける
-4. 比較の枚を探し、相手側の同じ枚があるかを見る
-5. 最後の枚の見出しが「まとめ」の一語で、出典だけを集めた枚と「一言で言うと」の枚がないかを見る
-6. 承認された構成案と本人の指示のどこにも根拠のない文と枚を探す。消すか、足すかどうかを報告で尋ねる
+1. Line up the headings of each finished slide and match them line by line against the approved outline. Look for slides not in the outline and slides in the outline that were not made
+2. For each slide, write down the question the audience has just before it, and see whether that slide answers it. A slide that answers no question is a restatement of the material, so cut it or replace it with the real thing
+3. If a slide has two topics, split it
+4. Find the comparison slides, and see whether there is a matching slide for the other side
+5. Check that the heading of the last slide is not the single word "Summary", and that there is no slide that only collects sources and no "In a word" slide
+6. Look for sentences and slides that have no grounds anywhere in the approved outline or the owner's instructions. Delete them, or ask in the report whether to add them
 
-## 文字
+## Text
 
-1. 見出しを全部抜き出し、各見出しがその枚の図そのものを指す語句か、続きを図で示す言い出しになっているかを見る。主張の一文、事実の一文、話題の名前、「この資料の〜」のような飾りが混ざっていれば直す
-2. スライド上の文字を全部抜き出し、話し言葉の語尾（「〜だ」「〜なんです」「〜しよう」）、呼びかけ、締めの決まり文句を探す
-3. フェードインの一文を 1 つずつ消してみて、消しても伝わる枚からは外す
-4. 用語を全部抜き出し、同じ意味の語が 2 つないか、抽象的な言い換え（「配布元」など）を実際の名前（npm など）にできないか、略語の初出に正式名称があるかを見る。聞き手がエンジニアでなければ、ソースコードやファイル名が出ていないかも見る
-5. リポジトリに体言止めなどを検査する textlint の規則やフックがあれば、スライドの文字と読み上げ原稿に走らせる
+1. Extract all the headings, and see whether each heading is a phrase that points to the slide's figure itself, or an opening that leads into what the figure shows next. If a one-sentence claim, a one-sentence fact, a topic name or decoration such as "this deck's ..." is mixed in, fix it
+2. Extract all the text on the slides and look for spoken-language endings ("〜だ", "〜なんです", "〜しよう"), direct address to the audience, and stock closing phrases
+3. Try deleting the fade-in sentences one by one, and remove them from slides that still get across without them
+4. Extract all the terms, and see whether there are two words with the same meaning, whether an abstract paraphrase (such as "distribution source") can be made the actual name (such as npm), and whether the first occurrence of an abbreviation has its full name. If the audience is not engineers, also check that source code and file names do not appear
+5. If the repository has textlint rules or hooks that check for things like noun-ending sentences, run them on the slide text and the speaker script
 
-## 図とグラフ
+## Figures and graphs
 
-1. 図の矢印を 1 本ずつ、誰が何をどんな条件でどちらへ渡すのかという文に戻して読み、調べた事実と比べる。選べないものが選べるように見えないかも確かめる
-2. グラフに目盛り、要所の数値、元データの期間、測り方の違いの注記がそろっているかを見る
+1. Read each arrow in a figure back as a sentence of who passes what to which side under what condition, and compare it with the facts you researched. Also confirm that something that cannot be chosen does not look as though it can be
+2. See whether graphs have tick marks, values at key points, the period of the source data, and notes on differences in how things were measured
 
-## 根拠と新しさ
+## Grounds and freshness
 
-1. デッキに出てくるモデル名とベンチマークを全部抜き出し、当日の公式発表で最新か、いつ測った数字かを確かめる
-2. 評価や重み付けの枚に、根拠の数字と出典のリンクが同じ枚にあるかを見る
+1. Extract every model name and benchmark that appears in the deck, and confirm against that day's official announcements whether they are the latest and when the numbers were measured
+2. See whether slides with evaluations or weightings have the supporting numbers and links to sources on the same slide
 
-## 描画
+## Rendering
 
-1. ビルド後の HTML を全枚、全クリックの状態で撮る
-2. 撮った画像を図ごとに切り出して 2 倍以上に拡大する。全体の画像は縮小して読み込まれるので、拡大しないと点が線から外れるようなずれが見えない
-3. 拡大した画像で、点が線の上に乗っているか、図だけの枚で図が中央にあるか、文字が変な位置で折り返していないか、箱からはみ出していないかを 1 枚ずつ見る
-4. 動きは録画をコマに並べた画像で、点やラベルが出発点から到着点までで止まっているかを見る
-5. 最後に、各枚で伝えたいことが図と見出しだけから分かるかを読み直す
+1. Capture every slide of the built HTML in every click state
+2. Crop the captured images per figure and enlarge them at least twofold. The whole image is loaded scaled down, so without enlarging, misalignments such as a point slipping off a line are not visible
+3. In the enlarged images, check slide by slide whether points sit on lines, whether the figure is centered on figure-only slides, whether text wraps at odd positions, and whether anything overflows its box
+4. For motion, use images that lay out a recording frame by frame, and see whether points and labels stop between the starting point and the arrival point
+5. Finally, reread whether what each slide wants to convey can be understood from the figure and the heading alone
 
-## 渡すもの
+## What to hand over
 
-報告に PDF、HTML、読み上げ原稿の 3 つが添付されているかを見る。
+See whether the PDF, the HTML and the speaker script are all attached to the report.
