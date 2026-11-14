@@ -9,7 +9,7 @@
 ### 「これが欲しい」と言うだけで構築されたもの
 
 - ユーザーが「これが欲しい」と言えば、ユーザーの手作業なしに構築され、動作する。権限付与などの一部の手作業は許容される。
-- 対象は、VSTなどの音楽プラグイン、ゲーム、ゲームMOD、Discord、Wiki、意思決定モデルの研究、およびUnityやBlenderにおける3Dである。
+- 対象は、VSTなどの音楽プラグイン、ゲーム、ゲームのMod、Discord、wiki、意思決定モデルの研究、およびUnityやBlenderにおける3Dである。
 - OSを構築しない
 - 最終的には、UnityやBlenderの代替ツールを自前で構築しても構わない。その規模での構築は許容される。
 - 決めかねていることは、必要になった時に構築する。
@@ -23,7 +23,7 @@
 - 配布対象はnpmとcrates.ioのみとする。その他が必要になった際に追加する。
 - 扱う3Dデータ形式はFBX、`.blend`、glTFである。その他が必要になった際に追加する。
 - PC向けのものは、Windows、macOS、Linuxで動作する。必要になった際に常駐プロセスを構築する。
-- Claudeは、Claude.aiサービスの品質が良いため採用している。モデルは用途に応じて選択し、Claude以外のモデルも使用する。
+- Claudeは、claude.aiサービスの品質が良いため採用している。モデルは用途に応じて選択し、Claude以外のモデルも使用する。
 - UIはReactとTanStack Startで構築する。
 - 現在のD1、better-auth、drizzle-ormが、データベース、認証、ORMの標準となっている。
 - テストはTypeScriptではVitestとPlaywright、Rustでは`cargo test`を使用する。
@@ -92,7 +92,7 @@
 1. ユーザーは、他者のOSSアップデートフローに縛られることなく、すべてを自前で構築し、問題が発生した際にすぐに修正したいとしている。最も必要なのは、TypeScriptとRustをシームレスに扱うモノレポ管理ツールであり、設定の唯一の信頼できる情報源をvite.config.tsとし、ルート設定ファイルや`.gitignore`すら不要とするものだ。目標は、AIがすべての計測値を自力で調べられる場所を作ることである。
 2. Vite+ 1.5.0 が調査された。Vite Taskのキャッシュはプロセスの読み書きを記録するため、言語を問わず動作し、`cargo` も適用可能である。不足しているのはグラフと計測値であり、`package.json`のみがノードになり得、タスク設定は未知のキーを拒否し、拡張ポイントも存在しない。2026年第4四半期の計画 [vite-plus#3277](https://github.com/voidzero-dev/vite-plus/issues/3277) では、JS以外のワークスペースも設けられていない。結論として、ゼロから構築するよりも、Vite Taskをフォークしてグラフのエントリポイントのみを追加するのが最低限である。[moon v2](https://moonrepo.dev/blog/moon-v2.0) はRustとTSを同一のグラフに配置できるが、設定がプロジェクトごとに分割されているため、採用されなかった。
 3. ユーザーはベンダーロックインを歓迎し、汎用的な利用ではなく独自のユースケースに特化することを選択した。これにより、フォークはもはや上流との互換性を維持する必要がなくなり、リモートキャッシュが自前のCloudflare上に存在し、計測値がWorkers Logsに送信されるという前提で構築できる。
-4. すべてを自前で構築する事例が調査された。成功した事例では、自作する範囲をメイン業務の中核に絞り込んだ。Jonathan Blowは言語を構築し、ゲームをリリースするために10年を費やした。Andreas KlingはLadybirdでSerenityOSの「すべてを自前で」という方針を捨て、グラフィックスとオーディオをライブラリに任せた。破綻した事例では、ツールの構築自体が目的となったか、あるいは本人しか運用し続けられない状態で停滞した。TempleOSやHandmade Heroがこれに該当する。AI時代の事例では、Mario ZechnerがClaude Codeの変更に振り回されないよう、独自のミニマルエージェントであるpiを構築し、Armin Ronacherは[piを修正するためにpiを実行している](https://lucumr.pocoo.org/2026/5/24/pi-oss/)。一方で、Ronacherは[構築があまりに簡単になりすぎて、ブラッシュアップが追いついていない](https://lucumr.pocoo.org/2026/1/18/agent-psychosis/)と記しており、[パーソナルソフトウェアファクトリーは時間の無駄である](https://www.peterp.me/articles/personal-software-factories-are-a-waste-of-time/)と、構築するものが何もない状態でファクトリーを作り続けるという罠を指摘している。
+4. すべてを自前で構築する事例が調査された。成功した事例では、自作する範囲をメイン業務の中核に絞り込んだ。Jonathan Blowは言語を構築し、ゲームをリリースするために10年を費やした。Andreas KlingはLadybirdでSerenityOSの「すべてを自前で」という方針を捨て、グラフィックスとオーディオをライブラリに任せた。破綻した事例では、ツールの構築自体が目的となったか、あるいは本人しか運用し続けられない状態で停滞した。TempleOSやHandmade Heroがこれに該当する。AI時代の事例では、Mario ZechnerがClaude Codeの変更に振り回されないよう、独自のミニマルエージェントであるpiを構築し、Armin Ronacherは[piを修正するためにpiを実行している](https://lucumr.pocoo.org/2026/5/24/pi-oss/)。一方で、Ronacherは[構築があまりに簡単になりすぎて、ブラッシュアップが追いついていない](https://lucumr.pocoo.org/2026/1/18/agent-psychosis/)と記しており、[Personal software factories are a waste of time](https://www.peterp.me/articles/personal-software-factories-are-a-waste-of-time/)と、構築するものが何もない状態でファクトリーを作り続けるという罠を指摘している。
 5. 事例に基づき、境界が設定された。コアを借り、開発者が触れる表面と、それらをつなぐ仕組みのみを構築する。言語の構築はスコープ外とした。
 6. ユーザーはロックインをSaaSにも拡張した。GitHubが公開リポジトリ向けに無料のActionsを提供し、Claudeがクラウド環境を備えているため、どちらもコストが低すぎるという理屈からだ。この前提で構築されたツール群全体は、「masseaterエコシステム」と呼ばれるようになった。
 7. スコープが抽出された。C#とPythonは嫌われているため、UnityとBlenderの内部でのみ例外とされ、将来的にUnityやBlenderに取って代わる規模での構築が認められた。VST3がmacOSで問題になるかという問いに対し、VST3はmacOSでも動作するが、Logic ProはAUしか読み込まないという回答が得られた。Rustの[nih-plug](https://github.com/robbert-vdh/nih-plug)はVST3とCLAPを出力でき、AUには別途ラッパーが必要だ。支払いはStripeのみ、配布はnpmとcrates.ioのみ、データ形式はFBX、`.blend`、glTF、OSはWindows、macOS、Linuxとし、それぞれ不足した際に拡張することとした。不要になったものは自前で構築することとした。

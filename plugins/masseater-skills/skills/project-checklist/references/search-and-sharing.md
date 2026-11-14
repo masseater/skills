@@ -1,6 +1,6 @@
 # search-and-sharing
 
-検索エンジンにページが掲載されているか、またリンクが共有された際にどのように表示されるかを確認すること。これを指定しない場合、掲載を希望しないページは掲載され、掲載を希望するページはコンテンツがないまま掲載される。[Google Search Essentials](https://developers.google.com/search/docs/essentials) および [Open Graph プロトコル](https://ogp.me/) を標準として従うこと。
+検索エンジンにページが掲載されているか、またリンクが共有された際にどのように表示されるかを確認すること。これを指定しない場合、掲載を希望しないページは掲載され、掲載を希望するページはコンテンツがないまま掲載される。[Google 検索の基本事項](https://developers.google.com/search/docs/essentials) および [Open Graph protocol](https://ogp.me/) を標準として従うこと。
 
 | 確認項目 | 現在の状態を確認する方法 | 満たすための条件 |
 | --- | --- | --- |

@@ -31,9 +31,9 @@ metadata:
 
 ## ランナウェイに対するブレーキ
 
-- Workerには [カスタム制限](https://developers.cloudflare.com/workers/platform/pricing/) に基づき `limits.cpu_ms` を指定する。これは、単一の実行がランナウェイするのを防ぐ唯一の公式な手段である。本番環境のCPU時間のp99を測定し、その値をわずかに上回るように設定する。この値を最大まで上げると、無限ループがそのまま請求対象となる。
+- Workerには [Workers の料金ページ](https://developers.cloudflare.com/workers/platform/pricing/) に基づき `limits.cpu_ms` を指定する。これは、単一の実行がランナウェイするのを防ぐ唯一の公式な手段である。本番環境のCPU時間のp99を測定し、その値をわずかに上回るように設定する。この値を最大まで上げると、無限ループがそのまま請求対象となる。
 - 公開API、認証、および書き込みエンドポイントの前にレート制限を設ける。レート制限を設けない場合、ボットによるすべての大量アクセスが請求対象となる。
-- ゾーンを所有するリポジトリではWAFのレート制限ルールを、所有していないリポジトリではWorkerの [レート制限バインディング](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/) を用いてレート制限を適用する。このバインディングはロケーションごとの近似値であり、制限を超えた場合でも停止しないことがある。正確な制限が必要な場合は、WAFのレート制限ルールまたはDurable Objectカウンターを使用する。
+- ゾーンを所有するリポジトリではWAFのレート制限ルールを、所有していないリポジトリではWorkerの [Rate Limiting バインディング](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/) を用いてレート制限を適用する。このバインディングはロケーションごとの近似値であり、制限を超えた場合でも停止しないことがある。正確な制限が必要な場合は、WAFのレート制限ルールまたはDurable Objectカウンターを使用する。
 - キューコンシューマー、Durable Objectアラーム、およびリトライ処理を冪等にする。自身で再エンキューを行わないこと。
 - 再エンキューおよびリトライの回数に上限を設ける。
 - アカウントに [予算アラート](https://developers.cloudflare.com/billing/manage/optimize-costs/) を設定する。これは停止させるためのものではなく、早期に検知するためのものである。
@@ -63,7 +63,7 @@ metadata:
 - 設計を決定する前に、想定される訪問回数に、1回あたりのWorker呼び出し数、行数、操作数、およびログ数を乗じて月間コストを見積もります。
 - デプロイ後は、ダッシュボードの Billable Usage または GraphQL Analytics API で本番環境の利用状況を確認する。見積もりと乖離がある場合は、設計を見直す。
 
-請求単位および単価は以下の通りである。2026-10-27に [Workersの料金ページ](https://developers.cloudflare.com/workers/platform/pricing/) およびその他の箇所で確認済みである。単価は変動するため、見積もりに使用する前に料金ページで確認すること。
+請求単位および単価は以下の通りである。2026-10-27に [Workers の料金ページ](https://developers.cloudflare.com/workers/platform/pricing/) およびその他の箇所で確認済みである。単価は変動するため、見積もりに使用する前に料金ページで確認すること。
 
 | ターゲット | 請求単位 | Paidおよび超過分の含まれる金額 |
 | --- | --- | --- |
@@ -71,8 +71,8 @@ metadata:
 | 静的アセット | 請求対象外 | Workerが呼び出されない限り無料 |
 | KV | 読み取り、書き込み、削除、一覧 | 読み取りは100万件あたり0.50ドル、書き込み、削除、一覧は100万件あたり5.00ドル。 |
 | D1 | 読み取り行数および書き込み行数 | 書き込みは月間5,000万行、超過分は100万行あたり1.00ドル。読み取りは100万行あたり0.001ドル。 |
-| Durable Object | リクエスト、待機時間（GB-秒）、行数 | 使用量に関わらず、128 MBに対して時間が請求される。スリープ中は請求されない。 |
-| キュー | 操作 | 64 KBのチャンクに分割してリトライする場合、それぞれ1回の操作としてカウントされる。 |
-| R2 | クラスAおよびクラスBの操作とストレージ | エグレスは無料。マルチパートアップロードはパートごとにクラスAとなる。 |
-| Workers ログ | ログイベント | 2026-12-01からの [Cloudflare Observability 料金](https://developers.cloudflare.com/observability/pricing/) の変更（取り込みGBおよび保存GB-月） |
+| Durable Objects | リクエスト、待機時間（GB-秒）、行数 | 使用量に関わらず、128 MBに対して時間が請求される。スリープ中は請求されない。 |
+| Queues | 操作 | 64 KBのチャンクに分割してリトライする場合、それぞれ1回の操作としてカウントされる。 |
+| R2 | Class A および Class Bの操作とストレージ | エグレスは無料。マルチパートアップロードはパートごとにクラスAとなる。 |
+| Workers Logs | ログイベント | 2026-12-01からの [Cloudflare Observability 料金](https://developers.cloudflare.com/observability/pricing/) の変更（取り込みGBおよび保存GB-月） |
 | Workers Logpush | リクエスト | 月間1,000万件、超過分は100万件あたり0.05ドル |

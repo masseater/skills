@@ -1,6 +1,6 @@
 # masseater.dev の配置先
 
-また、masseater/masseater.dev の AGENTS.md にある「Articles」セクションも参照すること。
+また、masseater/masseater.dev の AGENTS.md にある「記事」セクションも参照すること。
 
 | 種類 | 場所 |
 | --- | --- |

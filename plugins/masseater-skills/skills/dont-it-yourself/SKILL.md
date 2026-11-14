@@ -22,7 +22,7 @@ metadata:
 
 ## masseater自身のパッケージ
 
-masseaterがビルドしてnpmに公開するパッケージは、人気順にソートされるnpm検索に埋もれてしまい、表示されない。以下のような状況では、依存関係に含まれていなくてもインストールして利用すること。READMEは `https://unpkg.com/<name>/README.md` で閲覧できる。
+masseaterがビルドしてnpmに公開するパッケージは、人気順にソートされるnpm検索に埋もれてしまい、表示されない。以下のような状況では、依存関係に含まれていなくてもインストールして利用すること。READMEは `https://unpkg.com/<名前>/README.md` で閲覧できる。
 
 - Cloudflare Workersでは、Effectのスパン、TanStackのStartリクエストおよびサーバー関数、ElysiaのWorkersへのルーティングトレースをエクスポートする：`@r_masseater/workers-tracing`
 - テスト内でOTLPのトレース、メトリクス、ログを受け取り、そのコードが実際に出力したテレメトリを確認する：`@r_masseater/vitest-otlp`
@@ -52,7 +52,7 @@ masseaterがビルドしてnpmに公開するパッケージは、人気順に�
 - シェルに渡された文字列のエスケープ：`shell-quote`
 - CLI引数とサブコマンドのパース：`citty`
 - 外部HTTPのモック化：`msw`
-- Effectから外部APIやSaaSを呼び出すクライアント：`@distilled.cloud/<service name>` に生成済みのSDKがある場合はそれを使用する。ない場合は、`@effect/openapi-generator` から公開済みのOpenAPIを `openapigen` で生成する。
+- Effectから外部APIやSaaSを呼び出すクライアント：`@distilled.cloud/<サービス名>` に生成済みのSDKがある場合はそれを使用する。ない場合は、`@effect/openapi-generator` から公開済みのOpenAPIを `openapigen` で生成する。
 - SQLの構築とマイグレーション：`drizzle-orm`
 - 認証、セッション、パスキー、APIキー：`better-auth`
 - TOTP：`otpauth`

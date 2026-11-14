@@ -72,7 +72,7 @@ const loaded = Effect.all(
 
 | 元の | 代わりに |
 | --- | --- |
-| Next.js (`next/dynamic`、`after()`、リクエストをまたいだ React の `cache()` の使用) | TanStack スターターローダー |
+| Next.js (`next/dynamic`、`after()`、リクエストをまたいだ React の `cache()` の使用) | TanStack Start のローダー |
 | SWR | TanStack Query |
 | `better-all` | `Effect.all` |
 | Redux Action / Reducer / Selector | Effect Atom と TanStack Query、FSD の `model` / `api` / `ui` |

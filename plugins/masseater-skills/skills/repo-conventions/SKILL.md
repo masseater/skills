@@ -77,7 +77,7 @@ Pythonを使用しないこと。コード、スクリプト、CI、検証、ま
 
 ## CI
 
-- ワークフローのステップについては、masseater/typescript-template の `.github/actions/` にある複合アクション（verify, autofix, skills-lock, update-branches, credentials, ci-telemetry）を `masseater/typescript-template/.github/actions/<name>@<sha>` として参照すること。ステップが各リポジトリにコピーされる場合、すべての修正は各リポジトリの書き換えを意味する。renovate は sha を bump する。
+- ワークフローのステップについては、masseater/typescript-template の `.github/actions/` にある複合アクション（verify, autofix, skills-lock, update-branches, credentials, ci-telemetry）を `masseater/typescript-template/.github/actions/<名前>@<sha>` として参照すること。ステップが各リポジトリにコピーされる場合、すべての修正は各リポジトリの書き換えを意味する。renovate は sha を bump する。
 - リポジトリ固有のツール（go、weaver、apt の依存関係など）をそのリポジトリの `.github/actions/setup` に配置し、ジョブからは `$/.github/actions/setup` として呼び出すこと。actionlint はまだ `$/` を認識していないため、`.github/actionlint.yaml` のその1ケースのみを無視すること。
 - credentials アクションは、credentials.masseater.dev から Cloudflare、OpenRouter、および Claude のトークンを受け取る。これらを GitHub Secrets に配置しないこと。
 - ボットがブランチにプッシュするワークフロー（autofix, skills-lock, update-branches）は、ブローカーが発行した GitHub App トークンでプッシュする。`GITHUB_TOKEN` でプッシュした場合、`pull_request` の `up-to-date` が承認待ちを停止し（action_required）、PR はマージされないままとなる。ブローカーはワークフローのファイル名で権限を付与するため、ボットのワークフローを追加する際は、masseater.dev の `credential-grants.ts` にある `WORKFLOW_GITHUB_GRANTS` にも追加すること。

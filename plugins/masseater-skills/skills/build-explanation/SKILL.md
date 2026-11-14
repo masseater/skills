@@ -99,18 +99,18 @@ LLMの仕組みを説明する例を挙げる。
 | 参照箇所 | 削除箇所 |
 | --- | --- |
 | Bransford, J. D., & Johnson, M. K. (1972). Contextual prerequisites for understanding. _Journal of Verbal Learning and Verbal Behavior_, 11(6). [DOI](<https://doi.org/10.1016/S0022-5371(72)80006-4>) | 最初に内容を伝えなかった人は、同じ文章を理解できなかったり、思い出せなかったりした。まず話の文脈を示す。 |
-| Ausubel, D. P. (1960). 意味のある言語教材の学習および定着におけるアドバンスド・オーガナイザーの活用. _Journal of Educational Psychology_, 51(5). [DOI](https://doi.org/10.1037/h0046669) | 新しい内容の前に、読み手の既有知識と結びつける枠組み（アドバンスド・オーガナイザー）を設ける。 |
+| Ausubel, D. P. (1960). The use of advance organizers in the learning and retention of meaningful verbal material. _Journal of Educational Psychology_, 51(5). [DOI](https://doi.org/10.1037/h0046669) | 新しい内容の前に、読み手の既有知識と結びつける枠組み（アドバンスド・オーガナイザー）を設ける。 |
 | Haviland, S. E., & Clark, H. H. (1974). _Journal of Verbal Learning and Verbal Behavior_, 13(5). [DOI](<https://doi.org/10.1016/S0022-5371(74)80003-4>) | 読み手は、既知の情報を手がかりにして新しい情報を結びつける。既知の情報から未知の情報へと書き進める。 |
-| Cowan, N. (2001). 短期記憶における「魔法の数字4」. _Behavioral and Brain Sciences_, 24(1). [DOI](https://doi.org/10.1017/S0140525X01003922) | 一度に約4つの要素を保持できる |
-| Sweller, J., van Merriënboer, J. J. G., & Paas, F. (2019). 認知アーキテクチャとインストラクショナルデザイン：20年後. _Educational Psychology Review_, 31. [DOI](https://doi.org/10.1007/s10648-019-09465-5) | 認知負荷理論。相互に関連する要素を一度に多く扱うほど、負荷は高くなる。初心者に有効な手法が専門家には逆効果となる（専門性逆転効果）。 |
-| Loewenstein, G. (1994). 好奇心の心理学. _Psychological Bulletin_, 116(1). [DOI](https://doi.org/10.1037/0033-2909.116.1.75) | 好奇心は、自分が知っていることと知りたいことの間にギャップに気づいたときに生じる。 |
-| Kang, M. J., et al. (2009). 学習における「ろうそくの芯」。 _Psychological Science_, 20(8). [PubMed](https://pubmed.ncbi.nlm.nih.gov/19619181/) | 人々が好奇心を抱いていた問いへの回答は、後になってよりよく思い出された。 |
-| Richland, L. E., Kornell, N., & Kao, L. S. (2009). 事前テスト効果. _Journal of Experimental Psychology: Applied_, 15(3). [PDF](https://learninglab.uchicago.edu/Pre-Testing_files/RichlandKornellKao.pdf) | 回答を読む前に問いに取り組むことで、回答の学習効果が向上した。回答の前に問いを置く。 |
-| Knowles, M. S.'s andragogy (成人学習理論) [解説](https://tecfa.unige.ch/themes/sa2/act-app-dos2-fic-andragog.htm) | 成人は、なぜそれを学ぶ必要があるのかを理解した上で学習する。 |
-| Reigeluth, C. M.の精緻化理論 [解説](https://www.instructionaldesign.org/?p=133) | 全体を単純な形で一度示し、そこから各部分を精緻化する。 |
-| Mayer, R. E.の事前学習原理 [参考文献](https://www.cambridge.org/core/books/abs/multimedia-learning/pretraining-principle/01791D57F5D4164251269E6DF56A8BF1) | メカニズムの流れを説明する直前に、各部分の名称と機能を示すことで理解が深まる。ステップ5の例外の根拠として用いられる。 |
+| Cowan, N. (2001). The magical number 4 in short-term memory. _Behavioral and Brain Sciences_, 24(1). [DOI](https://doi.org/10.1017/S0140525X01003922) | 一度に約4つの要素を保持できる |
+| Sweller, J., van Merriënboer, J. J. G., & Paas, F. (2019). Cognitive architecture and instructional design: 20 years later. _Educational Psychology Review_, 31. [DOI](https://doi.org/10.1007/s10648-019-09465-5) | 認知負荷理論。相互に関連する要素を一度に多く扱うほど、負荷は高くなる。初心者に有効な手法が専門家には逆効果となる（専門性逆転効果）。 |
+| Loewenstein, G. (1994). The psychology of curiosity. _Psychological Bulletin_, 116(1). [DOI](https://doi.org/10.1037/0033-2909.116.1.75) | 好奇心は、自分が知っていることと知りたいことの間にギャップに気づいたときに生じる。 |
+| Kang, M. J., et al. (2009). The wick in the candle of learning. _Psychological Science_, 20(8). [PubMed](https://pubmed.ncbi.nlm.nih.gov/19619181/) | 人々が好奇心を抱いていた問いへの回答は、後になってよりよく思い出された。 |
+| Richland, L. E., Kornell, N., & Kao, L. S. (2009). The pretesting effect. _Journal of Experimental Psychology: Applied_, 15(3). [PDF](https://learninglab.uchicago.edu/Pre-Testing_files/RichlandKornellKao.pdf) | 回答を読む前に問いに取り組むことで、回答の学習効果が向上した。回答の前に問いを置く。 |
+| Knowles, M. S. のアンドラゴジー(成人学習論) [解説](https://tecfa.unige.ch/themes/sa2/act-app-dos2-fic-andragog.htm) | 成人は、なぜそれを学ぶ必要があるのかを理解した上で学習する。 |
+| Reigeluth, C. M. の精緻化理論 [解説](https://www.instructionaldesign.org/?p=133) | 全体を単純な形で一度示し、そこから各部分を精緻化する。 |
+| Mayer, R. E. の事前訓練の原則 [書誌](https://www.cambridge.org/core/books/abs/multimedia-learning/pretraining-principle/01791D57F5D4164251269E6DF56A8BF1) | メカニズムの流れを説明する直前に、各部分の名称と機能を示すことで理解が深まる。ステップ5の例外の根拠として用いられる。 |
 | Fyfe, E. R., McNeil, N. M., Son, J. Y., & Goldstone, R. L. (2014). Concreteness fading in mathematics and science instruction. _Educational Psychology Review_, 26. [DOI](https://doi.org/10.1007/s10648-014-9249-3) | 具体的なことから始め、徐々に抽象的な内容へと移行する |
 | Gentner, D. (1983). Structure-mapping. _Cognitive Science_, 7(2). [DOI](https://doi.org/10.1207/s15516709cog0702_3) | 類推は、要素間の関係の対応関係を通じて理解される。その対応関係を明示する。 |
-| Mar, R. A., et al. (2021). 叙述文と説明文の記憶および理解. _Psychonomic Bulletin & Review_, 28. [DOI](https://doi.org/10.3758/s13423-020-01853-1) | 33,000人以上を対象としたメタ分析において、叙述文は説明文よりも理解および記憶の面で優れていた (g=0.55)。 |
-| Schroeder, N. L., & Kucera, A. C. (2022). 反証文は学習を促進する. _Educational Psychology Review_, 34. [DOI](https://doi.org/10.1007/s10648-021-09656-z) | 誤解を指摘し否定するテキストは、通常の説明よりも学習を促進した (g=0.41)。 |
-| Petty, R. E., Cacioppo, J. T., & Goldman, R. (1981). 論証に基づく説得の決定要因としての個人的関与. _Journal of Personality and Social Psychology_, 41(5). [DOI](https://doi.org/10.1037/0022-3514.41.5.847) | 講演が人々に関わるものであればあるほど、論証の質によってより強く説得される。ステップ10の根拠として用いられる。 |
+| Mar, R. A., et al. (2021). Memory and comprehension of narrative versus expository texts. _Psychonomic Bulletin & Review_, 28. [DOI](https://doi.org/10.3758/s13423-020-01853-1) | 33,000人以上を対象としたメタ分析において、叙述文は説明文よりも理解および記憶の面で優れていた (g=0.55)。 |
+| Schroeder, N. L., & Kucera, A. C. (2022). Refutation text facilitates learning. _Educational Psychology Review_, 34. [DOI](https://doi.org/10.1007/s10648-021-09656-z) | 誤解を指摘し否定するテキストは、通常の説明よりも学習を促進した (g=0.41)。 |
+| Petty, R. E., Cacioppo, J. T., & Goldman, R. (1981). Personal involvement as a determinant of argument-based persuasion. _Journal of Personality and Social Psychology_, 41(5). [DOI](https://doi.org/10.1037/0022-3514.41.5.847) | 講演が人々に関わるものであればあるほど、論証の質によってより強く説得される。ステップ10の根拠として用いられる。 |

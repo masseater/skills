@@ -20,5 +20,5 @@ description: AIはオーナーと同じ認証パスを通じて、ログイン�
 
 ## 準備すべき仕組み
 
-- 仕組みの準備：Managed OAuthを有効にし、masseater.dev の `infra/repositories/access-sites.ts` にホストを追加する。オーナーが `https://credentials.masseater.dev/access-oauth/login?site=<host>` でログインしたら、sundriesの `get_access_token` から `Authorization: Bearer` でトークンをアタッチすることで、そのホストへのリクエストのみアクセスできるようにする。独自のOAuthを持つアプリではManaged OAuthを有効にしないこと。
+- 仕組みの準備：Managed OAuthを有効にし、masseater.dev の `infra/repositories/access-sites.ts` にホストを追加する。オーナーが `https://credentials.masseater.dev/access-oauth/login?site=<ホスト>` でログインしたら、sundriesの `get_access_token` から `Authorization: Bearer` でトークンをアタッチすることで、そのホストへのリクエストのみアクセスできるようにする。独自のOAuthを持つアプリではManaged OAuthを有効にしないこと。
 - パスキー：Playwrightの `browserContext.credentials` の仮想認証器をAIのパスキーとし、アプリの実際の登録およびログイン経路を経由させる。本番環境では、オーナーの同意を得てAIのパスキーを登録し、キーはブローカー内で暗号化して保持すること。

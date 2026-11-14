@@ -21,5 +21,5 @@
 デフォルトで Cloudflare Web Analytics を有効にする。
 
 - Cloudflare API を使用して、ホストごとに一度だけサイトを作成し、そのトークンを `alchemy.run.ts` の `CF_BEACON_TOKEN` に設定する。
-- CI トークンにアカウント設定の書き込みを追加しないよう、`Rum.Site` は使用しないこと。
+- CI トークンにAccount Settings Writeを追加しないよう、`Rum.Site` は使用しないこと。
 - SSR アプリの場合、`start.ts` で Worker の `CF_BEACON_TOKEN` から HTML にビーコンを追加する。静的ページの場合は、ビルド時に `VITE_CF_BEACON_TOKEN` からルートの `head` に挿入される。ゾーンの自動インジェクションは Workers のレスポンスには適用されない。

@@ -1,6 +1,6 @@
 ---
 name: writing
-description: 文章の執筆や修正時に読む。ドキュメント、コメント、コミットメッセージ、PR本体、README、masseator名義で公開された記事、小説などを扱う。また、「AIっぽい」「冗長」「読みづらい」と評された文章を修正する際や、Claudeにアイデアをぶつけた後に「記事にしてほしい」と頼まれた際にも利用する。
+description: 文章の執筆や修正時に読む。ドキュメント、コメント、コミットメッセージ、PR本体、README、masseater名義で公開された記事、小説などを扱う。また、「AIっぽい」「冗長」「読みづらい」と評された文章を修正する際や、Claudeにアイデアをぶつけた後に「記事にしてほしい」と頼まれた際にも利用する。
 metadata:
   derived-from: >-
     https://github.com/masseater/claude-code-plugin/tree/2e0619b1ab620552764da5ea6e46b77a0dcfaa35/plugins/writing
@@ -92,4 +92,4 @@ masseaterの名前で公開される記事については、以下の6種類か�
 - [`article-essay`](usecases/article-essay.md)。**エッセイ**：外部読者向けの寄稿レベルの記事。根拠を提示し、読者の疑問を繋ぎながら主張へと展開する。
 - [`article-tech-article`](usecases/article-tech-article.md)。**技術記事**：リポジトリ、ライブラリ、またはツールの紹介と解説。主題が軸となり、独自の主張は加えない。
 - [`article-scrap`](usecases/article-scrap.md)。**スクラップ**：外部の記事や事実へのリンクと、1〜2文の要約。
-- [`article-oshiete-claude`](usecases/article-oshiete-claude.md)。**Oshiete Claude**：オーナーが素朴な質問をClaudeにぶつけて、軽く整理してそのまま公開した会話。
+- [`article-oshiete-claude`](usecases/article-oshiete-claude.md)。**教えてClaude**：オーナーが素朴な質問をClaudeにぶつけて、軽く整理してそのまま公開した会話。

@@ -22,7 +22,7 @@ AIが記述した文章の特徴（77件）、日本語の文章作成技法（4
 | 翻訳語と無生物主語 | "規則が守らせる" (the rules make people keep them), "レビューが担保してくれる" (review guarantees it), "〜を示している" (shows ...) | 人物や組織を主語にする | 12 |
 | 「AではなくB」 | 2つ以上の否定的な対比 | 肯定文として書き直し、冠詞は最大1つまでとする | 10 |
 | カンマの数と位置 | 「〜は、」「〜に、」「〜ではなく、」などの再帰的カンマ | 長い修飾語の境界や、語順が逆になる場合にのみ配置する | 30th |
-| 短い文の連なりと格言的なトーン | Punchlines such as "事業会社がこれを許容してはいけない。" (businesses must not tolerate this) | 理由と動作主を同じ文に入れる | 23番目、29番目 |
+| 短い文の連なりと格言的なトーン | 「事業会社がこれを許容してはいけない。」のような決め台詞 | 理由と動作主を同じ文に入れる | 23番目、29番目 |
 
 カンマは、人間が「AIっぽい」と感じた箇所と測定値が一致した唯一の特徴である（広島大学の卒業論文、2026年）。名詞で終わる文の方が、実際には測定値で見ると人間の文章に多く見られるため（fyve、2026年9月）、名詞で終わる文の有無でAIっぽさを判断しない。
 
@@ -59,18 +59,18 @@ AIが記述した文章の特徴（77件）、日本語の文章作成技法（4
 ## 主な出典
 
 - [@textlint-ja/textlint-rule-preset-ai-writing](https://github.com/textlint-ja/textlint-rule-preset-ai-writing)
-- [180本の記事から「なんとなくAIっぽい」とは何かを特定する](https://qiita.com/kenimo49/items/f47bcf915e4e00140ddf)
-- [生成AI前後でエンジニアの文章はどう変わったか：Qiita記事7万本を数える](https://nyosegawa.com/posts/qiita-writing-before-after-ai/)
+- [「なんとなくAIっぽい」の正体を180本の記事で特定した](https://qiita.com/kenimo49/items/f47bcf915e4e00140ddf)
+- [生成AI以前と以後でエンジニアの文章はどう変わったのか: Qiitaの7万記事を数えてみた話](https://nyosegawa.com/posts/qiita-writing-before-after-ai/)
 - [iKora128/stop-ai-slop-jp](https://github.com/iKora128/stop-ai-slop-jp)
-- [「AIっぽい文章の特徴」は本当か？計測で検証する](https://fyve.co.jp/ai-advisor/articles/ai-text-detection-myths-japan)
-- [Zaitsu & Jin (2023) ChatGPT生成論文の日本語スタイルメトリック分析](https://pmc.ncbi.nlm.nih.gov/articles/PMC10411719)
+- [「AIっぽい文章の特徴」は本当か｜実測で検証する](https://fyve.co.jp/ai-advisor/articles/ai-text-detection-myths-japan)
+- [Zaitsu & Jin (2023) Japanese stylometric analysis of ChatGPT-generated papers](https://pmc.ncbi.nlm.nih.gov/articles/PMC10411719)
 - [Wang et al. (2025) Is Human-Like Text Liked by Humans?](https://arxiv.org/abs/2502.11614)
-- [Pangram、AIライティングの9つの兆候、データで裏付ける](https://www.pangram.com/signs-of-ai-writing)
-- [語順とカンマの原則 - 本田勝一『実践日本語の作文技術』](https://tanokura.blog.jp/archives/79247637.html)
-- [「理科経の作文技術」（群馬大学）の講義資料](https://mems.mst.st.gunma-u.ac.jp/lecture/monodzukuri_13.pdf)
-- [公文書作成の考え方（文化審議会、2022年）](https://www.bunka.go.jp/seisaku/bunkashingikai/kokugo/hokoku/pdf/93731901_01.pdf)
+- [Pangram, 9 Signs of AI Writing, Backed by Data](https://www.pangram.com/signs-of-ai-writing)
+- [語順とテンの原則 - 本多勝一『実戦・日本語の作文技術』](https://tanokura.blog.jp/archives/79247637.html)
+- [『理科系の作文技術』講義資料（群馬大学）](https://mems.mst.st.gunma-u.ac.jp/lecture/monodzukuri_13.pdf)
+- [公用文作成の考え方（文化審議会、2022年）](https://www.bunka.go.jp/seisaku/bunkashingikai/kokugo/hokoku/pdf/93731901_01.pdf)
 - [textlint-rule-preset-ja-technical-writing](https://github.com/textlint-ja/textlint-rule-preset-ja-technical-writing)
-- [今日から使える校正技法（DevelopersIO）](https://dev.classmethod.jp/articles/proofreading-pattern-for-engineer/)
-- [エッセイの9割は出入り口！書き出し・結びの例とコツ（コウボウガイド）](https://koubo.jp/article/22352)
-- [これではエッセイがうまく書けない！よくある6つの落とし穴と対策（コウボウガイド）](https://koubo.jp/article/22349)
-- [プロのライターになるための4つの原則（PRESIDENT Online）](https://president.jp/articles/-/6877)
+- [今日から使える文章校正テクニック（DevelopersIO）](https://dev.classmethod.jp/articles/proofreading-pattern-for-engineer/)
+- [エッセイは入り口と出口が9割！書き出しと結びの実例とコツ（公募ガイド）](https://koubo.jp/article/22352)
+- [エッセイがうまく書けない理由はこれ！よくある6つの落とし穴と対策（公募ガイド）](https://koubo.jp/article/22349)
+- [プロ作家になるための4つの心得（PRESIDENT Online）](https://president.jp/articles/-/6877)
