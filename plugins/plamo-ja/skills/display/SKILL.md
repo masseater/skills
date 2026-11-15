@@ -6,7 +6,7 @@ disable-model-invocation: true
 allowed-tools: Bash(node ${CLAUDE_SKILL_DIR}/scripts/plamo-ja.ts *)
 ---
 
-# 日本語表示モード
+# display
 
 引数: `$ARGUMENTS`（空なら `on`）
 
