@@ -28,6 +28,8 @@ masseaterのリポジトリはすべて同一のテンプレートから作成�
 
 設定を無効化したり簡略化したり、閾値を下げたり、抑制ディレクティブを使用してチェックを通過させたりしないこと。数値設定はツールのデフォルト値のままとし、デフォルトでチェックが機能しない場合にのみ公式ガイドラインに従って設定すること。チェックを緩めると、たとえパスしたとしても何も保証されないことになる。
 
+もはや何もしていない例外（off にしたルール、無視パターン、許可リストの単語、overrides、`cache: false`）は残さないこと。例外を外してチェックを実行し、それでもパスするなら例外を削除する。
+
 ## Pythonを使用しない
 
 Pythonを使用しないこと。コード、スクリプト、CI、検証、または依存関係のどこにも配置しないこと。言語はTypeScriptとRustに限定されており、Pythonを一つの箇所に配置するということは、セッションとCIの両方でランタイム、パッケージ管理、およびバージョンピン留めを維持することを意味する。
@@ -54,6 +56,9 @@ Pythonを使用しないこと。コード、スクリプト、CI、検証、ま
 ## ドキュメント
 
 - 手書きの文章は、ルートの CLAUDE.md、README.md、ARCHITECTURE.md、DESIGN.md、および docs/ に限定すること。コードを読んで学べることは書かないこと。
+- コードを読めば分かること（機能の仕組み、どのファイルにどのロジックがあるか、リクエストの流れ、アプリやパッケージ、ページの一覧、公開 API のパラメータ、オプション、エンドポイント）を書かないこと。型とコードが正本であり、ドキュメントに写しを置いても、誰にも気づかれずに陳腐化していく。README には、それが何であるか、どう使い始めるか、どこで公開されているかを書く。
+- ルートの README、AGENTS.md、CLAUDE.md にはリポジトリ全体のことを書き、1 つのワークスペースに属することは、そのワークスペースの README.md または AGENTS.md に書くこと。Claude Code の推奨どおり、各 AGENTS.md と CLAUDE.md は 200 行以内に収めること。どちらも msch が `vp run verify` を失敗させる。
+- タスクが完了しても、その記録を AGENTS.md に追加しないこと。理由はコミットメッセージに書く。
 - ARCHITECTURE.md には、ワークスペースとレイヤーのマップ、および依存関係の許容方向などの不変条件のみを簡潔に記述すること。頻繁に変更される内容は書かず、名前リンクも作成しないこと。変更があるたびに同期せず、境界や不変条件が変わった時にのみ修正すること。
 - コミットメッセージに「なぜ」を書き込むこと。
 - デプロイ対象や外部に公開しているもの（サイト、API、npmパッケージなど）がある場合は、README にそのURLを記載すること。
@@ -85,6 +90,7 @@ Pythonを使用しないこと。コード、スクリプト、CI、検証、ま
 ## CI
 
 - ワークフローのステップについては、masseater/typescript-template の `.github/actions/` にある複合アクション（verify, autofix, skills-lock, update-branches, credentials, ci-telemetry）を `masseater/typescript-template/.github/actions/<名前>@<sha>` として参照すること。ステップが各リポジトリにコピーされる場合、すべての修正は各リポジトリの書き換えを意味する。renovate は sha を bump する。
+- ワークフローは薄く保つこと。ステップは、ピン留めしたアクションや複合アクションの `uses:` か、`vp run <task>` や `vp exec <bin>` といった 1 つのコマンドの `run:` のいずれかにする。ロジックは Vite+ のタスクに記述すること。ワークフローにワークスペースの名前を書かないこと。すべてのワークスペースに同じ名前のタスクを持たせて `vp run -r <task>` で実行し、ワークスペースの順序はそれぞれの `vite.config.ts` の `dependsOn` に書くこと。ワークスペースを追加・削除しても、ワークフローが変わってはならない。複数のコマンドを実行するステップや、ワークスペースの名前を書いたワークフローがあると、msch が `vp run verify` を失敗させる。
 - リポジトリ固有のツール（go、weaver、apt の依存関係など）をそのリポジトリの `.github/actions/setup` に配置し、ジョブからは `$/.github/actions/setup` として呼び出すこと。actionlint はまだ `$/` を認識していないため、`.github/actionlint.yaml` のその1ケースのみを無視すること。
 - credentials アクションは、credentials.masseater.dev から Cloudflare と Claude のトークンを受け取る。これらを GitHub Secrets に配置しないこと。
 - ボットがブランチにプッシュするワークフロー（autofix, skills-lock, update-branches）は、ブローカーが発行した GitHub App トークンでプッシュする。`GITHUB_TOKEN` でプッシュした場合、`pull_request` の `up-to-date` が承認待ちを停止し（action_required）、PR はマージされないままとなる。ブローカーはワークフローのファイル名で権限を付与するため、ボットのワークフローを追加する際は、masseater.dev の `credential-grants.ts` にある `WORKFLOW_GITHUB_GRANTS` にも追加すること。
@@ -123,3 +129,4 @@ Pythonを使用しないこと。コード、スクリプト、CI、検証、ま
 ## ユースケース
 
 - [`publish-npm-package`](usecases/publish-npm-package.md)。パッケージを npm に公開する。
+- [`sweep-repeated-corrections`](usecases/sweep-repeated-corrections.md)。毎日、すべてのリポジトリから、どのチェックにも引っかからない指摘を見つけ出し、修正して、チェックへと落とし込む。
