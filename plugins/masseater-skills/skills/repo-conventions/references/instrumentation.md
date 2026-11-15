@@ -6,7 +6,7 @@
 - Workers以外のプロセスについては、`OtlpTracer.layerFromConfig`でエクスポートする。Effectは、`OTEL_TRACES_EXPORTER=otlp`かつ`OTEL_EXPORTER_OTLP_ENDPOINT`が設定されている場合にのみ送信される。
 - テストでコードが実際に出力したスパン、メトリクス、ログを確認する際は、`@r_masseater/vitest-otlp`を用いてテストファイルごとにOTLPレシーバーを設定する。
 - 実際に時間がかかる操作にスパンを記述する。測定のためだけにコマンドやプロセスをラップしてはならない。
-- すべてのGitHub Actionsワークフローの末尾に、`.github/scripts/ci-telemetry.sh`を実行するジョブを配置する。
+- すべてのGitHub Actionsワークフローの末尾に、ci-telemetry アクションを実行するジョブを配置する。
 
 ## Web Vitals
 

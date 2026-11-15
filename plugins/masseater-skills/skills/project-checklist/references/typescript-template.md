@@ -14,7 +14,6 @@
 
 - はじめに：ルートと各アプリには `vite.config.ts` があり、`devEngines` は pnpm である。
 - 機能：`git config core.hooksPath` は `.vite-hooks/_` を指し、`.vite-hooks/{pre-commit,commit-msg,pre-push}` は vp を呼び出す。CI は `voidzero-dev/setup-vp` でインストールと検証を行う。pnpm を直接実行するエージェントは、`.claude/settings.json` および `block-pnpm.ts` の拒否によって停止される。
-- 古い構造：prettier を呼び出すスクリプトや CI が消えていないかを確認する。
 
 ## 2. 依存関係のバージョンは pnpm カタログで統一されている
 
@@ -26,7 +25,7 @@
 
 - はじめに：パッケージは、アプリ用の `apps/`、共有コード用の `libs/`、リポジトリツール用の `tools/` に分かれており、`pnpm-workspace.yaml` の `packages` にそれらが列挙されている。
 - 機能：`vp install` および `vp run -r` は、ワークスペースのパッケージを解決して実行する。
-- 古い構造：`nx.json` や `@nx/*` がインストールされた痕跡があるか、また `apps/`、`libs/`、`tools/` の外にパッケージが散在していないかを確認する。
+- 古い構造：`@nx/*` がインストールされた痕跡があるか、また `apps/`、`libs/`、`tools/` の外にパッケージが散在していないかを確認する。
 
 ## 4. 型は `@effect/tsgo` でチェックされる。
 
@@ -38,7 +37,7 @@
 
 - はじめに：`effect` 依存関係があり、外部入力や外部 API との境界、およびドメインは、Effect、Layer、Context、Schema で構築されている。
 - 機能：境界値はライブラリの型そのままの状態で `Schema.decode*` に渡され、外部 API のクライアントは、公式の Effect、distilled.cloud、OpenAPI から生成された順に選択され、時間やコストがかかる処理は `Effect.withSpan` で可視化される。
-- 古い構造：単純な Promise と try/catch、valibot や zod co が共存するドメインがあるか、あるいは手書きの API ラッパーがあるかを確認する。
+- 古い構造：単純な Promise と try/catch があるか、あるいは手書きの API ラッパーがあるかを確認する。
 
 ## 6. デッドコード、重複、脆弱性、およびフォールow を伴う依存関係を確認する。
 
@@ -49,7 +48,7 @@
 ## 7. 検証の単一のエントリポイントは `vp run verify` である。
 
 - はじめに：検証のエントリポイントとして `vp run verify` が存在する。現在のテンプレートでは、ルートの `vite.config.ts` にある `run.tasks.verify` とその dependsOn グラフがエントリポイントとなっており、スクリプトが連鎖していても、一つのエントリポイントからチェックがまとめて実行されていれば動作する。
-- 機能：CI の検証ジョブである `.vite-hooks/pre-push` と `.claude/hooks/stop-gate.ts` は、同じ `vp run verify` を呼び出す。test、eslint、syncpack、markdown-lint、renovate、actions-lint、steiger、db:check、fallow、audit など、リポジトリ内にターゲットを持つチェックは、エントリポイントから実行される。
+- 機能：CI の検証ジョブである `.vite-hooks/pre-push` と `.claude/hooks/stop-gate.ts` は、同じ `vp run verify` を呼び出す。test、syncpack、markdown-lint、renovate、actions-lint、steiger、db:check、fallow、audit など、リポジトリ内にターゲットを持つチェックは、エントリポイントから実行される。
 - 古い構造：検証の外にチェックが散在していないか、ターゲットのないタスクが残っていないか、あるいはタスクを削除してgreenにした痕跡がないかを確認する。
 
 ## 8. ローカルゲートとCIゲートが有効である
@@ -61,23 +60,21 @@
 ## 9. エージェントの設定が有効である
 
 - はじめに：`.claude/hooks/`、`.claude/settings.json`、`.claude/loop.md`、`AGENTS.md` および `CLAUDE.md`、`.intent/hooks/intent-claude-gate.mjs`、`.agents/skills`（`.claude/skills` からリンクされている）、および `skills-lock.json` の全セットが存在する。
-- 機能：settings.json のフックは、起動時に存在し実行されるファイルを指定する。`skills ls` と `vp exec intent list` はスキルを返す。セッション開始時にテンプレートの新しいリリースが通知される。
+- 機能：`skills ls` と `vp exec intent list` はスキルを返す。セッション開始時にテンプレートの新しいリリースが通知される。
 - 古い構造：古いスキルの残骸がないかを確認する。
 
 ## 10. デプロイを行うリポジトリが Alchemy で宣言している
 
 - はじめに：`apps/<name>/alchemy.run.ts`、`app-name.ts` およびそのテストが存在し、リソース名は `app-name.ts` から取得されている。
 - 機能：`vp run deploy` がパスし、CI のデプロイジョブがシークレット付きで実行される。
-- 古い構造：wrangler への直接呼び出しがあるかを確認する。
 
 ## 11. 冗長な設定がない
 
 - 各ロールに単一のオーナーを付与する。`tsconfig.base.json` に tsconfig の共通部分、カタログに依存関係のバージョンを、`app-name.ts` にアプリ名を記述し、環境変数には環境ごとに変化する値のみを設定する。
-- eslint CLI の直接実行は `vp check` に置き換えられ、旧バージョン側の設定、依存関係、スクリプトはなくなっている。
 
-## 12. 不要なドキュメントと不要なコードコメントを削除する
+## 12. 不要なドキュメントを削除する
 
-- 古い構造：履歴や理由を記述したコメントやドキュメント、以前の構造を記述した README やドキュメント、およびマイグレーション中に書かれたメモがなくなっているかを確認する。
+- 古い構造：履歴や理由を記述したドキュメント、以前の構造を記述した README やドキュメント、およびマイグレーション中に書かれたメモがなくなっているかを確認する。
 
 ## 13. CI が差分とキャッシュを用いて効率的に動作する
 
