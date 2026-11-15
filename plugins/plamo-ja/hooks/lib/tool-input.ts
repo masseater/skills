@@ -1,5 +1,3 @@
-// request_decision など長さに上限のある入力は、訳すと上限を超えうるので載せない。
-// hooks.json の PreToolUse の matcher はこのキーと同じ並びにする（tests/tool-input.test.ts が確かめる）
 export const TRANSLATED_FIELDS: Record<string, string[]> = {
   AskUserQuestion: [
     "questions[].question",
