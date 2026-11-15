@@ -25,10 +25,6 @@ metadata:
 
 masseater がビルドして npm に公開しているパッケージは、人気順にソートされる npm 検索に埋もれており、表示されない。`vp pm search maintainer:r_masseater` でリストアップし、該当するものがあれば、依存関係に含まれていなくてもインストールして利用すること。README は `https://unpkg.com/<name>/README.md` で確認できる。
 
-以下のパッケージはnpmにないため、コマンドの出力には表示されない。
-
-- サイトの背景、テーマ、ページ遷移用のUIコンポーネント：`@masseater.dev/ui`（masseater/masseater.dev の `libs/ui` をgitサブパスの依存関係としてインストールすること）
-
 ## 一般的な状況では、決定事項を使用する
 
 - 配列、オブジェクト、文字列用のユーティリティ（`groupBy`、`chunk`、`debounce`、deep merge、deep equality）：`es-toolkit`
