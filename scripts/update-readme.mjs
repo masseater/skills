@@ -17,7 +17,8 @@ const dirs = readdirSync(join(root, skillsDir), { withFileTypes: true })
 const lines = await Promise.all(
   dirs.map(async (dir) => {
     const { name, description } = await readProperties(join(root, skillsDir, dir));
-    return `- [${name}](${skillsDir}/${dir}/SKILL.md): ${description.replace(/\s*\n\s*/g, " ").trim()}`;
+    const summary = description.replace(/\s*\n\s*/g, " ").trim().split("。")[0];
+    return `- [${name}](${skillsDir}/${dir}/SKILL.md): ${summary}。`;
   }),
 );
 
