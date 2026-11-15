@@ -12,9 +12,9 @@
 
 ## 1. ツールは Vite+ のみである
 
-- はじめに：ルートと各アプリには `vite.config.ts` があり、`package.json` 内のスクリプトは vp を経由し、`devEngines` は pnpm である。
+- はじめに：ルートと各アプリには `vite.config.ts` があり、`devEngines` は pnpm である。
 - 機能：`git config core.hooksPath` は `.vite-hooks/_` を指し、`.vite-hooks/{pre-commit,commit-msg,pre-push}` は vp を呼び出す。CI は `voidzero-dev/setup-vp` でインストールと検証を行う。pnpm を直接実行するエージェントは、`.claude/settings.json` および `block-pnpm.ts` の拒否によって停止される。
-- 古い構造：turbo.json、husky、yarn、npm、bun のロックファイル、および raw pnpm、npx、prettier を呼び出すスクリプトや CI が消えていないかを確認する。
+- 古い構造：prettier を呼び出すスクリプトや CI が消えていないかを確認する。
 
 ## 2. 依存関係のバージョンは pnpm カタログで統一されている
 
@@ -44,7 +44,7 @@
 
 - はじめに：`.fallowrc.jsonc`、ルートおよびアプリ内の `fallow` スクリプト、および verify 内の `fallow-all` が存在する。
 - 機能：`vp run -r fallow` を実行し、型認識とセキュリティチェックを含めて渡し、`--fail-on-issues` などの失敗条件が引き続き有効である。これらを緩めると、green の意味が消える。
-- 古い構造：knip、jscpd、ts-prune などの置き換えられた設定やスクリプトが消えているか、および rc とスクリプト間で設定が重複していないかを確認する。
+- 古い構造：rc とスクリプト間で設定が重複していないかを確認する。
 
 ## 7. 検証の単一のエントリポイントは `vp run verify` である。
 
@@ -62,13 +62,13 @@
 
 - はじめに：`.claude/hooks/`、`.claude/settings.json`、`.claude/loop.md`、`AGENTS.md` および `CLAUDE.md`、`.intent/hooks/intent-claude-gate.mjs`、`.agents/skills`（`.claude/skills` からリンクされている）、および `skills-lock.json` の全セットが存在する。
 - 機能：settings.json のフックは、起動時に存在し実行されるファイルを指定する。`skills ls` と `vp exec intent list` はスキルを返す。セッション開始時にテンプレートの新しいリリースが通知される。
-- 古い構造：マイグレーション前の `.claude/rules/` や古いスキルの残骸、あるいは settings.json が指している存在しないファイルがないかを確認する。
+- 古い構造：古いスキルの残骸がないかを確認する。
 
 ## 10. デプロイを行うリポジトリが Alchemy で宣言している
 
 - はじめに：`apps/<name>/alchemy.run.ts`、`app-name.ts` およびそのテストが存在し、リソース名は `app-name.ts` から取得されている。
 - 機能：`vp run deploy` がパスし、CI のデプロイジョブがシークレット付きで実行される。
-- 古い構造：wrangler.toml が存在するか、wrangler への直接呼び出しがあるか、あるいは Terraform や Pulumi が共存しているかを確認する。
+- 古い構造：wrangler への直接呼び出しがあるかを確認する。
 
 ## 11. 冗長な設定がない
 
@@ -77,8 +77,6 @@
 
 ## 12. 不要なドキュメントと不要なコードコメントを削除する
 
-- はじめに：`no-comments/disallowComments` は `vite.config.ts` のリントにおけるエラーであり、`verify` は `msch` を実行する。いずれも `oxlint-disable` など、msch が列挙するツールディレクティブのみを許可する。
-- 機能：`vp run verify` は、TypeScript や JavaScript に限らず、追跡対象のコード、マークアップ、設定、またはクエリファイル内のコメントを拒否する。
 - 古い構造：履歴や理由を記述したコメントやドキュメント、以前の構造を記述した README やドキュメント、およびマイグレーション中に書かれたメモがなくなっているかを確認する。
 
 ## 13. CI が差分とキャッシュを用いて効率的に動作する
