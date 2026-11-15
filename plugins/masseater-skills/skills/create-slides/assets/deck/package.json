@@ -1,13 +1,50 @@
 {
-  "name": "@masseater/deck",
-  "version": "0.0.0",
-  "private": true,
+  "name": "@r_masseater/deck",
+  "version": "0.1.0",
+  "description": "Slide and icon components for React decks, with a Vite+ config that exports a deck to a single HTML file and a PDF.",
+  "keywords": [
+    "deck",
+    "pdf",
+    "presentation",
+    "react",
+    "slides",
+    "vite-plus"
+  ],
+  "homepage": "https://github.com/masseater/skills/tree/main/plugins/masseater-skills/skills/create-slides/assets/deck#readme",
+  "bugs": {
+    "url": "https://github.com/masseater/skills/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/masseater/skills.git",
+    "directory": "plugins/masseater-skills/skills/create-slides/assets/deck"
+  },
+  "files": [
+    "src",
+    "single-html/index.js",
+    "single-html/index.d.ts",
+    "DESIGN.md",
+    "LICENSE"
+  ],
   "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
   "exports": {
     ".": "./src/index.ts",
     "./deck.css": "./src/deck.css",
     "./theme.css": "./src/theme.css",
-    "./tokens.css": "./src/tokens.css"
+    "./tokens.css": "./src/tokens.css",
+    "./single-html": {
+      "types": "./single-html/index.d.ts",
+      "default": "./single-html/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
   "scripts": {
     "tokens": "design.md export --format css-vars DESIGN.md > src/tokens.css",
@@ -23,6 +60,7 @@
     "budoux": "0.10.3",
     "d3-geo": "3.1.2",
     "topojson-client": "3.1.0",
+    "vite-plugin-singlefile": "2.3.4",
     "world-atlas": "2.0.2"
   },
   "devDependencies": {
@@ -30,6 +68,20 @@
   },
   "peerDependencies": {
     "@types/react": "^19.0.0",
-    "react": "^19.0.0"
+    "@vitejs/plugin-react": "^6.0.0",
+    "playwright": "^1.0.0",
+    "react": "^19.0.0",
+    "vite-plus": "^1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vitejs/plugin-react": {
+      "optional": true
+    },
+    "playwright": {
+      "optional": true
+    },
+    "vite-plus": {
+      "optional": true
+    }
   }
 }

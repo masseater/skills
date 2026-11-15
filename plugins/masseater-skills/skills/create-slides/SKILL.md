@@ -9,7 +9,7 @@ description: スライドを作成する前に、聴衆や場面に応じたデ�
 
 ## 構成要素
 
-リポジトリのデッキコンポーネントライブラリでスライドを作成する。ない場合は、本スキルの `assets/deck`（スライドおよびアイコンコンポーネント。色と種類のルールは `assets/deck/DESIGN.md` に記載）と `assets/single-html`（デッキを単一のHTMLファイルとPDFにエクスポートするVite設定）を、`vp add github:masseater/skills#path:/plugins/masseater-skills/skills/create-slides/assets/deck` のように git サブパスの依存関係としてインストールする。コピーはしない。
+リポジトリ独自のデッキコンポーネントライブラリを使ってスライドを作成する。リポジトリにない場合は、npm から `vp add @r_masseater/deck` で `@r_masseater/deck` をインストールする。ここにはこのスキルの `assets/deck` に含まれるスライドとアイコンのコンポーネント（色や種類に関するルールは `assets/deck/DESIGN.md` に記載されている）が入っており、`@r_masseater/deck/single-html` はデッキを単一の HTML ファイルと PDF にエクスポートする Vite の設定である。これらはコピーしない。パーツを変更するには、`assets/deck` を編集し、`package.json` の `version` を上げてマージした上で、そのディレクトリを指定して masseater/skills の `publish` ワークフローを実行する。
 
 ## 想定読者と説明量
 
