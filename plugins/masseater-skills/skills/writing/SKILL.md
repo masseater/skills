@@ -10,9 +10,8 @@ metadata:
 
 # writing
 
-- 人間の読者の読み方や考え方について、humanity-and-humannessを踏襲する
 - 日本語の言い回しについては、philtzjp/skills の [`japanese`](https://github.com/philtzjp/skills/blob/main/.agents/skills/japanese/SKILL.md) を踏襲する
-- このスキルの規範は、それらの上に追加される
+- このスキルの規範は、その上に追加される
 
 ## なぜこのスキルが必要で、どのような状態を目指すべきか
 
