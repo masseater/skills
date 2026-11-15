@@ -33,8 +33,10 @@ hook が訳すのは、画面に出る応答の本文と、AskUserQuestion な�
 
 ## 設定
 
+`PLAMO_JA_SERVER_COMMAND` が設定されておらず、`PLAMO_JA_URL` がこのマシンを指している場合、フックは llama-server とモデルのピン留め済みバージョンを `~/.cache/plamo-ja/runtime` にダウンロードし、それらを起動する。これは Linux x64 および macOS arm64 で動作する。事前にダウンロードするには、`node ${CLAUDE_SKILL_DIR}/scripts/plamo-ja.ts install` を実行する。
+
 - `PLAMO_JA_AUTO`: `on` にすると、切り替えていないセッションもすべてオンになる
-- `PLAMO_JA_SERVER_COMMAND`: サーバーが応答しないとき、セッションの開始時に `sh -c` で動かす起動コマンド。起動を最大 60 秒待ち、応答しなければそのセッションでは英語で書かせない
+- `PLAMO_JA_SERVER_COMMAND`: サーバーが応答しないとき、セッションの開始時にフックが `sh -c` で実行するコマンド。ダウンロードしたサーバーではなく、自前のサーバーを起動する際に使用する。起動を最大 60 秒待ち、応答しなければそのセッションでは英語で書かせない
 - `PLAMO_JA_URL`: llama-server の URL。既定は `http://127.0.0.1:8000`
 - `PLAMO_JA_FORM`: `plain`（である調）か `polite`（です・ます調）
 - `PLAMO_JA_HISTORY_BUDGET`: 訳の履歴として渡す文字数の上限。既定は 8000
