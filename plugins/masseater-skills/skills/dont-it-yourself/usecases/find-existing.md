@@ -1,6 +1,6 @@
 # 既存のものを探す
 
-1. 以下の順序で検索する：Effectのモジュール、リポジトリに既にある依存関係、masseater自身のパッケージ、npm。`vp pm search maintainer:r_masseater` でmasseater自身のパッケージを一覧表示し、`https://unpkg.com/<name>/README.md` でREADMEを読み取ることができる。
+1. 以下の順序で検索する：Effectのモジュール、リポジトリに既にある依存関係、masseater自身のパッケージ、npm。
 2. リポジトリのルートで `vp exec intent list` を実行し、インストール済みの依存関係に同梱されているスキルが合致すれば、`vp exec intent load <package>#<skill>` で読み取る。
 3. 標準形式または広く普及している形式を扱う処理では、ライブラリが存在することを前提にnpmを検索する。RFC、W3C、ECMA、ISOなどの標準規格の名称と番号、形式名、およびそれが扱うデータ名で検索する。
 4. 候補が見つかったら、リポジトリの `packages/` または npm スコープにあるパッケージ一覧を直接確認し、何が利用可能かを確認する。
