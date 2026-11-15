@@ -1,7 +1,5 @@
 # Cloudflare にデプロイするリポジトリ
 
-コストを抑える設計については、cloudflare-caution に従うこと。
-
 - Workers Paid プランを前提とすること。Paid でのみ利用可能な機能や制限を前提に設計してもよい。
 - ゾーンの WAF カスタムルールおよび Logpush ジョブは、masseater.dev ゾーンの所有者である masseater/masseater.dev のみが所有している。他のリポジトリはこれらを所有しておらず、`OWNED_ZONE` を `Option.none()` として残している。2つのリポジトリが同じゾーンの設定を所有している場合、デプロイのたびに互いの設定を上書きする。
 - Bot Fight Mode は使用しないこと。

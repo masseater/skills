@@ -12,11 +12,11 @@ Claude Code にはプラグインとして、ほかのエージェントには s
 - [create-slides](plugins/masseater-skills/skills/create-slides/SKILL.md): スライドを作成する前に、聴衆や場面に応じたデフォルト設定と聴衆からの質問に基づいて作成した構成案を提示し、作成後にプレゼンテーションの流れを確認するためのスピーカースクリプトを記述する手順。
 - [debug-like-a-human](plugins/masseater-skills/skills/debug-like-a-human/SKILL.md): AIはオーナーと同じ認証パスを通じて、ログイン後の画面やAccessの本番環境にアクセスし、自ら確認を行う。
 - [desktop-app-quality](plugins/masseater-skills/skills/desktop-app-quality/SKILL.md): デスクトップアプリの設計、開発、レビューをするときに読む。
-- [dont-it-yourself](plugins/masseater-skills/skills/dont-it-yourself/SKILL.md): ライブラリ、ランタイム、リポジトリに既に存在するものを探し出して利用し、自作はしない。
+- [find-before-build](plugins/masseater-skills/skills/find-before-build/SKILL.md): ライブラリ、ランタイム、リポジトリに既に存在するものを探し出して利用し、自作はしない。
 - [how-to-use-react](plugins/masseater-skills/skills/how-to-use-react/SKILL.md): React 19.3のコンポーネント、ローダー、およびサーバー処理の記述、修正、レビュー時に参照する。
 - [humanity-and-humanness](plugins/masseater-skills/skills/humanity-and-humanness/SKILL.md): AIが人間の読み方、考え方、感覚を前提として持つように読む。
 - [integrate](plugins/masseater-skills/skills/integrate/SKILL.md): ライブラリや新しい実装手段を導入する際に使用する。
-- [masseater-ecosystem](plugins/masseater-skills/skills/masseater-ecosystem/SKILL.md): masseaterのテックスタックの完成形と、自社開発のものと借用したものの境界。
+- [masseater-ecosystem](plugins/masseater-skills/skills/masseater-ecosystem/SKILL.md): masseaterのリポジトリで作業する際のエントリーポイント。
 - [measure-dont-guess](plugins/masseater-skills/skills/measure-dont-guess/SKILL.md): 実装や修正を行う前に、仮説をどちらに収束させるかを判断し、実行した上で、その結果のみで判断する。
 - [measure-everything](plugins/masseater-skills/skills/measure-everything/SKILL.md): 何かを構築または修正する前に、どのように測定するかを決めておく。
 - [measure-postmortem](plugins/masseater-skills/skills/measure-postmortem/SKILL.md): PRを読み、その修正が事前に計測されていれば防げた、あるいは検出できたのではないかと検討する。

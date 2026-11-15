@@ -7,7 +7,7 @@ description: masseaterのリポジトリに共通するルール。masseater/typ
 
 - リポジトリのAGENTS.mdおよびCLAUDE.mdのルールは、このスキルよりも優先される。
 - msch はほとんどの規約を強制し、その lint によって多くの違反を自動的に書き換える。このスキルには、msch がチェックできない規約のみがリストアップされている。ここで規約を探す前に、`vp exec msch` と `vp lint` を実行し、表示される内容に従うこと。ここで記述された規約が機械的に検出可能になった場合は、msch にチェックを追加し、ここからその規約を削除すること。
-- コマンドの実行にはvite-plusを、計測にはmeasure-dont-guessを、既存のものの特定にはdont-it-yourselfを使用すること。
+- どのような状況でどのスキルを読むべきかについては、masseater-ecosystemに従うこと。
 - `vp run verify` がパスした時点で作業完了となる。
 
 ## このスキルが必要な理由と、実現すべき状態
@@ -39,7 +39,6 @@ masseaterのリポジトリはすべて同一のテンプレートから作成�
 - 見た目については、ヘッドレスでレンダリングされた画像をベースライン画像とピクセル単位で比較すること。テストから操作を送信すること。
 - エージェントや人間が毎回実行して確認するチェックを、チェック方法の判定に用いないこと。処理速度が遅く、コストがかかり、判定が揺らぐ。
 - 現在の環境にチェック手段がない場合は、ヘッドレスレンダリングやスタブ、テストホストなど、そのような手段を準備することを最初の作業とすること。
-- ログインやAccessの後ろに、「所有者の認証が必要なためチェックできない」という部分を残してはいけない。AIが所有者の認証と同じ経路でアクセスする仕組みを構築することを計画の第一歩とすること。計画を記述する前に、人間のようなデバッグをロードすること。
 - まず受入条件を確認し、それが失敗することを確認した上で実装するテストを書くこと。
 - 本番環境の外部サービス、実機、リスニングや味覚の判定など、チェックできない部分だけを静的に残し、残りはレポートに記述すること。
 
@@ -63,33 +62,12 @@ masseaterのリポジトリはすべて同一のテンプレートから作成�
 - ライブラリが提供する型の値を、それらの型そのままで `Schema.decode*` に渡すこと。`unknown` として受け取った場合、コンパイラはライブラリの型と Schema の不一致を検出できなくなる。
 - 環境変数には、環境ごとに変更される値のみを設定すること。コードや Alchemy の設定で変更されない値、またはツールに設定がある場合はフラグに値を設定すること。環境変数を追加するたびに、どの環境に何を設定するかの考慮事項が追加される。
 
-## モデルの呼び出し
-
-- APIキーが必要なすべてのモデル呼び出しをCloudflare AI Gateway経由で送信する。Workerの外では、Workers AI Read権限を持つCloudflare APIトークンを使用して、`https://api.cloudflare.com/client/v4/accounts/<account>/ai/v1/chat/completions` のREST APIを呼び出し、`cf-aig-gateway-id` ヘッダーでゲートウェイを指定する。Workerの内部では、`gateway` オプションを指定してAIバインディングを使用する。
-- リポジトリ内でOpenRouterや個別のモデルプロバイダーのAPIキーを使用しないこと。ゲートウェイを1つにまとめれば、ログ、キャッシュ、レート制限、課金を一箇所で管理でき、さらにクレデンシャルブローカーがCIにCloudflareトークンをすでに渡している。
-- Workers AIモデル（`@cf/...`）を優先する。アカウント上のWorkers AIの利用分として請求される。サードパーティ製モデルにはUnified Billingのクレジットが必要であり、クレジットはオーナーの承認がある場合にのみ購入する。
-- ゲートウェイはダッシュボードではなく、Alchemyスタック内で `AI.Gateway` として管理する。公開するライブラリは利用者のために他のプロバイダーへの対応を残してよいが、リポジトリ自体はそれを利用しない。オーナーの長期トークンを利用するClaude Agent SDK経由のClaudeはAPIキーを必要としないため、このルールは適用されない。
-
-## CI
-
-- ワークフローのステップについては、masseater/typescript-template の `.github/actions/` にある複合アクション（verify, autofix, skills-lock, update-branches, credentials, ci-telemetry）を `masseater/typescript-template/.github/actions/<名前>@<sha>` として参照すること。ステップが各リポジトリにコピーされる場合、すべての修正は各リポジトリの書き換えを意味する。renovate は sha を bump する。
-- main への push で動く job は、後の push が同じ仕事をやり直すので、最新のコミットの分だけ動けばよい。こうした job には job の `concurrency` に `cancel-in-progress: true` を付け、新しい push が古い run を取り消すようにする。ワークフロー全体の `concurrency` で取り消すと走っているデプロイまで止まるので、job ごとに付ける。デプロイとリリースの job は途中で止めると半端な状態が残るので `cancel-in-progress` を付けず、待っている古い run だけを新しい run に置き換えさせる。
-- リポジトリ固有のツール（go、weaver、apt の依存関係など）をそのリポジトリの `.github/actions/setup` に配置し、ジョブからは `$/.github/actions/setup` として呼び出すこと。actionlint はまだ `$/` を認識していないため、`.github/actionlint.yaml` のその1ケースのみを無視すること。
-- credentials アクションは、credentials.masseater.dev から Cloudflare と Claude のトークンを受け取る。これらを GitHub Secrets に配置しないこと。
-- ボットがブランチにプッシュするワークフロー（autofix, skills-lock, update-branches）は、ブローカーが発行した GitHub App トークンでプッシュする。`GITHUB_TOKEN` でプッシュした場合、`pull_request` の `up-to-date` が承認待ちを停止し（action_required）、PR はマージされないままとなる。ブローカーはワークフローのファイル名で権限を付与するため、ボットのワークフローを追加する際は、masseater.dev の `credential-grants.ts` にある `WORKFLOW_GITHUB_GRANTS` にも追加すること。
-- ボットの PR は自動マージで開く。main advanced で遅延した PR については、`update-branches.yml` が main を取り込む。
-
 ## PR とマージ
 
 - PR のレビューや、PR ごとの CI、動作検証、デプロイは行わないこと。main にマージしてデプロイした後に、本番環境で動作を確認すること。
 - マージ前にベースを取り込み、ローカルで `vp run verify` を実行し、自身でマージすること。マージしてよいか確認しないこと。
 - ルールセットのバイパスや `--admin` は使用しないこと。
 - `verify` を手動で実行して、release-please のリリース PR を再作成すること。手動で実行すると App のトークンで PR が作成されるため、`up-to-date` は承認なしで実行される。
-
-## 脆弱性
-
-- 警告を含め、ZAP アラートを直ちに修正すること。`.github/zap/rules.tsv` には誤検知のみを記述すること。
-- `audit` は `vp pm audit --fix` で修正すること。`audit.ignore` には固定バージョンのないアドバイザリのみを記述し、その理由をコミットメッセージに記載すること。
 
 ## スキル
 
@@ -107,6 +85,9 @@ masseaterのリポジトリはすべて同一のテンプレートから作成�
 - [`fsd`](references/fsd.md)。Feature-Sliced Design のスライスの分け方、パブリック API、コロケーション、列挙で合わせないためのルール。
 - [`cloudflare`](references/cloudflare.md)。Cloudflare にデプロイするリポジトリ向けのルール。
 - [`oxlint-plugin-decision`](references/oxlint-plugin-decision.md)。`vp check` で判定ルールを使用するリポジトリ向けのルール。
+- [`ci`](references/ci.md)。GitHub Actions ワークフローの追加・変更ルール。
+- [`model-calls`](references/model-calls.md)。モデルを呼び出すコードを書くためのルール。
+- [`vulnerabilities`](references/vulnerabilities.md)。ZAPアラートおよび audit の指摘の取り扱いルール。
 - [`instrumentation`](references/instrumentation.md)。スパン、CI 計測、および Web Vitals 向けのルール。Workers のトレースでは `@r_masseater/workers-tracing` を、テストでのテレメトリ確認では `@r_masseater/vitest-otlp` を、Web Vitals では `@r_masseater/web-vitals-flow` を使用する。
 
 ## ユースケース
