@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vite-plus/test";
-import { isLocalUrl, runtimeRoot, serverArchive, serverArgs } from "../hooks/lib/runtime.ts";
+import { isLocalUrl, runtimeRoot, serverArchive, serverArgs } from "./runtime.ts";
 
 describe("serverArchive", () => {
   it("pins a llama.cpp build for Linux x64 and macOS arm64", () => {

@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vite-plus/test";
-import { TRANSLATED_FIELDS, translateToolInput } from "../hooks/lib/tool-input.ts";
+import { TRANSLATED_FIELDS, translateToolInput } from "./tool-input.ts";
 
 const upper = async (text: string) => text.toUpperCase();
 
@@ -47,7 +47,7 @@ describe("translateToolInput", () => {
 
   it("hooks.json の matcher は訳すツールと同じ並び", () => {
     const hooks = JSON.parse(
-      readFileSync(path.join(import.meta.dirname, "../hooks/hooks.json"), "utf8"),
+      readFileSync(path.join(import.meta.dirname, "../hooks.json"), "utf8"),
     ) as { hooks: { PreToolUse: { matcher: string }[] } };
     const matcher = new RegExp(hooks.hooks.PreToolUse[0]?.matcher ?? "");
     for (const tool of Object.keys(TRANSLATED_FIELDS)) expect(matcher.test(tool)).toBe(true);

@@ -2,7 +2,7 @@ import { existsSync, mkdtempSync, rmSync, utimesSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vite-plus/test";
-import { Store } from "../hooks/lib/store.ts";
+import { Store } from "./store.ts";
 
 const dirs: string[] = [];
 function makeStore(): Store {

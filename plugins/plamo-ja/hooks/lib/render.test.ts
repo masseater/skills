@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vite-plus/test";
-import { looksBroken, renderLines, splitLines } from "../hooks/lib/render.ts";
-import { emptyMessageState } from "../hooks/lib/schema.ts";
+import { looksBroken, renderLines, splitLines } from "./render.ts";
+import { emptyMessageState } from "./schema.ts";
 
 const fake = async (sources: string[]) => sources.map((en) => `JA(${en})`);
 const fresh = emptyMessageState;

@@ -2,9 +2,9 @@ import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterEach, describe, expect, it, vi } from "vite-plus/test";
-import { loadConfig } from "../hooks/lib/config.ts";
-import { Store } from "../hooks/lib/store.ts";
-import { createBatchTranslator } from "../hooks/lib/translator.ts";
+import { loadConfig } from "./config.ts";
+import { Store } from "./store.ts";
+import { createBatchTranslator } from "./translator.ts";
 
 const dirs: string[] = [];
 function setup() {
