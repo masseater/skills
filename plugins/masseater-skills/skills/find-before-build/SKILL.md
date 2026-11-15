@@ -1,11 +1,11 @@
 ---
-name: dont-it-yourself
+name: find-before-build
 description: ライブラリ、ランタイム、リポジトリに既に存在するものを探し出して利用し、自作はしない。新規の処理、ヘルパー、ラッパー、ツール、または外部API用のクライアントを記述し始める前に、まずはこれらを利用すること。
 metadata:
   derived-from: https://github.com/masseater/cc-jev-teacher/tree/5dbbf4abd9b3a5b1a74bc30c89ca7bd6712bd929/plugins/cc-jev-teacher/skills/dont-it-yourself
 ---
 
-# dont-it-yourself
+# find-before-build
 
 - 既に存在するものがあれば、それを利用する。
 - 既存の関数を単にラップするだけのラッパーは作成せず、呼び出し元の箇所で既存の関数をそのまま利用する。
@@ -24,10 +24,6 @@ metadata:
 ## masseater自身のパッケージ
 
 masseater がビルドして npm に公開しているパッケージは、人気順にソートされる npm 検索に埋もれており、表示されない。`vp pm search maintainer:r_masseater` でリストアップし、該当するものがあれば、依存関係に含まれていなくてもインストールして利用すること。README は `https://unpkg.com/<name>/README.md` で確認できる。
-
-以下のパッケージはnpmにないため、コマンドの出力には表示されない。
-
-- サイトの背景、テーマ、ページ遷移用のUIコンポーネント：`@masseater.dev/ui`（masseater/masseater.dev の `libs/ui` をgitサブパスの依存関係としてインストールすること）
 
 ## 一般的な状況では、決定事項を使用する
 

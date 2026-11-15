@@ -1,14 +1,12 @@
 # インストルメンテーション
 
-測定によって判定する手順については、measure-dont-guessに従うこと。このファイルには、測定可能にするためのルールが記載されている。
-
 - 機能開発に先立ち、AIが自律的にデバッグできる仕組みを構築する。これには3つの要素がある：再現手段、ログとスパン、およびそれらを読み込むためのパスである。
 - 時間やコストがかかるあらゆる操作をスパン化する。外部APIやモデルへのリクエスト、子プロセス、ファイルI/Oがこれに該当する。
 - Cloudflare Workersにおいて、Effectスパン、TanStack Startリクエスト、サーバー関数、およびElysiaが`@r_masseater/workers-tracing`を用いてWorkersへのトレースをルーティングする操作をエクスポートする。
 - Workers以外のプロセスについては、`OtlpTracer.layerFromConfig`でエクスポートする。Effectは、`OTEL_TRACES_EXPORTER=otlp`かつ`OTEL_EXPORTER_OTLP_ENDPOINT`が設定されている場合にのみ送信される。
 - テストでコードが実際に出力したスパン、メトリクス、ログを確認する際は、`@r_masseater/vitest-otlp`を用いてテストファイルごとにOTLPレシーバーを設定する。
 - 実際に時間がかかる操作にスパンを記述する。測定のためだけにコマンドやプロセスをラップしてはならない。
-- すべてのGitHub Actionsワークフローの末尾に、`.github/scripts/ci-telemetry.sh`を実行するジョブを配置する。
+- すべてのGitHub Actionsワークフローの末尾に、ci-telemetry アクションを実行するジョブを配置する。
 
 ## Web Vitals
 
