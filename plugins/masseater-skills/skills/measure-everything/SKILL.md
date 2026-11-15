@@ -44,7 +44,7 @@ Vitest の実行期間中は、[`experimental.openTelemetry`](https://vitest.dev
 
 Playwright テストでは、[Playwright OpenTelemetry](https://endform.dev/blog/introducing-playwright-opentelemetry) を使用すること。テストとそのステップはスパンとなり、トレースのコンテキストはブラウザのリクエストを通じてアプリに到達する。
 
-OpenRouter 経由のモデル呼び出しでは、設定で [Broadcast](https://openrouter.ai/docs/guides/features/broadcast/otel-collector) を有効にせよ。これにより、コード変更なしに各呼び出しのコスト、トークン、レイテンシが OTLP 経由で送信される。
+AI Gateway 経由のモデル呼び出しでは、ゲートウェイに OpenTelemetry エクスポーター（`AI.Gateway` の `otel`。[OpenTelemetry](https://developers.cloudflare.com/ai-gateway/observability/otel-integration/) を参照）を設定せよ。これにより、各呼び出しのモデル、トークン、コスト見積もり、レイテンシが、コード変更なしに OTLP 経由で送信される。
 
 Claude Code セッションでは、設定で通常の `OTEL_*` 変数を用いて `CLAUDE_CODE_ENABLE_TELEMETRY=1` を設定せよ。[モニタリングガイド](https://code.claude.com/docs/en/monitoring-usage) に記載されている通り、メトリクスとイベントがエクスポートされる。トレースはベータ版であり、`CLAUDE_CODE_ENHANCED_TELEMETRY_BETA=1` も必要である。
 

@@ -75,11 +75,18 @@ Pythonを使用しないこと。コード、スクリプト、CI、検証、ま
 - 環境変数には、環境ごとに変更される値のみを設定すること。コードや Alchemy の設定で変更されない値、またはツールに設定がある場合はフラグに値を設定すること。環境変数を追加するたびに、どの環境に何を設定するかの考慮事項が追加される。
 - Alchemy に不足している設定については、Alchemy をパッチするのではなく、カスタムリソースを定義すること。
 
+## モデルの呼び出し
+
+- APIキーが必要なすべてのモデル呼び出しをCloudflare AI Gateway経由で送信する。Workerの外では、Workers AI Read権限を持つCloudflare APIトークンを使用して、`https://api.cloudflare.com/client/v4/accounts/<account>/ai/v1/chat/completions` のREST APIを呼び出し、`cf-aig-gateway-id` ヘッダーでゲートウェイを指定する。Workerの内部では、`gateway` オプションを指定してAIバインディングを使用する。
+- リポジトリ内でOpenRouterや個別のモデルプロバイダーのAPIキーを使用しないこと。ゲートウェイを1つにまとめれば、ログ、キャッシュ、レート制限、課金を一箇所で管理でき、さらにクレデンシャルブローカーがCIにCloudflareトークンをすでに渡している。
+- Workers AIモデル（`@cf/...`）を優先する。アカウント上のWorkers AIの利用分として請求される。サードパーティ製モデルにはUnified Billingのクレジットが必要であり、クレジットはオーナーの承認がある場合にのみ購入する。
+- ゲートウェイはダッシュボードではなく、Alchemyスタック内で `AI.Gateway` として管理する。公開するライブラリは利用者のために他のプロバイダーへの対応を残してよいが、リポジトリ自体はそれを利用しない。オーナーの長期トークンを利用するClaude Agent SDK経由のClaudeはAPIキーを必要としないため、このルールは適用されない。
+
 ## CI
 
 - ワークフローのステップについては、masseater/typescript-template の `.github/actions/` にある複合アクション（verify, autofix, skills-lock, update-branches, credentials, ci-telemetry）を `masseater/typescript-template/.github/actions/<名前>@<sha>` として参照すること。ステップが各リポジトリにコピーされる場合、すべての修正は各リポジトリの書き換えを意味する。renovate は sha を bump する。
 - リポジトリ固有のツール（go、weaver、apt の依存関係など）をそのリポジトリの `.github/actions/setup` に配置し、ジョブからは `$/.github/actions/setup` として呼び出すこと。actionlint はまだ `$/` を認識していないため、`.github/actionlint.yaml` のその1ケースのみを無視すること。
-- credentials アクションは、credentials.masseater.dev から Cloudflare、OpenRouter、および Claude のトークンを受け取る。これらを GitHub Secrets に配置しないこと。
+- credentials アクションは、credentials.masseater.dev から Cloudflare と Claude のトークンを受け取る。これらを GitHub Secrets に配置しないこと。
 - ボットがブランチにプッシュするワークフロー（autofix, skills-lock, update-branches）は、ブローカーが発行した GitHub App トークンでプッシュする。`GITHUB_TOKEN` でプッシュした場合、`pull_request` の `up-to-date` が承認待ちを停止し（action_required）、PR はマージされないままとなる。ブローカーはワークフローのファイル名で権限を付与するため、ボットのワークフローを追加する際は、masseater.dev の `credential-grants.ts` にある `WORKFLOW_GITHUB_GRANTS` にも追加すること。
 - ボットの PR は自動マージで開く。main advanced で遅延した PR については、`update-branches.yml` が main を取り込む。
 - `.claude/skills` は `.agents/skills` へのリンクであるため、`.agents/skills/.gitkeep` を追跡すること。リンクターゲットがない場合、複合アクションを取り込む際に Actions が失敗する。
