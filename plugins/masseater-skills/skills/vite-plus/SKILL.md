@@ -6,7 +6,7 @@ description: Vite+ の `vp` でインストール、実行、確認、テスト�
 # vite-plus
 
 - 使用方法については、インストール済みバージョンの公式 `node_modules/vite-plus/AGENTS.md` を読み、それに従うこと。詳細な引数は `vp help`、`vp <command> --help`、および `node_modules/vite-plus/docs` に任せる。
-- コマンドは `vp` 経由で実行する。`pnpm`、`pnpx`、`npx` を直接使用せず、生成されたブロックや他のツールのドキュメント内の `pnpm exec` および `pnpm dlx` は `vp exec` および `vp dlx` に置き換えること。
+- コマンドは `vp` 経由で実行する。`pnpm`、`pnpx`、`npx` を直接使用しないこと。
 - `vp run verify` がパスすれば作業完了となる。
 
 ## このスキルが必要な理由と、実現すべき状態
