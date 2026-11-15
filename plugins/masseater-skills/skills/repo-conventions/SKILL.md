@@ -81,7 +81,7 @@ Pythonを使用しないこと。コード、スクリプト、CI、検証、ま
 ## CI
 
 - ワークフローのステップについては、masseater/typescript-template の `.github/actions/` にある複合アクション（verify, autofix, skills-lock, update-branches, credentials, ci-telemetry）を `masseater/typescript-template/.github/actions/<名前>@<sha>` として参照すること。ステップが各リポジトリにコピーされる場合、すべての修正は各リポジトリの書き換えを意味する。renovate は sha を bump する。
-- main への push で動く job は、後の push が同じ仕事をやり直すので、最新のコミットの分だけ動けばよい。こうした job には job の `concurrency` に `cancel-in-progress: true` を付け、新しい push が古い run を取り消すようにする。ワークフロー全体の `concurrency` で取り消すと走っているデプロイまで止まるので、job ごとに付ける。デプロイとリリースの job は途中で止めると半端な状態が残るので `cancel-in-progress` を付けず、待っている古い run だけを新しい run に置き換えさせる。`queue: max` は古い run から 1 本ずつ通し、push が続くと run が何時間も積み上がるので付けない。
+- main への push で動く job は、後の push が同じ仕事をやり直すので、最新のコミットの分だけ動けばよい。こうした job には job の `concurrency` に `cancel-in-progress: true` を付け、新しい push が古い run を取り消すようにする。ワークフロー全体の `concurrency` で取り消すと走っているデプロイまで止まるので、job ごとに付ける。デプロイとリリースの job は途中で止めると半端な状態が残るので `cancel-in-progress` を付けず、待っている古い run だけを新しい run に置き換えさせる。
 - リポジトリ固有のツール（go、weaver、apt の依存関係など）をそのリポジトリの `.github/actions/setup` に配置し、ジョブからは `$/.github/actions/setup` として呼び出すこと。actionlint はまだ `$/` を認識していないため、`.github/actionlint.yaml` のその1ケースのみを無視すること。
 - credentials アクションは、credentials.masseater.dev から Cloudflare と Claude のトークンを受け取る。これらを GitHub Secrets に配置しないこと。
 - ボットがブランチにプッシュするワークフロー（autofix, skills-lock, update-branches）は、ブローカーが発行した GitHub App トークンでプッシュする。`GITHUB_TOKEN` でプッシュした場合、`pull_request` の `up-to-date` が承認待ちを停止し（action_required）、PR はマージされないままとなる。ブローカーはワークフローのファイル名で権限を付与するため、ボットのワークフローを追加する際は、masseater.dev の `credential-grants.ts` にある `WORKFLOW_GITHUB_GRANTS` にも追加すること。
