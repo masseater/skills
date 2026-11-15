@@ -11,6 +11,7 @@ metadata:
 - 既存の関数を単にラップするだけのラッパーは作成せず、呼び出し元の箇所で既存の関数をそのまま利用する。
 - 既存の機能でカバーされていない部分のみを書き込む。
 - カバーされていない部分については、拡張APIやオプションがあればそれらを追加する。
+- 既存のライブラリを、ライブラリの一般的な用途に合わせてコードを変更することでのみ利用できる場合は、無理にコードを一致させないこと。masseater-ecosystemに従い、代わりに専用のライブラリを構築するかどうか判断すること。
 
 単にラップするだけのラッパーは、自作したものと同様のメンテナンス負荷がかかる。拡張APIで追加した部分は、既存の機能の作者が意図した形で動作し続ける。
 
@@ -18,20 +19,15 @@ metadata:
 
 このスキルが必要な理由は、AIにとって「書く」ことは「探す」ことよりも高速だからである。AIの知識は学習した時点で途切れるため、後から出てきたものや、検索で見落としたものは存在しないという前提で、自ら構築を開始する。構築したもののメンテナンスやバグは、それを構築した者が負担することになる。
 
-このスキルが実現すべき状態とは、リポジトリ内のコードが、既存の機能でカバーされていない部分のみで構成されていることである。
+このスキルが実現すべき状態は、リポジトリ内のすべてのコードが既存のものを確認した上で記述されており、そのままでも利用できたはずの既存の要素をリビルドしたりラップしたりするコードが存在しないことである。
 
 ## masseater自身のパッケージ
 
-masseaterがビルドしてnpmに公開するパッケージは、人気順にソートされるnpm検索に埋もれてしまい、表示されない。以下のような状況では、依存関係に含まれていなくてもインストールして利用すること。READMEは `https://unpkg.com/<名前>/README.md` で閲覧できる。
+masseater がビルドして npm に公開しているパッケージは、人気順にソートされる npm 検索に埋もれており、表示されない。`vp pm search maintainer:r_masseater` でリストアップし、該当するものがあれば、依存関係に含まれていなくてもインストールして利用すること。README は `https://unpkg.com/<name>/README.md` で確認できる。
 
-- Cloudflare Workersでは、Effectのスパン、TanStackのStartリクエストおよびサーバー関数、ElysiaのWorkersへのルーティングトレースをエクスポートする：`@r_masseater/workers-tracing`
-- テスト内でOTLPのトレース、メトリクス、ログを受け取り、そのコードが実際に出力したテレメトリを確認する：`@r_masseater/vitest-otlp`
-- Lighthouseのユーザーフローを用いて、ページ読み込みおよび同一オリジンへのナビゲーションのCore Web Vitalsを複数回測定し、中央値が合格スコアに達しなかった場合に失敗させる：`@r_masseater/web-vitals-flow`
-- 安価な判定モデルを用いて、プロンプトインジェクションがテキスト内に隠されているか、またどこに隠されているかを判定する：`@r_masseater/injection-bisect`
-- 平易な英語で記述されたルールを用いて、判定モデルで判定し、Lintする：`@r_masseater/oxlint-plugin-decision`。既製のルールセットは `@r_masseater/oxlint-plugin-decision-presets` である。
-- 型情報を必要とするESLintルールを、oxlintのJSプラグインとして実行する：`@r_masseater/oxlint-typed-rules`
-- Markdownで記述された記事を、インフォボックス、目次、カテゴリを備えたWikipedia風の形式で提示する：`sloppedia`
-- サイトの背景、テーマ、ページ遷移用のUIコンポーネント：`@masseater.dev/ui`（npmには含まれない。masseater/masseater.dev の `libs/ui` をgitサブパスの依存関係としてインストールすること）
+以下のパッケージはnpmにないため、コマンドの出力には表示されない。
+
+- サイトの背景、テーマ、ページ遷移用のUIコンポーネント：`@masseater.dev/ui`（masseater/masseater.dev の `libs/ui` をgitサブパスの依存関係としてインストールすること）
 
 ## 一般的な状況では、決定事項を使用する
 
@@ -42,17 +38,17 @@ masseaterがビルドしてnpmに公開するパッケージは、人気順に�
 - 日付、時刻、タイムゾーン、期間の計算とフォーマット：`DateTime`、`Duration`
 - リトライとバックオフ：`Schedule.exponential` および `Schedule.jittered` を用いた `Effect.retry`
 - cron式と次回実行時のパース：`Cron`
-- base64およびhexのエンコードとデコード：`Encoding`
-- UUID、乱数、ランダム文字列：`crypto.randomUUID`、`Random`、`Encoding.randomHex`
+- base64およびhexのエンコード・デコード：`effect/encoding` からの `Base64`、`Base64Url`、`Hex`
+- UUID、乱数、ランダム文字列：`crypto.randomUUID`、`Random`、または`Hex.encode`に渡された`crypto.getRandomValues`のバイト
 - ハッシュ、署名、暗号化：`crypto.subtle`
 - 並行性制限、ロック、キュー、キャッシュ：`Semaphore`、`Queue`、`Cache`
 - 値の形状による分岐：`Match`
 - YAMLの読み書き：`yaml`
 - Markdownのパースと変換：`remark`
 - シェルに渡された文字列のエスケープ：`shell-quote`
-- CLI引数とサブコマンドのパース：`citty`
-- 外部HTTPのモック化：`msw`
-- Effectから外部APIやSaaSを呼び出すクライアント：`@distilled.cloud/<サービス名>` に生成済みのSDKがある場合はそれを使用する。ない場合は、`@effect/openapi-generator` から公開済みのOpenAPIを `openapigen` で生成する。
+- CLI引数およびサブコマンドの解析：`effect/cli`の`Command`、`Flag`、`Argument`
+- 外部HTTPをモックする：`HttpClient.make`で`HttpClient`を作成し、テストで提供する
+- Effectから外部APIやSaaSを呼び出すクライアントは、ラッパーを手動で記述しない。以下の順に選択する。1. 公式のEffectパッケージ。2. `@distilled.cloud/<service name>` 内の生成済みSDK（Cloudflareの場合は `@distilled.cloud/cloudflare`）。3. `@effect/openapi-generator` の `openapigen` を用いて、公開されているOpenAPIからクライアントを生成する。
 - SQLの構築とマイグレーション：`drizzle-orm`
 - 認証、セッション、パスキー、APIキー：`better-auth`
 - TOTP：`otpauth`
