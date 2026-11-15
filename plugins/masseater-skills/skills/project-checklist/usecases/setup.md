@@ -11,7 +11,6 @@
 ユーザーに値を尋ねる。
 
 ```sh
-gh secret set OPENROUTER_API_KEY --repo "$REPO"
 gh secret set CLAUDE_CODE_OAUTH_TOKEN --repo "$REPO"
 gh secret set CLOUDFLARE_ACCOUNT_ID --repo "$REPO"
 gh secret set CLOUDFLARE_API_TOKEN --repo "$REPO"
@@ -19,7 +18,6 @@ gh secret set CLOUDFLARE_API_TOKEN --repo "$REPO"
 
 | 名前 | 目的 |
 | ------------------------- | --------------------------------------------------------- |
-| `OPENROUTER_API_KEY` | 検証ワークフローにおける oxlint-plugin-decision |
 | `CLAUDE_CODE_OAUTH_TOKEN` | Claude Code は検証失敗時に自動的に修正を行う |
 | `CLOUDFLARE_ACCOUNT_ID` | デプロイターゲットと Alchemy の状態を保持するアカウント |
 | `CLOUDFLARE_API_TOKEN` | 同一アカウント用の API トークン |
