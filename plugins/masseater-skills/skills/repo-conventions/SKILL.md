@@ -95,7 +95,8 @@ Pythonを使用しないこと。コード、スクリプト、CI、検証、ま
 - リポジトリ固有のツール（go、weaver、apt の依存関係など）をそのリポジトリの `.github/actions/setup` に配置し、ジョブからは `$/.github/actions/setup` として呼び出すこと。actionlint はまだ `$/` を認識していないため、`.github/actionlint.yaml` のその1ケースのみを無視すること。
 - credentials アクションは、credentials.masseater.dev から Cloudflare と Claude のトークンを受け取る。これらを GitHub Secrets に配置しないこと。
 - ボットがブランチにプッシュするワークフロー（autofix, skills-lock, update-branches）は、ブローカーが発行した GitHub App トークンでプッシュする。`GITHUB_TOKEN` でプッシュした場合、`pull_request` の `up-to-date` が承認待ちを停止し（action_required）、PR はマージされないままとなる。ブローカーはワークフローのファイル名で権限を付与するため、ボットのワークフローを追加する際は、masseater.dev の `credential-grants.ts` にある `WORKFLOW_GITHUB_GRANTS` にも追加すること。
-- ボットの PR は自動マージで開く。main advanced で遅延した PR については、`update-branches.yml` が main を取り込む。
+- ボットの PR は自動マージで開く。
+- `update-branches.yml` は、自動マージを有効にしたプルリクエストのマージキューである。これは、GitHub のマージキューが組織所有のリポジトリでのみ機能するためである。キューに登録されたプルリクエストが main の最新状態であり、必要なチェックが失敗していない場合、ボットは待機する。そうでない場合は、main から遅れたプルリクエストのうち、最初に自動マージを有効にした1件のみを更新する。main から遅れたすべてのプルリクエストが一斉に更新されると、競り合いになり、チェック速度の遅いプルリクエストが勝利することはない。`up-to-date` が失敗するか、自動マージが有効な状態になると、ブローカーが `pull_request_target` や `workflow_run` にトークンを発行しないため、`workflow_dispatch` を通じてキューが再始動する。スレッドは独自のプルリクエストを最新状態に更新せず、マージを凍結することもない。自動マージを有効にし、順序はキューに任せる。
 - `.claude/skills` は `.agents/skills` へのリンクであるため、`.agents/skills/.gitkeep` を追跡すること。リンクターゲットがない場合、複合アクションを取り込む際に Actions が失敗する。
 
 ## PR とマージ
