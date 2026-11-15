@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { ChatAvatar } from "./chat-avatar";
 import type { Avatar } from "./chat-avatar";
 
-type Post = Readonly<{
+export type Post = Readonly<{
   author: string;
   avatar: Avatar;
   time: string;
@@ -12,7 +12,7 @@ type Post = Readonly<{
   reactions: readonly Readonly<{ emoji: string; count: number; by: "me" | "others" }>[];
 }>;
 
-const ChatPost = ({
+export const ChatPost = ({
   post,
   placement,
 }: Readonly<{ post: Post; placement: "head" | "follow" }>): ReactNode => (
@@ -31,5 +31,3 @@ const ChatPost = ({
   </li>
 );
 
-export { ChatPost };
-export type { Post };

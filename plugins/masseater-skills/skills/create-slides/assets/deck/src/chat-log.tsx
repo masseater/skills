@@ -10,7 +10,7 @@ const placementOf = (previous: string | undefined, author: string): "head" | "fo
   return "head";
 };
 
-const ChatLog = ({ posts }: Readonly<{ posts: readonly Post[] }>): ReactNode => {
+export const ChatLog = ({ posts }: Readonly<{ posts: readonly Post[] }>): ReactNode => {
   const previousAuthors = ["", ...posts.map((post) => post.author)];
   return (
     <ol className="slack-log">
@@ -25,4 +25,3 @@ const ChatLog = ({ posts }: Readonly<{ posts: readonly Post[] }>): ReactNode => 
   );
 };
 
-export { ChatLog };

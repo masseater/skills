@@ -1,6 +1,6 @@
-type ItemState = "done" | "on" | "todo";
+export type ItemState = "done" | "on" | "todo";
 
-const progressState = (index: number, current: number): ItemState => {
+export const progressState = (index: number, current: number): ItemState => {
   if (index < current) {
     return "done";
   }
@@ -10,12 +10,10 @@ const progressState = (index: number, current: number): ItemState => {
   return "todo";
 };
 
-const pickState = (picked: boolean): ItemState => {
+export const pickState = (picked: boolean): ItemState => {
   if (picked) {
     return "on";
   }
   return "todo";
 };
 
-export { pickState, progressState };
-export type { ItemState };

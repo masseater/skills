@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-type PictogramName =
+export type PictogramName =
   | "arm"
   | "brain"
   | "book"
@@ -123,11 +123,11 @@ const PATHS: Readonly<Record<PictogramName, readonly string[]>> = {
   ],
 };
 
-type PictogramPlace = Readonly<{ left: string; top: string; size: string }>;
+export type PictogramPlace = Readonly<{ left: string; top: string; size: string }>;
 
 const FILL: PictogramPlace = { left: "0", top: "0", size: "100%" };
 
-const Pictogram = ({
+export const Pictogram = ({
   name,
   place = FILL,
 }: Readonly<{ name: PictogramName; place?: PictogramPlace }>): ReactNode => (
@@ -146,5 +146,3 @@ const Pictogram = ({
   </svg>
 );
 
-export { Pictogram };
-export type { PictogramName, PictogramPlace };

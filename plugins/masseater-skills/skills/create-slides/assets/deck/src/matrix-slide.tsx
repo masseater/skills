@@ -4,7 +4,7 @@ import { Frame } from "./frame";
 import { MatrixPoint } from "./matrix-point";
 import type { Point } from "./matrix-point";
 
-const MatrixSlide = ({
+export const MatrixSlide = ({
   xLabel,
   yLabel,
   quadrants,
@@ -33,4 +33,3 @@ const MatrixSlide = ({
   </Frame>
 );
 
-export { MatrixSlide };

@@ -1,11 +1,11 @@
-type DeckView = "present" | "grid";
+export type DeckView = "present" | "grid";
 
-type DeckState = Readonly<{ view: DeckView; current: number; step: number }>;
+export type DeckState = Readonly<{ view: DeckView; current: number; step: number }>;
 
-const FORWARD = 1;
+export const FORWARD = 1;
 const BACKWARD = -1;
-const FIRST = 0;
-const OUTSIDE = -1;
+export const FIRST = 0;
+export const OUTSIDE = -1;
 
 const STEP_KEYS: ReadonlyMap<string, number> = new Map([
   ["ArrowRight", FORWARD],
@@ -57,7 +57,7 @@ const moved = (state: DeckState, direction: number, steps: readonly number[]): D
   return backward(state, steps);
 };
 
-const afterKey = (state: DeckState, key: string, steps: readonly number[]): DeckState => {
+export const afterKey = (state: DeckState, key: string, steps: readonly number[]): DeckState => {
   const toView = VIEW_KEYS.get(key);
   if (typeof toView === "function") {
     return { ...state, view: toView(state.view) };
@@ -69,7 +69,7 @@ const afterKey = (state: DeckState, key: string, steps: readonly number[]): Deck
   return moved(state, direction, steps);
 };
 
-const afterClick = (
+export const afterClick = (
   state: DeckState,
   click: Readonly<{ index: number; step: number }>,
   steps: readonly number[],
@@ -83,12 +83,10 @@ const afterClick = (
   return { view: "present", current: click.index, step: FIRST };
 };
 
-const stepOf = (index: number, state: DeckState, steps: readonly number[]): number => {
+export const stepOf = (index: number, state: DeckState, steps: readonly number[]): number => {
   if (index === state.current) {
     return state.step;
   }
   return lastStep(steps, index);
 };
 
-export { afterClick, afterKey, FIRST, FORWARD, OUTSIDE, stepOf };
-export type { DeckState, DeckView };

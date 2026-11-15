@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { Frame } from "./frame";
 
-const QuoteSlide = ({
+export const QuoteSlide = ({
   children,
   cite,
 }: Readonly<{ children: ReactNode; cite: string }>): ReactNode => (
@@ -14,4 +14,3 @@ const QuoteSlide = ({
   </Frame>
 );
 
-export { QuoteSlide };

@@ -4,7 +4,7 @@ import { Frame } from "./frame";
 import { OptionCard } from "./option-card";
 import type { Option } from "./option-card";
 
-const OptionsSlide = ({
+export const OptionsSlide = ({
   title,
   options,
   recommended,
@@ -19,4 +19,3 @@ const OptionsSlide = ({
   </Frame>
 );
 
-export { OptionsSlide };

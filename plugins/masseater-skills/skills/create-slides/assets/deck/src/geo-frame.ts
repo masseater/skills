@@ -4,11 +4,11 @@ import type { MultiPoint } from "geojson";
 import { countries } from "./geo-land";
 import type { GeoPoint, MapView } from "./geo-map-data";
 
-type ScreenPoint = readonly [left: number, top: number];
+export type ScreenPoint = readonly [left: number, top: number];
 
-type LandShape = Readonly<{ key: string; id: string; outline: string }>;
+export type LandShape = Readonly<{ key: string; id: string; outline: string }>;
 
-type GeoFrame = Readonly<{
+export type GeoFrame = Readonly<{
   width: number;
   height: number;
   lands: readonly LandShape[];
@@ -19,7 +19,7 @@ const WIDTH = 1000;
 const STEPS = 8;
 const SAMPLES = 9;
 const ZERO = 0;
-const ORIGIN: ScreenPoint = [ZERO, ZERO];
+export const ORIGIN: ScreenPoint = [ZERO, ZERO];
 
 const edgePoints = (view: MapView): MultiPoint => ({
   type: "MultiPoint",
@@ -35,7 +35,7 @@ const edgePoints = (view: MapView): MultiPoint => ({
   }).flat(),
 });
 
-const frameOf = (view: MapView): GeoFrame => {
+export const frameOf = (view: MapView): GeoFrame => {
   const edges = edgePoints(view);
   const projection = geoMercator().fitWidth(WIDTH, edges);
   const [[, top], [, bottom]] = geoPath(projection).bounds(edges);
@@ -61,5 +61,3 @@ const frameOf = (view: MapView): GeoFrame => {
   };
 };
 
-export { frameOf, ORIGIN };
-export type { GeoFrame, LandShape, ScreenPoint };

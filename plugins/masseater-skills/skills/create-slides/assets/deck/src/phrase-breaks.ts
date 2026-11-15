@@ -4,7 +4,7 @@ const parser = loadDefaultJapaneseParser();
 const BREAK = "\u200B";
 const JAPANESE = /[\p{scx=Hiragana}\p{scx=Katakana}\p{scx=Han}]/u;
 
-const insertPhraseBreaks = (root: HTMLElement | null): void => {
+export const insertPhraseBreaks = (root: HTMLElement | null): void => {
   if (!root) return;
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   for (let node = walker.nextNode(); node; node = walker.nextNode()) {
@@ -16,4 +16,3 @@ const insertPhraseBreaks = (root: HTMLElement | null): void => {
   }
 };
 
-export { insertPhraseBreaks };

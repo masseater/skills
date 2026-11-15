@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { Frame } from "./frame";
 
-const KeywordSlide = ({
+export const KeywordSlide = ({
   word,
   kicker,
   meaning,
@@ -14,4 +14,3 @@ const KeywordSlide = ({
   </Frame>
 );
 
-export { KeywordSlide };

@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { Frame } from "./frame";
 
-const TwoColumnSlide = ({
+export const TwoColumnSlide = ({
   title,
   text,
   code,
@@ -16,4 +16,3 @@ const TwoColumnSlide = ({
   </Frame>
 );
 
-export { TwoColumnSlide };

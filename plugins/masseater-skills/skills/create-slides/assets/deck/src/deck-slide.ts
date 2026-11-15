@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-type DeckSlide = Readonly<{
+export type DeckSlide = Readonly<{
   id: string;
   name: string;
   topic: string;
@@ -9,4 +9,3 @@ type DeckSlide = Readonly<{
   point?: string;
 }>;
 
-export type { DeckSlide };

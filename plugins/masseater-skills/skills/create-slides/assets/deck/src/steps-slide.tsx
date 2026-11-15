@@ -4,7 +4,7 @@ import { Frame } from "./frame";
 import type { Step } from "./step";
 import { StepItem } from "./step-item";
 
-const StepsSlide = ({
+export const StepsSlide = ({
   title,
   steps,
   current,
@@ -19,4 +19,3 @@ const StepsSlide = ({
   </Frame>
 );
 
-export { StepsSlide };

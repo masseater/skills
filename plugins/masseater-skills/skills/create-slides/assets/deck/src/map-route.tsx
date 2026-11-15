@@ -17,7 +17,7 @@ const arrowHead = ([fromX, fromY]: ScreenPoint, [toX, toY]: ScreenPoint): string
   return `M${String(toX)} ${String(toY)} L${corner(SPREAD)} L${corner(-SPREAD)} Z`;
 };
 
-const MapRoute = ({ frame, route }: Readonly<{ frame: GeoFrame; route: Route }>): ReactNode => {
+export const MapRoute = ({ frame, route }: Readonly<{ frame: GeoFrame; route: Route }>): ReactNode => {
   const shape = useMemo(() => {
     const points = route.path.map((point) => frame.place(point));
     const line = `M${points.map((point) => point.join(" ")).join(" L")}`;
@@ -33,4 +33,3 @@ const MapRoute = ({ frame, route }: Readonly<{ frame: GeoFrame; route: Route }>)
   );
 };
 
-export { MapRoute };

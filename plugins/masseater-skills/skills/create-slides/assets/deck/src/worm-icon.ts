@@ -9,6 +9,5 @@ const WORM_SVG = [
   "</svg>",
 ].join("");
 
-const WORM_ICON = `data:image/svg+xml,${encodeURIComponent(WORM_SVG)}`;
+export const WORM_ICON = `data:image/svg+xml,${encodeURIComponent(WORM_SVG)}`;
 
-export { WORM_ICON };

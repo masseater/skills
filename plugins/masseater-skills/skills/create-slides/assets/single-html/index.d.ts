@@ -1,18 +1,16 @@
 import type { ViteUserConfigFnObject } from "vite-plus";
-type Page = Readonly<{
+export type Page = Readonly<{
     title: string;
     script: string;
     style: string;
     htmlPath: string;
 }>;
-type Output = Page & Readonly<{
+export type Output = Page & Readonly<{
     pdfPath: string;
 }>;
-type Decks = Readonly<Record<string, Page | Output>>;
-type Paths = Readonly<{
+export type Decks = Readonly<Record<string, Page | Output>>;
+export type Paths = Readonly<{
     entryPath: string;
     outDir: string;
 }>;
-declare const singleHtmlConfig: (paths: Paths, decks: Decks, define: Readonly<Record<string, string>>) => ViteUserConfigFnObject;
-export { singleHtmlConfig };
-export type { Decks, Output, Page, Paths };
+export declare const singleHtmlConfig: (paths: Paths, decks: Decks, define: Readonly<Record<string, string>>) => ViteUserConfigFnObject;

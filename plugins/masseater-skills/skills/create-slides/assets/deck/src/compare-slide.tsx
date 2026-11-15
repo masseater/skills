@@ -4,7 +4,7 @@ import { CompareSide } from "./compare-side";
 import type { Side } from "./compare-side";
 import { Frame } from "./frame";
 
-const CompareSlide = ({
+export const CompareSlide = ({
   title,
   before,
   after,
@@ -18,4 +18,3 @@ const CompareSlide = ({
   </Frame>
 );
 
-export { CompareSlide };

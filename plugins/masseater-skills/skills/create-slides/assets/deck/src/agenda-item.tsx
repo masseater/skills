@@ -5,7 +5,7 @@ import { progressState } from "./item-state";
 const NUMBER_LENGTH = 2;
 const ONE = 1;
 
-const AgendaItem = ({
+export const AgendaItem = ({
   item,
   index,
   current,
@@ -16,4 +16,3 @@ const AgendaItem = ({
   </li>
 );
 
-export { AgendaItem };

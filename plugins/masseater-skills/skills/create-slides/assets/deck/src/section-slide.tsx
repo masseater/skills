@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { Frame } from "./frame";
 
-const SectionSlide = ({
+export const SectionSlide = ({
   number,
   title,
 }: Readonly<{ number: string; title: ReactNode }>): ReactNode => (
@@ -12,4 +12,3 @@ const SectionSlide = ({
   </Frame>
 );
 
-export { SectionSlide };

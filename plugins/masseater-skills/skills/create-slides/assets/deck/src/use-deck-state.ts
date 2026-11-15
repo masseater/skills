@@ -25,7 +25,7 @@ const clickStep = (target: unknown, clientX: number): number => {
   return Math.sign(clientX - left - width / HALVES) || FORWARD;
 };
 
-const useDeckState = (view: DeckView, steps: readonly number[]): DeckState => {
+export const useDeckState = (view: DeckView, steps: readonly number[]): DeckState => {
   const [state, setState] = useState<DeckState>({ view, current: FIRST, step: FIRST });
 
   useEffect(() => {
@@ -56,4 +56,3 @@ const useDeckState = (view: DeckView, steps: readonly number[]): DeckState => {
   return state;
 };
 
-export { useDeckState };

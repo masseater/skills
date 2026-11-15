@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { Frame } from "./frame";
 
-const BulletsSlide = ({
+export const BulletsSlide = ({
   title,
   items,
 }: Readonly<{ title: ReactNode; items: readonly string[] }>): ReactNode => (
@@ -18,4 +18,3 @@ const BulletsSlide = ({
   </Frame>
 );
 
-export { BulletsSlide };

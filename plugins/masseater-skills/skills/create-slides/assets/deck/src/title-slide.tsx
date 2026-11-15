@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { Frame } from "./frame";
 
-const TitleSlide = ({
+export const TitleSlide = ({
   title,
   subtitle,
 }: Readonly<{ title: ReactNode; subtitle: ReactNode }>): ReactNode => (
@@ -12,4 +12,3 @@ const TitleSlide = ({
   </Frame>
 );
 
-export { TitleSlide };

@@ -1,12 +1,12 @@
-type GeoPoint = Readonly<{ lon: number; lat: number }>;
+export type GeoPoint = Readonly<{ lon: number; lat: number }>;
 
-type MapView = Readonly<{ west: number; east: number; south: number; north: number }>;
+export type MapView = Readonly<{ west: number; east: number; south: number; north: number }>;
 
-type MapTone = "plain" | "accent" | "alert";
+export type MapTone = "plain" | "accent" | "alert";
 
-type MapArea = Readonly<{ country: string; tone: MapTone }>;
+export type MapArea = Readonly<{ country: string; tone: MapTone }>;
 
-type MapRoute = Readonly<{
+export type MapRoute = Readonly<{
   id: string;
   path: readonly GeoPoint[];
   tone: MapTone;
@@ -14,7 +14,7 @@ type MapRoute = Readonly<{
   head: "arrow" | "none";
 }>;
 
-type MapPlace = Readonly<{
+export type MapPlace = Readonly<{
   id: string;
   at: GeoPoint;
   label: string;
@@ -25,11 +25,10 @@ type MapPlace = Readonly<{
   side: "right" | "left" | "top" | "bottom";
 }>;
 
-type GeoMapData = Readonly<{
+export type GeoMapData = Readonly<{
   view: MapView;
   areas: readonly MapArea[];
   routes: readonly MapRoute[];
   places: readonly MapPlace[];
 }>;
 
-export type { GeoMapData, GeoPoint, MapArea, MapPlace, MapRoute, MapTone, MapView };

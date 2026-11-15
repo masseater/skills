@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { AgendaItem } from "./agenda-item";
 import { Frame } from "./frame";
 
-const AgendaSlide = ({
+export const AgendaSlide = ({
   title,
   items,
   current,
@@ -18,4 +18,3 @@ const AgendaSlide = ({
   </Frame>
 );
 
-export { AgendaSlide };

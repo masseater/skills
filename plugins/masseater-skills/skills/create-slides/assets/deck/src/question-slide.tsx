@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { Frame } from "./frame";
 
-const QuestionSlide = ({
+export const QuestionSlide = ({
   children,
   lead,
 }: Readonly<{ children: ReactNode; lead: string }>): ReactNode => (
@@ -12,4 +12,3 @@ const QuestionSlide = ({
   </Frame>
 );
 
-export { QuestionSlide };

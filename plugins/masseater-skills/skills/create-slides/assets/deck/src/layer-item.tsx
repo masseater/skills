@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
-type Layer = Readonly<{ name: string; text: string; note: string }>;
+export type Layer = Readonly<{ name: string; text: string; note: string }>;
 
-const LayerItem = ({ layer }: Readonly<{ layer: Layer }>): ReactNode => (
+export const LayerItem = ({ layer }: Readonly<{ layer: Layer }>): ReactNode => (
   <li className="layer">
     <b>{layer.name}</b>
     <span>{layer.text}</span>
@@ -10,5 +10,3 @@ const LayerItem = ({ layer }: Readonly<{ layer: Layer }>): ReactNode => (
   </li>
 );
 
-export { LayerItem };
-export type { Layer };

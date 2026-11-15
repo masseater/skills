@@ -7,7 +7,7 @@ import { PointOverlay } from "./point-overlay";
 import { SlideContext } from "./slide-context";
 import { contentSteps } from "./slide-steps";
 
-const DeckItem = ({
+export const DeckItem = ({
   slide,
   index,
   total,
@@ -44,4 +44,3 @@ const DeckItem = ({
   );
 };
 
-export { DeckItem };

@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { Frame } from "./frame";
 
-const ClosingSlide = ({
+export const ClosingSlide = ({
   children,
   contact,
 }: Readonly<{ children: ReactNode; contact: string }>): ReactNode => (
@@ -12,4 +12,3 @@ const ClosingSlide = ({
   </Frame>
 );
 
-export { ClosingSlide };
