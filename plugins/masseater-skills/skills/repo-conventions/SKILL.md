@@ -67,7 +67,7 @@ Pythonを使用しないこと。コード、スクリプト、CI、検証、ま
 
 - 設定を含め、すべてをワークスペース内に配置すること。
 - ワークスペースをアプリ、ライブラリ、ツール、インフラに分割し、アプリのデプロイ設定はアプリに配置し、インフラのコンポーネントを使用すること。
-- FSDレイヤーのみをアプリの src/ 直下に配置すること。使用される場所の近くに配置し、再利用されるまでは展開しないこと。
+- アプリの src/ 直下には FSD のレイヤーだけを置くこと。スライスは操作と対象ごとに細かく分け、テストやスタイルを含めてスライスの中に置く。詳細は [`fsd`](references/fsd.md) に従うこと。
 - 定数、設定値、スキーマ、ルールIDを一箇所で定義し、それ以外の箇所からそれらを参照すること。
 
 ## コード
@@ -122,6 +122,7 @@ Pythonを使用しないこと。コード、スクリプト、CI、検証、ま
 
 適用対象のリポジトリでは、以下も参照すること。
 
+- [`fsd`](references/fsd.md)。Feature-Sliced Design のスライスの分け方、パブリック API、コロケーションのルール。
 - [`cloudflare`](references/cloudflare.md)。Cloudflare にデプロイするリポジトリ向けのルール。
 - [`oxlint-plugin-decision`](references/oxlint-plugin-decision.md)。`vp check` で判定ルールを使用するリポジトリ向けのルール。
 - [`instrumentation`](references/instrumentation.md)。スパン、CI 計測、および Web Vitals 向けのルール。Workers のトレースでは `@r_masseater/workers-tracing` を、テストでのテレメトリ確認では `@r_masseater/vitest-otlp` を、Web Vitals では `@r_masseater/web-vitals-flow` を使用する。
