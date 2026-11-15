@@ -69,8 +69,6 @@ export class Store {
     appendFileSync(this.writable("sessions", sessionId, ".jsonl"), lines);
   }
 
-  // 古い組を 1 つずつ落とすと毎回プロンプトの先頭が変わり、llama-server のプロンプトキャッシュが効かない。
-  // 上限を超えたときだけ、上限の半分まで一度に落とす
   history(sessionId: string, budget: number): TranslationPair[] {
     const p = this.file("sessions", sessionId, ".jsonl");
     const all = readJsonLines(p);

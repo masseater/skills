@@ -77,8 +77,8 @@
 
 ## 12. 不要なドキュメントと不要なコードコメントを削除する
 
-- はじめに：`vite.config.ts` のリントに `no-comments/disallowComments` がエラーとして表示されており、`oxlint-disable` と `eslint-disable` のみが許可されている。
-- 機能：`vp run verify` のリントで、コメントを含むコードが拒否される。
+- はじめに：`no-comments/disallowComments` は `vite.config.ts` のリントにおけるエラーであり、`verify` は `msch` を実行する。いずれも `oxlint-disable` など、msch が列挙するツールディレクティブのみを許可する。
+- 機能：`vp run verify` は、TypeScript や JavaScript に限らず、追跡対象のコード、マークアップ、設定、またはクエリファイル内のコメントを拒否する。
 - 古い構造：履歴や理由を記述したコメントやドキュメント、以前の構造を記述した README やドキュメント、およびマイグレーション中に書かれたメモがなくなっているかを確認する。
 
 ## 13. CI が差分とキャッシュを用いて効率的に動作する

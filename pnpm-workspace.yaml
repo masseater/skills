@@ -2,4 +2,5 @@ allowBuilds:
   "@anthropic-ai/claude-code": true
   "@openrouter/sdk": false
 minimumReleaseAgeExclude:
-  - "@r_masseater/msch@0.3.0 || 0.4.0"
+  - "@r_masseater/msch@0.9.0"
+  - "@r_masseater/oxlint-plugin-decision@0.5.0"
