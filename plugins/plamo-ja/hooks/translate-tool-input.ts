@@ -24,7 +24,6 @@ if (paths && store.isOn(sessionId, autoOn())) {
     renderLines(splitLines(text), emptyMessageState(), translateBatch),
   );
   if (changed) {
-    // 入力を書き換えた呼び出しは、決定が無いと auto mode に拒まれる
     writeHookOutput({
       hookEventName: "PreToolUse",
       permissionDecision: "allow",
