@@ -76,7 +76,7 @@ const deckConfig = ({ entryPath, outDir }, entry) => {
         build: { outDir, emptyOutDir: false, rolldownOptions: { input: entryPath } },
     };
 };
-const singleHtmlConfig = (paths, decks, define) => {
+export const singleHtmlConfig = (paths, decks, define) => {
     const names = Object.keys(decks);
     return defineConfig(({ mode }) => ({
         ...deckConfig(paths, decks[mode]),
@@ -92,4 +92,3 @@ const singleHtmlConfig = (paths, decks, define) => {
         },
     }));
 };
-export { singleHtmlConfig };

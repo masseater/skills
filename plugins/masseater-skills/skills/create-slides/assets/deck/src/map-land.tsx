@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import type { GeoFrame } from "./geo-frame";
 import type { MapArea, MapTone } from "./geo-map-data";
 
-const MapLand = ({
+export const MapLand = ({
   frame,
   areas,
 }: Readonly<{ frame: GeoFrame; areas: readonly MapArea[] }>): ReactNode => {
@@ -21,4 +21,3 @@ const MapLand = ({
   );
 };
 
-export { MapLand };

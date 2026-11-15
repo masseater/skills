@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { Frame } from "./frame";
 
-const NumberSlide = ({
+export const NumberSlide = ({
   value,
   unit,
   caption,
@@ -16,4 +16,3 @@ const NumberSlide = ({
   </Frame>
 );
 
-export { NumberSlide };

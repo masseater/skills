@@ -4,7 +4,7 @@ import { Frame } from "./frame";
 import { LayerItem } from "./layer-item";
 import type { Layer } from "./layer-item";
 
-const LayersSlide = ({
+export const LayersSlide = ({
   layers,
   direction,
 }: Readonly<{ layers: readonly Layer[]; direction: string }>): ReactNode => (
@@ -21,4 +21,3 @@ const LayersSlide = ({
   </Frame>
 );
 
-export { LayersSlide };

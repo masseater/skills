@@ -16,7 +16,7 @@ const nowSide = (current: number, events: number): "middle" | "end" => {
   return "end";
 };
 
-const RoadmapNow = ({
+export const RoadmapNow = ({
   label,
   current,
   events,
@@ -32,4 +32,3 @@ const RoadmapNow = ({
   );
 };
 
-export { RoadmapNow };

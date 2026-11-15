@@ -4,7 +4,7 @@ import { ChatLog } from "./chat-log";
 import type { Post } from "./chat-post";
 import { Frame } from "./frame";
 
-const ChatSlide = ({
+export const ChatSlide = ({
   channel,
   date,
   posts,
@@ -19,4 +19,3 @@ const ChatSlide = ({
   </Frame>
 );
 
-export { ChatSlide };

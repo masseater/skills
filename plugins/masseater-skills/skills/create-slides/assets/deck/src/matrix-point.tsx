@@ -3,9 +3,9 @@ import type { ReactNode } from "react";
 
 import { pickState } from "./item-state";
 
-type Point = Readonly<{ left: number; top: number; label: string; highlight: boolean }>;
+export type Point = Readonly<{ left: number; top: number; label: string; highlight: boolean }>;
 
-const MatrixPoint = ({ point }: Readonly<{ point: Point }>): ReactNode => {
+export const MatrixPoint = ({ point }: Readonly<{ point: Point }>): ReactNode => {
   const style = useMemo(
     () => ({ left: `${String(point.left)}%`, top: `${String(point.top)}%` }),
     [point.left, point.top],
@@ -17,5 +17,3 @@ const MatrixPoint = ({ point }: Readonly<{ point: Point }>): ReactNode => {
   );
 };
 
-export { MatrixPoint };
-export type { Point };

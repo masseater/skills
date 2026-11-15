@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-type SlideContextValue = Readonly<{
+export type SlideContextValue = Readonly<{
   number: number;
   total: number;
   topic: string;
@@ -8,7 +8,7 @@ type SlideContextValue = Readonly<{
   step: number;
 }>;
 
-const SlideContext = createContext<SlideContextValue>({
+export const SlideContext = createContext<SlideContextValue>({
   number: 1,
   total: 1,
   topic: "",
@@ -16,5 +16,3 @@ const SlideContext = createContext<SlideContextValue>({
   step: 0,
 });
 
-export { SlideContext };
-export type { SlideContextValue };

@@ -4,7 +4,7 @@ import { FlowNode } from "./flow-node";
 import type { Node } from "./flow-node";
 import { Frame } from "./frame";
 
-const FlowSlide = ({
+export const FlowSlide = ({
   nodes,
   highlight,
   caption,
@@ -19,4 +19,3 @@ const FlowSlide = ({
   </Frame>
 );
 
-export { FlowSlide };

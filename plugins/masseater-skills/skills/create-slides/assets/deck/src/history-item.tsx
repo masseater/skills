@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { pickState } from "./item-state";
 import type { TimelineEvent } from "./timeline-event";
 
-const HistoryItem = ({
+export const HistoryItem = ({
   event,
   current,
 }: Readonly<{ event: TimelineEvent; current: boolean }>): ReactNode => (
@@ -16,4 +16,3 @@ const HistoryItem = ({
   </li>
 );
 
-export { HistoryItem };

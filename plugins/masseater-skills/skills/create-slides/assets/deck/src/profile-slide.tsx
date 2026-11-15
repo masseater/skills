@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { Frame } from "./frame";
 
-const ProfileSlide = ({
+export const ProfileSlide = ({
   name,
   reading,
   tagline,
@@ -21,4 +21,3 @@ const ProfileSlide = ({
   </Frame>
 );
 
-export { ProfileSlide };

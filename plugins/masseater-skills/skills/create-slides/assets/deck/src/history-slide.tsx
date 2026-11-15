@@ -4,7 +4,7 @@ import { Frame } from "./frame";
 import { HistoryItem } from "./history-item";
 import type { TimelineEvent } from "./timeline-event";
 
-const HistorySlide = ({
+export const HistorySlide = ({
   title,
   events,
   current,
@@ -23,4 +23,3 @@ const HistorySlide = ({
   </Frame>
 );
 
-export { HistorySlide };

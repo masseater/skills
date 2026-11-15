@@ -6,7 +6,7 @@ import type { MapPlace as Place } from "./geo-map-data";
 
 const PERCENT = 100;
 
-const MapPlace = ({ frame, place }: Readonly<{ frame: GeoFrame; place: Place }>): ReactNode => {
+export const MapPlace = ({ frame, place }: Readonly<{ frame: GeoFrame; place: Place }>): ReactNode => {
   const style = useMemo(() => {
     const [left, top] = frame.place(place.at);
     return {
@@ -31,4 +31,3 @@ const MapPlace = ({ frame, place }: Readonly<{ frame: GeoFrame; place: Place }>)
   );
 };
 
-export { MapPlace };

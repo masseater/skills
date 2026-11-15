@@ -10,11 +10,10 @@ const isAtlas = (value: unknown): value is Atlas =>
 
 const atlas: unknown = world;
 
-const countries = (): readonly Feature[] => {
+export const countries = (): readonly Feature[] => {
   if (!isAtlas(atlas)) {
     return [];
   }
   return feature(atlas, atlas.objects.countries).features;
 };
 
-export { countries };

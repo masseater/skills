@@ -6,7 +6,7 @@ import type { Step } from "./step";
 
 const ONE = 1;
 
-const StepItem = ({
+export const StepItem = ({
   step,
   index,
   current,
@@ -19,4 +19,3 @@ const StepItem = ({
   </li>
 );
 
-export { StepItem };

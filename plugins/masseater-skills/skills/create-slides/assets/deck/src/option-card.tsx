@@ -3,9 +3,9 @@ import type { ReactNode } from "react";
 import { Icon } from "./icon";
 import { pickState } from "./item-state";
 
-type Option = Readonly<{ tag: string; title: string; text: string; icon?: string }>;
+export type Option = Readonly<{ tag: string; title: string; text: string; icon?: string }>;
 
-const OptionCard = ({
+export const OptionCard = ({
   option,
   recommended,
 }: Readonly<{ option: Option; recommended: boolean }>): ReactNode => (
@@ -17,5 +17,3 @@ const OptionCard = ({
   </div>
 );
 
-export { OptionCard };
-export type { Option };

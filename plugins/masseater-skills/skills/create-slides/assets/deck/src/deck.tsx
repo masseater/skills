@@ -9,7 +9,7 @@ import { insertPhraseBreaks } from "./phrase-breaks";
 import { totalSteps } from "./slide-steps";
 import { useDeckState } from "./use-deck-state";
 
-const Deck = ({
+export const Deck = ({
   slides,
   footer,
   view,
@@ -33,4 +33,3 @@ const Deck = ({
   );
 };
 
-export { Deck };

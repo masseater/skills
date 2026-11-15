@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { Frame } from "./frame";
 
-const CenterSlide = ({
+export const CenterSlide = ({
   children,
   note,
 }: Readonly<{ children: ReactNode; note: ReactNode }>): ReactNode => (
@@ -12,4 +12,3 @@ const CenterSlide = ({
   </Frame>
 );
 
-export { CenterSlide };

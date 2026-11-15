@@ -5,7 +5,7 @@ import { RoadmapEvent } from "./roadmap-event";
 import { RoadmapNow } from "./roadmap-now";
 import type { TimelineEvent } from "./timeline-event";
 
-const RoadmapSlide = ({
+export const RoadmapSlide = ({
   title,
   events,
   current,
@@ -33,4 +33,3 @@ const RoadmapSlide = ({
   </Frame>
 );
 
-export { RoadmapSlide };

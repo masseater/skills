@@ -7,7 +7,7 @@ const PAD_LENGTH = 2;
 
 const pad = (value: number): string => String(value).padStart(PAD_LENGTH, "0");
 
-const Frame = ({ kind, children }: Readonly<{ kind: string; children: ReactNode }>): ReactNode => {
+export const Frame = ({ kind, children }: Readonly<{ kind: string; children: ReactNode }>): ReactNode => {
   const { number, total, topic, footer } = use(SlideContext);
   return (
     <div className={`slide slide-${kind}`}>
@@ -22,4 +22,3 @@ const Frame = ({ kind, children }: Readonly<{ kind: string; children: ReactNode 
   );
 };
 
-export { Frame };

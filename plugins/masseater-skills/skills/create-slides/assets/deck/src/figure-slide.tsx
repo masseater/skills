@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { Frame } from "./frame";
 
-const FigureSlide = ({
+export const FigureSlide = ({
   title,
   children,
 }: Readonly<{ title: ReactNode; children: ReactNode }>): ReactNode => (
@@ -12,4 +12,3 @@ const FigureSlide = ({
   </Frame>
 );
 
-export { FigureSlide };

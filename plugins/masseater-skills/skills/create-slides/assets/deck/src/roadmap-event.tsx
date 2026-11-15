@@ -5,7 +5,7 @@ import { progressState } from "./item-state";
 import { eventPosition } from "./timeline-event";
 import type { TimelineEvent } from "./timeline-event";
 
-const RoadmapEvent = ({
+export const RoadmapEvent = ({
   event,
   index,
   events,
@@ -30,4 +30,3 @@ const RoadmapEvent = ({
   );
 };
 
-export { RoadmapEvent };

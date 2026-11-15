@@ -7,7 +7,7 @@ import { MapLand } from "./map-land";
 import { MapPlace } from "./map-place";
 import { MapRoute } from "./map-route";
 
-const GeoMap = ({ map }: Readonly<{ map: GeoMapData }>): ReactNode => {
+export const GeoMap = ({ map }: Readonly<{ map: GeoMapData }>): ReactNode => {
   const frame = useMemo(() => frameOf(map.view), [map.view]);
   const style = useMemo(
     () => ({ aspectRatio: `${String(frame.width)} / ${String(frame.height)}` }),
@@ -28,4 +28,3 @@ const GeoMap = ({ map }: Readonly<{ map: GeoMapData }>): ReactNode => {
   );
 };
 
-export { GeoMap };
