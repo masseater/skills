@@ -11,6 +11,7 @@ Claude Code にはプラグインとして、ほかのエージェントには s
 - [cloudflare-caution](plugins/masseater-skills/skills/cloudflare-caution/SKILL.md): Cloudflareの料金を吊り上げるような設計は避け、コストを抑えた形式を選択しよう。
 - [create-slides](plugins/masseater-skills/skills/create-slides/SKILL.md): スライドを作成する前に、聴衆や場面に応じたデフォルト設定と聴衆からの質問に基づいて作成した構成案を提示し、作成後にプレゼンテーションの流れを確認するためのスピーカースクリプトを記述する手順。
 - [debug-like-a-human](plugins/masseater-skills/skills/debug-like-a-human/SKILL.md): AIはオーナーと同じ認証パスを通じて、ログイン後の画面やAccessの本番環境にアクセスし、自ら確認を行う。
+- [desktop-app-quality](plugins/masseater-skills/skills/desktop-app-quality/SKILL.md): デスクトップアプリの設計、開発、レビューをするときに読む。
 - [dont-it-yourself](plugins/masseater-skills/skills/dont-it-yourself/SKILL.md): ライブラリ、ランタイム、リポジトリに既に存在するものを探し出して利用し、自作はしない。
 - [how-to-use-react](plugins/masseater-skills/skills/how-to-use-react/SKILL.md): React 19.3のコンポーネント、ローダー、およびサーバー処理の記述、修正、レビュー時に参照する。
 - [humanity-and-humanness](plugins/masseater-skills/skills/humanity-and-humanness/SKILL.md): AIが人間の読み方、考え方、感覚を前提として持つように読む。
