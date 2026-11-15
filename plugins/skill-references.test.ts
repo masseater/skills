@@ -31,7 +31,7 @@ describe("skill references", () => {
   });
 
   it("names only existing skills in the hub", () => {
-    const written = [...hubText.matchAll(/`([a-z0-9]+(?:-[a-z0-9]+)+)`(?!\]\()/g)].map((match) => match[1]);
+    const written = [...hubText.matchAll(/`([a-z0-9]+(?:-[a-z0-9]+)*)`(?!\]\()/g)].map((match) => match[1]);
     expect(written.length).toBeGreaterThan(0);
     expect(written.filter((name) => !skills.includes(name))).toEqual([]);
   });
