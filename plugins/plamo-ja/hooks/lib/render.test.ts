@@ -24,6 +24,26 @@ describe("renderLines", () => {
     expect(out).toBe("## JA(Result)\n- JA(It works.)\n1. JA(Run it.)\n");
   });
 
+  it("見出しの次の行は見出しに含めず、別に訳す", async () => {
+    const out = await renderLines(
+      splitLines("## The idea\nClaude writes in English.\nPLaMo translates it.\n"),
+      fresh(),
+      fake,
+    );
+    expect(out).toBe("## JA(The idea)\nJA(Claude writes in English. PLaMo translates it.)\n");
+  });
+
+  it("太字だけの行は次の行とまとめず、1 行で訳す", async () => {
+    const out = await renderLines(
+      splitLines("**Cause**\nThe refresh ran twice.\n**Fix:**\n- Run it once.\n"),
+      fresh(),
+      fake,
+    );
+    expect(out).toBe(
+      "JA(**Cause**)\nJA(The refresh ran twice.)\nJA(**Fix:**)\n- JA(Run it once.)\n",
+    );
+  });
+
   it("コードフェンスと表は訳さない", async () => {
     const text = "```ts\nconst a = 1;\n```\n| a | b |\n";
     expect(await renderLines(splitLines(text), fresh(), fake)).toBe(text);
