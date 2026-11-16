@@ -32,7 +32,7 @@ React では同一の画面を多様な方法で記述でき、どの方法も�
 
 | やりたいこと | 使用するもの | 使用しないもの |
 | --- | --- | --- |
-| 一時的な画面状態、フォーム値、ツリー全体で共有される値 | Effect Atom (`Atom.make`, `useAtom`, `useAtomValue`) | `useState`, `useReducer`, `createContext`, `useContext` (`no-restricted-imports` により拒否) |
+| 一時的な画面状態、フォーム値、ツリー全体で共有される値 | Effect Atom (`Atom.make`, `useAtom`, `useAtomValue`) | `useState`, `useReducer`, `createContext`, `useContext` (msch の lint ルール `msch-lint/ui-state-in-atoms` が拒否) |
 | サーバーデータ | TanStack Query (FSDの `api` セグメント内の `queryOptions`) | `use(promise)` によるフェッチ、`useEffect` と `fetch` の組み合わせ、サーバーレスポンスをAtomに格納する |
 | Mutation pending およびエラー | TanStack Query の `useMutation` | 自作の保留フラグ、`useActionState`、`useFormStatus` |
 | 順序が仕様の一部であるミューテーション | 同一の `scope.id` を持つ `useMutation` | 自作のキュー、操作シーケンスを停止させるボタンの無効化 |
