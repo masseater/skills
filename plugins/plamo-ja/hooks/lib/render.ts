@@ -4,6 +4,8 @@ export type TranslateBatch = (sources: string[]) => Promise<string[]>;
 
 const FENCE = /^ {0,3}(`{3,}|~{3,})/;
 const BLOCK_PREFIX = /^(\s*(?:[-*+]|\d+[.)])\s+(?:\[[ xX]\]\s+)?|\s*[✓✱○]\s+|\s{0,3}#{1,6}\s+|\s*>\s?)/;
+const HEADING = /^\s{0,3}#{1,6}\s+$/;
+const LABEL = /^\s*(\*\*|__)[^*_]+\1:?\s*$/;
 const TABLE_ROW = /^\s*\|/;
 const THEMATIC_BREAK = /^\s{0,3}([-*_])(\s*\1){2,}\s*$/;
 const JAPANESE = /[぀-ヿ㐀-鿿ｦ-ﾟ]/g;
@@ -106,6 +108,11 @@ class Segmenter {
     if (prefix !== undefined) {
       this.flush();
       this.unit = { prefix, parts: [line.slice(prefix.length).trim()], newline };
+      if (HEADING.test(prefix)) this.flush();
+    } else if (LABEL.test(line)) {
+      this.flush();
+      this.unit = { prefix: /^\s*/.exec(line)?.[0] ?? "", parts: [line.trim()], newline };
+      this.flush();
     } else if (this.unit) {
       this.unit.parts.push(line.trim());
       this.unit.newline = newline;
