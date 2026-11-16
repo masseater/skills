@@ -17,12 +17,12 @@ UI がないときは、レイヤーを次のように読み替える。
 - 複数の操作が使うデータの形と、その形だけで決まる純粋な処理は `entities/<noun>` に置く。Effect Schema の定義がこれに当たる。
 - ドメインの規則を持たない道具は `shared/lib` に、外部との通信や生成したクライアントは `shared/api` に、定数は `shared/config` に置く。
 - 生成したコードも、それを使う側のレイヤーに置き、パブリック API から公開する。
-- ファイルとフォルダには、コードが何をするかで名前を付ける。`*.worker.ts` や `app/entrypoint/` のように、デプロイの入口を示す接尾辞や専用の置き場所を作らない。入口は、ほかのコードと同じく FSD の層とスライスに役割の名前で置く。
+- ファイルとフォルダには、コードが何をするかで名前を付ける。`*.worker.ts` や `app/entrypoint/` のように、デプロイの入口を示す接尾辞や専用の置き場所を作らない。入口は、ほかのコードと同じく FSD の層とスライスに役割の名前で置く。msch の `deploy-entry-name` が、`src/` の下で `.worker.` か `entrypoint` を含む名前を検査する。
 - どのファイルがデプロイの入口かは、それをデプロイする Alchemy リソースの `main` が決める。lint の設定は msch の `workspaceSettings().lint.deployEntries` を、fallow は stack の `main` を読んで入口を知る。設定の glob で入口を名前や場所から選ぶと、入口を動かすたびに古くなる。msch の `deploy-entry-pattern` が検査する。
 
 ## スライス
 
-- 利用者の操作ごとに `features/<verb>-<object>` スライスを作り、複数のスライスが使うビジネスオブジェクトごとに `entities/<noun>` スライスを作る。今は 1 ページしか使っていなくても分ける。このため `fsd/insignificant-slice` は無効にしている。
+- 利用者の操作ごとに `features/<verb>-<object>` スライスを作り、複数のスライスが使うビジネスオブジェクトごとに `entities/<noun>` スライスを作る。今は 1 ページしか使っていなくても分ける。msch の `feature-slice-name` が、features のスライス名が 2 語以上で、先頭の語が WordNet にある英語の動詞であることを検査する。このため `fsd/insignificant-slice` は無効にしている。
 - `edit-song` と `edit-video` のように複数の機能が単語を共有する場合は、`edit-catalog` のように 1 つのスライスに統合する。`fsd/repetitive-naming` が重複した単語を報告する。
 - `pages/<route>` には、画面の組み立てと、他のスライスが必要としないコードだけを置く。インタビュー後のレポートなど、同じルートで別の画面と入れ替わる画面は独立したページとし、`app` がどちらを出すかを選ぶ。
 - アトムのヘルパー、ストレージ、テレメトリ、テキストのユーティリティなど、ビジネスルールを含まないコードは `shared/<segment>` に置く。
