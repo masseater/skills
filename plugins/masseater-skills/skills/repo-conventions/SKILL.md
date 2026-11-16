@@ -72,7 +72,8 @@ masseaterのリポジトリはすべて同一のテンプレートから作成�
 ## スキル
 
 - 編集前に、リポジトリルートで `vp exec intent list` を実行すること。スキルが適合する場合は `vp exec intent load <package>#<skill>` で読み込むこと。`intent` が利用できない場合はインストールせず、ギャップを報告すること。
-- 複数のリポジトリで使用されている独自のスキルを masseater/skills に配置し、skills CLI でインストールすること。
+- 複数のリポジトリで使用されている独自のスキルを masseater/skills に配置し、各リポジトリのルートの `vite.config.ts` の `skills` に宣言して `vp install` で導入すること。
+- 1 つのリポジトリだけで使うスキルはそのリポジトリのフォルダに置き、同じ `skills` に `"./<フォルダ>": { skills: "all" }` と宣言すること。
 
 ## セッションの開始
 

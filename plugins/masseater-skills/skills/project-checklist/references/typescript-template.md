@@ -59,7 +59,7 @@
 
 ## 9. エージェントの設定が有効である
 
-- はじめに：`.claude/hooks/`、`.claude/settings.json`、`.claude/loop.md`、`AGENTS.md` および `CLAUDE.md`、`.intent/hooks/intent-claude-gate.mjs`、`.agents/skills`（`.claude/skills` からリンクされている）、および `skills-lock.json` の全セットが存在する。
+- はじめに：`.claude/hooks/`、`.claude/settings.json`、`.claude/loop.md`、`AGENTS.md` および `CLAUDE.md`、`.intent/hooks/intent-claude-gate.mjs`、`.agents/skills`（`.claude/skills` からリンクされている）、およびルートの `vite.config.ts` の `skills` セクションの全セットが存在する。
 - 機能：`skills ls` と `vp exec intent list` はスキルを返す。セッション開始時にテンプレートの新しいリリースが通知される。
 - 古い構造：古いスキルの残骸がないかを確認する。
 
