@@ -33,6 +33,12 @@ function collect(node: unknown, segments: string[], out: Slot[]): void {
   }
 }
 
+export function fieldTexts(input: unknown, paths: string[]): string[] {
+  const slots: Slot[] = [];
+  for (const p of paths) collect(input, p.split("."), slots);
+  return slots.map((slot) => slot.get());
+}
+
 export async function translateToolInput(
   input: unknown,
   paths: string[],

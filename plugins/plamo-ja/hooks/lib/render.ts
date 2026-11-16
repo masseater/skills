@@ -1,9 +1,9 @@
-import type { MessageState } from "./schema.ts";
+import { emptyMessageState, type MessageState } from "./schema.ts";
 
 export type TranslateBatch = (sources: string[]) => Promise<string[]>;
 
 const FENCE = /^ {0,3}(`{3,}|~{3,})/;
-const BLOCK_PREFIX = /^(\s*(?:[-*+]|\d+[.)])\s+(?:\[[ xX]\]\s+)?|\s{0,3}#{1,6}\s+|\s*>\s?)/;
+const BLOCK_PREFIX = /^(\s*(?:[-*+]|\d+[.)])\s+(?:\[[ xX]\]\s+)?|\s*[✓✱○]\s+|\s{0,3}#{1,6}\s+|\s*>\s?)/;
 const TABLE_ROW = /^\s*\|/;
 const THEMATIC_BREAK = /^\s{0,3}([-*_])(\s*\1){2,}\s*$/;
 const JAPANESE = /[぀-ヿ㐀-鿿ｦ-ﾟ]/g;
@@ -14,7 +14,10 @@ function count(text: string, re: RegExp): number {
 }
 
 function stripInlineCode(text: string): string {
-  return text.replace(/`[^`]*`/g, "");
+  return text
+    .replace(/`[^`]*`/g, "")
+    .replace(/\]\([^)]*\)/g, "]")
+    .replace(/https?:\/\/\S+/g, "");
 }
 
 function countLatin(text: string): number {
@@ -117,6 +120,12 @@ function segmentLines(lines: string[], state: MessageState): Segment[] {
   for (const raw of lines) segmenter.push(raw);
   segmenter.flush();
   return segmenter.out;
+}
+
+export function translatableUnits(text: string): string[] {
+  return segmentLines(splitLines(text), emptyMessageState()).flatMap((segment) =>
+    segment.kind === "unit" ? [segment.en] : [],
+  );
 }
 
 export async function renderLines(

@@ -11,7 +11,8 @@ const REMINDER =
   `terminal text and these tool inputs: ${Object.keys(TRANSLATED_FIELDS).join(", ")}. ` +
   "Everything else keeps its usual language: files, code comments, commit messages, PR titles and " +
   "bodies, and tool inputs not listed here (for example decision cards and thread titles), which are " +
-  "not translated. Read the user's Japanese directly. `/plamo-ja:display off` turns this off.";
+  "not translated. When plamo-ja refuses one of these calls and hands you its input, call the tool again " +
+  "with that input as it says. Read the user's Japanese directly. `/plamo-ja:display off` turns this off.";
 
 const SERVER_DOWN =
   "Japanese display mode (plamo-ja) is on, but its PLaMo server is not running, so nothing is " +

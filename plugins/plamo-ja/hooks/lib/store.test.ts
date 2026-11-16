@@ -83,4 +83,17 @@ describe("履歴の切り出し", () => {
     for (let i = 0; i < 4; i++) store.appendHistory("s", [{ en: "12345", ja: "12345" }]);
     expect(store.history("s", 60)).toHaveLength(3);
   });
+
+  it("訳して渡した本文を覚え、書き換えの可否をセッションごとに持つ", () => {
+    const store = makeStore();
+    expect(store.wasIssued("s", ["こんにちは"])).toBe(false);
+    store.markIssued("s", ["こんにちは"]);
+    expect(store.wasIssued("s", ["こんにちは"])).toBe(true);
+    expect(store.wasIssued("t", ["こんにちは"])).toBe(false);
+    expect(store.rewriteMode("s")).toBe("unknown");
+    store.setRewriteMode("s", "refused");
+    expect(store.rewriteMode("s")).toBe("refused");
+    store.clearHistory("s");
+    expect(store.wasIssued("s", ["こんにちは"])).toBe(false);
+  });
 });

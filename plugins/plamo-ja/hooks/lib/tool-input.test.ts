@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vite-plus/test";
-import { TRANSLATED_FIELDS, translateToolInput } from "./tool-input.ts";
+import { fieldTexts, TRANSLATED_FIELDS, translateToolInput } from "./tool-input.ts";
 
 const upper = async (text: string) => text.toUpperCase();
 
@@ -53,5 +53,12 @@ describe("translateToolInput", () => {
     for (const tool of Object.keys(TRANSLATED_FIELDS)) expect(matcher.test(tool)).toBe(true);
     expect(matcher.test("mcp__hearthbot__request_decision")).toBe(false);
     expect(matcher.test("Bash")).toBe(false);
+  });
+});
+
+describe("fieldTexts", () => {
+  it("訳す場所の文字列を順に返す", () => {
+    expect(fieldTexts({ text: "Hi.", attached_outputs: [] }, ["text"])).toEqual(["Hi."]);
+    expect(fieldTexts({}, ["text"])).toEqual([]);
   });
 });
