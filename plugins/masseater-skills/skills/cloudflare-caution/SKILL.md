@@ -30,11 +30,13 @@ metadata:
 
 ## ランナウェイに対するブレーキ
 
-- Workerには [Workers の料金ページ](https://developers.cloudflare.com/workers/platform/pricing/) に基づき `limits.cpu_ms` を指定する。これは、単一の実行がランナウェイするのを防ぐ唯一の公式な手段である。本番環境のCPU時間のp99を測定し、その値をわずかに上回るように設定する。この値を最大まで上げると、無限ループがそのまま請求対象となる。
+- コードを実行するすべてのWorkerに、[Workers の制限のページ](https://developers.cloudflare.com/workers/platform/limits/) に従って `limits.cpu_ms`（Alchemyでは `limits.cpuMs`）を指定する。これは、単一の実行がランナウェイするのを防ぐ唯一の公式な手段である。既定値は30秒である。本番環境のCPU時間を測定し、p99ではなく観測した最大値をわずかに上回る値にする。p99を上限にすると、最も遅いリクエストを意図して失敗させることになるからである。この値を最大まで上げると、無限ループがそのまま請求対象となる。コードを持つWorkerやWebsiteに `limits.cpuMs` が無いと、mschのlintが落とす。
 - 公開API、認証、および書き込みエンドポイントの前にレート制限を設ける。レート制限を設けない場合、ボットによるすべての大量アクセスが請求対象となる。
 - ゾーンを所有するリポジトリではWAFのレート制限ルールを、所有していないリポジトリではWorkerの [Rate Limiting バインディング](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/) を用いてレート制限を適用する。このバインディングはロケーションごとの近似値であり、制限を超えた場合でも停止しないことがある。正確な制限が必要な場合は、WAFのレート制限ルールまたはDurable Objectカウンターを使用する。
 - キューコンシューマー、Durable Objectアラーム、およびリトライ処理を冪等にする。自身で再エンキューを行わないこと。
 - 再エンキューおよびリトライの回数に上限を設ける。
+- モデルの呼び出しは [AI Gateway](https://developers.cloudflare.com/ai-gateway/) を経由させ、ゲートウェイに [支出制限](https://developers.cloudflare.com/ai-gateway/features/spend-limits/) を設定する。Workers AIには独自の上限がない。ループする呼び出し元や、すべてのファイルを判定するジョブは、誰かが気づくまでニューロン単位で課金され続ける。その日の予算を使い切ると、ゲートウェイはウィンドウがリセットされるまで429を返す。同じリクエストでモデルを再び動かさないよう、ゲートウェイのキャッシュを有効にする。
+- CIで、実行のたびにすべてのファイルへモデルを呼ばない。キャッシュに当たらないリクエストは実行ごとに課金されるので、費用はファイル数と実行回数の積で増える。変更された部分だけを問い、回答は実行をまたいで残るキャッシュに保存する。
 - アカウントに [予算アラート](https://developers.cloudflare.com/billing/manage/optimize-costs/) を設定する。これは停止させるためのものではなく、早期に検知するためのものである。
 
 ## 書き込みおよび操作の削減
@@ -62,7 +64,7 @@ metadata:
 - 設計を決定する前に、想定される訪問回数に、1回あたりのWorker呼び出し数、行数、操作数、およびログ数を乗じて月間コストを見積もります。
 - デプロイ後は、ダッシュボードの Billable Usage または GraphQL Analytics API で本番環境の利用状況を確認する。見積もりと乖離がある場合は、設計を見直す。
 
-請求単位および単価は以下の通りである。2026-10-27に [Workers の料金ページ](https://developers.cloudflare.com/workers/platform/pricing/) およびその他の箇所で確認済みである。単価は変動するため、見積もりに使用する前に料金ページで確認すること。
+請求単位および単価は以下の通りである。2026-10-27に [Workers の料金ページ](https://developers.cloudflare.com/workers/platform/pricing/) およびその他の箇所で、Workers AIは2026-11-16に [Workers AI の料金ページ](https://developers.cloudflare.com/workers-ai/platform/pricing/) で確認済みである。単価は変動するため、見積もりに使用する前に料金ページで確認すること。
 
 | ターゲット | 請求単位 | Paidおよび超過分の含まれる金額 |
 | --- | --- | --- |
@@ -75,3 +77,4 @@ metadata:
 | R2 | Class A および Class Bの操作とストレージ | エグレスは無料。マルチパートアップロードはパートごとにクラスAとなる。 |
 | Workers Logs | ログイベント | 2026-12-01からの [Cloudflare Observability 料金](https://developers.cloudflare.com/observability/pricing/) の変更（取り込みGBおよび保存GB-月） |
 | Workers Logpush | リクエスト | 月間1,000万件、超過分は100万件あたり0.05ドル |
+| Workers AI | ニューロン | 1日1万ニューロン（00:00 UTCにリセット）、超過分は1,000ニューロンあたり0.011ドル。AI Gatewayのキャッシュに当たった応答は課金されない。 |
