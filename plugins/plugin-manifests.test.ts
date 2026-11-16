@@ -148,7 +148,8 @@ describe("masseater-skills", () => {
       .filter((d) => d.isDirectory() && existsSync(path.join(pluginRoot, "skills", d.name, "SKILL.md")))
       .map((d) => d.name)
       .sort();
-    const agents = readdirSync(path.join(pluginRoot, "agents"))
+    const agentsRoot = path.join(pluginRoot, "agents");
+    const agents = (existsSync(agentsRoot) ? readdirSync(agentsRoot) : [])
       .filter((f) => f.endsWith(".md"))
       .map((f) => f.slice(0, -".md".length))
       .sort();
