@@ -3,13 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prepare": "vp config --no-agent",
-    "readme": "node scripts/update-readme.mjs",
-    "test": "msch && vp test run"
+    "prepare": "vp config --no-agent"
   },
   "devDependencies": {
     "@anthropic-ai/claude-code": "^2.1.321",
-    "@r_masseater/msch": "^0.9.0",
+    "@r_masseater/msch": "^0.19.0",
     "skills-ref": "^0.1.5",
     "vite-plus": "^1.4.0"
   },

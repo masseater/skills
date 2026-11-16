@@ -18,7 +18,7 @@ skill は `plugins/masseater-skills/skills/<name>/` に 1 つずつ置き、`nam
 
 ## プラグイン
 
-プラグインは `plugins/<name>/` に 1 つずつ置き、`.claude-plugin/marketplace.json` に足す。hook の依存は入れず、hook とスクリプトは Node.js がそのまま動かせる TypeScript（型の注釈を消すだけで動く書き方）で書く。テストは `plugins/<name>/tests/` に置く。
+プラグインは `plugins/<name>/` に 1 つずつ置き、`.claude-plugin/marketplace.json` に足す。hook の依存は入れず、hook とスクリプトは Node.js がそのまま動かせる TypeScript（型の注釈を消すだけで動く書き方）で書く。
 
 ## コマンド
 

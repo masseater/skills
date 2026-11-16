@@ -3,7 +3,7 @@ import path from "node:path";
 import { describe, expect, it } from "vite-plus/test";
 
 const hub = "masseater-ecosystem";
-const skillsRoot = path.resolve(import.meta.dirname, "../plugins/masseater-skills/skills");
+const skillsRoot = path.resolve(import.meta.dirname, "masseater-skills", "skills");
 const skills = readdirSync(skillsRoot, { withFileTypes: true })
   .filter((entry) => entry.isDirectory() && existsSync(path.join(skillsRoot, entry.name, "SKILL.md")))
   .map((entry) => entry.name)
