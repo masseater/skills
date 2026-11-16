@@ -8,6 +8,7 @@ import {
   statSync,
   writeFileSync,
 } from "node:fs";
+import { createHash } from "node:crypto";
 import { homedir } from "node:os";
 import path from "node:path";
 import {
@@ -31,6 +32,12 @@ function safeName(id: string): string {
 }
 
 type Area = "sessions" | "messages";
+
+export type RewriteMode = "unknown" | "ok" | "refused";
+
+function digest(texts: string[]): string {
+  return createHash("sha256").update(JSON.stringify(texts)).digest("hex");
+}
 
 export class Store {
   readonly dataDir: string;
@@ -61,6 +68,7 @@ export class Store {
 
   clearHistory(sessionId: string): void {
     rmSync(this.file("sessions", sessionId, ".jsonl"), { force: true });
+    rmSync(this.file("sessions", sessionId, ".issued"), { force: true });
   }
 
   appendHistory(sessionId: string, pairs: TranslationPair[]): void {
@@ -83,6 +91,26 @@ export class Store {
     const kept = all.slice(start);
     writeFileSync(p, kept.map((pair) => `${JSON.stringify(pair)}\n`).join(""));
     return kept;
+  }
+
+  markIssued(sessionId: string, texts: string[]): void {
+    appendFileSync(this.writable("sessions", sessionId, ".issued"), `${digest(texts)}\n`);
+  }
+
+  wasIssued(sessionId: string, texts: string[]): boolean {
+    const p = this.file("sessions", sessionId, ".issued");
+    if (!existsSync(p)) return false;
+    return readFileSync(p, "utf8").split("\n").includes(digest(texts));
+  }
+
+  rewriteMode(sessionId: string): RewriteMode {
+    if (existsSync(this.file("sessions", sessionId, ".rewrite-refused"))) return "refused";
+    if (existsSync(this.file("sessions", sessionId, ".rewrite-ok"))) return "ok";
+    return "unknown";
+  }
+
+  setRewriteMode(sessionId: string, mode: "ok" | "refused"): void {
+    writeFileSync(this.writable("sessions", sessionId, `.rewrite-${mode}`), "");
   }
 
   readMessage(messageId: string): MessageState {

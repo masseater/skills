@@ -4,7 +4,7 @@ import path from "node:path";
 import { afterEach, describe, expect, it, vi } from "vite-plus/test";
 import { loadConfig } from "./config.ts";
 import { Store } from "./store.ts";
-import { createBatchTranslator } from "./translator.ts";
+import { createBatchTranslator, SERVER_SLOTS } from "./translator.ts";
 
 const dirs: string[] = [];
 function setup() {
@@ -90,6 +90,38 @@ describe("createBatchTranslator", () => {
       "Hello.",
     ]);
     expect(onError).toHaveBeenCalledOnce();
+    expect(onError.mock.calls[0]?.[1]).toBe("Hello.");
     expect(store.history("s", 1000)).toEqual([]);
+  });
+
+  it("サーバーの枠より多くは同時に送らない", async () => {
+    let active = 0;
+    let peak = 0;
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => {
+        active++;
+        peak = Math.max(peak, active);
+        await new Promise((resolve) => setTimeout(resolve, 5));
+        active--;
+        return reply("訳。");
+      }),
+    );
+    const { store, config } = setup();
+    const sources = Array.from({ length: 10 }, (_, i) => `Line ${i}.`);
+    expect(await createBatchTranslator(store, "s", config, vi.fn())(sources)).toHaveLength(10);
+    expect(peak).toBe(SERVER_SLOTS);
+  });
+
+  it("失敗した本文は履歴なしでもう一度送る", async () => {
+    const fetchMock = vi
+      .fn()
+      .mockRejectedValueOnce(new Error("timeout"))
+      .mockResolvedValueOnce(reply("やあ。"));
+    vi.stubGlobal("fetch", fetchMock);
+    const { store, config } = setup();
+    store.appendHistory("s", [{ en: "Old.", ja: "古い。" }]);
+    expect(await createBatchTranslator(store, "s", config, vi.fn())(["Hi."])).toEqual(["やあ。"]);
+    expect(requestBody(fetchMock, 1).messages).toHaveLength(1);
   });
 });

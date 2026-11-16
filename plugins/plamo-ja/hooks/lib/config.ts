@@ -30,7 +30,7 @@ export function loadConfig(dataDir: string, env: NodeJS.ProcessEnv = process.env
     context: DEFAULT_CONTEXT,
     glossary: readGlossary(dataDir),
     form: readForm(env.PLAMO_JA_FORM),
-    timeoutMs: 25_000,
+    timeoutMs: 60_000,
     historyBudget: Number.isFinite(budget) && budget > 0 ? budget : DEFAULT_HISTORY_BUDGET,
   };
 }
