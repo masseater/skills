@@ -20,6 +20,7 @@ Claude Code にはプラグインとして、ほかのエージェントには s
 - [measure-dont-guess](plugins/masseater-skills/skills/measure-dont-guess/SKILL.md): 実装や修正を行う前に、仮説をどちらに収束させるかを判断し、実行した上で、その結果のみで判断する。
 - [measure-everything](plugins/masseater-skills/skills/measure-everything/SKILL.md): 何かを構築または修正する前に、どのように測定するかを決めておく。
 - [measure-postmortem](plugins/masseater-skills/skills/measure-postmortem/SKILL.md): PRを読み、その修正が事前に計測されていれば防げた、あるいは検出できたのではないかと検討する。
+- [measure-readiness](plugins/masseater-skills/skills/measure-readiness/SKILL.md): 後になって誰かが引きたいと思う事実が、記録され、呼び出し元に帰属され、保存されているかを監査する。
 - [project-checklist](plugins/masseater-skills/skills/project-checklist/SKILL.md): プロジェクトの設計で考慮すべき項目が満たされているか、実機を確認することで判断する。
 - [repo-conventions](plugins/masseater-skills/skills/repo-conventions/SKILL.md): masseaterのリポジトリに共通するルール。
 - [simplify-repo](plugins/masseater-skills/skills/simplify-repo/SKILL.md): リポジトリ全体を簡素化する。

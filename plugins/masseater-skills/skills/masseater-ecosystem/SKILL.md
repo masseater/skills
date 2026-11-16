@@ -33,6 +33,7 @@ description: masseaterのリポジトリで作業する際のエントリーポ�
 
 - トレース、メトリクス、またはログを追加する際：`measure-everything`
 - バグを修正したプルリクエストを振り返るとき：`measure-postmortem`。`measure-everything` に従って、不足している測定値を追加する。
+- 誰かが後で取り出したいと思う事実が記録・帰属・保持されているかを確認する場合：`measure-readiness`。`measure-everything` に従って、欠落している測定値を追加する。
 - プロジェクトの設計を確認する際：`project-checklist`。Cloudflareで動作するものはすべて、`cloudflare-caution` にも従うこと。
 - リポジトリの簡略化を求められた際：`simplify-repo`
 
