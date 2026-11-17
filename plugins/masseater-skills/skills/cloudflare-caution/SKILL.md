@@ -64,6 +64,9 @@ metadata:
 
 - 設計を決定する前に、想定される訪問回数に、1回あたりのWorker呼び出し数、行数、操作数、およびログ数を乗じて月間コストを見積もります。
 - デプロイ後は、ダッシュボードの Billable Usage または GraphQL Analytics API で本番環境の利用状況を確認する。見積もりと乖離がある場合は、設計を見直す。
+- 請求可能な使用量を毎日確認すること。請求額が0を超える日はすべて所見として扱い、プロダクト、次いでスクリプト、コンテナアプリケーション、またはモデルへと遡って追跡すること。
+- `aiInferenceAdaptiveGroups` におけるモデルごとの Workers AI リクエストと、`aiGatewayRequestsAdaptiveGroups` におけるモデルごとの AI Gateway リクエストを比較する。推論リクエストはあるがゲートウェイリクエストがないモデルはゲートウェイを通らずに呼ばれているため、その支出に上限はない。
+- 呼び出し元が自身のマシンで実行できる場合は、コンテナにモデルをホストしてはならない。コンテナは、次の呼び出しを待つ間、メモリ容量の全額を課金し続ける。
 
 請求単位および単価は以下の通りである。2026-10-27に [Workers の料金ページ](https://developers.cloudflare.com/workers/platform/pricing/) およびその他の箇所で、Workers AIは2026-11-16に [Workers AI の料金ページ](https://developers.cloudflare.com/workers-ai/platform/pricing/) で、Containersは2026-11-17に Workers の料金ページで確認済みである。単価は変動するため、見積もりに使用する前に料金ページで確認すること。
 
