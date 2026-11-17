@@ -5,7 +5,7 @@ allowBuilds:
   "@anthropic-ai/claude-code": true
   "@openrouter/sdk": false
 minimumReleaseAgeExclude:
-  - "@r_masseater/msch@0.34.0"
+  - "@r_masseater/msch@0.38.1"
   - "@r_masseater/oxlint-plugin-decision@0.8.0"
   - "@r_masseater/textlint-rule-preset-ja@0.1.1"
-  - "@r_masseater/vite-plus-adopt@0.8.1 || 0.9.0"
+  - "@r_masseater/vite-plus-adopt@0.10.2"
