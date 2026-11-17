@@ -1,36 +1,36 @@
 # AGENTS.md
 
-masseater のリポジトリで共通に使うエージェントスキルを置くリポジトリである。ルートは Claude Code のプラグインマーケットプレイスで、skill はプラグイン `masseater-skills` の `plugins/masseater-skills/skills/` に置く。
+This repository holds the agent skills shared by masseater's repositories. The root is a Claude Code plugin marketplace, and skills live in the `masseater-skills` plugin under `plugins/masseater-skills/skills/`.
 
-- skill を作る、直すときは `skill-authoring` に従う
-- 文章は `writing` に、読み手である人間の前提は `humanity-and-humanness` に従う
-- ドキュメント、コミットメッセージ、PR 本文は日本語で書く
+- Follow `skill-authoring` when creating or fixing a skill.
+- Follow `writing` for prose, and `humanity-and-humanness` for what to assume about human readers.
+- Write docs, commit messages and PR bodies in Japanese. AGENTS.md is the exception and is written in English.
 
-## 構成
+## Layout
 
-skill は `plugins/masseater-skills/skills/<name>/` に 1 つずつ置き、`name` はディレクトリ名と同じにする。1 つの文書には 1 つの種類だけを入れる。
+Put each skill in its own `plugins/masseater-skills/skills/<name>/`, with `name` equal to the directory name. One document holds one kind of content.
 
-- `SKILL.md` には、必要な理由と達成したい状態の説明と、規則を置く
-- `usecases/` には手順を置く
-- `references/` には、特定のリポジトリや環境に固有の参照と、規則の詳細を置く
+- `SKILL.md` holds why the skill is needed, the state it aims for, and its rules.
+- `usecases/` holds procedures.
+- `references/` holds references specific to particular repositories or environments, and the details of rules.
 
-`metadata.derived-from` には、内容を取り込んで読み替えた原典の URL だけを、コミットを指定した permalink で書く。読んだだけの資料や根拠として引く資料は、本文にリンクする。
+`metadata.derived-from` lists only the URLs of sources whose content was taken in and adapted, as permalinks pinned to a commit. Link sources that were only read or are cited as grounds from the body.
 
-## プラグイン
+## Plugins
 
-プラグインは `plugins/<name>/` に 1 つずつ置き、`.claude-plugin/marketplace.json` に足す。hook の依存は入れず、hook とスクリプトは Node.js がそのまま動かせる TypeScript（型の注釈を消すだけで動く書き方）で書く。
+Put each plugin in its own `plugins/<name>/` and add it to `.claude-plugin/marketplace.json`. Hooks take no dependencies, and hooks and scripts are written in TypeScript that Node.js runs as is (code that works once type annotations are stripped).
 
-## コマンド
+## Commands
 
 ```sh
-vp exec skills-ref validate plugins/masseater-skills/skills/<name>   # frontmatter と構成を検証する
-vp dlx skills init <name>                   # SKILL.md の雛形を作る
+vp exec skills-ref validate plugins/masseater-skills/skills/<name>   # validate frontmatter and layout
+vp dlx skills init <name>                   # scaffold a SKILL.md
 ```
 
-README.md のスキル一覧は、`SKILL.md` を含むコミットのたびに `.vite-hooks/pre-commit` が `vp run readme` で各 `SKILL.md` の `name` と `description` から書き直し、コミットに含める。手で直さない。フックは `vp install` で有効になる。
+The skill list in README.md is rewritten from each `SKILL.md`'s `name` and `description` by `.vite-hooks/pre-commit` running `vp run readme` on every commit that includes a `SKILL.md`, and is included in the commit. Do not edit it by hand. `vp install` enables the hook.
 
-ビルドと lint はない。`./node_modules/.bin/vp run test` が msch の検査とプラグインのテストとマニフェストの検証を動かし、pre-push でも動く。skill を変えたら `skills-ref validate` を通し、参照先のファイルが存在することを確認する。`masseater-ecosystem` のみが他の skill を名前で参照でき、すべての skill がそこに記載されていなければならない。テストが両方を確認する。
+There is no build or lint. `./node_modules/.bin/vp run test` runs msch's checks, the plugin tests and manifest validation, and also runs on pre-push. After changing a skill, pass `skills-ref validate` and check that referenced files exist. Only `masseater-ecosystem` may name other skills, and every skill must be listed there. The tests check both.
 
-## 作業の流れ
+## Workflow
 
-ブランチを切って PR を出し、squash でマージする。mergify は使わない。マージ後はブランチを main から作り直す。
+Create a branch, open a PR and squash-merge it. Do not use mergify. After merging, recreate the branch from main.
