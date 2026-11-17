@@ -1,3 +1,5 @@
+registry: https://npm.flatt.tech/
+
 allowBuilds:
   "@r_masseater/vite-plus-adopt": true
   "@anthropic-ai/claude-code": true
