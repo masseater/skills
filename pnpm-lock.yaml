@@ -179,8 +179,8 @@ importers:
         specifier: ^2.1.321
         version: 2.1.325
       '@r_masseater/msch':
-        specifier: ^0.32.0
-        version: 0.32.0(@effect/tsgo@0.67.5)(effect@4.1.4)(eslint@10.14.0(jiti@2.7.0))(oxlint@1.93.0(oxlint-tsgolint@7.0.2006)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(typescript@7.1.0-beta)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))
+        specifier: ^0.34.0
+        version: 0.34.0(@effect/tsgo@0.67.5)(effect@4.1.4)(eslint@10.14.0(jiti@2.7.0))(oxlint@1.93.0(oxlint-tsgolint@7.0.2006)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(typescript@7.1.0-beta)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))
       skills-ref:
         specifier: ^0.1.5
         version: 0.1.5
@@ -1211,8 +1211,8 @@ packages:
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
 
-  '@r_masseater/msch@0.32.0':
-    resolution: {integrity: sha512-FdR9VbeIW9yPG9Kb9Ed95KJjsIjyP3Xx3KLr+M4ambguaE2dSEs+zrE3G2Qt1kP0uRFa08RUcU2bH8GXAzXc3A==}
+  '@r_masseater/msch@0.34.0':
+    resolution: {integrity: sha512-tt7p7zZXiT3Q2V8xm0Vr1zZl6VhmVfYpr/rt8Dv9KYNsZhrXgiDTvglg51zgY2c+X2i2Na03YICzb7N9ovFtGg==}
     engines: {node: '>=26'}
     hasBin: true
     peerDependencies:
@@ -1243,8 +1243,8 @@ packages:
     peerDependencies:
       effect: ^4.0.0
 
-  '@r_masseater/vite-plus-adopt@0.8.1':
-    resolution: {integrity: sha512-t/vPs9shFwnWozjo3WkH6V/h2Vbtkn5OeaBBzy04pD3JG7bt+QMK24C8531q18eWB/wDDjTen8BOffCBaNE3SA==}
+  '@r_masseater/vite-plus-adopt@0.9.0':
+    resolution: {integrity: sha512-Obkt3cKZouM8eHD8B8vMko0BJzp/9/hEgu/q0gNkF/LtIXUXNvPGWELPC4PvTGUhbjGmsd+XzqP0trkhupbfvg==}
     engines: {node: '>=26'}
     hasBin: true
     peerDependencies:
@@ -5300,7 +5300,7 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
-  '@r_masseater/msch@0.32.0(@effect/tsgo@0.67.5)(effect@4.1.4)(eslint@10.14.0(jiti@2.7.0))(oxlint@1.93.0(oxlint-tsgolint@7.0.2006)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(typescript@7.1.0-beta)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))':
+  '@r_masseater/msch@0.34.0(@effect/tsgo@0.67.5)(effect@4.1.4)(eslint@10.14.0(jiti@2.7.0))(oxlint@1.93.0(oxlint-tsgolint@7.0.2006)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(typescript@7.1.0-beta)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))':
     dependencies:
       '@commitlint/config-conventional': 21.2.4
       '@effect/platform-node-shared': 4.1.4(effect@4.1.4)
@@ -5314,7 +5314,7 @@ snapshots:
       '@r_masseater/oxlint-plugin-decision': 0.8.0(@effect/platform-node-shared@4.1.4(effect@4.1.4))(effect@4.1.4)(oxlint@1.93.0(oxlint-tsgolint@7.0.2006)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))
       '@r_masseater/oxlint-typed-rules': 0.4.1(effect@4.1.4)(typescript@7.1.0-beta)
       '@r_masseater/textlint-rule-preset-ja': 0.1.1(effect@4.1.4)
-      '@r_masseater/vite-plus-adopt': 0.8.1(effect@4.1.4)(typescript@7.1.0-beta)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))
+      '@r_masseater/vite-plus-adopt': 0.9.0(effect@4.1.4)(typescript@7.1.0-beta)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))
       '@shadcn/lint': 0.2.5(eslint@10.14.0(jiti@2.7.0))
       '@tanstack/intent': 0.5.6
       '@textlint-ja/textlint-rule-preset-ai-writing': 1.7.0
@@ -5327,6 +5327,7 @@ snapshots:
       eslint-plugin-react-hooks: 7.1.1(eslint@10.14.0(jiti@2.7.0))
       htmlparser2: 12.0.0
       oxlint-plugin-eslint: 1.93.0
+      semver: 7.8.6
       sql-parser-cst: 0.44.1
       textlint-rule-preset-ja-technical-writing: 12.0.2
       toml-eslint-parser: 1.0.3
@@ -5360,7 +5361,7 @@ snapshots:
       kuromojin: 3.0.1
       sentence-splitter: 5.0.3
 
-  '@r_masseater/vite-plus-adopt@0.8.1(effect@4.1.4)(typescript@7.1.0-beta)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))':
+  '@r_masseater/vite-plus-adopt@0.9.0(effect@4.1.4)(typescript@7.1.0-beta)(vite-plus@1.6.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))':
     dependencies:
       '@andrewbranch/untar.js': 1.0.4
       '@commitlint/format': 21.2.3
@@ -5369,6 +5370,9 @@ snapshots:
       '@commitlint/types': 21.2.3
       '@effect/platform-node-shared': 4.1.4(effect@4.1.4)
       '@loaderkit/resolve': 1.0.6
+      '@pnpm/logger': 1100.0.0
+      '@pnpm/workspace.projects-reader': 1101.1.7(@pnpm/logger@1100.0.0)
+      '@pnpm/workspace.workspace-manifest-reader': 1100.3.2
       '@textlint/config-loader': 15.8.0
       '@textlint/kernel': 15.8.0
       '@textlint/utils': 15.8.0
