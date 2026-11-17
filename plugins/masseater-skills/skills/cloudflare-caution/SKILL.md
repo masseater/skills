@@ -48,6 +48,7 @@ metadata:
 - すべてのリクエストでKVの `list()` を呼び出さない。キーで直接値を参照できるように設計する。
 - Durable ObjectをWebSocket Hibernationおよびアラーム付きでスリープさせる。スリープ状態では、未使用であっても128 MB分の時間が請求される。
 - `setTimeout` やアウトバウンド接続によって、Durable Objectをスリープさせない。
+- Containersは、処理の有無にかかわらず、コンテナが稼働している間、インスタンスタイプのフルメモリおよびフルディスクを10 ms単位で課金する。本番環境で測定される最大メモリ容量に適合する最小のインスタンスタイプを使用し、`setInactivityTimeout` または `sleepAfter` のアイドル時間を、本番環境で測定されるコール間隔が許容する最短値に設定する。スケジュールに基づいて呼び出されるコンテナでは、すべての呼び出しでアイドル時間の全量が課金される。いかなるスペンドポリシーによっても、Containersを停止させることはできない。
 - 書き込みや読み取り回数の多い小規模ファイルに対して、R2 Infrequent Accessを使用しない。操作ごとのコストがStandardよりも高くなる。
 
 ## ログとトレースの希釈
@@ -64,7 +65,7 @@ metadata:
 - 設計を決定する前に、想定される訪問回数に、1回あたりのWorker呼び出し数、行数、操作数、およびログ数を乗じて月間コストを見積もります。
 - デプロイ後は、ダッシュボードの Billable Usage または GraphQL Analytics API で本番環境の利用状況を確認する。見積もりと乖離がある場合は、設計を見直す。
 
-請求単位および単価は以下の通りである。2026-10-27に [Workers の料金ページ](https://developers.cloudflare.com/workers/platform/pricing/) およびその他の箇所で、Workers AIは2026-11-16に [Workers AI の料金ページ](https://developers.cloudflare.com/workers-ai/platform/pricing/) で確認済みである。単価は変動するため、見積もりに使用する前に料金ページで確認すること。
+請求単位および単価は以下の通りである。2026-10-27に [Workers の料金ページ](https://developers.cloudflare.com/workers/platform/pricing/) およびその他の箇所で、Workers AIは2026-11-16に [Workers AI の料金ページ](https://developers.cloudflare.com/workers-ai/platform/pricing/) で、Containersは2026-11-17に Workers の料金ページで確認済みである。単価は変動するため、見積もりに使用する前に料金ページで確認すること。
 
 | ターゲット | 請求単位 | Paidおよび超過分の含まれる金額 |
 | --- | --- | --- |
@@ -73,6 +74,7 @@ metadata:
 | KV | 読み取り、書き込み、削除、一覧 | 読み取りは100万件あたり0.50ドル、書き込み、削除、一覧は100万件あたり5.00ドル。 |
 | D1 | 読み取り行数および書き込み行数 | 書き込みは月間5,000万行、超過分は100万行あたり1.00ドル。読み取りは100万行あたり0.001ドル。 |
 | Durable Objects | リクエスト、待機時間（GB-秒）、行数 | 使用量に関わらず、128 MBに対して時間が請求される。スリープ中は請求されない。 |
+| Containers | 実行中のメモリ (GiB-秒)、vCPU (秒)、ディスク (GB-秒) | メモリ：月間25 GiB-時間、その後1 GiB-秒あたり$0.0000025。vCPU：月間375 vCPU-分、その後1 vCPU-秒あたり$0.000020。ディスク：月間200 GB-時間、その後1 GB-秒あたり$0.00000007。 |
 | Queues | 操作 | 64 KBのチャンクに分割してリトライする場合、それぞれ1回の操作としてカウントされる。 |
 | R2 | Class A および Class Bの操作とストレージ | エグレスは無料。マルチパートアップロードはパートごとにクラスAとなる。 |
 | Workers Logs | ログイベント | 2026-12-01からの [Cloudflare Observability 料金](https://developers.cloudflare.com/observability/pricing/) の変更（取り込みGBおよび保存GB-月） |
