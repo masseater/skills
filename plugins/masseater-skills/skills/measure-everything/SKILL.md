@@ -44,7 +44,7 @@ Node.jsプロセスのトレース、メトリクス、ログには、[OpenTelem
 
 Effect プログラムでは、`Effect.fn` および `Effect.withSpan` を使用すること。これらを `effect/observability` から `OtlpTracer.layerFromConfig` でエクスポートせよ。
 
-Tauriのデスクトップアプリでは、desktop-shell と desktop-telemetry を使用する。Tauriビルダーに `desktop_shell::telemetry_plugin()` を追加する。invokeハンドラを `desktop_shell::traced_commands` でラップする。画面のエントリポイントの上部で `startScreenTelemetry` を呼び出す。画面のEffectランタイムに`screenTracer`を提供する。Tauriの`tracing`機能は、各IPCコマンド、ウィンドウ、およびプロトコルリクエストに対してスパンを提供する。OpenTelemetry Browser SDKは、ページの読み込み、ナビゲーション、クリック、およびすべての`fetch`を記録する。また、Web Vitals、長いアニメーションフレーム、および未処理のエラーも記録する。IPCコールは画面のトレースをRustに渡すため、クリック、IPCコール、およびRustコマンドが一つのトレースにまとめられる。デスクトップアプリにはバックエンドがないため、すべてはアプリのログフォルダ内のファイルに格納される。スパンは `telemetry/traces.jsonl` に、ログは `telemetry/logs.jsonl` に格納される。
+Tauriのデスクトップアプリでは、desktop-shell と desktop-telemetry を使用する。Tauriビルダーに `desktop_shell::telemetry_plugin()` を追加する。invokeハンドラを `desktop_shell::traced_commands` でラップする。画面のエントリポイントの上部で `startScreenTelemetry` を呼び出す。`@effect/opentelemetry` から画面の Effect ランタイムに `OtelTracer.layerGlobal` を提供する。Tauriの`tracing`機能は、各IPCコマンド、ウィンドウ、およびプロトコルリクエストに対してスパンを提供する。OpenTelemetry Browser SDKは、ページの読み込み、ナビゲーション、クリック、およびすべての`fetch`を記録する。また、Web Vitals、長いアニメーションフレーム、および未処理のエラーも記録する。IPCコールは画面のトレースをRustに渡すため、クリック、IPCコール、およびRustコマンドが一つのトレースにまとめられる。デスクトップアプリにはバックエンドがないため、すべてはアプリのログフォルダ内のファイルに格納される。スパンは `telemetry/traces.jsonl` に、ログは `telemetry/logs.jsonl` に格納される。
 
 Cloudflare では、プラットフォームに標準で備わっている計測機能を使用すること。ワーカートレーシング、ワーカーログ、D1クエリアナリティクスが主要なニーズを満たす。これらを追加する前に、[cloudflare.md](references/cloudflare.md) を参照せよ。
 
