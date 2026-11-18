@@ -69,6 +69,7 @@ export function serverArgs(port: string): string[] {
     "--chat-template-file",
     TEMPLATE_FILE,
     "--no-prefill-assistant",
+    "--metrics",
   ];
 }
 
