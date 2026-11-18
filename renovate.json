@@ -1,6 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", "security:minimumReleaseAgeNpm", "group:allNonMajor"],
+  "extends": [
+    "config:recommended",
+    "security:minimumReleaseAgeNpm",
+    "group:allNonMajor",
+    "github>masseater/masseater.dev//libs/msch/renovate"
+  ],
   "automerge": true,
   "ignoreTests": true
 }
