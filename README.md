@@ -42,16 +42,6 @@ Linux x64およびmacOS arm64では、セッション開始フックがllama-ser
 
 発想は kat0h の [X のポスト](https://x.com/kat0h/status/2118175639262175376)と [gist の plamo-ja-v2 skill](https://gist.github.com/kat0h/61951d19c606374aa1dd901b0303cc6c)（2026-11-05）による。gist にはライセンスの表記が無いので、コードは写さずに書き直した。プラグインはモデルをバンドルしていない。フックはHugging Faceからダウンロードし、ユーザーは[PLaMo Community License](https://plamo.preferredai.jp/info/plamo-community-license-ja)に従う。
 
-### watashi
-
-Claude Code の会話履歴を、手元の [Betterleaks](https://github.com/betterleaks/betterleaks) で秘密を `[REDACTED:<規則>]` に伏せてから、Stop フックで [watashi](https://watashi.masseater.dev) に送る。環境変数 `WATASHI_SEND_CONVERSATIONS=1` を置いた環境でだけ送る。実体は npm の [`@r_masseater/watashi`](https://www.npmjs.com/package/@r_masseater/watashi) で、ソースは [masseater/masseater.dev の libs/watashi](https://github.com/masseater/masseater.dev/tree/main/libs/watashi) にある。
-
-```sh
-/plugin install watashi@masseater
-npx @r_masseater/watashi login                                                  # 手元の PC
-npx @r_masseater/watashi token issue --scope conversation:write --label cloud   # クラウド用。WATASHI_TOKEN に入れる
-```
-
 ## Claude Code にインストール
 
 ```sh
