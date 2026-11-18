@@ -1,4 +1,16 @@
 {
+  "extraKnownMarketplaces": {
+    "masseater-dev": {
+      "source": {
+        "source": "github",
+        "repo": "masseater/masseater.dev"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "kogane@masseater-dev": true,
+    "watashi@masseater-dev": true
+  },
   "hooks": {
     "SessionStart": [
       {
