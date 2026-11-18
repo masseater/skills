@@ -34,4 +34,8 @@ describe("serverArgs", () => {
     expect(args[args.indexOf("--host") + 1]).toBe("127.0.0.1");
     expect(args[args.indexOf("--port") + 1]).toBe("8123");
   });
+
+  it("exposes llama.cpp's Prometheus metrics so that translation time can be read", () => {
+    expect(serverArgs("8123")).toContain("--metrics");
+  });
 });
