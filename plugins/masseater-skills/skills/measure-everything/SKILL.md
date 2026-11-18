@@ -62,6 +62,8 @@ Fly.io では、管理対象の Prometheus から [組み込みメトリクス](
 
 テストでテレメトリが実際にエクスポートされたことを判定するには、[`@r_masseater/vitest-otlp`](https://github.com/masseater/masseater.dev/tree/main/libs/vitest-otlp) を使用すること。
 
+コレクターのファイルエクスポーターが書き込んだファイル（CIのテレメトリアーティファクトやClaude Codeセッションのテレメトリなど）を読み取るには、[`@r_masseater/vitest-otlp/collector-files`](https://github.com/masseater/masseater.dev/tree/main/libs/vitest-otlp) にある `spansInFile`、`logsInFile`、`metricsInFile` を使用する。
+
 Worker の自動スパンをテストするには、Miniflare で `@r_masseater/vitest-otlp/workers` の `tailWorker()` を指定して実行せよ。
 
 Web Vitals のページ読み込みや同一オリジンリンクの遷移には、[`@r_masseater/web-vitals-flow`](https://github.com/masseater/masseater.dev/tree/main/libs/web-vitals-flow) を使用すること。実行する前に [web-vitals.md](references/web-vitals.md) を読んでおくこと。
