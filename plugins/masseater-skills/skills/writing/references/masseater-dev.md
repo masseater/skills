@@ -11,4 +11,3 @@
 - フロントマターフィールドは `apps/portfolio/src/entities/entry/model/entry.ts` の `Frontmatter` に従う
 - `apps/portfolio/content/` 内のテキストは `.textlintrc` チェックに合格する必要がある。本文は単純な「である」スタイルである。
 - Zenn の記事は textlint によるチェックを受けず、既存の記事は丁寧な「です・ます」スタイルで記述されている。
-- AI が執筆したブログ記事を PR または下書きとして渡す。オーナーはブログ記事を公開する前に修正を行う。
