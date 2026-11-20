@@ -179,8 +179,8 @@ importers:
         specifier: 2.1.326
         version: 2.1.326
       '@r_masseater/msch':
-        specifier: 0.38.1
-        version: 0.38.1(@effect/tsgo@0.67.5)(effect@4.1.4)(eslint@10.14.0(jiti@2.7.0))(oxlint@1.94.0(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(typescript@7.1.0-beta)(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))
+        specifier: 0.41.0
+        version: 0.41.0(@effect/tsgo@0.67.5)(effect@4.1.4)(eslint@10.14.0(jiti@2.7.0))(markdownlint@0.42.1)(oxlint@1.94.0(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))
       skills-ref:
         specifier: 0.1.5
         version: 0.1.5
@@ -399,6 +399,13 @@ packages:
     engines: {node: '>=22.19.0'}
     peerDependencies:
       effect: ^4.1.4
+
+  '@effect/platform-node@4.1.4':
+    resolution: {integrity: sha512-h7QExTPq/RfYtHP/8tMlgfBvqYsuJKhxfkU6w0+NaF/ihqQ8Y3GH9t28ltupQjoqMM7P6W5gy8rOji7F0qVrmg==}
+    engines: {node: '>=22.19.0'}
+    peerDependencies:
+      effect: ^4.1.4
+      redis: '>=5.1.0 <7.0.0'
 
   '@effect/tsgo-darwin-arm64@0.67.5':
     resolution: {integrity: sha512-wCtc/UafbsiWDZlDboVqW6qZI4PdlJzWnK1M29KgJVrey0E6yvGA9YV0ak+38cVqcAaXm1azL9qgI0IKwgNk8A==}
@@ -1169,8 +1176,8 @@ packages:
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
 
-  '@r_masseater/msch@0.38.1':
-    resolution: {integrity: sha512-iKDlitEYGdjI73SN6JemyTc0AAATGnxcwaX9zC3Lcfp5FQCuo3EeEztHkFxi08VTEjQNcxly8IofBGqXXfIY+A==}
+  '@r_masseater/msch@0.41.0':
+    resolution: {integrity: sha512-UDuVbc5Ij5pQeu+NlpWUBbSniuJqe6pGkSBLftwFydiVORG38GVKGQIm7K7KInk9h8xdU8K//o7Ja07gqX+6Zg==}
     engines: {node: '>=26'}
     hasBin: true
     peerDependencies:
@@ -1210,6 +1217,72 @@ packages:
       typescript: '>=7.1.0-beta'
       vite: '*'
       vite-plus: '>=1.5.0'
+
+  '@r_masseater/y8-linux-x64-gnu@0.1.0':
+    resolution: {integrity: sha512-2I8pqY0XSPLuLTVL3h+a00bnwEO2OaYe0ZlP9pljoryYpUyqLwA3j/kXOHUf6WCVSjlmfMq4CuW7kx1kYII8qQ==}
+    engines: {node: '>=26'}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
+  '@r_masseater/y8-win32-x64-msvc@0.1.0':
+    resolution: {integrity: sha512-BKNjw2oR8zxf7ldJtz4kmprrrP5W4VIVtpjK1F6WmCy/voPSgg+1K66/ZuPhU6okIS4OM9KDzfKRfhfhNpE2MA==}
+    engines: {node: '>=26'}
+    cpu: [x64]
+    os: [win32]
+
+  '@r_masseater/y8@0.1.0':
+    resolution: {integrity: sha512-uyuIicvDLidWSoiyaq7HUxRYaMhcpvlCZG78cC8KROrlV5h3e/Jnv3OsFwFVjNaqtleFYwQ9VmRyvf1frg2O7g==}
+    engines: {node: '>=26'}
+    hasBin: true
+    peerDependencies:
+      effect: ^4.1.2
+      markdownlint: '>=0.42.0'
+      vite: '*'
+      vite-plus: '>=1.5.0'
+    peerDependenciesMeta:
+      markdownlint:
+        optional: true
+      vite:
+        optional: true
+      vite-plus:
+        optional: true
+
+  '@redis/bloom@6.3.1':
+    resolution: {integrity: sha512-dpF9j2yJDoPzSCaZn0MSB3xzmnXQVJeTSAWJcQVcgbmluwhpFeemmII0cF1t+WYfoVS+shEFq79+MmUItgzJLg==}
+    engines: {node: '>= 20.0.0'}
+    peerDependencies:
+      '@redis/client': ^6.3.1
+
+  '@redis/client@6.3.1':
+    resolution: {integrity: sha512-masbfVKULdoAofwddepZxRhWa4w6zvBHn6TRn90TRPrRkVIlGCur3pFqwWaCbMxtYI9twepkz63e/T/tEH8GjA==}
+    engines: {node: '>= 20.0.0'}
+    peerDependencies:
+      '@node-rs/xxhash': ^1.1.0
+      '@opentelemetry/api': '>=1 <2'
+    peerDependenciesMeta:
+      '@node-rs/xxhash':
+        optional: true
+      '@opentelemetry/api':
+        optional: true
+
+  '@redis/json@6.3.1':
+    resolution: {integrity: sha512-fMz4kUwJzEftcU9EMaqsjZcUwzpTQLOYRqhQsAD6uKvZWeamblK13ZhgO5SzVSZVk31jmwLeTRpU5GAl5egfUw==}
+    engines: {node: '>= 20.0.0'}
+    peerDependencies:
+      '@redis/client': ^6.3.1
+
+  '@redis/search@6.3.1':
+    resolution: {integrity: sha512-T67pvPUpW82VrZLvihO8O2DFMC7eY2oMAzMzapCbiPZn7mdWqHMEIlohYim12gIawT5kn6qT/Cvmm4WulKB+kQ==}
+    engines: {node: '>= 20.0.0'}
+    peerDependencies:
+      '@redis/client': ^6.3.1
+
+  '@redis/time-series@6.3.1':
+    resolution: {integrity: sha512-MNDgrm+i63M/1a+XA+HcDsScwt4uBh/fGGJ84swTQZTFK5K5wMmxdlTRa4ZgmNJzjxMaszW/ipPScMUGV3aAMg==}
+    engines: {node: '>= 20.0.0'}
+    peerDependencies:
+      '@redis/client': ^6.3.1
 
   '@rolldown/binding-android-arm-eabi@1.2.18':
     resolution: {integrity: sha512-ubTG+4KlidvioxjOFdsdEa2F6JVGZb8m2ByJUqQ7fYzUeT1cEn194POcsQ10PKH4p//q0YQn4SB3YpSuzcA1Yg==}
@@ -3562,6 +3635,10 @@ packages:
     resolution: {integrity: sha512-Kko+Y5XQ6fM+Ce3dq3m9YGxnacYZYl9cA1wZjaF3Vbry2L3i1qVg8+CAgNPsXRArPMUMCaOR7oa9Nqntc43JKA==}
     engines: {node: '>= 20.19.0'}
 
+  redis@6.3.1:
+    resolution: {integrity: sha512-mV96ZKxQ4CGn3SyEGaY0Lb9YA443mdVey3c+mdr0NAUaBxiOZGoYCWX8PoM55kictSOmxlJRtZJxIsmZm3jL+w==}
+    engines: {node: '>= 20.0.0'}
+
   reflect.getprototypeof@1.0.10:
     resolution: {integrity: sha512-00o4I+DVrefhv+nX0ulyi3biSHCPDe+yLv5o/p6d/UVlirijB8E16FtfwSAi4g3tcqrQ4lRAqQSoFEZJehYEcw==}
     engines: {node: '>= 0.4'}
@@ -4006,6 +4083,10 @@ packages:
 
   undici-types@8.9.0:
     resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
+
+  undici@8.12.4:
+    resolution: {integrity: sha512-8Mx+uNKKER2bA4AdtedkqRbwUCIJFr2nJckXRe5yrDqzePqwLP7VNcctN8/XdmDSbF7mS+jJKIszlL+vbam1VA==}
+    engines: {node: '>=22.19.0'}
 
   unicorn-magic@0.1.0:
     resolution: {integrity: sha512-lRfVq8fE8gz6QMBuDM6a+LO3IAzTi05H6gCVaUpir2E1Rwpo4ZUog45KpNXKC/Mn3Yb9UDuHumeFTo9iV/D9FQ==}
@@ -4531,6 +4612,16 @@ snapshots:
       '@types/ws': 8.18.2
       effect: 4.1.4
       ws: 8.22.2
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
+  '@effect/platform-node@4.1.4(effect@4.1.4)(redis@6.3.1)':
+    dependencies:
+      '@effect/platform-node-shared': 4.1.4(effect@4.1.4)
+      effect: 4.1.4
+      redis: 6.3.1
+      undici: 8.12.4
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -5212,7 +5303,7 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
-  '@r_masseater/msch@0.38.1(@effect/tsgo@0.67.5)(effect@4.1.4)(eslint@10.14.0(jiti@2.7.0))(oxlint@1.94.0(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(typescript@7.1.0-beta)(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))':
+  '@r_masseater/msch@0.41.0(@effect/tsgo@0.67.5)(effect@4.1.4)(eslint@10.14.0(jiti@2.7.0))(markdownlint@0.42.1)(oxlint@1.94.0(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))':
     dependencies:
       '@commitlint/config-conventional': 21.2.4
       '@effect/platform-node-shared': 4.1.4(effect@4.1.4)
@@ -5228,6 +5319,7 @@ snapshots:
       '@r_masseater/oxlint-typed-rules': 0.4.1(effect@4.1.4)(typescript@7.1.0-beta)
       '@r_masseater/textlint-rule-preset-ja': 0.1.1(effect@4.1.4)
       '@r_masseater/vite-plus-adopt': 0.10.2(effect@4.1.4)(typescript@7.1.0-beta)(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))
+      '@r_masseater/y8': 0.1.0(effect@4.1.4)(markdownlint@0.42.1)(redis@6.3.1)(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))
       '@shadcn/lint': 0.2.5(eslint@10.14.0(jiti@2.7.0))
       '@tanstack/intent': 0.5.6
       '@textlint-ja/textlint-rule-preset-ai-writing': 1.7.0
@@ -5252,7 +5344,9 @@ snapshots:
       - '@typescript-eslint/parser'
       - bufferutil
       - eslint
+      - markdownlint
       - oxlint
+      - redis
       - supports-color
       - utf-8-validate
 
@@ -5317,6 +5411,47 @@ snapshots:
       - bufferutil
       - supports-color
       - utf-8-validate
+
+  '@r_masseater/y8-linux-x64-gnu@0.1.0':
+    optional: true
+
+  '@r_masseater/y8-win32-x64-msvc@0.1.0':
+    optional: true
+
+  '@r_masseater/y8@0.1.0(effect@4.1.4)(markdownlint@0.42.1)(redis@6.3.1)(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))':
+    dependencies:
+      '@effect/platform-node': 4.1.4(effect@4.1.4)(redis@6.3.1)
+      effect: 4.1.4
+      minimatch: 11.0.8
+      yaml: 2.9.1
+    optionalDependencies:
+      '@r_masseater/y8-linux-x64-gnu': 0.1.0
+      '@r_masseater/y8-win32-x64-msvc': 0.1.0
+      markdownlint: 0.42.1
+      vite: 8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1)
+      vite-plus: 1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)
+    transitivePeerDependencies:
+      - bufferutil
+      - redis
+      - utf-8-validate
+
+  '@redis/bloom@6.3.1(@redis/client@6.3.1)':
+    dependencies:
+      '@redis/client': 6.3.1
+
+  '@redis/client@6.3.1': {}
+
+  '@redis/json@6.3.1(@redis/client@6.3.1)':
+    dependencies:
+      '@redis/client': 6.3.1
+
+  '@redis/search@6.3.1(@redis/client@6.3.1)':
+    dependencies:
+      '@redis/client': 6.3.1
+
+  '@redis/time-series@6.3.1(@redis/client@6.3.1)':
+    dependencies:
+      '@redis/client': 6.3.1
 
   '@rolldown/binding-android-arm-eabi@1.2.18':
     optional: true
@@ -7748,6 +7883,17 @@ snapshots:
 
   readdirp@5.1.1: {}
 
+  redis@6.3.1:
+    dependencies:
+      '@redis/bloom': 6.3.1(@redis/client@6.3.1)
+      '@redis/client': 6.3.1
+      '@redis/json': 6.3.1(@redis/client@6.3.1)
+      '@redis/search': 6.3.1(@redis/client@6.3.1)
+      '@redis/time-series': 6.3.1(@redis/client@6.3.1)
+    transitivePeerDependencies:
+      - '@node-rs/xxhash'
+      - '@opentelemetry/api'
+
   reflect.getprototypeof@1.0.10:
     dependencies:
       call-bind: 1.0.9
@@ -8429,6 +8575,8 @@ snapshots:
   undici-types@7.24.6: {}
 
   undici-types@8.9.0: {}
+
+  undici@8.12.4: {}
 
   unicorn-magic@0.1.0: {}
 
