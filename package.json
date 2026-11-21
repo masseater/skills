@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "@anthropic-ai/claude-code": "2.1.327",
-    "@r_masseater/msch": "0.42.0",
+    "@r_masseater/msch": "0.48.1",
     "skills-ref": "0.1.5",
     "vite-plus": "1.7.0"
   },
