@@ -1,6 +1,6 @@
 # AGENTS.md
 
-This repository holds the agent skills shared by masseater's repositories. The root is a Claude Code plugin marketplace, and skills live in the `masseater-skills` plugin under `plugins/masseater-skills/skills/`.
+This repository holds the agent skills shared by masseater's repositories. The root is a Claude Code plugin marketplace.
 
 - Follow `skill-authoring` when creating or fixing a skill.
 - Follow `writing` for prose, and `humanity-and-humanness` for what to assume about human readers.
@@ -8,7 +8,7 @@ This repository holds the agent skills shared by masseater's repositories. The r
 
 ## Layout
 
-Put each skill in its own `plugins/masseater-skills/skills/<name>/`, with `name` equal to the directory name. One document holds one kind of content.
+Put each skill in its own `plugins/<plugin>/skills/<name>/`, with `name` equal to the directory name. One document holds one kind of content.
 
 - `SKILL.md` holds why the skill is needed, the state it aims for, and its rules.
 - `usecases/` holds procedures.
@@ -18,18 +18,18 @@ Put each skill in its own `plugins/masseater-skills/skills/<name>/`, with `name`
 
 ## Plugins
 
-Put each plugin in its own `plugins/<name>/` and add it to `.claude-plugin/marketplace.json`. Hooks take no dependencies, and hooks and scripts are written in TypeScript that Node.js runs as is (code that works once type annotations are stripped).
+Put each plugin in its own `plugins/<plugin>/` with a `package.json`, a `README.md` and a `.claude-plugin/plugin.json`. msch generates `.claude-plugin/marketplace.json` from them, so do not edit it by hand. Hooks take no dependencies, and hooks and scripts are written in TypeScript that Node.js runs as is (code that works once type annotations are stripped).
 
 ## Commands
 
 ```sh
-vp exec skills-ref validate plugins/masseater-skills/skills/<name>   # validate frontmatter and layout
+vp exec skills-ref validate plugins/<plugin>/skills/<name>   # validate frontmatter and layout
 vp dlx skills init <name>                   # scaffold a SKILL.md
 ```
 
-The skill list in README.md is rewritten from each `SKILL.md`'s `name` and `description` by `.vite-hooks/pre-commit` running `vp run readme` on every commit that includes a `SKILL.md`, and is included in the commit. Do not edit it by hand. `vp install` enables the hook.
+The skill list in each plugin's README.md is rewritten from each `SKILL.md`'s `name` and `description` by `.vite-hooks/pre-commit` running `vp run readme` on every commit that includes a `SKILL.md`, and is included in the commit. Do not edit it by hand. `vp install` enables the hook.
 
-There is no build or lint. `./node_modules/.bin/vp run test` runs msch's checks, the plugin tests and manifest validation, and also runs on pre-push. After changing a skill, pass `skills-ref validate` and check that referenced files exist. Only `masseater-ecosystem` may name other skills, and every skill must be listed there. The tests check both.
+There is no build or lint. `./node_modules/.bin/vp run test` runs msch's checks, the plugin tests and manifest validation, and also runs on pre-push. msch needs Node.js 26 or later. After changing a skill, pass `skills-ref validate` and check that referenced files exist. Only `masseater-ecosystem` may name other skills, and every skill must be listed there. The tests check both.
 
 ## Workflow
 

@@ -179,7 +179,7 @@
 - **8.4** アップデートは全員に一度に送信されず、問題がある場合は停止・ロールバックできる
   - 根拠: VS Code は段階的にロールアウトする ([1.131](https://code.visualstudio.com/updates/v1_131))。Sparkle には 7 つのグループに分けて配る `phasedRolloutInterval`、スキップできない `criticalUpdate`、最低バージョン未満で確認を出す `minimumAutoupdateVersion` がある ([Sparkle](https://sparkle-project.org/documentation/publishing/))。electron-updater はインストールごとの ID で `stagingPercentage` を決定する。Tauri にはステージ済みロールアウトもデルタアップデートもない (#11863)。アップデートサーバーは ID でインストールを振り分けられ、`version_comparator` で前のバージョンに戻せる
 - **8.5** 更新が失敗しない
-  - 根拠: Restart Manager への切り替え後、Tauri の NSIS 更新は「Failed to kill <App>」で中断される ([#16277](https://github.com/tauri-apps/tauri/issues/16277), 2026-10)。更新の署名鍵を失うと、既存のインストールでは更新を検証できない
+  - 根拠: Restart Manager への切り替え後、Tauri の NSIS 更新は「`Failed to kill <App>`」で中断される ([#16277](https://github.com/tauri-apps/tauri/issues/16277), 2026-10)。更新の署名鍵を失うと、既存のインストールでは更新を検証できない
 - **8.6** ユーザーはアップデートの内容を確認できるが、リリースのたびにプッシュされるわけではない
   - 根拠: VS Codeはアップデート後にリリースノートを開き、1.75以降はこれを停止する設定があり、1.81以降ではアップデート前に内容を確認できる（[1.75](https://code.visualstudio.com/updates/v1_75), [1.81](https://code.visualstudio.com/updates/v1_81)）。NN/gは、リリース時に表示される「新機能」リストが忘れられていると述べている（[NN/g](https://www.nngroup.com/articles/onboarding-tutorials/)）
 - **8.7** 更新メッセージは正確である

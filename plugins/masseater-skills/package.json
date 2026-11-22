@@ -1,0 +1,6 @@
+{
+  "name": "masseater-skills",
+  "private": true,
+  "type": "module",
+  "description": "masseater のリポジトリで共通に使うエージェントスキル"
+}

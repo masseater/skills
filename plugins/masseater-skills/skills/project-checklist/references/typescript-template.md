@@ -21,13 +21,13 @@
 - 機能：`vp run verify` における syncpack はパスされ、同一の依存関係の複数バージョンは許可されない。
 - 古い構造：カタログ内に依存関係のハードコード版が存在するか、あるいは同一の依存関係の異なるバージョンがパッケージ間に散在していないかを確認する。
 
-## 3. モノレポは Nx スタイルで構成されており、pnpm が引き続きパッケージマネージャーとして機能する。
+## 3. モノレポは Nx スタイルで構成されており、pnpm が引き続きパッケージマネージャーとして機能する
 
 - はじめに：パッケージは、アプリ用の `apps/`、共有コード用の `libs/`、リポジトリツール用の `tools/` に分かれており、`pnpm-workspace.yaml` の `packages` にそれらが列挙されている。
 - 機能：`vp install` および `vp run -r` は、ワークスペースのパッケージを解決して実行する。
 - 古い構造：`@nx/*` がインストールされた痕跡があるか、また `apps/`、`libs/`、`tools/` の外にパッケージが散在していないかを確認する。
 
-## 4. 型は `@effect/tsgo` でチェックされる。
+## 4. 型は `@effect/tsgo` でチェックされる
 
 - はじめに：`catalog:stack` の `@effect/tsgo` が存在し、すべてのパッケージの tsconfig が `tsconfig.base.json` を `extends` しており、各アプリの `prepare` が `effect-tsgo patch --typescript --oxlint` を実行する。
 - 機能：`vite.config.ts` の `vp check` で `typeAware: true` および `typeCheck: true` が有効になっており、`@effect/tsgo/oxlint-presets` のエフェクトルールが読み込まれ、`tsconfig.base.json` の `strict`、`exactOptionalPropertyTypes`、および `noUncheckedIndexedAccess` が引き続き有効である。
@@ -39,13 +39,13 @@
 - 機能：境界値はライブラリの型そのままの状態で `Schema.decode*` に渡され、外部 API のクライアントは、公式の Effect、distilled.cloud、OpenAPI から生成された順に選択され、時間やコストがかかる処理は `Effect.withSpan` で可視化される。
 - 古い構造：単純な Promise と try/catch があるか、あるいは手書きの API ラッパーがあるかを確認する。
 
-## 6. デッドコード、重複、脆弱性、およびフォールow を伴う依存関係を確認する。
+## 6. デッドコード、重複、脆弱性、およびフォールow を伴う依存関係を確認する
 
 - はじめに：`.fallowrc.jsonc`、ルートおよびアプリ内の `fallow` スクリプト、および verify 内の `fallow-all` が存在する。
 - 機能：`vp run -r fallow` を実行し、型認識とセキュリティチェックを含めて渡し、`--fail-on-issues` などの失敗条件が引き続き有効である。これらを緩めると、green の意味が消える。
 - 古い構造：rc とスクリプト間で設定が重複していないかを確認する。
 
-## 7. 検証の単一のエントリポイントは `vp run verify` である。
+## 7. 検証の単一のエントリポイントは `vp run verify` である
 
 - はじめに：検証のエントリポイントとして `vp run verify` が存在する。現在のテンプレートでは、ルートの `vite.config.ts` にある `run.tasks.verify` とその dependsOn グラフがエントリポイントとなっており、スクリプトが連鎖していても、一つのエントリポイントからチェックがまとめて実行されていれば動作する。
 - 機能：CI の検証ジョブである `.vite-hooks/pre-push` と `.claude/hooks/stop-gate.ts` は、同じ `vp run verify` を呼び出す。test、syncpack、markdown-lint、renovate、actions-lint、steiger、db:check、fallow、audit など、リポジトリ内にターゲットを持つチェックは、エントリポイントから実行される。
