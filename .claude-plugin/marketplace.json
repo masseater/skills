@@ -19,6 +19,12 @@
       "source": "./plugins/plamo-ja",
       "description": "日本語表示モード。Claude に英語で書かせ、ローカルの PLaMo 3 Translate で訳した日本語を画面に出す",
       "category": "productivity"
+    },
+    {
+      "name": "oneshot-prompts",
+      "source": "./plugins/oneshot-prompts",
+      "description": "ワンショットプロンプトの置き場。方針をどこまで示すかで 4 段階に分けたプロンプトを検索して見せる",
+      "category": "productivity"
     }
   ]
 }
