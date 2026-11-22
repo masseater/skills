@@ -7,7 +7,7 @@ const END = "<!-- skills:end -->";
 
 const root = join(import.meta.dirname, "..");
 const skillsDir = "plugins/masseater-skills/skills";
-const readmePath = join(root, "README.md");
+const readmePath = join(root, "plugins/masseater-skills/README.md");
 
 const dirs = readdirSync(join(root, skillsDir), { withFileTypes: true })
   .filter((entry) => entry.isDirectory() && existsSync(join(root, skillsDir, entry.name, "SKILL.md")))
@@ -18,7 +18,7 @@ const lines = await Promise.all(
   dirs.map(async (dir) => {
     const { name, description } = await readProperties(join(root, skillsDir, dir));
     const summary = description.replace(/\s*\n\s*/g, " ").trim().split("。")[0];
-    return `- [${name}](${skillsDir}/${dir}/SKILL.md): ${summary}。`;
+    return `- [${name}](skills/${dir}/SKILL.md): ${summary}。`;
   }),
 );
 
@@ -26,17 +26,17 @@ const readme = readFileSync(readmePath, "utf8");
 const start = readme.indexOf(START);
 const end = readme.indexOf(END);
 if (start === -1 || end === -1 || end < start) {
-  throw new Error(`README.md に ${START} と ${END} の区間がない`);
+  throw new Error(`${readmePath} に ${START} と ${END} の区間がない`);
 }
 
 const next = `${readme.slice(0, start + START.length)}\n\n${lines.join("\n")}\n\n${readme.slice(end)}`;
 
 if (process.argv.includes("--check")) {
   if (next !== readme) {
-    console.error("README.md のスキル一覧が古い。vp run readme で書き直す。");
+    console.error("plugins/masseater-skills/README.md のスキル一覧が古い。vp run readme で書き直す。");
     process.exit(1);
   }
 } else if (next !== readme) {
   writeFileSync(readmePath, next);
-  console.log("README.md のスキル一覧を書き直した。");
+  console.log("plugins/masseater-skills/README.md のスキル一覧を書き直した。");
 }

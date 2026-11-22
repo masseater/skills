@@ -1,7 +1,11 @@
 {
-  "name": "masseater-skills",
+  "name": "masseater",
   "private": true,
   "type": "module",
+  "author": {
+    "name": "masseater",
+    "url": "https://github.com/masseater"
+  },
   "scripts": {
     "prepare": "vp config --no-agent"
   },

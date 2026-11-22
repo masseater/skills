@@ -7,6 +7,7 @@
 ### macOS 27 (2026-09-14; 10-26に27.2, 11-09に27.2.1, 11-03に27.3 beta 1)
 
 出典は[macOS 27のリリースノート](https://developer.apple.com/documentation/macos-release-notes/macos-27-release-notes)、[27.2ノート](https://developer.apple.com/documentation/macos-release-notes/macos-27_2-release-notes)、および[Developer News](https://developer.apple.com/news/)である。
+
 | 変化 | 利用者に起きること | Tauri で要ること |
 |---|---|---|
 | Apple siliconのみ。Rosettaは27で終了し、Intelソフトウェアは28では動作しない。27.2以降、アップグレードしてもRosettaは削除されなくなった | Intelアプリは「macOS 28では動作しない」と表示される | arm64 かユニバーサルビルドで出す。x86専用の同梱プログラムを確認。`hostArchitecture`のない.pkgはarm64として動作する |
@@ -24,6 +25,7 @@
 ### Windows 11 26H2 (2026-09-29)
 
 出典：[IT Pro guide](https://techcommunity.microsoft.com/blog/windows-itpro-blog/an-it-pro%e2%80%99s-guide-to-windows-11-version-26h2/4559760)。26H1は新型Arm PC専用の別リリースであり、そのまま26H2へアップグレードすることはできない。
+
 | 変化 | 利用者に起きること | Tauri で要ること |
 |---|---|---|
 | Smart App Controlは再インストール不要で切り替え可能（2026-04以降） | 導入ユーザーが増え、署名のないソフトウェアがブロックされる | すべてのexe、DLL、サイドカーに署名する |
@@ -48,6 +50,7 @@
 ## 18. 規格と法律
 
 ユーザーにはこれらが尊重されていることしか分からないため、本章ではそれぞれが適用される条件とその内容を列挙する。
+
 | 枠組み | 中身 | 個人の無償アプリへの当てはまり |
 |---|---|---|
 | [ISO/IEC 25010:2023](https://www.iso.org/standard/78176.html) | 9つの品質特性：機能適合性、性能効率、互換性、相互作用能力（旧ユーザビリティ：適切性の認識可能性、学習可能性、操作性、ユーザエラー保護、ユーザエンゲージメント、包括性、ユーザ支援、自己記述性）、信頼性（無故障性、可用性、耐故障性、回復可能性）、セキュリティ（機密性、完全性、否認防止、説明責任、真正性、耐性）、保守性、柔軟性（旧ポータビリティ：適応性、設置性、交換性、拡張性）、および安全性（2023年に追加）。使用上の品質はISO/IEC 25019に移行した。サブ特性の後半部分は二次資料（[Sonar](https://www.sonarsource.com/resources/library/iso-iec-25010-explained/)）による。 | 必須ではない。カバレッジのチェックリストとして有用 |
@@ -66,6 +69,7 @@
 ## 19. 作り手が品質を確かめる方法
 
 ユーザーには見えないが、ここまでの体験を保つための手段である。
+
 | 手段 | 現状 |
 |---|---|
 | 実際のアプリでのE2Eテスト | TauriはWebdriverIOの`@wdio/tauri-service`を正式に推奨している。デフォルトの組み込みモードではWebDriverサーバーがアプリ内に配置されるため、macOSでも動作する（[Tauri](https://v2.tauri.app/develop/tests/webdriver/), 2026-06-29）。`tauri-driver`単体ではWindowsとLinuxのみに対応している。これはAppleがWKWebView用のドライバーを同梱していないためである。PlaywrightはCDP経由でWebView2に接続することで、Windowsでのみ動作する（[Playwright](https://playwright.dev/docs/webview2)） |
@@ -82,6 +86,7 @@
 ## 20. Tauri では埋められない穴
 
 2.12.5 の時点では、OSの規約に従うには、独自のネイティブコードまたはサードパーティ製プラグインが必要となる。
+
 - 印刷設定、PDFエクスポートとサイレント印刷（#4917, #12284）、iframeの印刷（#13451）
 - ファイルをドラッグして実際のファイルを作成する (#2593)、およびWindowsでファイルドロップとHTML5のドラッグ＆ドロップを併用する (#15138)
 - ジャンプリストとDockメニュー (#9916, #14460, #14699)

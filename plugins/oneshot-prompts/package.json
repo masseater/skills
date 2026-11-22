@@ -1,0 +1,6 @@
+{
+  "name": "oneshot-prompts",
+  "private": true,
+  "type": "module",
+  "description": "ワンショットプロンプトの置き場。方針をどこまで示すかで 4 段階に分けたプロンプトを検索し、そのままコピーできる形でユーザーに見せる"
+}
