@@ -1,15 +1,13 @@
 # skills
 
-masseater のリポジトリで AI エージェントに守らせる書き方と作り方を、[Agent Skills](https://agentskills.io) にまとめたものである。
-Claude Code にはプラグインとして、ほかのエージェントには skills CLI でインストールできる。
-
+masseater のリポジトリで使うエージェント向けのプラグインを配る、Claude Code のプラグインマーケットプレイスである。
 各プラグインの説明は、[plugins](plugins) の下にあるそれぞれのディレクトリの README.md にある。
 
 ## Claude Code にインストール
 
 ```sh
 /plugin marketplace add masseater/skills
-/plugin install masseater-skills@masseater
+/plugin install <プラグイン名>@masseater
 ```
 
 ### チームで使う
@@ -24,12 +22,14 @@ Claude Code にはプラグインとして、ほかのエージェントには s
     }
   },
   "enabledPlugins": {
-    "masseater-skills@masseater": true
+    "<プラグイン名>@masseater": true
   }
 }
 ```
 
 ## skills CLI でインストール
+
+プラグインを使えないエージェントには、skills CLI でスキルをインストールできる。
 
 ```sh
 npx skills add masseater/skills
