@@ -179,8 +179,8 @@ importers:
         specifier: 2.1.328
         version: 2.1.328
       '@r_masseater/msch':
-        specifier: 0.50.0
-        version: 0.50.0(@effect/tsgo@0.67.5)(effect@4.1.4)(eslint@10.14.0(jiti@2.7.0))(markdownlint@0.42.1)(oxlint@1.94.0(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))
+        specifier: 0.53.0
+        version: 0.53.0(@effect/tsgo@0.67.5)(effect@4.1.4)(eslint@10.14.0(jiti@2.7.0))(markdownlint@0.42.1)(oxlint@1.94.0(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))
       skills-ref:
         specifier: 0.1.5
         version: 0.1.5
@@ -1238,8 +1238,8 @@ packages:
       vite-plus:
         optional: true
 
-  '@r_masseater/msch@0.50.0':
-    resolution: {integrity: sha512-0x7kMHqGep0o8pLRpcmPZ52cSO+yDVPQPUkU+Lj57uUPicpF52aanZ9ilVthsRUh+7oA8JaJETmYOqqb4L2S2A==}
+  '@r_masseater/msch@0.53.0':
+    resolution: {integrity: sha512-ZnLc+kFn28KP9a+2RC3BFiRdiQTWByPmwn+OXb9+Vh4FLg9c6ibm+KTmbmSs7JQG7lSRl2Tha2wgQnXQ9Q9r1Q==}
     engines: {node: v26.13.1}
     hasBin: true
     peerDependencies:
@@ -3449,6 +3449,11 @@ packages:
     resolution: {integrity: sha512-tEBHqDnIoM/1rXME1zgka9g6Q2lcoCkxHLuc7ODJ5BxbP5d4c2Z5cGgtXAku59200Cx7diuHTOYfSBD8n6mm8A==}
     engines: {node: '>=16 || 14 >=14.17'}
 
+  modern-web-guidance@1.0.1:
+    resolution: {integrity: sha512-5ztUh5F1p2PewnSkA6EhsGUXqomaZY9qe6iWJCU4JbIQxHTky7s5lMJcPE4EbD1uhbQZIhl0HROH0+s6fIiGzg==}
+    engines: {node: '>=22.0.0', vscode: ^1.90.0}
+    hasBin: true
+
   moji@0.5.1:
     resolution: {integrity: sha512-xYylXOjBS9mE/d690InK3Y74NpE0El0TmAKDmKJveWk9jds/0Tl7MQP4yhavS0U64diEq+5ey2905nhCpIHE+Q==}
 
@@ -5456,7 +5461,7 @@ snapshots:
       - redis
       - utf-8-validate
 
-  '@r_masseater/msch@0.50.0(@effect/tsgo@0.67.5)(effect@4.1.4)(eslint@10.14.0(jiti@2.7.0))(markdownlint@0.42.1)(oxlint@1.94.0(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))':
+  '@r_masseater/msch@0.53.0(@effect/tsgo@0.67.5)(effect@4.1.4)(eslint@10.14.0(jiti@2.7.0))(markdownlint@0.42.1)(oxlint@1.94.0(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(vite-plus@1.7.0(@types/node@26.6.6)(@vitest/ui@5.1.0)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))':
     dependencies:
       '@commitlint/config-conventional': 21.2.4
       '@effect/platform-node-shared': 4.1.4(effect@4.1.4)
@@ -5491,6 +5496,7 @@ snapshots:
       eslint-plugin-no-comments: 1.2.1(eslint@10.14.0(jiti@2.7.0))
       eslint-plugin-react-hooks: 7.1.1(eslint@10.14.0(jiti@2.7.0))
       htmlparser2: 12.0.0
+      modern-web-guidance: 1.0.1
       oxlint-plugin-eslint: 1.94.0
       semver: 7.8.6
       sql-parser-cst: 0.44.1
@@ -7751,6 +7757,8 @@ snapshots:
       brace-expansion: 5.0.12
 
   minipass@7.1.3: {}
+
+  modern-web-guidance@1.0.1: {}
 
   moji@0.5.1:
     dependencies:
