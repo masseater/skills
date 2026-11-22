@@ -3,7 +3,7 @@
 masseater のリポジトリで AI エージェントに守らせる書き方と作り方を、[Agent Skills](https://agentskills.io) にまとめたものである。
 Claude Code にはプラグインとして、ほかのエージェントには skills CLI でインストールできる。
 
-各プラグインの説明は、`plugins/` の下にあるそれぞれのディレクトリの README.md に書く。
+各プラグインの説明は、[plugins](plugins) の下にあるそれぞれのディレクトリの README.md にある。
 
 ## Claude Code にインストール
 
