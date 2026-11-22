@@ -62,9 +62,12 @@ afterAll(() => {
 });
 
 describe("marketplace", () => {
-  it("passes claude plugin validate --strict", () => {
-    const result = claude(["plugin", "validate", "--strict", "."]);
+  it("passes claude plugin validate with no warning but the description msch does not generate", () => {
+    const result = claude(["plugin", "validate", "."]);
     expect(result.status, result.output).toBe(0);
+    const warnings = [...result.output.matchAll(/^\s*> (.+)$/gm)].map((match) => match[1] ?? "");
+    const unexpected = warnings.filter((warning) => !warning.startsWith("description: No marketplace description"));
+    expect(unexpected, result.output).toEqual([]);
   });
 
   it("is not itself a plugin", () => {
