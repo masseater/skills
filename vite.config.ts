@@ -10,6 +10,9 @@ export default defineConfig({
       "markdownlint/MD026": ["error", { punctuation: ".,;:。，；：" }],
     },
   },
+  test: {
+    exclude: ["**/node_modules/**", "plugins/*/hooks/*.test.{ts,tsx}"],
+  },
   run: {
     tasks: {
       readme: { command: "node bin/update-readme.ts", cache: false },

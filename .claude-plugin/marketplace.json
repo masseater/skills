@@ -6,6 +6,11 @@
   },
   "plugins": [
     {
+      "name": "cogload",
+      "source": "./plugins/cogload",
+      "description": "作業報告を開始状態、完了状態、確認事項だけにして表示し、必要なスキルを読むまで編集を止める"
+    },
+    {
       "name": "masseater-skills",
       "source": "./plugins/masseater-skills",
       "description": "masseater のリポジトリで共通に使うエージェントスキル"

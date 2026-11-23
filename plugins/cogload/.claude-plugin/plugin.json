@@ -1,0 +1,13 @@
+{
+  "name": "cogload",
+  "description": "作業報告を開始状態、完了状態、確認事項だけにして表示し、必要なスキルを読むまで編集を止める",
+  "version": "0.1.0",
+  "types": "./types/index.d.ts",
+  "author": {
+    "name": "masseater",
+    "url": "https://github.com/masseater"
+  },
+  "homepage": "https://github.com/masseater/skills#cogload",
+  "repository": "https://github.com/masseater/skills",
+  "license": "AGPL-3.0-only"
+}
