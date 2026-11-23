@@ -1,4 +1,4 @@
-import { atom, update } from 'claude-code'
+import { atom, read, update } from 'claude-code'
 
 import type { HookContext, On } from './context'
 import { decide } from './decision'
@@ -8,6 +8,8 @@ import { compose, splitUnits } from './select-lines'
 import type { Role } from './select-lines'
 
 const report = atom({ plugin: 'cogload', key: 'report' } as const, null)
+
+const shown = atom({ plugin: 'cogload', key: 'shown' } as const, {})
 
 const MIN_JUDGED_UNITS = 6
 export const CONFIDENT = 0.8
@@ -105,20 +107,57 @@ async function shorten($: HookContext, message: string): Promise<string> {
   return composed.shown
 }
 
+const KEPT = 50
+
+function keyOf(text: string): string {
+  let hash = 5381
+  for (let index = 0; index < text.length; index += 1) {
+    hash = (hash * 33 + text.charCodeAt(index)) | 0
+  }
+
+  return `${text.length}:${hash}`
+}
+
 export function registerShortReport(on: On): void {
-  const buffers = new Map<string, string>()
+  const seen = new Map<string, string>()
+  let latest = ''
 
-  on('classic.MessageDisplay', async ($, e, next) => {
-    const message = (buffers.get(e.message_id) ?? '') + e.delta
-    if (!e.final) {
-      buffers.set(e.message_id, message)
-      return { displayContent: '' }
+  on('ui.render', { component: 'AssistantMessage' }, async ($, e, next) => {
+    if (e.props.isSummary === true) {
+      return next(e)
     }
-    buffers.delete(e.message_id)
+    const key = keyOf(e.props.text)
+    seen.set(key, e.props.text)
+    latest = key
+    if (seen.size > KEPT) {
+      seen.delete(seen.keys().next().value ?? key)
+    }
 
-    const shown = await shorten($, message)
-    const below = await next({ ...e, delta: shown })
+    const short = (await read($, shown))[key]
 
-    return { displayContent: below.displayContent ?? shown }
+    return short === undefined ? next(e) : next({ ...e, props: { ...e.props, text: short } })
+  })
+
+  on('turn.complete', async ($, e, next) => {
+    const result = await next(e)
+    if (e.reason !== 'answer' || e.agentId !== undefined) {
+      return result
+    }
+    const answered = keyOf(e.answer)
+    const key = seen.has(answered) ? answered : latest
+    const message = seen.get(key)
+    if (message === undefined) {
+      return result
+    }
+
+    const short = await shorten($, message)
+    if (short !== message) {
+      await update($, shown, all => ({
+        ...Object.fromEntries(Object.entries(all).slice(1 - KEPT)),
+        [key]: short,
+      }))
+    }
+
+    return result
   })
 }
