@@ -44,7 +44,6 @@ description: masseaterのリポジトリで作業する際のエントリーポ�
 - デスクトップアプリを作成する際：`desktop-app-quality`
 - ドキュメント、コミットメッセージ、プルリクエストボディ、記事など、人間が読むテキストを記述する場合：`writing`。`writing` は `humanity-and-humanness` をベースにしているので、両方を読むこと。
 - 説明、提案書、または報告書の本文を執筆する際：`build-explanation`
-- スライド作成時：`create-slides`。`build-explanation` の手順に従って、アウトラインとスピーカースクリプトを作成する。
 - スキルの作成または修正を行う際：`skill-authoring`。`writing` と `humanity-and-humanness` に従って本文を書く。
 - ユーザーに意思決定を求める際や、ユーザーのフィードバックの意図を読み取る際：`humanity-and-humanness`
 - 持ち主に向けてチャットに報告や確認を書く際、説明資料を HTML で作る際、UI を作り始める際：`cognitive-load`
