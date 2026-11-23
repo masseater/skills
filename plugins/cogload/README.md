@@ -3,7 +3,8 @@
 Claude Code の持ち主が読む量、覚えておく量、手で打つ量を減らす。
 
 - 作業報告を、ターンが終わった時点で開始状態、完了状態、確認事項だけの表示に描き直す。書いている途中は全文が流れる。確認事項は末尾に置き、入力欄の上にも出す。省いた行は「全文」ボタンで開ける。Claude 側の記録は元の文章のまま残る
-- UI のファイルや HTML の資料を書く前に、対応するスキルを Claude に読ませる。読むまで編集を止める。報告や資料の書き方を決める `cognitive-load` は masseater-skills にあり、cogload をインストールすると依存として一緒に入る
+- UI のファイルや HTML の資料を書く前に、対応するスキルを Claude に読ませる。読むまで編集を止める
+- 報告と資料の書き方を決める [cognitive-load](skills/cognitive-load/SKILL.md) と、Markdown から GitBook 風の複数ページ資料を作る [gitbook-pages](skills/gitbook-pages/SKILL.md) を同梱する
 
 ## 使い方
 
