@@ -110,6 +110,8 @@ button { font: inherit; color: inherit; }
 .stage .slide { position: absolute; top: 0; left: 0; transform-origin: 0 0; }
 .slide { width: 1920px; height: 1080px; overflow: hidden; }
 .slide > .message { position: absolute; left: var(--message-inset, 128px); right: var(--message-inset, 128px); bottom: var(--message-bottom, 72px); margin: 0; }
+.slide.statement { display: flex; flex-direction: column; justify-content: center; }
+.slide.statement > .message { position: static; }
 @media screen { .stage .slide:not(.is-current) { display: none; } }
 
 .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
