@@ -1,0 +1,40 @@
+{
+  "prompt": "l1-hands-off/ec-site",
+  "claudeCode": "2.1.330",
+  "effort": "medium",
+  "permissionMode": "bypassPermissions",
+  "isolated": true,
+  "command": "node skills/execute/scripts/run.ts --model <model> --effort medium --permission-mode bypassPermissions l1-hands-off/ec-site",
+  "runs": [
+    {
+      "model": "haiku",
+      "modelId": "claude-haiku-5-5",
+      "startedAt": "2026-11-23T05:37:57.301Z",
+      "seconds": 47
+    },
+    {
+      "model": "sonnet",
+      "modelId": "claude-sonnet-5-5",
+      "startedAt": "2026-11-23T05:37:57.167Z",
+      "seconds": 71
+    },
+    {
+      "model": "opus",
+      "modelId": "claude-opus-5-5",
+      "startedAt": "2026-11-23T05:37:57.351Z",
+      "seconds": 245
+    },
+    {
+      "model": "fable",
+      "modelId": "claude-fable-5-2",
+      "startedAt": "2026-11-23T05:37:57.015Z",
+      "seconds": 219
+    },
+    {
+      "model": "mythos",
+      "modelId": "claude-mythos-5-2",
+      "startedAt": "2026-11-23T05:37:57.140Z",
+      "seconds": 240
+    }
+  ]
+}
