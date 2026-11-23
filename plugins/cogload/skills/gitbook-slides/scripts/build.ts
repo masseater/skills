@@ -109,6 +109,7 @@ button { font: inherit; color: inherit; }
 .stage { container-type: inline-size; position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border: 1px solid var(--line); border-radius: 4px; background: #fff; }
 .stage .slide { position: absolute; top: 0; left: 0; transform-origin: 0 0; }
 .slide { width: 1920px; height: 1080px; overflow: hidden; }
+.slide > .message { position: absolute; left: var(--message-inset, 128px); right: var(--message-inset, 128px); bottom: var(--message-bottom, 72px); margin: 0; }
 @media screen { .stage .slide:not(.is-current) { display: none; } }
 
 .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
