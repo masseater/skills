@@ -24,6 +24,7 @@ masseater のリポジトリで共通に使うエージェントスキルであ�
 - [how-to-use-react](skills/how-to-use-react/SKILL.md): React 19.3のコンポーネント、ローダー、およびサーバー処理の記述、修正、レビュー時に参照する。
 - [humanity-and-humanness](skills/humanity-and-humanness/SKILL.md): AIが人間の読み方、考え方、感覚を前提として持つように読む。
 - [integrate](skills/integrate/SKILL.md): ライブラリや新しい実装手段を導入する際に使用する。
+- [integrated-audit](skills/integrated-audit/SKILL.md): Review the project's threads, the daily audit report and the recently merged pull requests as a whole on Opus, to find wrong conclusions, partial fixes and conflicts between threads. Use when the Opus integrated audit scheduled task fires or the owner asks for an integrated audit.。
 - [masseater-ecosystem](skills/masseater-ecosystem/SKILL.md): masseaterのリポジトリで作業する際のエントリーポイント。
 - [measure-dont-guess](skills/measure-dont-guess/SKILL.md): 実装や修正を行う前に、仮説をどちらに収束させるかを判断し、実行した上で、その結果のみで判断する。
 - [measure-everything](skills/measure-everything/SKILL.md): 何かを構築または修正する前に、どのように測定するかを決めておく。
