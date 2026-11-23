@@ -1,6 +1,6 @@
 import { expect, test } from 'claude-code/testing'
 
-import { RULES } from './skill-first'
+import { COMMAND_RULES, RULES } from './skill-first'
 
 const UI_SKILL = RULES[0].skill
 
@@ -38,5 +38,30 @@ test('a skill loaded through the Skill tool counts when skill.prompt never reach
 
   await $.tool.call({ tool: 'Skill', skill: `some-plugin:${UI_SKILL}` })
   const allowed = await $.tool.call({ tool: 'Write', file_path: '/app/login.tsx', content: '' })
+  expect(allowed.deny).toBeUndefined()
+})
+
+test('building a slide deck is refused until the slide skills have been loaded', async ($, on) => {
+  const skills = [...new Set(COMMAND_RULES.map(rule => rule.skill))]
+  on('command.list', () => ({ value: skills.map(skill => ({ name: `cogload:${skill}` })) as never }))
+  on('tool.call', () => ({ result: {} }))
+
+  const command = 'node /plugins/cogload/skills/gitbook-slides/scripts/build.ts deck out --pdf'
+  const refused = await $.tool.call({ tool: 'Bash', command })
+  for (const skill of skills) {
+    expect(refused.deny).toContain(skill)
+  }
+
+  for (const skill of skills) {
+    await $.tool.call({ tool: 'Skill', skill: `cogload:${skill}` })
+  }
+  const allowed = await $.tool.call({ tool: 'Bash', command })
+  expect(allowed.deny).toBeUndefined()
+})
+
+test('other commands pass', async ($, on) => {
+  on('tool.call', () => ({ result: {} }))
+
+  const allowed = await $.tool.call({ tool: 'Bash', command: 'ls' })
   expect(allowed.deny).toBeUndefined()
 })

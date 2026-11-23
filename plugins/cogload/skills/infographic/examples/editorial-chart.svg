@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" width="920" height="460" role="img" aria-label="masseater/skills の main へのコミット数を週ごとに並べた棒グラフ。10/12 の週から順に 56、17、26、32、52、61、17。最後の週は月曜の 1 日分" font-family="IBM Plex Sans JP, Hiragino Sans, Noto Sans JP, sans-serif">
+<rect width="920" height="460" fill="#f7f6f2"/>
+<line x1="72" x2="890" y1="360.0" y2="360.0" stroke="#1d2424" stroke-width="2"/>
+<text x="60" y="367.0" font-size="18" fill="#5b6868" text-anchor="end">0</text>
+<line x1="72" x2="890" y1="274.3" y2="274.3" stroke="#c9cfcb" stroke-width="1"/>
+<text x="60" y="281.3" font-size="18" fill="#5b6868" text-anchor="end">20</text>
+<line x1="72" x2="890" y1="188.6" y2="188.6" stroke="#c9cfcb" stroke-width="1"/>
+<text x="60" y="195.6" font-size="18" fill="#5b6868" text-anchor="end">40</text>
+<line x1="72" x2="890" y1="102.9" y2="102.9" stroke="#c9cfcb" stroke-width="1"/>
+<text x="60" y="109.9" font-size="18" fill="#5b6868" text-anchor="end">60</text>
+<rect x="96" y="120.0" width="70" height="240.0" fill="#1d2424"/>
+<text x="131.0" y="110.0" font-size="22" font-weight="700" text-anchor="middle" fill="#1d2424">56</text>
+<text x="131.0" y="390" font-size="18" text-anchor="middle" fill="#5b6868">10/12〜</text>
+<rect x="212" y="287.1" width="70" height="72.9" fill="#1d2424"/>
+<text x="247.0" y="277.1" font-size="22" font-weight="700" text-anchor="middle" fill="#1d2424">17</text>
+<text x="247.0" y="390" font-size="18" text-anchor="middle" fill="#5b6868">10/19〜</text>
+<rect x="328" y="248.6" width="70" height="111.4" fill="#1d2424"/>
+<text x="363.0" y="238.6" font-size="22" font-weight="700" text-anchor="middle" fill="#1d2424">26</text>
+<text x="363.0" y="390" font-size="18" text-anchor="middle" fill="#5b6868">10/26〜</text>
+<rect x="444" y="222.9" width="70" height="137.1" fill="#1d2424"/>
+<text x="479.0" y="212.9" font-size="22" font-weight="700" text-anchor="middle" fill="#1d2424">32</text>
+<text x="479.0" y="390" font-size="18" text-anchor="middle" fill="#5b6868">11/2〜</text>
+<rect x="560" y="137.1" width="70" height="222.9" fill="#1d2424"/>
+<text x="595.0" y="127.1" font-size="22" font-weight="700" text-anchor="middle" fill="#1d2424">52</text>
+<text x="595.0" y="390" font-size="18" text-anchor="middle" fill="#5b6868">11/9〜</text>
+<rect x="676" y="98.6" width="70" height="261.4" fill="#0d6a66"/>
+<text x="711.0" y="88.6" font-size="22" font-weight="700" text-anchor="middle" fill="#0d6a66">61</text>
+<text x="711.0" y="390" font-size="18" text-anchor="middle" fill="#5b6868">11/16〜</text>
+<rect x="792" y="287.1" width="70" height="72.9" fill="none" stroke="#1d2424" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="827.0" y="277.1" font-size="22" font-weight="700" text-anchor="middle" fill="#1d2424">17</text>
+<text x="827.0" y="390" font-size="18" text-anchor="middle" fill="#5b6868">11/23〜</text>
+<text x="827.0" y="416" font-size="16" text-anchor="middle" fill="#1d2424">月曜の 1 日分</text>
+<text x="72" y="34" font-size="18" fill="#5b6868">main へのコミット数（週ごと）</text>
+</svg>

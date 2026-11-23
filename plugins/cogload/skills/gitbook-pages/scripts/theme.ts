@@ -1,7 +1,7 @@
 export const FONTS =
   "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+JP:wght@400;500;600;700&display=swap";
 
-const LIGHT = `
+export const LIGHT = `
   --bg: #ffffff;
   --side: #f6f8f8;
   --fg: #182121;
@@ -16,7 +16,7 @@ const LIGHT = `
   --caution: #b3242d;
   --scrim: rgb(16 24 24 / 0.32);`;
 
-const DARK = `
+export const DARK = `
   --bg: #121718;
   --side: #161c1d;
   --fg: #e2e9e9;

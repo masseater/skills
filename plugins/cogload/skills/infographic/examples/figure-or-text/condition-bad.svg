@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 240" width="500" height="240" role="img" aria-label="悪い例：いつも出る出力と条件付きの出力を同じ線で描いている" font-family="IBM Plex Sans JP, Hiragino Sans, Noto Sans JP, sans-serif">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="context-stroke"/></marker></defs>
+<rect width="500" height="240" fill="#f7f6f2"/>
+<rect x="20" y="90" width="150" height="60" rx="4" fill="#fff" stroke="#1d2424" stroke-width="2"/>
+<text x="95" y="126" font-size="18" text-anchor="middle" fill="#1d2424" font-weight="400">build.ts</text>
+<path d="M172 110L300 60" stroke="#1d2424" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<path d="M172 130L300 180" stroke="#1d2424" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<rect x="302" y="30" width="170" height="60" rx="4" fill="#fff" stroke="#1d2424" stroke-width="2"/>
+<text x="387" y="66" font-size="18" text-anchor="middle" fill="#1d2424" font-weight="400">index.html</text>
+<rect x="302" y="150" width="170" height="60" rx="4" fill="#fff" stroke="#1d2424" stroke-width="2"/>
+<text x="387" y="186" font-size="18" text-anchor="middle" fill="#1d2424" font-weight="400">slides.pdf</text>
+</svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1430 640" width="1430" height="640" role="img" aria-label="gitbook-slides で組み立てた画面の各部の名前と働き" font-family="IBM Plex Sans JP, Hiragino Sans, Noto Sans JP, sans-serif">
+<rect width="1430" height="640" fill="#f7f6f2"/>
+<g transform="translate(90 0)">
+<rect x="330" y="60" width="640" height="520" fill="#fff" stroke="#1d2424" stroke-width="2"/>
+<line x1="330" y1="100" x2="970" y2="100" stroke="#c9cfcb" stroke-width="2"/>
+<rect x="344" y="73" width="16" height="2.5" fill="#5b6868"/>
+<rect x="344" y="79" width="16" height="2.5" fill="#5b6868"/>
+<rect x="344" y="85" width="16" height="2.5" fill="#5b6868"/>
+<rect x="374" y="76" width="150" height="9" fill="#1d2424"/>
+<text x="850" y="86" font-size="13" fill="#5b6868">3 / 4</text>
+<path d="M905 72v16l13-8z" fill="#5b6868"/>
+<rect x="330" y="100" width="140" height="480" fill="#f3f5f4"/>
+<line x1="470" y1="100" x2="470" y2="580" stroke="#c9cfcb" stroke-width="2"/>
+<rect x="344" y="120" width="70" height="7" fill="#5b6868"/>
+<rect x="344" y="152" width="40" height="7" fill="#1d2424"/>
+<rect x="346" y="174" width="90" height="7" fill="#5b6868"/>
+<rect x="338" y="190" width="124" height="22" rx="3" fill="#e1eeec"/>
+<rect x="346" y="198" width="76" height="7" fill="#0d6a66"/>
+<rect x="344" y="230" width="40" height="7" fill="#1d2424"/>
+<rect x="346" y="252" width="84" height="7" fill="#5b6868"/>
+<rect x="490" y="120" width="460" height="259" fill="#f7f6f2" stroke="#c9cfcb" stroke-width="2"/>
+<rect x="520" y="154" width="230" height="16" fill="#1d2424"/>
+<rect x="530" y="210" width="100" height="40" fill="#fff" stroke="#1d2424" stroke-width="2"/>
+<line x1="630" y1="230" x2="660" y2="230" stroke="#1d2424" stroke-width="2"/>
+<rect x="660" y="210" width="100" height="40" fill="#fff" stroke="#1d2424" stroke-width="2"/>
+<line x1="760" y1="230" x2="790" y2="230" stroke="#1d2424" stroke-width="2"/>
+<rect x="790" y="210" width="100" height="40" fill="#fff" stroke="#1d2424" stroke-width="2"/>
+<rect x="490" y="395" width="224" height="40" rx="3" fill="#fff" stroke="#c9cfcb" stroke-width="2"/>
+<rect x="504" y="417" width="70" height="7" fill="#1d2424"/>
+<rect x="726" y="395" width="224" height="40" rx="3" fill="#fff" stroke="#c9cfcb" stroke-width="2"/>
+<rect x="870" y="417" width="70" height="7" fill="#1d2424"/>
+<line x1="490" y1="457" x2="950" y2="457" stroke="#c9cfcb" stroke-width="2"/>
+<rect x="490" y="471" width="90" height="6" fill="#5b6868"/>
+<rect x="490" y="489" width="420" height="6" fill="#aab3b0"/>
+<rect x="490" y="505" width="380" height="6" fill="#aab3b0"/>
+<rect x="490" y="521" width="300" height="6" fill="#aab3b0"/>
+<path d="M308 154H340L370 156" fill="none" stroke="#1d2424" stroke-width="1.5"/><circle cx="370" cy="156" r="5" fill="#0d6a66"/><text x="300" y="160" font-size="18" text-anchor="end" fill="#1d2424">グループ（SUMMARY.md の ##）</text>
+<path d="M308 224H370L400 202" fill="none" stroke="#1d2424" stroke-width="1.5"/><circle cx="400" cy="202" r="5" fill="#0d6a66"/><text x="300" y="230" font-size="18" text-anchor="end" fill="#1d2424">スライド一覧（SUMMARY.md の順）</text>
+<path d="M308 74H330L352 80" fill="none" stroke="#1d2424" stroke-width="1.5"/><circle cx="352" cy="80" r="5" fill="#0d6a66"/><text x="300" y="80" font-size="18" text-anchor="end" fill="#1d2424">一覧を開閉</text>
+<path d="M992 82H941L911 80" fill="none" stroke="#1d2424" stroke-width="1.5"/><circle cx="911" cy="80" r="5" fill="#0d6a66"/><text x="1000" y="88" font-size="18" text-anchor="start" fill="#1d2424">発表：スライドだけを全画面に</text>
+<path d="M992 224H960L930 249.5" fill="none" stroke="#1d2424" stroke-width="1.5"/><circle cx="930" cy="249.5" r="5" fill="#0d6a66"/><text x="1000" y="230" font-size="18" text-anchor="start" fill="#1d2424">スライド（1920×1080 px を縮小）</text>
+<path d="M992 415H966L936 415" fill="none" stroke="#1d2424" stroke-width="1.5"/><circle cx="936" cy="415" r="5" fill="#0d6a66"/><text x="1000" y="421" font-size="18" text-anchor="start" fill="#1d2424">前後のスライド</text>
+<path d="M992 497H940L910 497" fill="none" stroke="#1d2424" stroke-width="1.5"/><circle cx="910" cy="497" r="5" fill="#0d6a66"/><text x="1000" y="503" font-size="18" text-anchor="start" fill="#1d2424">スピーカーノート</text>
+<text x="1000" y="527" font-size="15" fill="#5b6868">発表の画面と PDF には出ない</text>
+</g>
+</svg>
