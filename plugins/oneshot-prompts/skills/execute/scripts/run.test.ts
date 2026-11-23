@@ -28,14 +28,34 @@ function run(...args: string[]): { status: number | null; stdout: string; stderr
 }
 
 describe("run", () => {
-  it.each(["haiku", "sonnet", "opus", "fable"])("passes %s to claude -p and feeds the prompt on stdin", (model) => {
+  it.each(["haiku", "sonnet", "opus", "fable", "mythos"])("passes %s to claude -p and feeds the prompt on stdin", (model) => {
     const { status, stdout } = run("--model", model, "l1-hands-off/ec-site");
     expect(status).toBe(0);
     const body = readFileSync(path.join(promptsRoot, "l1-hands-off/ec-site.txt"), "utf8");
     expect(stdout).toBe(`args: -p --model ${model}\n${body}`);
   });
 
-  it("refuses a model outside the four", () => {
+  it("passes --effort to claude -p when given", () => {
+    const { status, stdout } = run("--model", "haiku", "--effort", "medium", "l1-hands-off/ec-site");
+    expect(status).toBe(0);
+    expect(stdout.split("\n")[0]).toBe("args: -p --model haiku --effort medium");
+  });
+
+  it("passes --permission-mode to claude -p when given", () => {
+    const { status, stdout } = run("--model", "haiku", "--permission-mode", "bypassPermissions", "l1-hands-off/ec-site");
+    expect(status).toBe(0);
+    expect(stdout.split("\n")[0]).toBe("args: -p --model haiku --permission-mode bypassPermissions");
+  });
+
+  it("refuses a permission mode outside the allowed ones", () => {
+    expect(run("--model", "haiku", "--permission-mode", "yolo", "l1-hands-off/ec-site").status).toBe(2);
+  });
+
+  it("refuses an effort outside the allowed levels", () => {
+    expect(run("--model", "haiku", "--effort", "turbo", "l1-hands-off/ec-site").status).toBe(2);
+  });
+
+  it("refuses a model outside the five", () => {
     expect(run("--model", "gpt", "l1-hands-off/ec-site").status).toBe(2);
     expect(run("l1-hands-off/ec-site").status).toBe(2);
   });
