@@ -14,7 +14,7 @@
 ## スキル
 
 - `search`: プロンプトを検索し、見つけたものをそのままコピーできる形で見せる。実行はしない
-- `execute`: ユーザーだけが呼べる。選んだモデル（haiku、sonnet、opus、fable）で `claude -p` にプロンプトを流す
+- `execute`: ユーザーだけが呼べる。選んだモデル（haiku、sonnet、opus、fable、mythos）で `claude -p` にプロンプトを流す
 
 ## インストール
 
