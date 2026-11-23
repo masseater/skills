@@ -20,6 +20,17 @@ Put each skill in its own `plugins/<plugin>/skills/<name>/`, with `name` equal t
 
 Put each plugin in its own `plugins/<plugin>/` with a `package.json`, a `README.md` and a `.claude-plugin/plugin.json`. msch generates `.claude-plugin/marketplace.json` from them, so do not edit it by hand. Hooks take no dependencies, and hooks and scripts are written in TypeScript that Node.js runs as is (code that works once type annotations are stripped).
 
+### What a plugin is for
+
+A plugin exists to lower the owner's cognitive load: what the owner has to read, keep in mind and type by hand.
+
+- Judge a design by whether that load drops, not by whether the output matches a style. A style is one means and is replaced when another means lowers the load more.
+- Design for how the owner actually reads and works, including the UI the output lands in and what the owner is doing while waiting.
+- When the owner repeats an instruction by hand, make the harness do it with a hook, a mod or a check, instead of adding prompt text that a model may skip.
+- Support only Claude Code and claude.ai. Do not add branches or fallbacks for other agents or tools.
+- Use the features of Claude Code and claude.ai to the full before building a mechanism of your own. Read the current documentation each time, because the features change every week.
+- A plugin calls models through two paths only: `claude -p`, and a decision model through Cloudflare AI Gateway. A decision model judges and a generating model writes, so do not substitute one for the other.
+
 ## Commands
 
 ```sh
