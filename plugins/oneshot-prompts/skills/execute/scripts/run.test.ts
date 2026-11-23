@@ -53,6 +53,14 @@ describe("run", () => {
     expect(stdout.split("\n")[0]).toBe("args: -p --model haiku --permission-mode bypassPermissions");
   });
 
+  it("passes the isolation flags to claude -p with --isolate", () => {
+    const { status, stdout } = run("--model", "haiku", "--isolate", "l1-hands-off/ec-site");
+    expect(status).toBe(0);
+    expect(stdout.split("\n")[0]).toBe(
+      "args: -p --model haiku --tools Bash,Write,Edit,Read --strict-mcp-config --disable-slash-commands --setting-sources project",
+    );
+  });
+
   it("refuses a permission mode outside the allowed ones", () => {
     expect(run("--model", "haiku", "--permission-mode", "yolo", "l1-hands-off/ec-site").status).toBe(2);
   });

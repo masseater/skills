@@ -6,11 +6,12 @@ const MODELS = ["haiku", "sonnet", "opus", "fable", "mythos"];
 const MODEL_IDS: Record<string, string> = { mythos: "claude-mythos-5-2" };
 const EFFORTS = ["low", "medium", "high", "xhigh", "max"];
 const PERMISSION_MODES = ["default", "acceptEdits", "plan", "auto", "dontAsk", "bypassPermissions"];
-const USAGE = `usage: run.ts --model <${MODELS.join("|")}> [--effort <${EFFORTS.join("|")}>] [--permission-mode <${PERMISSION_MODES.join("|")}>] <id>`;
+const ISOLATE_ARGS = ["--tools", "Bash,Write,Edit,Read", "--strict-mcp-config", "--disable-slash-commands", "--setting-sources", "project"];
+const USAGE = `usage: run.ts --model <${MODELS.join("|")}> [--isolate] [--effort <${EFFORTS.join("|")}>] [--permission-mode <${PERMISSION_MODES.join("|")}>] <id>`;
 
 const { values, positionals } = parseArgs({
   args: process.argv.slice(2),
-  options: { model: { type: "string" }, effort: { type: "string" }, "permission-mode": { type: "string" } },
+  options: { model: { type: "string" }, isolate: { type: "boolean" }, effort: { type: "string" }, "permission-mode": { type: "string" } },
   allowPositionals: true,
 });
 
@@ -29,7 +30,7 @@ if (!prompt) {
   process.exit(1);
 }
 
-const result = spawnSync("claude", ["-p", "--model", MODEL_IDS[model] ?? model, ...(effort ? ["--effort", effort] : []), ...(permissionMode ? ["--permission-mode", permissionMode] : [])], {
+const result = spawnSync("claude", ["-p", "--model", MODEL_IDS[model] ?? model, ...(effort ? ["--effort", effort] : []), ...(permissionMode ? ["--permission-mode", permissionMode] : []), ...(values.isolate ? ISOLATE_ARGS : [])], {
   input: prompt.text,
   stdio: ["pipe", "inherit", "inherit"],
 });
