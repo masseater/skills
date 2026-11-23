@@ -8,12 +8,14 @@ export const RULES = [
   { skill: 'stop-describing-ui', path: /\.(tsx|jsx|vue|svelte|html|css)$/ },
   { skill: 'cognitive-load', path: /\.(tsx|jsx|vue|svelte|html|css)$/ },
   { skill: 'infographic', path: /\.svg$/ },
+  { skill: 'cognitive-load', path: /\.svg$/ },
 ] as const
 
 export const COMMAND_RULES = [
   { skill: 'slide-content', command: /gitbook-slides\/scripts\/build\.ts/ },
   { skill: 'infographic', command: /gitbook-slides\/scripts\/build\.ts/ },
   { skill: 'gitbook-slides', command: /gitbook-slides\/scripts\/build\.ts/ },
+  { skill: 'cognitive-load', command: /gitbook-slides\/scripts\/build\.ts/ },
 ] as const
 
 function requiredSkills(target: { filePath?: string; command?: string }): string[] {
