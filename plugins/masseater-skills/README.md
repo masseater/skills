@@ -15,7 +15,7 @@ masseater のリポジトリで共通に使うエージェントスキルであ�
 - [check-similar-code](skills/check-similar-code/SKILL.md): Find similar functions across masseater repositories that should be merged or recorded as intentional, using fallow similar-code. Use when running the similar code check of the daily audit.。
 - [check-upstream-exits](skills/check-upstream-exits/SKILL.md): Find upstream deviations (overrides, patches, package extensions, Cargo patches) whose exit condition is now met, from the daily msch-exits run in masseater.dev. Use when running the upstream exit check of the daily audit.。
 - [cloudflare-caution](skills/cloudflare-caution/SKILL.md): Cloudflareの料金を吊り上げるような設計は避け、コストを抑えた形式を選択しよう。
-- [cognitive-load](skills/cognitive-load/SKILL.md): 持ち主に向けて報告、確認、説明を書く前に読む。
+- [cognitive-load](skills/cognitive-load/SKILL.md): 持ち主に向けて報告、確認、説明を書く前と、UI を作り始める前に読む。
 - [create-slides](skills/create-slides/SKILL.md): スライドを作成する前に、聴衆や場面に応じたデフォルト設定と聴衆からの質問に基づいて作成した構成案を提示し、作成後にプレゼンテーションの流れを確認するためのスピーカースクリプトを記述する手順。
 - [daily-check](skills/daily-check/SKILL.md): Run the daily audit of every masseater repository by reading and running a fixed list of check skills in order, routing findings to the threads that own them. Use when the daily check scheduled task fires or the owner asks for the daily check.。
 - [debug-like-a-human](skills/debug-like-a-human/SKILL.md): AIはオーナーと同じ認証パスを通じて、ログイン後の画面やAccessの本番環境にアクセスし、自ら確認を行う。
