@@ -9,5 +9,27 @@
   },
   "homepage": "https://github.com/masseater/skills#cogload",
   "repository": "https://github.com/masseater/skills",
-  "license": "AGPL-3.0-only"
+  "license": "AGPL-3.0-only",
+  "userConfig": {
+    "cloudflare_account_id": {
+      "type": "string",
+      "title": "Cloudflare account ID",
+      "description": "Cloudflare のアカウント ID。報告を短くする判定に Workers AI の Clef Flash を AI Gateway 経由で使う",
+      "required": false
+    },
+    "cloudflare_api_token": {
+      "type": "string",
+      "title": "Cloudflare API token",
+      "description": "Workers AI Read と AI Gateway Run の権限を持つ Cloudflare の API トークン",
+      "sensitive": true,
+      "required": false
+    },
+    "cloudflare_ai_gateway": {
+      "type": "string",
+      "title": "AI Gateway ID",
+      "description": "使う AI Gateway の名前",
+      "default": "default",
+      "required": false
+    }
+  }
 }

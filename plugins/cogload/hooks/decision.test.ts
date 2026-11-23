@@ -1,19 +1,21 @@
 import { expect, test } from 'claude-code/testing'
 
-import { answersOf } from './decision'
+import { answersOf, gatewayOf } from './decision'
 
-const ANSWERS = { answers: { s0: { type: 'choice', choice: 'done', probabilities: { done: 0.9, detail: 0.1 } } } }
+test('the Workers AI result is read from its envelope', async () => {
+  const body = { result: { answers: { s0: { type: 'choice', choice: 'done', probabilities: { done: 0.9, detail: 0.1 } } } } }
 
-test('the portal result is read whether it wraps the tool result or not', async () => {
-  const plain = [{ type: 'text', text: JSON.stringify(ANSWERS) }]
-  const wrapped = [{ type: 'text', text: JSON.stringify([{ type: 'text', text: JSON.stringify(ANSWERS) }]) }]
-  const expected = { s0: { choice: 'done', probabilities: { done: 0.9, detail: 0.1 } } }
-
-  expect(answersOf(plain)).toEqual(expected)
-  expect(answersOf(wrapped)).toEqual(expected)
+  expect(answersOf(JSON.stringify(body))).toEqual({ s0: { choice: 'done', probabilities: { done: 0.9, detail: 0.1 } } })
 })
 
 test('a result without answers is no answer', async () => {
-  expect(answersOf([{ type: 'text', text: 'sundries failed: decision model' }])).toBeNull()
-  expect(answersOf([])).toBeNull()
+  expect(answersOf('{"success":false}')).toBeNull()
+  expect(answersOf('not json')).toBeNull()
+})
+
+test('the gateway needs both the account and the token', async () => {
+  expect(gatewayOf({})).toBeNull()
+  expect(gatewayOf({ cloudflare_account_id: 'a', cloudflare_api_token: ' ' })).toBeNull()
+  expect(gatewayOf({ cloudflare_account_id: ' a ', cloudflare_api_token: 't' })).toEqual({ account: 'a', token: 't', gateway: 'default' })
+  expect(gatewayOf({ cloudflare_account_id: 'a', cloudflare_api_token: 't', cloudflare_ai_gateway: 'g' })).toEqual({ account: 'a', token: 't', gateway: 'g' })
 })
