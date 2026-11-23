@@ -7,5 +7,30 @@
     "github>masseater/masseater.dev//libs/msch/renovate"
   ],
   "automerge": true,
-  "ignoreTests": true
+  "ignoreTests": true,
+  "minimumReleaseAge": "3 days",
+  "packageRules": [
+    {
+      "description": "公開日時の無い種類の更新は待機期間を判定できず、掛けると止まったままになるので外す。",
+      "matchUpdateTypes": [
+        "lockFileMaintenance",
+        "replacement",
+        "pin",
+        "bump",
+        "lockfileUpdate",
+        "rollback"
+      ],
+      "minimumReleaseAge": null
+    },
+    {
+      "description": "公開日時を返さないデータソースは待機期間を判定できず、掛けると止まったままになるので外す。",
+      "matchDatasources": ["git-refs"],
+      "minimumReleaseAge": null
+    },
+    {
+      "description": "持ち主自身のリポジトリは待たせない。",
+      "matchDepNames": ["masseater/**"],
+      "minimumReleaseAge": null
+    }
+  ]
 }
