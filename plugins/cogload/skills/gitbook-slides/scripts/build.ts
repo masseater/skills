@@ -217,6 +217,21 @@ const ICON = {
   play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>',
 };
 
+export function script(deck: Deck): string {
+  const text = (html: string) =>
+    html
+      .replace(/<\/p>\s*/gi, "\n\n")
+      .replace(/<br\s*\/?>/gi, "\n")
+      .replace(/<[^>]+>/g, "")
+      .replaceAll("&lt;", "<")
+      .replaceAll("&gt;", ">")
+      .replaceAll("&quot;", '"')
+      .replaceAll("&amp;", "&")
+      .trim();
+  const parts = deck.slides.map((slide, index) => `## ${index + 1}. ${slide.title}\n\n${text(slide.notes)}`);
+  return `# ${deck.title}\n\n${parts.join("\n\n")}\n`;
+}
+
 export function render(deck: Deck): string {
   const groups: { title: string | null; items: { slide: Slide; index: number }[] }[] = [];
   deck.slides.forEach((slide, index) => {
@@ -303,8 +318,11 @@ async function main(): Promise<void> {
   const outDir = path.resolve(out);
   mkdirSync(outDir, { recursive: true });
   const htmlPath = path.join(outDir, "index.html");
-  writeFileSync(htmlPath, render(readDeck(path.resolve(source))));
-  const result: { file_path: string; pdf?: string } = { file_path: htmlPath };
+  const deck = readDeck(path.resolve(source));
+  writeFileSync(htmlPath, render(deck));
+  const scriptPath = path.join(outDir, "script.md");
+  writeFileSync(scriptPath, script(deck));
+  const result: { file_path: string; script: string; pdf?: string } = { file_path: htmlPath, script: scriptPath };
   if (values.pdf) {
     result.pdf = path.join(outDir, "slides.pdf");
     await writePdf(htmlPath, result.pdf);

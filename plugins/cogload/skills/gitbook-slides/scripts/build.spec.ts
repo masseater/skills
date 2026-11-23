@@ -2,7 +2,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vite-plus/test";
-import { readDeck, render } from "./build.ts";
+import { readDeck, render, script } from "./build.ts";
 
 const dirs: string[] = [];
 
@@ -68,5 +68,19 @@ describe("render", () => {
     expect(html).toContain('<section class="slide cover" id="slide-1" data-title="A"');
     expect(html).toContain('<div class="note"><p>n</p></div>');
     expect(html).toContain("<h2>G</h2>");
+  });
+});
+
+describe("script", () => {
+  it("joins the notes of every slide into one script in deck order", () => {
+    const text = script({
+      title: "Deck",
+      css: "",
+      slides: [
+        { title: "A", group: null, source: "a.html", className: "", body: "", notes: "<p>one &amp; two</p><p>three</p>" },
+        { title: "B", group: null, source: "b.html", className: "", body: "", notes: "<p>four</p>" },
+      ],
+    });
+    expect(text).toBe("# Deck\n\n## 1. A\n\none & two\n\nthree\n\n## 2. B\n\nfour\n");
   });
 });
