@@ -20,6 +20,6 @@ node ${CLAUDE_SKILL_DIR}/scripts/run.ts --model <haiku|sonnet|opus|fable> <id>
 
 - スクリプトはプロンプトの本文を標準入力から `claude -p --model <モデル>` に渡す。`mythos` は `claude` が別名として認識しないので、`claude-mythos-5-2` に置き換えて渡す。承認された組織でないと使えない
 - ユーザーが effort（low、medium、high、xhigh、max）を指定したときだけ、`--effort <effort>` を付ける。指定が無ければ付けない
-- ユーザーが隔離を求めたときだけ、`--isolate` を付ける。`claude -p` の組み込みツールを Bash、Write、Edit、Read だけにし、MCP、スキル、ユーザー設定を外す。Artifact ツールやユーザーのデザインシステムなど、実行環境にある物が結果に混ざるのを防ぐ。`--bare` はサブスクリプションの認証で使えないので使わない
+- 常に `--tools Bash,Write,Edit,Read --strict-mcp-config --disable-slash-commands --setting-sources project` を付ける。`claude -p` の組み込みツールを Bash、Write、Edit、Read だけにし、MCP、スキル、ユーザー設定を外す。Artifact ツールやユーザーのデザインシステムなど、実行環境にある物が結果に混ざるのを防ぐ。`--bare` はサブスクリプションの認証で使えないので使わない
 - ユーザーが権限モード（default、acceptEdits、plan、auto、dontAsk、bypassPermissions）を指定したときだけ、`--permission-mode <モード>` を付ける。指定が無ければ付けない
 - 終了コードが 0 でなければ、標準エラーの内容を伝える。別のモデルで自動で再実行しない
