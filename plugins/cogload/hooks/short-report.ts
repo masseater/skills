@@ -2,7 +2,7 @@ import { atom, read, update } from 'claude-code'
 
 import type { HookContext, On } from './context'
 import { decide } from './decision'
-import type { ChoiceQuestion } from './decision'
+import type { ChoiceQuestion, Gateway } from './decision'
 import { record } from './measure'
 import { compose, splitUnits } from './select-lines'
 import type { Role } from './select-lines'
@@ -45,7 +45,7 @@ function isRole(value: string): value is Role {
   return value in ROLE_CRITERIA
 }
 
-async function shorten($: HookContext, message: string): Promise<string> {
+async function shorten($: HookContext, gateway: Gateway | null, message: string): Promise<string> {
   const units = splitUnits(message)
   const judged = units.filter(unit => unit.isJudged)
   if (judged.length < MIN_JUDGED_UNITS) {
@@ -62,7 +62,7 @@ async function shorten($: HookContext, message: string): Promise<string> {
     }
   })
 
-  const decided = await decide($, snippets, questions)
+  const decided = await decide($, gateway, snippets, questions)
   const kind = decided?.answers.kind
   const isReport =
     kind?.choice === 'report' && (kind.probabilities?.report ?? 1) >= CONFIDENT
@@ -118,7 +118,7 @@ function keyOf(text: string): string {
   return `${text.length}:${hash}`
 }
 
-export function registerShortReport(on: On): void {
+export function registerShortReport(on: On, gateway: Gateway | null): void {
   const seen = new Map<string, string>()
   let latest = ''
 
@@ -150,7 +150,7 @@ export function registerShortReport(on: On): void {
       return result
     }
 
-    const short = await shorten($, message)
+    const short = await shorten($, gateway, message)
     if (short !== message) {
       await update($, shown, all => ({
         ...Object.fromEntries(Object.entries(all).slice(1 - KEPT)),

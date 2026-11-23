@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 300" width="650" height="300" role="img" aria-label="良い例：順序は矢印で示し、箱には名前だけを書く" font-family="IBM Plex Sans JP, Hiragino Sans, Noto Sans JP, sans-serif">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="context-stroke"/></marker></defs>
+<rect width="650" height="300" fill="#f7f6f2"/>
+<rect x="20" y="110" width="170" height="64" rx="4" fill="#fff" stroke="#1d2424" stroke-width="2"/>
+<text x="105" y="149" font-size="18" text-anchor="middle" fill="#1d2424" font-weight="400">SUMMARY.md</text>
+<path d="M192 142L233 142" stroke="#1d2424" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<rect x="235" y="110" width="170" height="64" rx="4" fill="#fff" stroke="#1d2424" stroke-width="2"/>
+<text x="320" y="149" font-size="18" text-anchor="middle" fill="#1d2424" font-weight="400">スライドの HTML</text>
+<path d="M407 142L448 142" stroke="#1d2424" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<rect x="450" y="110" width="170" height="64" rx="4" fill="#e1eeec" stroke="#0d6a66" stroke-width="2"/>
+<text x="535" y="149" font-size="18" text-anchor="middle" fill="#1d2424" font-weight="400">index.html</text>
+</svg>

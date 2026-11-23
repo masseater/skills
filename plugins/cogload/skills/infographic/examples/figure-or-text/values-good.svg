@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 240" width="640" height="240" role="img" aria-label="良い例：名前を棒のすぐ横に置き、正確な数を文字で添える" font-family="IBM Plex Sans JP, Hiragino Sans, Noto Sans JP, sans-serif">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="context-stroke"/></marker></defs>
+<rect width="640" height="240" fill="#f7f6f2"/>
+<text x="196" y="52" font-size="17" text-anchor="end" fill="#1d2424" font-weight="400">masseater-skills</text>
+<rect x="210" y="30" width="336" height="30" fill="#1d2424"/>
+<text x="556" y="52" font-size="18" text-anchor="start" fill="#1d2424" font-weight="700">28</text>
+<text x="196" y="102" font-size="17" text-anchor="end" fill="#1d2424" font-weight="400">cogload</text>
+<rect x="210" y="80" width="48" height="30" fill="#0d6a66"/>
+<text x="268" y="102" font-size="18" text-anchor="start" fill="#0d6a66" font-weight="700">4</text>
+<text x="196" y="152" font-size="17" text-anchor="end" fill="#1d2424" font-weight="400">oneshot-prompts</text>
+<rect x="210" y="130" width="24" height="30" fill="#1d2424"/>
+<text x="244" y="152" font-size="18" text-anchor="start" fill="#1d2424" font-weight="700">2</text>
+<text x="196" y="202" font-size="17" text-anchor="end" fill="#1d2424" font-weight="400">plamo-ja</text>
+<rect x="210" y="180" width="24" height="30" fill="#1d2424"/>
+<text x="244" y="202" font-size="18" text-anchor="start" fill="#1d2424" font-weight="700">2</text>
+</svg>

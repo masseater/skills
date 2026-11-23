@@ -1,0 +1,40 @@
+<section>
+<h2>ビルドすると 1 つの HTML になる</h2>
+<figure><svg viewBox="0 0 1664 520" width="1664" height="520" role="img" aria-label="SUMMARY.md とスライドの HTML と deck.css が build.ts で index.html になり、--pdf を付けると slides.pdf も出る">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1d2424"/></marker>
+  </defs>
+  <g font-size="34" fill="#1d2424">
+    <g>
+      <path d="M40 40h260l40 40v80H40z" fill="#fff" stroke="#1d2424" stroke-width="3"/>
+      <text x="64" y="124">SUMMARY.md</text>
+    </g>
+    <g>
+      <path d="M40 200h260l40 40v80H40z" fill="#fff" stroke="#1d2424" stroke-width="3"/>
+      <text x="64" y="284">cover.html …</text>
+    </g>
+    <g>
+      <path d="M40 360h260l40 40v80H40z" fill="#fff" stroke="#1d2424" stroke-width="3"/>
+      <text x="64" y="444">deck.css</text>
+    </g>
+    <path d="M352 120C480 120 500 260 600 260M352 280H600M352 440C480 440 500 300 600 300" fill="none" stroke="#1d2424" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="612" y="210" width="300" height="120" fill="#1d2424"/>
+    <text x="762" y="284" fill="#f7f6f2" text-anchor="middle" font-family="IBM Plex Mono, monospace">build.ts</text>
+    <path d="M924 250H1120" stroke="#1d2424" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M924 290C1000 290 1020 420 1120 420" fill="none" stroke="#0d6a66" stroke-width="3" stroke-dasharray="10 8" marker-end="url(#arrow)"/>
+    <text x="1060" y="352" fill="#0d6a66" font-size="28" font-family="IBM Plex Mono, monospace">--pdf</text>
+    <g>
+      <path d="M1132 190h300l40 40v80h-340z" fill="#fff" stroke="#1d2424" stroke-width="3"/>
+      <text x="1160" y="274">index.html</text>
+    </g>
+    <g>
+      <path d="M1132 370h300l40 40v80h-340z" fill="#fff" stroke="#0d6a66" stroke-width="3"/>
+      <text x="1160" y="454" fill="#0d6a66">slides.pdf</text>
+    </g>
+  </g>
+</svg></figure>
+<aside class="notes">
+<p>build.ts がフォルダを読んで index.html を 1 つ書き出します。これをそのまま Artifact として公開します。</p>
+<p>--pdf を付けると、同じ HTML を印刷用の見た目で開き、1 枚を 1 ページにした PDF も書き出します。</p>
+</aside>
+</section>

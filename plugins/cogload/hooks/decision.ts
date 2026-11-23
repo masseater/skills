@@ -10,8 +10,9 @@ export type ChoiceAnswer = { choice: string; probabilities?: Record<string, numb
 
 export type Decided = { answers: Record<string, ChoiceAnswer>; ms: number; chars: number }
 
-const SERVERS = ['masseater-mcp', 'claude.ai masseater-mcp']
-const PORTAL_TOOL = 'portal_codemode_execute'
+export type Gateway = { account: string; token: string; gateway: string }
+
+const MODEL = '@cf/cloudflare/clef-flash'
 const MAX_QUESTIONS = 64
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -26,20 +27,10 @@ function parse(text: string): unknown {
   }
 }
 
-function textOf(value: unknown): string | undefined {
-  const blocks = Array.isArray(value) ? value : [value]
-  const first = blocks.find(block => isRecord(block) && block.type === 'text')
-
-  return isRecord(first) && typeof first.text === 'string' ? first.text : undefined
-}
-
-export function answersOf(blocks: readonly { type: string; text?: string }[]): Record<string, ChoiceAnswer> | null {
-  let value: unknown = textOf(blocks)
-  for (let depth = 0; depth < 3 && typeof value === 'string'; depth += 1) {
-    const parsed = parse(value)
-    value = parsed === undefined ? undefined : (textOf(parsed) ?? parsed)
-  }
-  const answers = isRecord(value) ? value.answers : undefined
+export function answersOf(text: string): Record<string, ChoiceAnswer> | null {
+  const body = parse(text)
+  const result = isRecord(body) ? body.result : undefined
+  const answers = isRecord(result) ? result.answers : undefined
   if (!isRecord(answers)) {
     return null
   }
@@ -55,39 +46,62 @@ export function answersOf(blocks: readonly { type: string; text?: string }[]): R
   return out
 }
 
-async function call($: HookContext, code: string) {
-  for (const server of SERVERS) {
-    try {
-      const result = await $.mcp.call(server, PORTAL_TOOL, { code })
-      if (!result.isError) {
-        return result
-      }
-    } catch {
-      continue
-    }
+export function gatewayOf(options: Readonly<Record<string, unknown>>): Gateway | null {
+  const account = options.cloudflare_account_id
+  const token = options.cloudflare_api_token
+  const gateway = options.cloudflare_ai_gateway
+  if (typeof account !== 'string' || account.trim() === '' || typeof token !== 'string' || token.trim() === '') {
+    return null
   }
-  return null
+
+  return {
+    account: account.trim(),
+    token: token.trim(),
+    gateway: typeof gateway === 'string' && gateway.trim() !== '' ? gateway.trim() : 'default',
+  }
 }
 
 export async function decide(
   $: HookContext,
+  gateway: Gateway | null,
   snippets: Record<string, string>,
   questions: Record<string, ChoiceQuestion>,
 ): Promise<Decided | null> {
+  if (gateway === null) {
+    return null
+  }
+
   const startedAt = await $.clock.now()
   const entries = Object.entries(questions)
   const answers: Record<string, ChoiceAnswer> = {}
   let chars = 0
 
   for (let from = 0; from < entries.length; from += MAX_QUESTIONS) {
-    const input = JSON.stringify({
-      snippets,
+    const body = JSON.stringify({
+      model: 'clef-flash',
+      state: { snippets },
       questions: Object.fromEntries(entries.slice(from, from + MAX_QUESTIONS)),
     })
-    const code = `async () => codemode.sundries_decide(${input})`
-    chars += code.length
-    const result = await call($, code)
-    const part = result === null ? null : answersOf(result.content)
+    chars += body.length
+    let part: Record<string, ChoiceAnswer> | null = null
+    try {
+      const response = await $.http.fetch(
+        `https://api.cloudflare.com/client/v4/accounts/${gateway.account}/ai/run/${MODEL}`,
+        {
+          method: 'POST',
+          headers: {
+            authorization: `Bearer ${gateway.token}`,
+            'content-type': 'application/json',
+            'cf-aig-gateway-id': gateway.gateway,
+            'cf-aig-metadata': JSON.stringify({ tool: 'cogload' }),
+          },
+          body,
+        },
+      )
+      part = response.ok ? answersOf(response.text) : null
+    } catch {
+      part = null
+    }
     if (part === null) {
       return null
     }

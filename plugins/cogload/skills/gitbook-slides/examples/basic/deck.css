@@ -1,0 +1,13 @@
+.slide { padding: 128px; background: #f7f6f2; color: #1d2424; font-family: "IBM Plex Sans JP", "Hiragino Sans", "Noto Sans JP", sans-serif; font-size: 40px; line-height: 1.5; }
+.slide h1 { margin: 0; font-size: 96px; line-height: 1.15; font-weight: 700; letter-spacing: -0.01em; }
+.slide h2 { margin: 0 0 48px; font-size: 64px; line-height: 1.2; font-weight: 700; }
+.slide p { margin: 0 0 24px; }
+.slide .lead { max-width: 1400px; color: #4a5555; }
+.slide.cover { display: flex; flex-direction: column; justify-content: flex-end; background: #1d2424; color: #f7f6f2; }
+.slide.cover .kicker { margin-bottom: 32px; color: #8fd3cc; font-size: 36px; font-weight: 600; }
+.slide figure { margin: 0; }
+.slide figure svg { display: block; }
+.slide table { border-collapse: collapse; font-size: 36px; }
+.slide th, .slide td { padding: 18px 40px 18px 0; border-bottom: 2px solid #d9dcd6; text-align: left; vertical-align: top; }
+.slide th { font-weight: 600; color: #4a5555; }
+.slide code { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.9em; }
