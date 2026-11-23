@@ -28,11 +28,17 @@ function run(...args: string[]): { status: number | null; stdout: string; stderr
 }
 
 describe("run", () => {
-  it.each(["haiku", "sonnet", "opus", "fable", "mythos"])("passes %s to claude -p and feeds the prompt on stdin", (model) => {
+  it.each([
+    ["haiku", "haiku"],
+    ["sonnet", "sonnet"],
+    ["opus", "opus"],
+    ["fable", "fable"],
+    ["mythos", "claude-mythos-5-2"],
+  ])("passes %s as %s to claude -p and feeds the prompt on stdin", (model, id) => {
     const { status, stdout } = run("--model", model, "l1-hands-off/ec-site");
     expect(status).toBe(0);
     const body = readFileSync(path.join(promptsRoot, "l1-hands-off/ec-site.txt"), "utf8");
-    expect(stdout).toBe(`args: -p --model ${model}\n${body}`);
+    expect(stdout).toBe(`args: -p --model ${id}\n${body}`);
   });
 
   it("passes --effort to claude -p when given", () => {

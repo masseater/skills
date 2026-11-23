@@ -18,7 +18,7 @@ allowed-tools: Bash(node ${CLAUDE_SKILL_DIR}/scripts/run.ts *)
 node ${CLAUDE_SKILL_DIR}/scripts/run.ts --model <haiku|sonnet|opus|fable> <id>
 ```
 
-- スクリプトはプロンプトの本文を標準入力から `claude -p --model <モデル>` に渡す
+- スクリプトはプロンプトの本文を標準入力から `claude -p --model <モデル>` に渡す。`mythos` は `claude` が別名として認識しないので、`claude-mythos-5-2` に置き換えて渡す。承認された組織でないと使えない
 - ユーザーが effort（low、medium、high、xhigh、max）を指定したときだけ、`--effort <effort>` を付ける。指定が無ければ付けない
 - ユーザーが権限モード（default、acceptEdits、plan、auto、dontAsk、bypassPermissions）を指定したときだけ、`--permission-mode <モード>` を付ける。指定が無ければ付けない
 - 終了コードが 0 でなければ、標準エラーの内容を伝える。別のモデルで自動で再実行しない

@@ -3,6 +3,7 @@ import { parseArgs } from "node:util";
 import { loadPrompts } from "../../../lib/prompts.ts";
 
 const MODELS = ["haiku", "sonnet", "opus", "fable", "mythos"];
+const MODEL_IDS: Record<string, string> = { mythos: "claude-mythos-5-2" };
 const EFFORTS = ["low", "medium", "high", "xhigh", "max"];
 const PERMISSION_MODES = ["default", "acceptEdits", "plan", "auto", "dontAsk", "bypassPermissions"];
 const USAGE = `usage: run.ts --model <${MODELS.join("|")}> [--effort <${EFFORTS.join("|")}>] [--permission-mode <${PERMISSION_MODES.join("|")}>] <id>`;
@@ -28,7 +29,7 @@ if (!prompt) {
   process.exit(1);
 }
 
-const result = spawnSync("claude", ["-p", "--model", model, ...(effort ? ["--effort", effort] : []), ...(permissionMode ? ["--permission-mode", permissionMode] : [])], {
+const result = spawnSync("claude", ["-p", "--model", MODEL_IDS[model] ?? model, ...(effort ? ["--effort", effort] : []), ...(permissionMode ? ["--permission-mode", permissionMode] : [])], {
   input: prompt.text,
   stdio: ["pipe", "inherit", "inherit"],
 });
