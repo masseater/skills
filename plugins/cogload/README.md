@@ -22,3 +22,15 @@ Claude Code の持ち主が読む量、覚えておく量、手で打つ量を�
 設定がないとき、呼び出しに失敗したとき、判定モデルが報告だと言い切らなかったときは、報告を元の文章のまま表示する。判定モデルは行を選ぶだけで、文章は書き換えない。
 
 読ませるスキルを増やすには、`hooks/skill-first.ts` の `RULES` に、ファイルパスの条件とスキル名の組を足す。
+
+## 見本
+
+### スライド
+
+[gitbook-slides](skills/gitbook-slides/SKILL.md) で組み立てられるデッキの見本。画像は全スライドを並べたもの。
+
+| デッキ | 中身 |
+| --- | --- |
+| [basic](skills/gitbook-slides/examples/basic/) | 表紙、表、図のスライドと、スピーカーノートの書き方 |
+
+![basic の全スライド](skills/gitbook-slides/examples/basic/preview.png)
