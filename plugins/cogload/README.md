@@ -7,6 +7,10 @@ Claude Code の持ち主が読む量、覚えておく量、手で打つ量を�
 - Artifact のページを公開したターンの終わりに、Claude に `stop-describing-ui` を読ませ、公開したページの説明的な文言を直して公開し直させる。直したあとのターンは止めない
 - 報告と資料の書き方を決める [cognitive-load](skills/cognitive-load/SKILL.md) と、Markdown から GitBook 風の複数ページ資料を作る [gitbook-pages](skills/gitbook-pages/SKILL.md) を同梱する
 
+## 1 ターンの中で cogload がすること
+
+![cogload が Claude Code の 1 ターンのどこで何をするか](skills/infographic/examples/schematic.svg)
+
 ## 使い方
 
 `/plugin install cogload@masseater` でインストールする。
@@ -34,3 +38,16 @@ Claude Code の持ち主が読む量、覚えておく量、手で打つ量を�
 | [basic](skills/gitbook-slides/examples/basic/) | 表紙、表、図のスライドと、スピーカーノートの書き方 |
 
 ![basic の全スライド](skills/gitbook-slides/examples/basic/preview.png)
+
+### インフォグラフィック
+
+[infographic](skills/infographic/SKILL.md) の描き方の系統ごとの見本。
+
+| 系統 | 見本 |
+| --- | --- |
+| アイソタイプ | ![プラグインごとのスキル数](skills/infographic/examples/isotype.svg) |
+| 模式図 | ![cogload の 1 ターン](skills/infographic/examples/schematic.svg) |
+| 注記付きの図解 | ![gitbook-slides の画面の各部](skills/infographic/examples/annotated.svg) |
+| エディトリアルのデータ図 | ![週ごとのコミット数](skills/infographic/examples/editorial-chart.svg) |
+
+図で表すものと文字で書くものの良い例と悪い例は [figure-or-text.md](skills/infographic/references/figure-or-text.md) にある。

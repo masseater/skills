@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 300" width="460" height="300" role="img" aria-label="悪い例：順序を番号付きの文で箱の中に書いている" font-family="IBM Plex Sans JP, Hiragino Sans, Noto Sans JP, sans-serif">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="context-stroke"/></marker></defs>
+<rect width="460" height="300" fill="#f7f6f2"/>
+<rect x="20" y="20" width="420" height="76" rx="4" fill="#fff" stroke="#1d2424" stroke-width="2"/>
+<text x="40" y="52" font-size="17" text-anchor="start" fill="#1d2424" font-weight="400">1. まず SUMMARY.md を読み、</text>
+<text x="40" y="78" font-size="17" text-anchor="start" fill="#1d2424" font-weight="400">スライドの順序を決める</text>
+<rect x="20" y="112" width="420" height="76" rx="4" fill="#fff" stroke="#1d2424" stroke-width="2"/>
+<text x="40" y="144" font-size="17" text-anchor="start" fill="#1d2424" font-weight="400">2. 次に各スライドの HTML を</text>
+<text x="40" y="170" font-size="17" text-anchor="start" fill="#1d2424" font-weight="400">読み、画像を埋め込む</text>
+<rect x="20" y="204" width="420" height="76" rx="4" fill="#fff" stroke="#1d2424" stroke-width="2"/>
+<text x="40" y="236" font-size="17" text-anchor="start" fill="#1d2424" font-weight="400">3. 最後に index.html を</text>
+<text x="40" y="262" font-size="17" text-anchor="start" fill="#1d2424" font-weight="400">1 つ書き出す</text>
+</svg>
