@@ -3,16 +3,24 @@ import path from "node:path";
 import { describe, expect, it } from "vite-plus/test";
 
 const hub = "masseater-ecosystem";
-const skillsRoot = path.resolve(import.meta.dirname, "masseater-skills", "skills");
-const skills = readdirSync(skillsRoot, { withFileTypes: true })
-  .filter((entry) => entry.isDirectory() && existsSync(path.join(skillsRoot, entry.name, "SKILL.md")))
-  .map((entry) => entry.name)
-  .sort();
+const roots = [
+  path.resolve(import.meta.dirname, "masseater-skills", "skills"),
+  path.resolve(import.meta.dirname, "cogload", "skills"),
+];
+const rootOf = new Map(
+  roots.flatMap((root) => {
+    return readdirSync(root, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory() && existsSync(path.join(root, entry.name, "SKILL.md")))
+      .map((entry) => [entry.name, root] as const);
+  }),
+);
+const skills = [...rootOf.keys()].sort();
+const skillsRoot = (skill: string): string => rootOf.get(skill) ?? "";
 const others = skills.filter((skill) => skill !== hub);
-const hubText = readFileSync(path.join(skillsRoot, hub, "SKILL.md"), "utf8");
+const hubText = readFileSync(path.join(skillsRoot(hub), hub, "SKILL.md"), "utf8");
 
 function markdownOf(skill: string): string[] {
-  return readdirSync(path.join(skillsRoot, skill), { recursive: true, encoding: "utf8" })
+  return readdirSync(path.join(skillsRoot(skill), skill), { recursive: true, encoding: "utf8" })
     .filter((file) => file.endsWith(".md"))
     .map((file) => path.join(skill, file));
 }
@@ -38,7 +46,7 @@ describe("skill references", () => {
 
   it.each(others)("%s names no skill other than the hub", (skill) => {
     const found = markdownOf(skill).flatMap((file) => {
-      const text = readFileSync(path.join(skillsRoot, file), "utf8");
+      const text = readFileSync(path.join(skillsRoot(skill), file), "utf8");
       return others.filter((other) => other !== skill && names(text, other)).map((other) => `${file}: ${other}`);
     });
     expect(found).toEqual([]);
