@@ -21,6 +21,7 @@ masseater のリポジトリで共通に使うエージェントスキルであ�
 - [debug-like-a-human](skills/debug-like-a-human/SKILL.md): AIはオーナーと同じ認証パスを通じて、ログイン後の画面やAccessの本番環境にアクセスし、自ら確認を行う。
 - [desktop-app-quality](skills/desktop-app-quality/SKILL.md): デスクトップアプリの設計、開発、レビューをするときに読む。
 - [find-before-build](skills/find-before-build/SKILL.md): ライブラリ、ランタイム、リポジトリに既に存在するものを探し出して利用し、自作はしない。
+- [gitbook-pages](skills/gitbook-pages/SKILL.md): Markdown で書いた資料を、GitBook 風の複数ページの HTML にして Artifact で公開する。
 - [how-to-use-react](skills/how-to-use-react/SKILL.md): React 19.3のコンポーネント、ローダー、およびサーバー処理の記述、修正、レビュー時に参照する。
 - [humanity-and-humanness](skills/humanity-and-humanness/SKILL.md): AIが人間の読み方、考え方、感覚を前提として持つように読む。
 - [integrate](skills/integrate/SKILL.md): ライブラリや新しい実装手段を導入する際に使用する。
