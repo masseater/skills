@@ -10,6 +10,7 @@ masseater のリポジトリで共通に使うエージェントスキルであ�
 - [cloudflare-caution](skills/cloudflare-caution/SKILL.md): Cloudflareの料金を吊り上げるような設計は避け、コストを抑えた形式を選択しよう。
 - [cognitive-load](skills/cognitive-load/SKILL.md): 持ち主に向けて報告、確認、説明を書く前に読む。
 - [create-slides](skills/create-slides/SKILL.md): スライドを作成する前に、聴衆や場面に応じたデフォルト設定と聴衆からの質問に基づいて作成した構成案を提示し、作成後にプレゼンテーションの流れを確認するためのスピーカースクリプトを記述する手順。
+- [daily-check](skills/daily-check/SKILL.md): Audit every masseater repository for the problems no single repository's gate catches (Cloudflare cost, CI duration, expired upstream exits, similar code, repeated corrections, convention drift) and route each finding to the thread that can fix it. Use when the daily check scheduled task fires or the owner asks for the daily check.。
 - [debug-like-a-human](skills/debug-like-a-human/SKILL.md): AIはオーナーと同じ認証パスを通じて、ログイン後の画面やAccessの本番環境にアクセスし、自ら確認を行う。
 - [desktop-app-quality](skills/desktop-app-quality/SKILL.md): デスクトップアプリの設計、開発、レビューをするときに読む。
 - [find-before-build](skills/find-before-build/SKILL.md): ライブラリ、ランタイム、リポジトリに既に存在するものを探し出して利用し、自作はしない。
