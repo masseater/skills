@@ -6,7 +6,7 @@ const loaded = atom({ plugin: 'cogload', key: 'skills' } as const, [])
 
 export const RULES = [
   { skill: 'stop-describing-ui', path: /\.(tsx|jsx|vue|svelte|html|css)$/ },
-  { skill: 'cognitive-load', path: /\.html$/ },
+  { skill: 'cognitive-load', path: /\.(tsx|jsx|vue|svelte|html|css)$/ },
 ] as const
 
 function requiredSkills(filePath: string): string[] {
@@ -15,6 +15,10 @@ function requiredSkills(filePath: string): string[] {
 
 function nameOf(skill: string): string {
   return skill.slice(skill.lastIndexOf(':') + 1)
+}
+
+async function record($: HookContext, skill: string): Promise<void> {
+  await update($, loaded, list => [...new Set([...list, nameOf(skill)])])
 }
 
 async function denial($: HookContext, filePath: string): Promise<string | undefined> {
@@ -34,9 +38,18 @@ async function denial($: HookContext, filePath: string): Promise<string | undefi
 
 export function registerSkillFirst(on: On): void {
   on('skill.prompt', async ($, e, next) => {
-    await update($, loaded, list => [...new Set([...list, nameOf(e.skill)])])
+    await record($, e.skill)
 
     return next(e)
+  })
+
+  on('tool.call', { tool: 'Skill' }, async ($, e, next) => {
+    const result = await next(e)
+    if (result.deny === undefined && result.isError !== true) {
+      await record($, e.skill)
+    }
+
+    return result
   })
 
   on('tool.call', { tool: 'Edit' }, async ($, e, next) => {

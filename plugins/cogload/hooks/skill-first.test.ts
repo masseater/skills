@@ -31,3 +31,12 @@ test('an edit passes where the skill is not installed', async ($, on) => {
   const allowed = await $.tool.call({ tool: 'Write', file_path: '/app/login.tsx', content: '' })
   expect(allowed.deny).toBeUndefined()
 })
+
+test('a skill loaded through the Skill tool counts when skill.prompt never reaches the mod', async ($, on) => {
+  on('command.list', () => ({ value: [{ name: `some-plugin:${UI_SKILL}` }] as never }))
+  on('tool.call', () => ({ result: {} }))
+
+  await $.tool.call({ tool: 'Skill', skill: `some-plugin:${UI_SKILL}` })
+  const allowed = await $.tool.call({ tool: 'Write', file_path: '/app/login.tsx', content: '' })
+  expect(allowed.deny).toBeUndefined()
+})
