@@ -1,6 +1,6 @@
 ---
 name: gitbook-pages
-description: Markdown で書いた資料を、GitBook 風の複数ページの HTML にして Artifact で公開する。持ち主に見せる説明資料やドキュメントを HTML で作るときに使う。
+description: Markdown で書いた資料を、GitBook 風の複数ページの HTML にして Artifact で公開する。説明資料を HTML で作るときに使う。
 ---
 
 # gitbook-pages
