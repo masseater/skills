@@ -47,3 +47,4 @@ description: masseaterのリポジトリで作業する際のエントリーポ�
 - スライド作成時：`create-slides`。`build-explanation` の手順に従って、アウトラインとスピーカースクリプトを作成する。
 - スキルの作成または修正を行う際：`skill-authoring`。`writing` と `humanity-and-humanness` に従って本文を書く。
 - ユーザーに意思決定を求める際や、ユーザーのフィードバックの意図を読み取る際：`humanity-and-humanness`
+- 持ち主に向けてチャットに報告や確認を書く際、説明資料を HTML で作る際：`cognitive-load`
