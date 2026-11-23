@@ -99,3 +99,18 @@ describe("message", () => {
     expect(html).toMatch(/\.slide > \.message \{ position: absolute;[^}]*bottom:/);
   });
 });
+
+describe("statement", () => {
+  it("centers a message-only slide instead of pinning the message to the bottom", () => {
+    const html = render(
+      readDeck(
+        deck({
+          "SUMMARY.md": "# Deck\n\n* [Point](a.html)\n",
+          "a.html": '<section class="statement"><p class="message">Point</p></section>',
+        }),
+      ),
+    );
+    expect(html).toMatch(/\.slide\.statement \{ display: flex;[^}]*justify-content: center;/);
+    expect(html).toContain(".slide.statement > .message { position: static; }");
+  });
+});
