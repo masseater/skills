@@ -41,5 +41,5 @@ node <スキルのディレクトリ>/scripts/build.ts <デッキのディレク
 ```
 
 - 出力の JSON の `file_path` を Artifact の publish に渡す。直すときは同じ出力先にもう一度ビルドし、同じ `file_path` で publish する。`file_path` が変わると別の URL になる。
-- `--pdf` を付けると、1 枚を 1 ページにした `slides.pdf` も書き出す。持ち主に渡すときは、Artifact のリンクと PDF の両方を渡す。Artifact の中では印刷が止められていることがあるため、画面の PDF ボタンだけに頼らない。
+- `--pdf` を付けると、1 枚を 1 ページにした `slides.pdf` も書き出す。Artifact の中では印刷ができないので、PDF はこのファイルを添付して渡す。持ち主に渡すときは、Artifact のリンクと PDF の両方を渡す。
 - 渡す前に `scripts/preview.ts <デッキのディレクトリ> <png>` で全スライドを並べた画像を作り、その画像を見て、はみ出し、重なり、不自然な折り返しを探して直す。ビルドが通っても描画は確かめられていない。

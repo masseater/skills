@@ -135,7 +135,6 @@ button { font: inherit; color: inherit; }
   .shell, :root[data-sidebar="closed"] .shell { grid-template-columns: minmax(0, 1fr); }
   .sidebar { position: fixed; z-index: 25; top: var(--topbar); bottom: 0; left: 0; width: min(85vw, 320px); transform: translateX(-100%); visibility: hidden; transition: transform 0.2s ease, visibility 0.2s; }
   :root[data-drawer="open"] .sidebar { transform: none; visibility: visible; }
-  .pdf-label { display: none; }
 }
 
 @page { size: 1920px 1080px; margin: 0; }
@@ -190,7 +189,6 @@ const SCRIPT = `
     else if (root.dataset.sidebar === "closed") delete root.dataset.sidebar; else root.dataset.sidebar = "closed";
     requestAnimationFrame(fit);
   });
-  document.querySelector(".pdf").addEventListener("click", () => window.print());
   const present = (on) => {
     if (on) root.dataset.present = ""; else delete root.dataset.present;
     if (on && root.requestFullscreen) root.requestFullscreen().catch(() => {});
@@ -217,7 +215,6 @@ const SCRIPT = `
 const ICON = {
   menu: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>',
   play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>',
-  pdf: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 20h14v-2H5zm7-3 5-5h-3V4h-4v8H7z"/></svg>',
 };
 
 export function render(deck: Deck): string {
@@ -257,7 +254,6 @@ export function render(deck: Deck): string {
 <div class="deck-title">${escapeHtml(deck.title)}</div>
 <span class="counter"></span>
 <button class="icon-button present" type="button" aria-label="発表">${ICON.play}</button>
-<button class="icon-button pdf" type="button" aria-label="PDF">${ICON.pdf}<span class="pdf-label">PDF</span></button>
 </header>
 <div class="shell">
 <nav class="sidebar" aria-label="スライド">${nav}</nav>
