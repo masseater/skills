@@ -19,7 +19,12 @@ function nameOf(skill: string): string {
 
 async function denial($: HookContext, filePath: string): Promise<string | undefined> {
   const done = await read($, loaded)
-  const missing = requiredSkills(filePath).filter(skill => !done.includes(skill))
+  const required = requiredSkills(filePath).filter(skill => !done.includes(skill))
+  if (required.length === 0) {
+    return undefined
+  }
+  const installed = (await $.command.list()).map(command => nameOf(command.name))
+  const missing = required.filter(skill => installed.includes(skill))
   if (missing.length === 0) {
     return undefined
   }
