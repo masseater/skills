@@ -13,6 +13,8 @@ const RESEND =
   "call the same tool again with exactly this input. plamo-ja lets an input it translated " +
   "through unchanged, so the second call goes through.";
 
+const PROMPTLESS_TOOLS = new Set(["AskUserQuestion"]);
+
 function deny(reason: string): void {
   writeHookOutput({
     hookEventName: "PreToolUse",
@@ -23,7 +25,8 @@ function deny(reason: string): void {
 
 const input = readHookInput();
 const sessionId = field(input, "session_id");
-const paths = TRANSLATED_FIELDS[field(input, "tool_name")];
+const toolName = field(input, "tool_name");
+const paths = TRANSLATED_FIELDS[toolName];
 const store = new Store(resolveDataDir());
 
 async function main(): Promise<void> {
@@ -76,8 +79,10 @@ async function main(): Promise<void> {
   }
   writeHookOutput({
     hookEventName: "PreToolUse",
-    permissionDecision: "allow",
-    permissionDecisionReason: "plamo-ja translated the user-facing text into Japanese",
+    ...(PROMPTLESS_TOOLS.has(toolName) && {
+      permissionDecision: "allow",
+      permissionDecisionReason: "plamo-ja translated the user-facing text into Japanese",
+    }),
     updatedInput: value,
     ...(mode === "unknown" && {
       additionalContext:
