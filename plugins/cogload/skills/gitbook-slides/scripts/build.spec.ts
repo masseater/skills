@@ -84,3 +84,18 @@ describe("script", () => {
     expect(text).toBe("# Deck\n\n## 1. A\n\none & two\n\nthree\n\n## 2. B\n\nfour\n");
   });
 });
+
+describe("message", () => {
+  it("pins a slide's message to the bottom of the slide", () => {
+    const html = render(
+      readDeck(
+        deck({
+          "SUMMARY.md": "# Deck\n\n* [Body](a.html)\n",
+          "a.html": '<section><p>A</p><p class="message">Point</p></section>',
+        }),
+      ),
+    );
+    expect(html).toContain('<p class="message">Point</p>');
+    expect(html).toMatch(/\.slide > \.message \{ position: absolute;[^}]*bottom:/);
+  });
+});
