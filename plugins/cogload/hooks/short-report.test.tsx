@@ -30,35 +30,26 @@ const TURN = {
 } as const
 
 function answered(kind: string, roles: readonly string[]) {
-  return {
-    value: {
-      status: 200,
-      ok: true,
-      headers: {},
-      text: JSON.stringify({
-        result: {
-          answers: {
-            kind: { type: 'choice', choice: kind, probabilities: { [kind]: CONFIDENT } },
-            ...Object.fromEntries(
-              roles.map((choice, index) => [
-                `s${index}`,
-                { type: 'choice', choice, probabilities: { [choice]: CONFIDENT } },
-              ]),
-            ),
-          },
-        },
-      }),
-    },
+  const answers = {
+    kind: { type: 'choice', choice: kind, probabilities: { [kind]: CONFIDENT } },
+    ...Object.fromEntries(
+      roles.map((choice, index) => [
+        `s${index}`,
+        { type: 'choice', choice, probabilities: { [choice]: CONFIDENT } },
+      ]),
+    ),
   }
+  const inner = [{ type: 'text', text: JSON.stringify({ answers }) }]
+
+  return { value: { isError: false, content: [{ type: 'text', text: JSON.stringify(inner) }] } }
 }
 
 test('a report is drawn whole while it is written, then as start, result and question', async ($, on) => {
-  on('env.get', () => ({ value: 'x' }))
   on('clock.now', () => ({ value: 0 }))
   on('store.get', () => ({ value: undefined }))
   on('store.set', () => ({ value: undefined }))
   on('turn.complete', (_, e) => ({ text: e.answer }))
-  on('http.fetch', () => answered('report', ROLES))
+  on('mcp.call', () => answered('report', ROLES))
   on('ui.render', ($, e) => {
     const { Text } = $.ui.resolve(e)
 
@@ -74,10 +65,9 @@ test('a report is drawn whole while it is written, then as start, result and que
 })
 
 test('a message the model calls an answer stays whole', async ($, on) => {
-  on('env.get', () => ({ value: 'x' }))
   on('clock.now', () => ({ value: 0 }))
   on('turn.complete', (_, e) => ({ text: e.answer }))
-  on('http.fetch', () => answered('answer', []))
+  on('mcp.call', () => answered('answer', []))
   on('ui.render', ($, e) => {
     const { Text } = $.ui.resolve(e)
 
@@ -90,8 +80,11 @@ test('a message the model calls an answer stays whole', async ($, on) => {
   expect((await ui.find({ type: 'Text' }))?.text).toBe(LINES.join('\n'))
 })
 
-test('without a Cloudflare token the message stays whole', async ($, on) => {
-  on('env.get', () => ({ value: undefined }))
+test('when the portal cannot be reached the message stays whole', async ($, on) => {
+  on('clock.now', () => ({ value: 0 }))
+  on('mcp.call', () => {
+    throw new Error('not connected')
+  })
   on('turn.complete', (_, e) => ({ text: e.answer }))
   on('ui.render', ($, e) => {
     const { Text } = $.ui.resolve(e)

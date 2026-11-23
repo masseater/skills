@@ -9,8 +9,8 @@ Claude Code の持ち主が読む量、覚えておく量、手で打つ量を�
 
 `/plugin install cogload@masseater` でインストールする。
 
-報告を短くするには、Workers AI Read 権限を持つ Cloudflare の API トークンが要る。環境変数 `CLOUDFLARE_ACCOUNT_ID` と `CLOUDFLARE_API_TOKEN` に設定する。設定が無いときは、報告を元の文章のまま表示する。
+報告を短くする判定は、あなたが Claude Code に接続済みの masseater MCP ポータルの `sundries` の `decide` ツールが行う。Cloudflare のトークンも環境変数も要らず、認証はポータルへのログインだけで足りる。ポータルに接続していないときや呼び出しに失敗したときは、報告を元の文章のまま表示する。
 
-判定には Cloudflare AI Gateway（`default`）経由の Clef Flash を使う。行を選ぶだけで、文章は書き換えない。
+`decide` は Cloudflare AI Gateway（`default`）経由で Clef Flash を呼ぶ。行を選ぶだけで、文章は書き換えない。
 
 読ませるスキルを増やすには、`hooks/skill-first.ts` の `RULES` に、ファイルパスの条件とスキル名の組を足す。
