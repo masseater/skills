@@ -48,4 +48,4 @@ description: masseaterのリポジトリで作業する際のエントリーポ�
 - スキルの作成または修正を行う際：`skill-authoring`。`writing` と `humanity-and-humanness` に従って本文を書く。
 - ユーザーに意思決定を求める際や、ユーザーのフィードバックの意図を読み取る際：`humanity-and-humanness`
 - 持ち主に向けてチャットに報告や確認を書く際、説明資料を HTML で作る際：`cognitive-load`
-- 全リポジトリの日次点検（日次監査）を行う際：`daily-check`。Cloudflare の点検では `cloudflare-caution` に従う。類似コードと繰り返す指摘の点検は、`repo-conventions` の usecases/sweep-repeated-corrections.md の手順に従う。各点検の前に `repo-conventions` と `vite-plus` を読む。
+- 日次監査（全リポジトリの日次点検）を行う際：`daily-check`。`daily-check` は次のスキルをこの順に読み込んで実行する：`check-cloudflare-cost`、`check-ci-duration`、`check-upstream-exits`、`check-similar-code`、`check-repeated-corrections`、`check-repo-conventions`、`adopt-library-features`。`check-` で始まるスキルは何も変更せず、`adopt-library-features` だけがコードを変更する。`check-similar-code` と `check-repeated-corrections` は `repo-conventions` の usecases/sweep-repeated-corrections.md の手順に従う。`check-cloudflare-cost` は `cloudflare-caution` に従う。`adopt-library-features` は `integrate` に従って導入する。
