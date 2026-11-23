@@ -10,18 +10,36 @@ export type ChoiceAnswer = { choice: string; probabilities?: Record<string, numb
 
 export type Decided = { answers: Record<string, ChoiceAnswer>; ms: number; chars: number }
 
-const MODEL = '@cf/cloudflare/clef-flash'
-const GATEWAY = 'default'
+const SERVERS = ['masseater-mcp', 'claude.ai masseater-mcp']
+const PORTAL_TOOL = 'portal_codemode_execute'
 const MAX_QUESTIONS = 64
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value)
 }
 
-function answersOf(text: string): Record<string, ChoiceAnswer> | null {
-  const body: unknown = JSON.parse(text)
-  const result = isRecord(body) ? body.result : undefined
-  const answers = isRecord(result) ? result.answers : undefined
+function parse(text: string): unknown {
+  try {
+    return JSON.parse(text)
+  } catch {
+    return undefined
+  }
+}
+
+function textOf(value: unknown): string | undefined {
+  const blocks = Array.isArray(value) ? value : [value]
+  const first = blocks.find(block => isRecord(block) && block.type === 'text')
+
+  return isRecord(first) && typeof first.text === 'string' ? first.text : undefined
+}
+
+export function answersOf(blocks: readonly { type: string; text?: string }[]): Record<string, ChoiceAnswer> | null {
+  let value: unknown = textOf(blocks)
+  for (let depth = 0; depth < 3 && typeof value === 'string'; depth += 1) {
+    const parsed = parse(value)
+    value = parsed === undefined ? undefined : (textOf(parsed) ?? parsed)
+  }
+  const answers = isRecord(value) ? value.answers : undefined
   if (!isRecord(answers)) {
     return null
   }
@@ -37,43 +55,39 @@ function answersOf(text: string): Record<string, ChoiceAnswer> | null {
   return out
 }
 
+async function call($: HookContext, code: string) {
+  for (const server of SERVERS) {
+    try {
+      const result = await $.mcp.call(server, PORTAL_TOOL, { code })
+      if (!result.isError) {
+        return result
+      }
+    } catch {
+      continue
+    }
+  }
+  return null
+}
+
 export async function decide(
   $: HookContext,
   snippets: Record<string, string>,
   questions: Record<string, ChoiceQuestion>,
 ): Promise<Decided | null> {
-  const account = await $.env.get('CLOUDFLARE_ACCOUNT_ID')
-  const token = await $.env.get('CLOUDFLARE_API_TOKEN')
-  if (account === undefined || token === undefined) {
-    return null
-  }
-
   const startedAt = await $.clock.now()
   const entries = Object.entries(questions)
   const answers: Record<string, ChoiceAnswer> = {}
   let chars = 0
 
   for (let from = 0; from < entries.length; from += MAX_QUESTIONS) {
-    const body = JSON.stringify({
-      model: 'clef-flash',
-      state: { snippets },
+    const input = JSON.stringify({
+      snippets,
       questions: Object.fromEntries(entries.slice(from, from + MAX_QUESTIONS)),
     })
-    chars += body.length
-    const response = await $.http.fetch(
-      `https://api.cloudflare.com/client/v4/accounts/${account}/ai/run/${MODEL}`,
-      {
-        method: 'POST',
-        headers: {
-          authorization: `Bearer ${token}`,
-          'content-type': 'application/json',
-          'cf-aig-gateway-id': GATEWAY,
-          'cf-aig-metadata': JSON.stringify({ tool: 'cogload' }),
-        },
-        body,
-      },
-    )
-    const part = response.ok ? answersOf(response.text) : null
+    const code = `async () => codemode.sundries_decide(${input})`
+    chars += code.length
+    const result = await call($, code)
+    const part = result === null ? null : answersOf(result.content)
     if (part === null) {
       return null
     }
