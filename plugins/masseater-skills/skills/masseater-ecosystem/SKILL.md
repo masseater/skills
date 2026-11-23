@@ -47,6 +47,7 @@ description: masseaterのリポジトリで作業する際のエントリーポ�
 - スライド作成時：`create-slides`。`build-explanation` の手順に従って、アウトラインとスピーカースクリプトを作成する。
 - スキルの作成または修正を行う際：`skill-authoring`。`writing` と `humanity-and-humanness` に従って本文を書く。
 - ユーザーに意思決定を求める際や、ユーザーのフィードバックの意図を読み取る際：`humanity-and-humanness`
-- 持ち主に向けてチャットに報告や確認を書く際、説明資料を HTML で作る際：`cognitive-load`
+- 持ち主に向けてチャットに報告や確認を書く際、説明資料を HTML で作る際、UI を作り始める際：`cognitive-load`
+- 持ち主に見せる説明資料を HTML で作る際：`gitbook-pages`。書く中身は `cognitive-load` に従う。
 - 日次監査（全リポジトリの日次点検）を行う際：`daily-check`。`daily-check` は次のスキルをこの順に読み込んで実行する：`check-cloudflare-cost`、`check-ci-duration`、`check-upstream-exits`、`check-similar-code`、`check-repeated-corrections`、`check-repo-conventions`、`adopt-library-features`。`check-` で始まるスキルは何も変更せず、`adopt-library-features` だけがコードを変更する。`check-similar-code` と `check-repeated-corrections` は `repo-conventions` の usecases/sweep-repeated-corrections.md の手順に従う。`check-cloudflare-cost` は `cloudflare-caution` に従う。`adopt-library-features` は `integrate` に従って導入する。
 - プロジェクトのスレッドを横断して、作業の質、部分最適、スレッド間の矛盾を見直す統合監査を行う際：`integrated-audit`
