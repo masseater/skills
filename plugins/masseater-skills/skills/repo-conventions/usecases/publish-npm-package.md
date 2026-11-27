@@ -7,3 +7,4 @@
 5. size-limit (`@size-limit/file`) でバンドルサイズを測定する。パッケージの `run.tasks` に `size: { command: "size-limit", dependsOn: ["build"] }` を、`package.json` に `size-limit` の設定を記述し、ルートの `vite.config.ts` に `"size-all": "vp run -r size"` を追加して、verify の `dependsOn` に記述する。ターゲットタスクが一つも存在しない場合、`vp run -r` は失敗する。
 6. `limit` は現在のサイズ（バイト単位）通りに記述する。サイズを増加させる際は `limit` を引き上げ、その理由をコミットメッセージに記述する。
 7. `package.json`の`description`フィールドに、パッケージの機能と使用タイミングを記載するように記述する。他のリポジトリのAIは `vp pm search maintainer:r_masseater` でmasseaterが公開しているパッケージの一覧を読み取り、その一覧にはこの説明文だけが表示される。
+8. 各ツールチェーンのサポート範囲を宣言し、CIでその両端をテストする。詳細は [`published-packages`](../references/published-packages.md) に従うこと。
