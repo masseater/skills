@@ -1,14 +1,13 @@
-import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vite-plus/test";
+import { runScript } from "../../../lib/run-script.test.support.ts";
 
 const script = path.join(import.meta.dirname, "search.ts");
 const promptsRoot = path.resolve(import.meta.dirname, "../../../prompts");
 
-function run(...args: string[]): { status: number | null; stdout: string; stderr: string } {
-  const { status, stdout, stderr } = spawnSync(process.execPath, [script, ...args], { encoding: "utf8" });
-  return { status, stdout, stderr };
+function run(...args: string[]) {
+  return runScript(script, args);
 }
 
 describe("search", () => {

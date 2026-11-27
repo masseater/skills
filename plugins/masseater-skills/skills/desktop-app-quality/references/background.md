@@ -9,7 +9,7 @@
 出典は[macOS 27のリリースノート](https://developer.apple.com/documentation/macos-release-notes/macos-27-release-notes)、[27.2ノート](https://developer.apple.com/documentation/macos-release-notes/macos-27_2-release-notes)、および[Developer News](https://developer.apple.com/news/)である。
 
 | 変化 | 利用者に起きること | Tauri で要ること |
-|---|---|---|
+| --- | --- | --- |
 | Apple siliconのみ。Rosettaは27で終了し、Intelソフトウェアは28では動作しない。27.2以降、アップグレードしてもRosettaは削除されなくなった | Intelアプリは「macOS 28では動作しない」と表示される | arm64 かユニバーサルビルドで出す。x86専用の同梱プログラムを確認。`hostArchitecture`のない.pkgはarm64として動作する |
 | 旧開発者IDサブCAの有効期限は2027-02-01まで | 旧.pkgファイルのインストール停止 | G2証明書による再署名および再公証 |
 | 他の開発者のアプリデータはデフォルトで拒否される。XProtectはブラウザプロファイルや類似のデータを保護する。アプリはTCCデータベースを直接読み込めなくなる | インポート機能はサイレントに失敗し、ユーザーは手動でアクセス権を付与する必要がある | EPERMを検出し、ユーザーを設定へ案内する |
@@ -27,7 +27,7 @@
 出典：[IT Pro guide](https://techcommunity.microsoft.com/blog/windows-itpro-blog/an-it-pro%e2%80%99s-guide-to-windows-11-version-26h2/4559760)。26H1は新型Arm PC専用の別リリースであり、そのまま26H2へアップグレードすることはできない。
 
 | 変化 | 利用者に起きること | Tauri で要ること |
-|---|---|---|
+| --- | --- | --- |
 | Smart App Controlは再インストール不要で切り替え可能（2026-04以降） | 導入ユーザーが増え、署名のないソフトウェアがブロックされる | すべてのexe、DLL、サイドカーに署名する |
 | 管理者保護は一般提供され、10 月の更新で基準の既定になった | すべての昇格時に Windows Hello が要求される | ユーザーごとにインストールする |
 | Windows Update とアプリの更新を連携させるオプトイン方式 | − | − |
@@ -39,7 +39,7 @@
 ### Linux
 
 | 変化 | 利用者に起きること | Tauri で要ること |
-|---|---|---|
+| --- | --- | --- |
 | GNOME 50 (2026-03) および Plasma 6.8 (2026-10-14) で X11 セッションが削除された。Ubuntu 26.10 (10-15) および Fedora 45 (11月上旬) はこれを出荷する | X11 のテクニックに依存するグローバルホットキー、ウィンドウ位置指定、画面キャプチャが動作しなくなる | ポータルを利用し、ウィンドウ位置を設定する API に依存しない。ウィンドウサイズと最大化状態は自分で保存する |
 | GTK 4.23 (GNOME 51) は `xdg-session-management-v1` でウィンドウを復元する | GTK4 アプリは以前の位置で開く | Tauri は GTK3 を使用しており、この恩恵を受けない |
 | GNOME Software と Ubuntu App Center はインストール前に権限を表示する | 広すぎる権限が目に見える | 権限を狭く設定する |
@@ -52,7 +52,7 @@
 ユーザーにはこれらが尊重されていることしか分からないため、本章ではそれぞれが適用される条件とその内容を列挙する。
 
 | 枠組み | 中身 | 個人の無償アプリへの当てはまり |
-|---|---|---|
+| --- | --- | --- |
 | [ISO/IEC 25010:2023](https://www.iso.org/standard/78176.html) | 9つの品質特性：機能適合性、性能効率、互換性、相互作用能力（旧ユーザビリティ：適切性の認識可能性、学習可能性、操作性、ユーザエラー保護、ユーザエンゲージメント、包括性、ユーザ支援、自己記述性）、信頼性（無故障性、可用性、耐故障性、回復可能性）、セキュリティ（機密性、完全性、否認防止、説明責任、真正性、耐性）、保守性、柔軟性（旧ポータビリティ：適応性、設置性、交換性、拡張性）、および安全性（2023年に追加）。使用上の品質はISO/IEC 25019に移行した。サブ特性の後半部分は二次資料（[Sonar](https://www.sonarsource.com/resources/library/iso-iec-25010-explained/)）による。 | 必須ではない。カバレッジのチェックリストとして有用 |
 | [OWASP Desktop App Security Top 10](https://owasp.org/www-project-desktop-app-security-top-10/) | 依然としてアップデートのない2021年版：インジェクション、認証とセッション、機密データの漏洩、暗号技術の悪用、認可、設定ミス、安全でない通信、コード品質の低さ、既知の脆弱性を持つコンポーネント、およびログ記録と監視の不足。[ASVS 5.0.0](https://asvs.owasp.org/) (2025-05-30) は WebView 側に適用される | 必須ではない |
 | Tauri 2の外部監査 | Radically Open Securityが2023-11から2024-08まで監査を実施し、23件の指摘事項（11件がHigh）は2.0より前に修正された（[報告](https://github.com/tauri-apps/tauri/blob/dev/audits/Radically_Open_Security-v2-report.pdf)）。Electronは20項目のチェックリストを保有している（[Electron](https://www.electronjs.org/docs/latest/tutorial/security)） | − |
@@ -71,7 +71,7 @@
 ユーザーには見えないが、ここまでの体験を保つための手段である。
 
 | 手段 | 現状 |
-|---|---|
+| --- | --- |
 | 実際のアプリでのE2Eテスト | TauriはWebdriverIOの`@wdio/tauri-service`を正式に推奨している。デフォルトの組み込みモードではWebDriverサーバーがアプリ内に配置されるため、macOSでも動作する（[Tauri](https://v2.tauri.app/develop/tests/webdriver/), 2026-06-29）。`tauri-driver`単体ではWindowsとLinuxのみに対応している。これはAppleがWKWebView用のドライバーを同梱していないためである。PlaywrightはCDP経由でWebView2に接続することで、Windowsでのみ動作する（[Playwright](https://playwright.dev/docs/webview2)） |
 | 画面のユニットテスト | `@tauri-apps/api/mocks` の `mockIPC` と `mockWindows` |
 | 視覚的な回帰 | OSによってレンダリングやフォントが異なるため、OSごとの参照画像を保持する |

@@ -1,9 +1,10 @@
-import { execFileSync, spawnSync } from "node:child_process";
+import { execFileSync } from "node:child_process";
 import { cpSync, existsSync, lstatSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { readProperties } from "skills-ref";
 import { afterAll, beforeAll, describe, expect, it } from "vite-plus/test";
+import { claude as runClaude } from "./claude-cli.test.support.ts";
 
 type NpmSource = { source: "npm"; package: string };
 type MarketplaceEntry = { name: string; source: string | NpmSource };
@@ -17,7 +18,6 @@ const marketplace: Marketplace = JSON.parse(
 );
 const localPlugins = marketplace.plugins.filter((p): p is LocalEntry => typeof p.source === "string");
 const npmPlugins = marketplace.plugins.filter((p) => typeof p.source !== "string");
-const claudeBin = path.join(root, "node_modules/.bin/claude");
 const tracked = execFileSync("git", ["ls-files", "-z", "--cached", "--others", "--exclude-standard"], {
   cwd: root,
   encoding: "utf8",
@@ -29,10 +29,7 @@ let work: string;
 let repo: string;
 let env: NodeJS.ProcessEnv;
 
-function claude(args: string[]): { status: number | null; output: string } {
-  const result = spawnSync(claudeBin, args, { env, encoding: "utf8", cwd: repo });
-  return { status: result.status, output: `${result.stdout}${result.stderr}` };
-}
+const claude = (args: string[]) => runClaude(args, { cwd: repo, env });
 
 function listed(details: string, kind: string): string[] {
   const line = details.split("\n").find((l) => l.trimStart().startsWith(`${kind} (`));
