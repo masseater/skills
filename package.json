@@ -12,6 +12,8 @@
   "devDependencies": {
     "@anthropic-ai/claude-code": "2.1.331",
     "@r_masseater/msch": "0.54.0",
+    "fallow": "3.48.0",
+    "fallow-similar-code": "3.48.0",
     "skills-ref": "0.1.5",
     "vite-plus": "1.8.0"
   },

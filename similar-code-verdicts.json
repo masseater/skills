@@ -1,0 +1,68 @@
+{
+  "schema_version": "1",
+  "verdicts": [
+    {
+      "candidate_id": "similar-code:candidate:v1:3685d66f6f51df737913068dd9c7d8254fe2b796af819a48d1596974786a47cc",
+      "review_key": "similar-code:review:v1:7f09365b01af82620875b6bb23cac0d119f4b688fe80a33a461cd25070739209",
+      "candidate_worthy": false,
+      "behaviorally_equivalent": false,
+      "refactor_safe": false,
+      "outcome": "intentional-duplication",
+      "rationale": "A plugin is installed on its own and its hooks take no dependencies, so cogload keeps its own three-line isRecord instead of importing it from plamo-ja."
+    },
+    {
+      "candidate_id": "similar-code:candidate:v1:d7070ad56837e681a210173c5222e761190d3b2f29a0e6bda8945282b93705b1",
+      "review_key": "similar-code:review:v1:2dfcd0f6c6d332ee9c0cba58a47190ee443bd1f9550c8de83b3fe7ddbb0889fa",
+      "candidate_worthy": false,
+      "behaviorally_equivalent": false,
+      "refactor_safe": false,
+      "outcome": "related-but-distinct",
+      "rationale": "Each test file runs the claude CLI for a different check, and a shared test helper would couple two unrelated test files."
+    },
+    {
+      "candidate_id": "similar-code:candidate:v1:ec0df1b29d48d77d73232569ffe4e48e8611e30255ae89b3f18cd367e5997cd0",
+      "review_key": "similar-code:review:v1:7a35f3f1059b66fb6548366d2462c4fb80047846c198187d4b178f8c0930db82",
+      "candidate_worthy": false,
+      "behaviorally_equivalent": false,
+      "refactor_safe": false,
+      "outcome": "related-but-distinct",
+      "rationale": "Each test calls the run function of a different skill script with its own arguments; the scripts live in separate skills that are installed on their own."
+    },
+    {
+      "candidate_id": "similar-code:candidate:v1:75705ae321ff67f013b12764b48e07345cc4af55d26a2a41e2beaa22a828eee1",
+      "review_key": "similar-code:review:v1:6c5fb985411d61199693c29f82fcddae43e995d96523c4c7904e5781c43d6f34",
+      "candidate_worthy": false,
+      "behaviorally_equivalent": false,
+      "refactor_safe": false,
+      "outcome": "intentional-duplication",
+      "rationale": "gitbook-slides and gitbook-pages are separate skills that are installed on their own, so each keeps its own copy of this small helper in its scripts."
+    },
+    {
+      "candidate_id": "similar-code:candidate:v1:61050d75f13c270a1bf870e9a5be297052584121a8ca617938bdb501f6f1cd1c",
+      "review_key": "similar-code:review:v1:14e21758a4f2d037b23530d385089ebc8260be24f6633373d40b2a38f4e0e45b",
+      "candidate_worthy": false,
+      "behaviorally_equivalent": false,
+      "refactor_safe": false,
+      "outcome": "intentional-duplication",
+      "rationale": "gitbook-slides and gitbook-pages are separate skills that are installed on their own, so each keeps its own copy of this small helper in its scripts."
+    },
+    {
+      "candidate_id": "similar-code:candidate:v1:bda83145ca244b061a4271585554e0b1a90a1cad7774d28aba53bc4c6878c9d1",
+      "review_key": "similar-code:review:v1:8c30d04217947564f341491713f8412688cb30b6b1e37a9428d859b2dc8db30f",
+      "candidate_worthy": false,
+      "behaviorally_equivalent": false,
+      "refactor_safe": false,
+      "outcome": "related-but-distinct",
+      "rationale": "Two test cases that answer the same question through different routes, the direct answer and the portal; each keeps its own setup so the failing route is clear."
+    },
+    {
+      "candidate_id": "similar-code:candidate:v1:8d1066279ea7c12602d451529d4633704be36bade41d8b6ef463abd689c79236",
+      "review_key": "similar-code:review:v1:607a1c3b2cf0f4f567c7bf128a0cef1caadc645beff24a89c808cc7521a56be3",
+      "candidate_worthy": false,
+      "behaviorally_equivalent": false,
+      "refactor_safe": false,
+      "outcome": "related-but-distinct",
+      "rationale": "Two steps of the same translation retry loop that do different jobs: one attempt against the model and one translation of a single item."
+    }
+  ]
+}

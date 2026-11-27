@@ -1,3 +1,5 @@
+import { isRecord } from "./schema.ts";
+
 export const TRANSLATED_FIELDS: Record<string, string[]> = {
   AskUserQuestion: [
     "questions[].question",
@@ -10,10 +12,6 @@ export const TRANSLATED_FIELDS: Record<string, string[]> = {
 };
 
 type Slot = { get: () => string; set: (value: string) => void };
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
 
 function collect(node: unknown, segments: string[], out: Slot[]): void {
   const [segment, ...rest] = segments;
