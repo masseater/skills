@@ -19,6 +19,7 @@ masseater のリポジトリで共通に使うエージェントスキルであ�
 - [debug-like-a-human](skills/debug-like-a-human/SKILL.md): AIはオーナーと同じ認証パスを通じて、ログイン後の画面やAccessの本番環境にアクセスし、自ら確認を行う。
 - [desktop-app-quality](skills/desktop-app-quality/SKILL.md): デスクトップアプリの設計、開発、レビューをするときに読む。
 - [find-before-build](skills/find-before-build/SKILL.md): ライブラリ、ランタイム、リポジトリに既に存在するものを探し出して利用し、自作はしない。
+- [fix-red-main](skills/fix-red-main/SKILL.md): Bring the main branch of masseater.dev or ecosystems back to a green verify after the CI failure notice arrives, with one fix per failure. Use when a request says that a repository's main verify failed.。
 - [how-to-use-react](skills/how-to-use-react/SKILL.md): React 19.3のコンポーネント、ローダー、およびサーバー処理の記述、修正、レビュー時に参照する。
 - [humanity-and-humanness](skills/humanity-and-humanness/SKILL.md): AIが人間の読み方、考え方、感覚を前提として持つように読む。
 - [integrate](skills/integrate/SKILL.md): ライブラリや新しい実装手段を導入する際に使用する。
