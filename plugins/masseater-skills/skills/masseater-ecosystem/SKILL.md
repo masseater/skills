@@ -52,6 +52,7 @@ description: masseaterのリポジトリで作業する際のエントリーポ�
 - 持ち主に見せる説明資料を HTML で作る際：`gitbook-pages`。書く中身は `cognitive-load` に従う。
 - スライドやプレゼン資料を作る際：`slide-content`。構成とスピーカーノートは `build-explanation` の手順で作り、図は `infographic` で描き、`gitbook-slides` で組み立てる。見る人と聞く人の認知負荷を下げるために `cognitive-load` を読む。
 - プレゼンのスライドを HTML や PDF に組み立てる際：`gitbook-slides`
+- 業務の提案、見積もり、契約条件をすり合わせる資料を作る際：`work-proposal-deck`。スライドにするなら `slide-content` にも従う。
 - 解説・紹介動画を作る際、動画の台本を書く際：`video-production`。Remotion のコードを書くときは、そのリポジトリに入っている Remotion 公式のスキルも読む。
 - 資料、スライド、README に図やインフォグラフィックを描く際：`infographic`。見る人の認知負荷を下げるために `cognitive-load` を読む。
 - 複数のリポジトリにまたがる似た関数を、足りない抽象化として見つける際：`cross-repo-similar-code`（cross-similar-code プラグインに入っている。プラグインを入れていないセッションでは plugins/cross-similar-code/skills/cross-repo-similar-code/SKILL.md を直接読む）。日次監査が毎日実行する。
