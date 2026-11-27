@@ -82,7 +82,8 @@ masseaterのリポジトリはすべて同一のテンプレートから作成�
 
 ## スキル
 
-- 編集前に、リポジトリルートで `vp exec intent list` を実行すること。スキルが適合する場合は `vp exec intent load <package>#<skill>` で読み込むこと。`intent` が利用できない場合はインストールせず、ギャップを報告すること。
+- pnpm は、依存関係が同梱するスキル（`skills/<name>/SKILL.md`）をエージェントのスキルディレクトリに紐付ける。ルートの `pnpm-workspace.yaml` で `permissions` が `skills: true` と指定されているパッケージと、直接依存関係のスキルのみを紐付ける。インストール時にパッケージが「Packages awaiting approval」の下にリストされている場合は、そのスキルを `skills: true` で承認するか、`skills: false` で拒否する。
+- `.intent/hooks` が依然として存在する場合は、編集前にリポジトリルートで `vp exec intent list` を実行し、`vp exec intent load <package>#<skill>` で推移的依存関係の対応するスキルを読み込む。`intent` が利用できない場合はインストールせず、その不足を報告すること。
 - 複数のリポジトリで使用されている独自のスキルを masseater/skills に配置し、各リポジトリのルートの `vite.config.ts` の `skills` に宣言して `vp install` で導入すること。
 - 1 つのリポジトリだけで使うスキルはそのリポジトリのフォルダに置き、同じ `skills` に `"./<フォルダ>": { skills: "all" }` と宣言すること。
 
