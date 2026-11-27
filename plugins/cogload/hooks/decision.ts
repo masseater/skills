@@ -46,19 +46,20 @@ export function answersOf(text: string): Record<string, ChoiceAnswer> | null {
   return out
 }
 
-export function gatewayOf(options: Readonly<Record<string, unknown>>): Gateway | null {
-  const account = options.cloudflare_account_id
-  const token = options.cloudflare_api_token
-  const gateway = options.cloudflare_ai_gateway
-  if (typeof account !== 'string' || account.trim() === '' || typeof token !== 'string' || token.trim() === '') {
+function filled(value: unknown): string | null {
+  return typeof value === 'string' && value.trim() !== '' ? value.trim() : null
+}
+
+export type CloudflareEnv = { account: unknown; token: unknown; gateway: unknown }
+
+export function gatewayOf(options: Readonly<Record<string, unknown>>, env: CloudflareEnv): Gateway | null {
+  const account = filled(options.cloudflare_account_id) ?? filled(env.account)
+  const token = filled(options.cloudflare_api_token) ?? filled(env.token)
+  if (account === null || token === null) {
     return null
   }
 
-  return {
-    account: account.trim(),
-    token: token.trim(),
-    gateway: typeof gateway === 'string' && gateway.trim() !== '' ? gateway.trim() : 'default',
-  }
+  return { account, token, gateway: filled(options.cloudflare_ai_gateway) ?? filled(env.gateway) ?? 'default' }
 }
 
 export async function decide(

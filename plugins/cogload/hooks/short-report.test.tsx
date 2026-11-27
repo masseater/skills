@@ -46,6 +46,7 @@ function answered(kind: string, roles: readonly string[]) {
 const OPTIONS = { options: { cloudflare_account_id: 'account', cloudflare_api_token: 'token' } }
 
 test('a report is drawn whole while it is written, then as start, result and question', OPTIONS, async ($, on) => {
+  on('env.get', () => ({ value: undefined }))
   on('clock.now', () => ({ value: 0 }))
   on('store.get', () => ({ value: undefined }))
   on('store.set', () => ({ value: undefined }))
@@ -66,6 +67,7 @@ test('a report is drawn whole while it is written, then as start, result and que
 })
 
 test('a message the model calls an answer stays whole', OPTIONS, async ($, on) => {
+  on('env.get', () => ({ value: undefined }))
   on('clock.now', () => ({ value: 0 }))
   on('turn.complete', (_, e) => ({ text: e.answer }))
   on('http.fetch', () => answered('answer', []))
@@ -82,6 +84,7 @@ test('a message the model calls an answer stays whole', OPTIONS, async ($, on) =
 })
 
 test('when the gateway cannot be reached the message stays whole', OPTIONS, async ($, on) => {
+  on('env.get', () => ({ value: undefined }))
   on('clock.now', () => ({ value: 0 }))
   on('http.fetch', () => {
     throw new Error('offline')
@@ -100,6 +103,7 @@ test('when the gateway cannot be reached the message stays whole', OPTIONS, asyn
 })
 
 test('without an API key the message stays whole and nothing is sent', async ($, on) => {
+  on('env.get', () => ({ value: undefined }))
   let sent = 0
   on('clock.now', () => ({ value: 0 }))
   on('http.fetch', () => {
@@ -118,4 +122,24 @@ test('without an API key the message stays whole and nothing is sent', async ($,
 
   expect((await ui.find({ type: 'Text' }))?.text).toBe(LINES.join('\n'))
   expect(sent).toBe(0)
+})
+
+test('the environment variables send the judgement when the configuration is empty', async ($, on) => {
+  const env: Record<string, string> = { CLOUDFLARE_ACCOUNT_ID: 'account', CLOUDFLARE_API_TOKEN: 'token' }
+  on('env.get', (_, e) => ({ value: env[e.name] }))
+  on('clock.now', () => ({ value: 0 }))
+  on('store.get', () => ({ value: undefined }))
+  on('store.set', () => ({ value: undefined }))
+  on('http.fetch', () => answered('report', ROLES))
+  on('turn.complete', (_, e) => ({ text: e.answer }))
+  on('ui.render', ($, e) => {
+    const { Text } = $.ui.resolve(e)
+
+    return <Text>{e.component === 'AssistantMessage' ? e.props.text : ''}</Text>
+  })
+
+  const ui = await $.ui.mount(MESSAGE)
+  await $.turn.complete(TURN)
+
+  expect((await ui.find({ type: 'Text' }))?.text).toBe([LINES[0], LINES[4], '', LINES[5]].join('\n'))
 })
