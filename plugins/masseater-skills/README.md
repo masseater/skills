@@ -35,6 +35,7 @@ masseater のリポジトリで共通に使うエージェントスキルであ�
 - [skill-authoring](skills/skill-authoring/SKILL.md): Agent Skillsスキル（すなわち `SKILL.md` とそのディレクトリ）の作成、修正、または訂正時に読み込む。
 - [video-production](skills/video-production/SKILL.md): 解説・紹介動画を、決まった台本の型から縦（9:16）と横（16:9）の Remotion 動画として作る。
 - [vite-plus](skills/vite-plus/SKILL.md): Vite+ の `vp` でインストール、実行、確認、テストを行う。
+- [weekly-review](skills/weekly-review/SKILL.md): 前の週（月曜〜日曜、JST）にこの claude.ai プロジェクトで何をしたかを洗い出し、watashi の週次の記録として portal の /weeks に残す。
 - [writing](skills/writing/SKILL.md): 文章の執筆や修正時に読む。
 
 <!-- skills:end -->
