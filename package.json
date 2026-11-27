@@ -10,10 +10,10 @@
     "prepare": "vp config --no-agent"
   },
   "devDependencies": {
-    "@anthropic-ai/claude-code": "2.1.330",
-    "@r_masseater/msch": "0.53.1",
+    "@anthropic-ai/claude-code": "2.1.331",
+    "@r_masseater/msch": "0.54.0",
     "skills-ref": "0.1.5",
-    "vite-plus": "1.7.0"
+    "vite-plus": "1.8.0"
   },
   "devEngines": {
     "packageManager": {

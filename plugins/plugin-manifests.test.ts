@@ -9,6 +9,7 @@ type NpmSource = { source: "npm"; package: string };
 type MarketplaceEntry = { name: string; source: string | NpmSource };
 type LocalEntry = { name: string; source: string };
 type Marketplace = { name: string; plugins: MarketplaceEntry[] };
+type Finding = { warnings: { path: string; message: string }[] };
 
 const root = path.resolve(import.meta.dirname, "..");
 const marketplace: Marketplace = JSON.parse(
@@ -63,9 +64,12 @@ afterAll(() => {
 
 describe("marketplace", () => {
   it("passes claude plugin validate with no warning but the description msch does not generate", () => {
-    const result = claude(["plugin", "validate", "."]);
+    const result = claude(["plugin", "validate", ".", "--json"]);
     expect(result.status, result.output).toBe(0);
-    const warnings = [...result.output.matchAll(/^\s*> (.+)$/gm)].map((match) => match[1] ?? "");
+    const report: { manifest: Finding; contents: Finding[] } = JSON.parse(result.output);
+    const warnings = [report.manifest, ...report.contents].flatMap((entry) =>
+      entry.warnings.map((warning) => `${warning.path}: ${warning.message}`),
+    );
     const unexpected = warnings.filter((warning) => !warning.startsWith("description: No marketplace description"));
     expect(unexpected, result.output).toEqual([]);
   });
