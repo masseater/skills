@@ -30,6 +30,7 @@ masseater のリポジトリで共通に使うエージェントスキルであ�
 - [measure-readiness](skills/measure-readiness/SKILL.md): 後になって誰かが引きたいと思う事実が、記録され、呼び出し元に帰属され、保存されているかを監査する。
 - [project-checklist](skills/project-checklist/SKILL.md): プロジェクトの設計で考慮すべき項目が満たされているか、実機を確認することで判断する。
 - [repo-conventions](skills/repo-conventions/SKILL.md): masseaterのリポジトリに共通するルール。
+- [scheduled-task-prompt](skills/scheduled-task-prompt/SKILL.md): Write or revise the instruction text that a scheduled task hands to Claude on every run, naming the information sources to read and the state that holds when the run is done, and leaving the procedure to Claude. Use when creating or editing a scheduled task's prompt, not for a one-off request made in the moment.。
 - [simplify-repo](skills/simplify-repo/SKILL.md): リポジトリ全体を簡素化する。
 - [skill-authoring](skills/skill-authoring/SKILL.md): Agent Skillsスキル（すなわち `SKILL.md` とそのディレクトリ）の作成、修正、または訂正時に読み込む。
 - [vite-plus](skills/vite-plus/SKILL.md): Vite+ の `vp` でインストール、実行、確認、テストを行う。
