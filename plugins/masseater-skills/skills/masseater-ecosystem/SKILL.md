@@ -6,6 +6,7 @@ description: masseaterのリポジトリで作業する際のエントリーポ�
 # masseater-ecosystem
 
 - テックスタックの完成形と、開発と借用の境界については、[`tech-stack`](references/tech-stack.md)を参照すること。
+- masseater.dev と ecosystems のどちらにコードを置くか、サービスを作る途中で汎用的なパッケージが出たときの扱いについては、[`repositories`](references/repositories.md)を参照すること。
 
 ## なぜこのスキルが必要で、どのような状態を目指すべきか
 
