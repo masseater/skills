@@ -11,6 +11,11 @@
       "description": "人間の認知負荷を下げる"
     },
     {
+      "name": "cross-similar-code",
+      "source": "./plugins/cross-similar-code",
+      "description": "リポジトリ横断の類似コード検出。セッション開始時に fallow とローカルモデルを用意し、複数のリポジトリにまたがる似た関数を、足りない抽象化として見つける"
+    },
+    {
       "name": "masseater-skills",
       "source": "./plugins/masseater-skills",
       "description": "masseater のリポジトリで共通に使うエージェントスキル"

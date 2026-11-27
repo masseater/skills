@@ -1,0 +1,17 @@
+{
+  "description": "cross-similar-code plugin hooks",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/session-start.ts"],
+            "timeout": 20
+          }
+        ]
+      }
+    ]
+  }
+}
