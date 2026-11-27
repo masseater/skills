@@ -9,7 +9,10 @@
 - ずんだもんの立ち絵は [zunko.jp の公式イラスト](https://zunko.jp/con_illust.html)（[規約](https://zunko.jp/guideline.html)：広告付きの個人の YouTube は非商用として使える）を落とし、余白を切ってキャッシュに置く。
 - いらすとやの絵は、検索ページから記事を開き、記事の中の `blogger.googleusercontent.com` の画像 URL を `stock.ts` に書く。URL の `s800` を `s1600` に替えると大きい絵が取れる。
 - 画面写真は Playwright で紹介するツールのサイトをスマホの幅（1080×1920）で撮り、`public/cache/shots/` に置く。
-- クラウドのセッションでは YouTube の動画は落とせず、yt-dlp も 403 になる。チャンネルのページとショートの一覧は普通の GET で取れるので、HTML の `ytInitialData` からショートの ID を読み、`https://i.ytimg.com/vi/<ID>/oardefault.jpg` と `maxres1.jpg`〜`maxres3.jpg` を画面として使う。ボット判定や回数制限をクッキーやプロキシでくぐらない。
+- クラウドのセッションでは YouTube の動画は落とせず、yt-dlp も 403 になる。ボット判定や回数制限をクッキー、偽のクライアント、プロキシ、ミラーでくぐらない。
+- 同じショートを TikTok にも載せているチャンネルは、`yt-dlp --playlist-end 3 "https://www.tiktok.com/@<ハンドル>"` で既定の設定のまま落とせる。ハンドルは YouTube のハンドルと同じことが多い。Instagram はクラウドからは 429 になる。
+- TikTok に無いチャンネルは、HTML の `ytInitialData` からショートの ID を読み、`https://i.ytimg.com/vi/<ID>/oardefault.jpg` と `maxres1.jpg`〜`maxres3.jpg` を画面として使う。
+- 落とした動画とそこから取った画面はスクラッチパッドだけに置き、リポジトリに入れない。
 - Remotion が自分で Chrome を落とせない環境では、`REMOTION_BROWSER_EXECUTABLE` に手元の Chrome Headless Shell を渡す。
 - BGM の取り先の例：[甘茶の音楽工房](https://amachamusic.chagasi.com/terms.html)（クレジット任意、Content ID 登録禁止）。
 - 効果音は[効果音ラボ](https://soundeffect-lab.info/agreement/)（クレジット任意、再配布不可、効果音が主役の動画は不可）の素材を `libs/video-kit/src/shared/config/sfx.ts` に並べている。直リンクを断るので、`make` と `assets` は一覧ページを Chromium で開いてダウンロードのリンクを押す。Chromium は `BROWSER_EXECUTABLE` で渡せる。
