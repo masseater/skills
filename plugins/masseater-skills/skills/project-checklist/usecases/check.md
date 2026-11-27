@@ -22,4 +22,4 @@
 - スケルトンファイルをテンプレートと並べて開く。
 - フックの設定を `git config core.hooksPath` で確認する。
 - main の CI を `gh run list --branch main --limit 5` と `gh run view <run-id> --log` で確認する。
-- スキルを `skills ls` と `vp exec intent list` で確認する。
+- `skills ls`、エージェントのスキルディレクトリ、および `.intent/hooks` が存在する場合は `vp exec intent list` でスキルを確認する。

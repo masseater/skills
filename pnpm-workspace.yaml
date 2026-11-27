@@ -11,6 +11,14 @@ allowBuilds:
   "@r_masseater/vite-plus-adopt": true
   "@anthropic-ai/claude-code": true
   "@openrouter/sdk": false
+permissions:
+  "@r_masseater/msch":
+    skills: true
+  fallow:
+    skills: true
+skills:
+  dirs:
+    - .claude/skills
 minimumReleaseAgeExclude:
   - "@r_masseater/fu4-linux-x64-gnu@0.2.0"
   - "@r_masseater/fu4-presets@0.1.1"
