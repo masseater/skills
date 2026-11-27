@@ -28,7 +28,7 @@ jobs:
         with:
           persist-credentials: false
       - if: steps.lockfile.outputs.changed == 'true'
-        uses: $/.github/actions/setup
+        uses: ./.github/actions/setup
         with:
           cache: "false"
 
