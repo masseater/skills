@@ -43,6 +43,21 @@ function answered(kind: string, roles: readonly string[]) {
   return { value: { ok: true, status: 200, text: JSON.stringify({ result: { answers } }) } as never }
 }
 
+function answeredByPortal(kind: string, roles: readonly string[]) {
+  const answers = {
+    kind: { type: 'choice', choice: kind, probabilities: { [kind]: CONFIDENT } },
+    ...Object.fromEntries(
+      roles.map((choice, index) => [
+        `s${index}`,
+        { type: 'choice', choice, probabilities: { [choice]: CONFIDENT } },
+      ]),
+    ),
+  }
+  const inner = [{ type: 'text', text: JSON.stringify({ answers }) }]
+
+  return { value: { isError: false, content: [{ type: 'text', text: JSON.stringify(inner) }] } }
+}
+
 const OPTIONS = { options: { cloudflare_account_id: 'account', cloudflare_api_token: 'token' } }
 
 test('a report is drawn whole while it is written, then as start, result and question', OPTIONS, async ($, on) => {
@@ -99,12 +114,33 @@ test('when the gateway cannot be reached the message stays whole', OPTIONS, asyn
   expect((await ui.find({ type: 'Text' }))?.text).toBe(LINES.join('\n'))
 })
 
-test('without an API key the message stays whole and nothing is sent', async ($, on) => {
+test('without an API key the portal decides and the report is drawn short', async ($, on) => {
+  on('clock.now', () => ({ value: 0 }))
+  on('store.get', () => ({ value: undefined }))
+  on('store.set', () => ({ value: undefined }))
+  on('mcp.call', () => answeredByPortal('report', ROLES))
+  on('turn.complete', (_, e) => ({ text: e.answer }))
+  on('ui.render', ($, e) => {
+    const { Text } = $.ui.resolve(e)
+
+    return <Text>{e.component === 'AssistantMessage' ? e.props.text : ''}</Text>
+  })
+
+  const ui = await $.ui.mount(MESSAGE)
+  await $.turn.complete(TURN)
+
+  expect((await ui.find({ type: 'Text' }))?.text).toBe([LINES[0], LINES[4], '', LINES[5]].join('\n'))
+})
+
+test('without an API key and without the portal the message stays whole and nothing is sent', async ($, on) => {
   let sent = 0
   on('clock.now', () => ({ value: 0 }))
   on('http.fetch', () => {
     sent += 1
     return answered('report', ROLES)
+  })
+  on('mcp.call', () => {
+    throw new Error('not connected')
   })
   on('turn.complete', (_, e) => ({ text: e.answer }))
   on('ui.render', ($, e) => {
