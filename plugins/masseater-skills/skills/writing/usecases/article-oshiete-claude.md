@@ -7,7 +7,7 @@
 - アイデアをやり取りしたセッションで「記事にしてほしい」と頼まれたときは、そのセッションの会話をネタにして書く
 - 発言の順番や内容を変えない
 - 各発言者の発言を `:::masseater` と `:::claude` ブロックで囲む
-- frontmatter の `tags` に「教えてClaude」と入れ、ファイルを `apps/portfolio/content/blogs/` に置く
+- frontmatter の `tags` に「教えてClaude」と入れ、ファイルを `apps/portfolio/content/slog/` に置く
 
 ```md
 :::masseater
