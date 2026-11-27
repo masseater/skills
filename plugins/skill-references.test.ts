@@ -6,6 +6,7 @@ const hub = "masseater-ecosystem";
 const roots = [
   path.resolve(import.meta.dirname, "masseater-skills", "skills"),
   path.resolve(import.meta.dirname, "cogload", "skills"),
+  path.resolve(import.meta.dirname, "cross-similar-code", "skills"),
 ];
 const rootOf = new Map(
   roots.flatMap((root) => {
