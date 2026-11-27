@@ -1,6 +1,6 @@
 ---
 name: cross-repo-similar-code
-description: Find similar functions that sit in different masseater repositories with fallow similar-code, and turn each pair into a consolidation request. Use when the cross-repo similar code run fires or the owner asks whether code is duplicated across repositories.
+description: Find similar functions that sit in different masseater repositories with fallow similar-code, and return each pair as a consolidation request. Use when running the cross-repo similar code check of the daily audit or when the owner asks whether code is duplicated across repositories.
 ---
 
 # cross-repo-similar-code
@@ -18,7 +18,5 @@ The state this skill aims for is that every pair of similar functions in differe
 - When the result says `complete: false`, start the report with the unfinished parts (`failedPhases`, `unresolved`) and say that the rest is not a clean result. Never report a partial run as clean.
 - Only pairs whose two sides are in different repositories belong here. Pairs inside one repository are the repository's own similar-code sweep.
 - For each pair, read both functions, name the missing abstraction, and say where it belongs and what API fits both callers. A pair at similarity 1 is a copy: one side is deleted and imports the other. Do not propose a verdict and do not call a similarity intentional. If where the abstraction belongs is unclear, report the pair to the coordinator with the facts and draw no conclusion.
-- Send the requests to the owning threads through `message_coordinator`, never to a thread directly. Requests that have no owner go together as one request for a single new thread.
-- Public output (a public repository, a pull request on one, a commit message) refers to a private repository by its repository ID and never by name. A report to the coordinator may use names.
-- Write the report in Japanese, under 2000 characters, listing each pair as `repository/path:function` on both sides with its similarity. If nothing is found and the run was complete, write one line. Put the same text in this thread and in the message to the coordinator.
-- Before anything else, list the project's threads. If another thread titled `横断類似コード` is neither resolved nor finished, the previous run is still going: do nothing, resolve this thread and stop. Resolve this thread when the report is sent.
+- Change nothing. Return the pairs as concrete consolidation requests for the owner; the daily audit routes them to the owning threads and writes the report.
+- Public output (a public repository, a pull request on one, a commit message, a public CI log) refers to a private repository by its repository ID and never by name, and the run never happens in public CI, because its logs and artifacts would expose private code. A report to the coordinator may use names.
