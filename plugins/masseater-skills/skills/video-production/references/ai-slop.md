@@ -1,27 +1,27 @@
-# AI が作ったと分かる動画の特徴
+# AIが作ったと分かる動画の特徴
 
-AI で量産した動画は、同じ型、同じ動き、同じ声が並ぶので、視聴者に見抜かれ、YouTube の収益化でも不利に扱われる。YouTube は 2026 年 7 月に「inauthentic content」の方針を説明し直し、[量産された汎用的な動画や繰り返しの多い動画を収益化の対象外として挙げた](https://www.tubefilter.com/2026/07/13/youtube-inauthentic-content-monetization-policy-update/)。2026 年 11 月 27 日に調べた次の資料から、動画の作りに出る特徴を観点表にまとめた。
+AIで量産した動画は、同じ型、同じ動き、同じ声が並ぶので、視聴者に見抜かれ、YouTubeの収益化でも不利に扱われる。YouTubeは2026年7月に「inauthentic content」の方針を説明し直し、[量産された汎用的な動画や繰り返しの多い動画を収益化の対象外として挙げた](https://www.tubefilter.com/2026/07/13/youtube-inauthentic-content-monetization-policy-update/)。2026年11月27日に調べた次の資料から、動画の作りに出る特徴を観点表にまとめた。
 
-- [Why AI motion graphics look AI-made](https://prompt-motion.com/blog/make-ai-motion-graphics-look-less-ai)（2026 年 10 月）
-- [How to Make Motion Graphics Without the AI-Slop Look](https://aiartimind.com/how-to-make-motion-graphics-with-claude-opus-5-5/)（2026 年 11 月更新）
-- [How to Spot AI Slop on YouTube](https://slopdetector.org/blog/youtube-ai-slop)（2026 年 6 月）
-- [相次ぐ YouTube ショートの収益停止](https://zenn.dev/hanamarufx/articles/f6fcc6b68c8010)（2026 年 1 月）
-- [縦動画用テロップフォント 10 選](https://0120.co.jp/blog/video-82/)（2026 年 10 月更新）
+- [Why AI motion graphics look AI-made](https://prompt-motion.com/blog/make-ai-motion-graphics-look-less-ai)（2026年10月）
+- [How to Make Motion Graphics Without the AI-Slop Look](https://aiartimind.com/how-to-make-motion-graphics-with-claude-opus-5-5/)（2026年11月更新）
+- [How to Spot AI Slop on YouTube](https://slopdetector.org/blog/youtube-ai-slop)（2026年6月）
+- [相次ぐYouTubeショートの収益停止](https://zenn.dev/hanamarufx/articles/f6fcc6b68c8010)（2026年1月）
+- [縦動画用テロップフォント10選](https://0120.co.jp/blog/video-82/)（2026年10月更新）
 
 ## 観点表
 
-品質チェックで 1 項目ずつ確かめる。当てはまったら直す。
+品質チェックで1項目ずつ確かめる。当てはまったら直す。
 
-| 観点 | AI っぽい作り | こうする |
+| 観点 | AIっぽい作り | こうする |
 | --- | --- | --- |
-| 書体 | AI がよく選ぶ丸文字や極太の飾り書体を何種類も混ぜる | Noto Sans JP の Black と Bold だけ。飾り書体は 1 本に 1 か所まで |
-| 字幕 | 細い字、色の多い字、ふちのない字 | Bold 以上、白字に黒ふち、強調は 1 色だけ |
+| 書体 | AIがよく選ぶ丸文字や極太の飾り書体を何種類も混ぜる | Noto Sans JPのBlackとBoldだけ。飾り書体は1本に1か所まで |
+| 字幕 | 細い字、色の多い字、ふちのない字 | Bold以上、白字に黒ふち、強調は1色だけ |
 | 画面の揺れ | カメラシェイク、点滅する背景 | 揺らさない。寄りは行の変わり目のジャンプカットだけ |
-| 光と色 | 光るふち、ネオン、レンズフレア、グラデーション、すりガラスのカード | 単色の面と 1 つの強調色 |
-| 動き | すべてが同じ速さで同時に出る、弾みすぎる、止まらない | 1 拍に 1 つだけ出す。行き過ぎはわずかにし、出たら止める |
+| 光と色 | 光るふち、ネオン、レンズフレア、グラデーション、すりガラスのカード | 単色の面と1つの強調色 |
+| 動き | すべてが同じ速さで同時に出る、弾みすぎる、止まらない | 1拍に1つだけ出す。行き過ぎはわずかにし、出たら止める |
 | つなぎ | クロスフェード、ぼかしのワイプ | ハードカット |
 | 飾り | 意味のない粒子、四隅の小さなラベル、流れる背景の模様 | 画面の要素は話の中身だけ |
-| 間 | 何も起きない 1 秒以上の間、最後に止まる絵がない | 最後の絵は 1 秒以上止めて読ませる |
+| 間 | 何も起きない1秒以上の間、最後に止まる絵がない | 最後の絵は1秒以上止めて読ませる |
 | 効果音 | 何も起きていない所に鳴る、毎回ウーシュ音 | 画面で何かが起きた瞬間にだけ鳴らす |
 | 声 | 抑揚のない読み上げ、画面の文の棒読み | 要点だけを早口で。画面の文を読まない |
 | 台詞 | 「今日は〜を紹介します」「ゲームチェンジャー」のような中身のない言い回し | 使った人にしか言えない具体的な一言 |
