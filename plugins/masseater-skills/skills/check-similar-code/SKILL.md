@@ -1,17 +1,17 @@
 ---
 name: check-similar-code
-description: Find similar functions across masseater repositories that should be merged or recorded as intentional, using fallow similar-code. Use when running the similar code check of the daily audit.
+description: Find similar functions across masseater repositories and merge them into one, using fallow similar-code. Use when running the similar code check of the daily audit.
 ---
 
 # check-similar-code
 
 ## Why this skill exists and the state it aims for
 
-This skill exists because copied code is rejected by verify, but similar code cannot be: two functions may be alike on purpose, and a gate that rejects them forces people to bend the code or disable the gate. The state it aims for is that every similar-code candidate has a decision, either merged or recorded as intentional with a reason.
+This skill exists because copied code is rejected by verify, but code that does the same thing in a different shape is not, so it piles up and every copy has to be changed together. The state it aims for is that no repository holds two functions doing the same thing.
 
 ## Rules
 
-- Change nothing. Return the merges and verdicts as concrete changes for the owner.
-- Follow the similar-code step of the repeated-corrections sweep that the hub points to for each repository: candidates come from `fallow similar-code`, each is read with `inspect`, and verdicts live in `similar-code-verdicts.json` at the repository root.
-- For each candidate without a verdict, decide. Two functions doing the same thing are merged. An intentional similarity gets a verdict with `candidate_id`, `review_key` and the reason.
-- End the instruction with a rerun of `review --require-verdict-for-each-candidate` after the change, and drop verdicts whose candidate no longer exists.
+- Follow the similar-code step of the repeated-corrections sweep that the hub points to for each repository: candidates come from `fallow similar-code` and each is read with `inspect`.
+- Merge every candidate: keep one function and point its callers at it. Judge by what the functions do, not by whether the code looks alike.
+- Do not record a verdict. There is no verdict file, and a candidate that stays is not an answer.
+- When merging is genuinely wrong, for example because two packages must stay free of a shared dependency, do not merge and do not record it. Report the pair and the reason to the owner.
