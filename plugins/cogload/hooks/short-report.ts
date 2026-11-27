@@ -1,7 +1,7 @@
 import { atom, read, update } from 'claude-code'
 
 import type { HookContext, On } from './context'
-import { decide } from './decision'
+import { decide, gatewayOf } from './decision'
 import type { ChoiceQuestion, Gateway } from './decision'
 import { record } from './measure'
 import { compose, splitUnits } from './select-lines'
@@ -118,7 +118,7 @@ function keyOf(text: string): string {
   return `${text.length}:${hash}`
 }
 
-export function registerShortReport(on: On, gateway: Gateway | null): void {
+export function registerShortReport(on: On, options: Readonly<Record<string, unknown>>): void {
   const seen = new Map<string, string>()
   let latest = ''
 
@@ -150,7 +150,11 @@ export function registerShortReport(on: On, gateway: Gateway | null): void {
       return result
     }
 
-    const short = await shorten($, gateway, message)
+    const short = await shorten($, gatewayOf(options, {
+        account: await $.env.get('CLOUDFLARE_ACCOUNT_ID'),
+        token: await $.env.get('CLOUDFLARE_API_TOKEN'),
+        gateway: await $.env.get('CLOUDFLARE_AI_GATEWAY'),
+      }), message)
     if (short !== message) {
       await update($, shown, all => ({
         ...Object.fromEntries(Object.entries(all).slice(1 - KEPT)),

@@ -19,3 +19,14 @@
 
 - Cloudflare API を使用して、ホストごとに一度だけサイトを作成し、そのトークンを `alchemy.run.ts` の `CF_BEACON_TOKEN` に設定する。
 - SSR アプリの場合、`start.ts` で Worker の `CF_BEACON_TOKEN` から HTML にビーコンを追加する。静的ページの場合は、ビルド時に `VITE_CF_BEACON_TOKEN` からルートの `head` に挿入される。ゾーンの自動インジェクションは Workers のレスポンスには適用されない。
+
+## すべてを日本で動かす
+
+Cloudflareのすべてのリソースは日本で動作する。Cloudflare には、すべての製品で日本を指定できる設定がないため、各リソースは提供されている最も近いヒントを使う。
+
+- Workers: Worker に `placement: { region: "aws:ap-northeast-1" }` を設定する。
+- Durable Objects: `get()` に `locationHint: "apac-ne"` を渡す。別の場所で作られたオブジェクトは、新しい名前のオブジェクトに作り直す。
+- D1: データベース作成時に `primaryLocationHint: "apac"` を設定する。
+- R2: バケット作成時に `locationHint: "apac"` を設定する。Cloudflare は、その名前のバケットが最初に作成された場合にのみこれを反映する。
+
+ヒントは努力目標であり、D1 と R2 には `apac` より狭いヒントがない。すでにあるリソースは動かない。動かすには、ヒントを用いて新しいリソースを作成し、データをコピーし、行数やオブジェクト数が一致しているか確認して切り替えを行い、その後で古いリソースを削除する。動かすためにデータを捨ててはならない。WorkersおよびDurable Objectsの手順は [`move-workers-to-japan`](../usecases/move-workers-to-japan.md) に記載されている。

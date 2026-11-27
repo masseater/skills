@@ -30,7 +30,7 @@ A plugin exists to lower the owner's cognitive load: what the owner has to read,
 - Support only Claude Code and claude.ai. Do not add branches or fallbacks for other agents or tools.
 - Use the features of Claude Code and claude.ai to the full before building a mechanism of your own. Read the current documentation each time, because the features change every week.
 - A plugin calls models through two paths only: `claude -p`, and a decision model through Cloudflare AI Gateway. A decision model judges and a generating model writes, so do not substitute one for the other.
-- A plugin works for anyone who installs it. Do not make it depend on the owner's own MCP servers, Workers or accounts. A plugin that calls a decision model reads the user's own Cloudflare account ID and API token from its `userConfig`, with the token marked `sensitive`. When that token is absent, a mod may try the owner's masseater MCP portal as an extra route that needs no setup, and shows the original when the portal is not connected.
+- A plugin works for anyone who installs it. Do not make it depend on the owner's own MCP servers, Workers or accounts. A plugin that calls a decision model reads the user's own Cloudflare account ID and API token from its `userConfig`, with the token marked `sensitive`.
 
 ### Mods
 
