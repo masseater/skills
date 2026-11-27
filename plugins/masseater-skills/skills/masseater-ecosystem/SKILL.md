@@ -45,6 +45,7 @@ description: masseaterのリポジトリで作業する際のエントリーポ�
 - ドキュメント、コミットメッセージ、プルリクエストボディ、記事など、人間が読むテキストを記述する場合：`writing`。`writing` は `humanity-and-humanness` をベースにしているので、両方を読むこと。
 - 説明、提案書、または報告書の本文を執筆する際：`build-explanation`
 - スキルの作成または修正を行う際：`skill-authoring`。`writing` と `humanity-and-humanness` に従って本文を書く。
+- スケジュールされたタスクが実行ごとにClaudeに渡す指示文を記述または修正する場合：`scheduled-task-prompt`
 - ユーザーに意思決定を求める際や、ユーザーのフィードバックの意図を読み取る際：`humanity-and-humanness`
 - 持ち主に向けてチャットに報告や確認を書く際、説明資料を HTML で作る際、スライドや図を作る際、UI を作り始める際：`cognitive-load`
 - 持ち主に見せる説明資料を HTML で作る際：`gitbook-pages`。書く中身は `cognitive-load` に従う。
