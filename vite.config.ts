@@ -14,6 +14,7 @@ export default defineConfig({
   run: {
     tasks: {
       readme: { command: "node bin/update-readme.ts", cache: false },
+      kit: { command: "node bin/build-kit.ts", cache: false },
       msch: { command: "msch", cache: false },
       test: { command: "vp test run", dependsOn: ["msch"] },
     },

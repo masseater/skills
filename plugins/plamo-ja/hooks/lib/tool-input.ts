@@ -1,4 +1,4 @@
-import { isRecord } from "./schema.ts";
+import { isRecord } from "../../dist/kit/record.ts";
 
 export const TRANSLATED_FIELDS: Record<string, string[]> = {
   AskUserQuestion: [

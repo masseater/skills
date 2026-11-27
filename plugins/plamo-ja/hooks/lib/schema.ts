@@ -1,3 +1,5 @@
+import { isRecord } from "../../dist/kit/record.ts";
+
 export type TranslationPair = { en: string; ja: string };
 
 export type MessageState = {
@@ -10,10 +12,6 @@ export function emptyMessageState(): MessageState {
 }
 
 export type GlossaryEntry = { source: string; target: string };
-
-export function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
 
 function fail(what: string): never {
   throw new TypeError(`plamo-ja: unexpected ${what}`);
