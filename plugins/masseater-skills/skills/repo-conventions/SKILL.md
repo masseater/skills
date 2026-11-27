@@ -102,3 +102,4 @@ masseaterのリポジトリはすべて同一のテンプレートから作成�
 - [`publish-npm-package`](usecases/publish-npm-package.md)。パッケージを npm に公開する。
 - [`sweep-repeated-corrections`](usecases/sweep-repeated-corrections.md)。毎日、すべてのリポジトリから、どのチェックにも引っかからない指摘を見つけ出し、修正して、チェックへと落とし込む。
 - [`land-parallel-prs`](usecases/land-parallel-prs.md)。複数のスレッドが同じリポジトリに出した PR を、verify のやり直しと衝突の解き直しを繰り返さずに main へ入れる。
+- [`move-workers-to-japan`](usecases/move-workers-to-japan.md)。Cloudflare Workers の処理を日本で動かし、日本から外部へ通信させる。
