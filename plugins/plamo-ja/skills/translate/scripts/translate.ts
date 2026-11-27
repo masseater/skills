@@ -1,12 +1,11 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { parseArgs } from "node:util";
 import { loadConfig } from "../../../hooks/lib/config.ts";
-import { translate } from "../../../hooks/lib/plamo.ts";
-import { looksBroken, renderLines, splitLines } from "../../../hooks/lib/render.ts";
+import { renderLines, splitLines } from "../../../hooks/lib/render.ts";
 import { ensureServer } from "../../../hooks/lib/server.ts";
 import { emptyMessageState } from "../../../hooks/lib/schema.ts";
 import { resolveDataDir } from "../../../hooks/lib/store.ts";
-import { SERVER_SLOTS } from "../../../hooks/lib/translator.ts";
+import { translateSources } from "../../../hooks/lib/translator.ts";
 
 const SERVER_WAIT_MS = 60_000;
 
@@ -17,24 +16,9 @@ const DOCUMENT_CONTEXT =
 const USAGE = "usage: translate.ts <input.md> [--out <output.md>] [--data <DIR>]";
 
 async function translateUnits(sources: string[], config: ReturnType<typeof loadConfig>) {
-  const results: string[] = Array.from({ length: sources.length });
   const failures: string[] = [];
-  let next = 0;
-  const lane = async () => {
-    while (next < sources.length) {
-      const index = next++;
-      const en = sources[index] as string;
-      const ja = await translate(en, [], config).catch(() => "");
-      if (ja === "" || looksBroken(en, ja)) {
-        failures.push(en);
-        results[index] = en;
-      } else {
-        results[index] = ja;
-      }
-    }
-  };
-  await Promise.all(Array.from({ length: Math.min(SERVER_SLOTS, sources.length) }, lane));
-  return { results, failures };
+  const translated = await translateSources(sources, [], config, (_error, en) => failures.push(en));
+  return { results: sources.map((en, i) => translated[i] ?? en), failures };
 }
 
 async function main(args: string[]): Promise<number> {

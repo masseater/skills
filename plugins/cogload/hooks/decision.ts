@@ -1,3 +1,4 @@
+import { isRecord, parseJson } from '../dist/kit/record'
 import type { HookContext } from './context'
 
 export type ChoiceQuestion = {
@@ -15,20 +16,8 @@ export type Gateway = { account: string; token: string; gateway: string }
 const MODEL = '@cf/cloudflare/clef-flash'
 const MAX_QUESTIONS = 64
 
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value)
-}
-
-function parse(text: string): unknown {
-  try {
-    return JSON.parse(text)
-  } catch {
-    return undefined
-  }
-}
-
 export function answersOf(text: string): Record<string, ChoiceAnswer> | null {
-  const body = parse(text)
+  const body = parseJson(text)
   const result = isRecord(body) ? body.result : undefined
   const answers = isRecord(result) ? result.answers : undefined
   if (!isRecord(answers)) {

@@ -20,6 +20,14 @@ Put each skill in its own `plugins/<plugin>/skills/<name>/`, with `name` equal t
 
 Put each plugin in its own `plugins/<plugin>/` with a `package.json`, a `README.md` and a `.claude-plugin/plugin.json`. msch generates `.claude-plugin/marketplace.json` from them, so do not edit it by hand. Hooks take no dependencies, and hooks and scripts are written in TypeScript that Node.js runs as is (code that works once type annotations are stripped).
 
+### Shared code
+
+A plugin is installed on its own, and a symlink cannot reach outside it (claude.ai upload rejects symbolic links), so code that two plugins both need lives in `libs/plugin-kit/src/` and is copied into each plugin that imports it.
+
+- Import it from the plugin as `<relative path>/dist/kit/<name>` (with `.ts` in scripts that Node runs as is). Do not edit `plugins/<plugin>/dist/kit/`.
+- `bin/build-kit.ts` copies exactly the kit files a plugin imports, and the files those import. The pre-commit hook runs it and stages the result; `vp run kit` runs it by hand. `plugins/kit.test.ts` fails when a copy is stale.
+- Put code in the kit when a second plugin needs it. Code that only one plugin uses stays in that plugin. When two functions in different plugins do the same job, move one to the kit and call it from both. Do not record a function as an intentional duplicate.
+
 ### What a plugin is for
 
 A plugin exists to lower the owner's cognitive load: what the owner has to read, keep in mind and type by hand.

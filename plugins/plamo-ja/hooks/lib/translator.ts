@@ -1,3 +1,4 @@
+import { firstOk } from "./first-ok.ts";
 import type { Config } from "./config.ts";
 import { translate } from "./plamo.ts";
 import { looksBroken, type TranslateBatch } from "./render.ts";
@@ -6,31 +7,14 @@ import type { Store } from "./store.ts";
 
 export const SERVER_SLOTS = 4;
 
-async function attempt(
+async function translateChecked(
   en: string,
   history: TranslationPair[],
   config: Config,
-): Promise<{ ja: string } | { error: unknown }> {
-  try {
-    const ja = await translate(en, history, config);
-    return looksBroken(en, ja) ? { error: new Error(`broken translation: ${ja}`) } : { ja };
-  } catch (error) {
-    return { error };
-  }
-}
-
-async function translateOne(
-  en: string,
-  history: TranslationPair[],
-  config: Config,
-  onError: (error: unknown, en: string) => void,
-): Promise<string | null> {
-  const first = await attempt(en, history, config);
-  if ("ja" in first) return first.ja;
-  const second = await attempt(en, [], config);
-  if ("ja" in second) return second.ja;
-  onError(second.error, en);
-  return null;
+): Promise<string> {
+  const ja = await translate(en, history, config);
+  if (looksBroken(en, ja)) throw new Error(`broken translation: ${ja}`);
+  return ja;
 }
 
 async function mapLimited<T, R>(
@@ -50,6 +34,22 @@ async function mapLimited<T, R>(
   return results;
 }
 
+export async function translateSources(
+  sources: string[],
+  history: TranslationPair[],
+  config: Config,
+  onError: (error: unknown, en: string) => void,
+): Promise<(string | null)[]> {
+  return mapLimited(sources, SERVER_SLOTS, async (en) => {
+    const outcome = await firstOk(
+      [history, []].map((given) => () => translateChecked(en, given, config)),
+    );
+    if (outcome.ok) return outcome.value;
+    onError(outcome.error, en);
+    return null;
+  });
+}
+
 export function createBatchTranslator(
   store: Store,
   sessionId: string,
@@ -58,9 +58,7 @@ export function createBatchTranslator(
 ): TranslateBatch {
   return async (sources) => {
     const history = store.history(sessionId, config.historyBudget);
-    const results = await mapLimited(sources, SERVER_SLOTS, (en) =>
-      translateOne(en, history, config, onError),
-    );
+    const results = await translateSources(sources, history, config, onError);
     const pairs = sources.flatMap((en, i) => {
       const ja = results[i];
       return ja == null ? [] : [{ en, ja }];
