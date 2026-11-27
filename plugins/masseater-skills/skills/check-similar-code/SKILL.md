@@ -1,17 +1,18 @@
 ---
 name: check-similar-code
-description: Find similar functions across masseater repositories that should be merged or recorded as intentional, using fallow similar-code. Use when running the similar code check of the daily audit.
+description: Find similar functions across masseater repositories that should be merged into one abstraction, using fallow similar-code. Use when running the similar code check of the daily audit.
 ---
 
 # check-similar-code
 
 ## Why this skill exists and the state it aims for
 
-This skill exists because copied code is rejected by verify, but similar code cannot be: two functions may be alike on purpose, and a gate that rejects them forces people to bend the code or disable the gate. The state it aims for is that every similar-code candidate has a decision, either merged or recorded as intentional with a reason.
+This skill exists because copied code is rejected by verify, but similar code cannot be: two functions may look alike without being identical, so no gate can reject them. Similar code means an abstraction is missing, and a verdict file that calls a pair intentional hides the missing abstraction. The state it aims for is that no similar-code candidate remains and no repository keeps a verdict file.
 
 ## Rules
 
-- Change nothing. Return the merges and verdicts as concrete changes for the owner.
-- Follow the similar-code step of the repeated-corrections sweep that the hub points to for each repository: candidates come from `fallow similar-code`, each is read with `inspect`, and verdicts live in `similar-code-verdicts.json` at the repository root.
-- For each candidate without a verdict, decide. Two functions doing the same thing are merged. An intentional similarity gets a verdict with `candidate_id`, `review_key` and the reason.
-- End the instruction with a rerun of `review --require-verdict-for-each-candidate` after the change, and drop verdicts whose candidate no longer exists.
+- Change nothing. Return the merges as concrete changes for the owner.
+- Follow the similar-code step of the repeated-corrections sweep that the hub points to for each repository: candidates come from `fallow similar-code`, and each is read with `inspect`.
+- For each candidate, name the abstraction that is missing and the API that fits every caller. Do not propose a verdict, and do not call a similarity intentional.
+- List every `similar-code-verdicts.json` in the repository as a file to delete once its candidates are merged.
+- End the instruction with a rerun of `fallow similar-code` that lists no candidates.
