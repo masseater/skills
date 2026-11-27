@@ -55,3 +55,4 @@ description: masseaterのリポジトリで作業する際のエントリーポ�
 - 資料、スライド、README に図やインフォグラフィックを描く際：`infographic`。見る人の認知負荷を下げるために `cognitive-load` を読む。
 - 日次監査（全リポジトリの日次点検）を行う際：`daily-check`。`daily-check` は次のスキルをこの順に読み込んで実行する：`check-cloudflare-cost`、`check-ci-duration`、`check-upstream-exits`、`check-similar-code`、`check-repeated-corrections`、`check-repo-conventions`、`adopt-library-features`。`check-` で始まるスキルは何も変更せず、`adopt-library-features` だけがコードを変更する。`check-similar-code` と `check-repeated-corrections` は `repo-conventions` の usecases/sweep-repeated-corrections.md の手順に従う。`check-cloudflare-cost` は `cloudflare-caution` に従う。`adopt-library-features` は `integrate` に従って導入する。
 - プロジェクトのスレッドを横断して、作業の質、部分最適、スレッド間の矛盾を見直す統合監査を行う際：`integrated-audit`
+- 前の週に何をしたかを週次の記録として残す際：`weekly-review`。スケジュールされたタスクの指示文は `scheduled-task-prompt` に従い、このスキルを実行するとだけ書く。
