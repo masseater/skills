@@ -2,6 +2,8 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
 import { parseArgs } from "node:util";
+import { parseSummary } from "../../gitbook-pages/scripts/build.ts";
+import { escape } from "../../gitbook-pages/scripts/components.ts";
 import { DARK, FONTS, LIGHT } from "../../gitbook-pages/scripts/theme.ts";
 
 const USAGE = "usage: build.ts <deck-dir> <out-dir> [--pdf]\n  <deck-dir> holds SUMMARY.md, the slide files it links and an optional deck.css";
@@ -9,7 +11,6 @@ const USAGE = "usage: build.ts <deck-dir> <out-dir> [--pdf]\n  <deck-dir> holds 
 export type Slide = { title: string; group: string | null; source: string; className: string; body: string; notes: string };
 export type Deck = { title: string; slides: Slide[]; css: string };
 
-const LINK_ITEM = /^\s*[-*+]\s+\[([^\]]+)\]\(([^)\s]+)\)\s*$/;
 const NOTES = /<aside\s+class="notes"\s*>([\s\S]*?)<\/aside>/i;
 const SECTION = /^\s*<section(?:\s+class="([^"]*)")?\s*>([\s\S]*)<\/section>\s*$/i;
 const MEDIA: Record<string, string> = {
@@ -21,26 +22,15 @@ const MEDIA: Record<string, string> = {
   ".gif": "image/gif",
 };
 
-function escapeHtml(text: string): string {
-  return text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
+type Listed = { title: string; group: string | null; source: string };
+
+function listed(entries: ReturnType<typeof parseSummary>["groups"][number]["entries"], group: string | null): Listed[] {
+  return entries.flatMap(({ title, source, children }) => [{ title, group, source }, ...listed(children, group)]);
 }
 
-export function parseSummary(text: string): { title: string; entries: { title: string; group: string | null; source: string }[] } {
-  let title = "";
-  let group: string | null = null;
-  const entries: { title: string; group: string | null; source: string }[] = [];
-  for (const line of text.replaceAll("\r\n", "\n").split("\n")) {
-    const heading = /^(#{1,3})\s+(.+?)\s*$/.exec(line);
-    if (heading !== null) {
-      if (heading[1] === "#" && title === "") title = heading[2] ?? "";
-      else group = heading[2] ?? null;
-      continue;
-    }
-    const item = LINK_ITEM.exec(line);
-    if (item !== null) entries.push({ title: item[1] ?? "", group, source: decodeURI(item[2] ?? "") });
-  }
-  if (entries.length === 0) throw new Error("SUMMARY.md links no slides");
-  return { title, entries };
+function readSummary(text: string): { title: string; entries: Listed[] } {
+  const { title, groups } = parseSummary(text);
+  return { title, entries: groups.flatMap(({ title: group, entries }) => listed(entries, group)) };
 }
 
 function inlineAssets(html: string, here: string, deckDir: string, source: string): string {
@@ -57,7 +47,7 @@ function inlineAssets(html: string, here: string, deckDir: string, source: strin
 export function readDeck(deckDir: string): Deck {
   const summaryPath = path.join(deckDir, "SUMMARY.md");
   if (!existsSync(summaryPath)) throw new Error(`${summaryPath} does not exist`);
-  const { title, entries } = parseSummary(readFileSync(summaryPath, "utf8"));
+  const { title, entries } = readSummary(readFileSync(summaryPath, "utf8"));
   const slides = entries.map(({ title: slideTitle, group, source }) => {
     const file = path.join(deckDir, source);
     if (!existsSync(file)) throw new Error(`SUMMARY.md links ${source}, which does not exist`);
@@ -245,13 +235,13 @@ export function render(deck: Deck): string {
   const nav = groups
     .map(
       (group) =>
-        `${group.title === null ? "" : `<h2>${escapeHtml(group.title)}</h2>`}<ol>${group.items
-          .map(({ slide, index }) => `<li><a href="#${index + 1}"><span>${index + 1}</span><span>${escapeHtml(slide.title)}</span></a></li>`)
+        `${group.title === null ? "" : `<h2>${escape(group.title)}</h2>`}<ol>${group.items
+          .map(({ slide, index }) => `<li><a href="#${index + 1}"><span>${index + 1}</span><span>${escape(slide.title)}</span></a></li>`)
           .join("")}</ol>`,
     )
     .join("");
   const slides = deck.slides
-    .map((slide, index) => `<section class="${["slide", slide.className].filter(Boolean).join(" ")}" id="slide-${index + 1}" data-title="${escapeHtml(slide.title)}" aria-label="${index + 1}. ${escapeHtml(slide.title)}">${slide.body}</section>`)
+    .map((slide, index) => `<section class="${["slide", slide.className].filter(Boolean).join(" ")}" id="slide-${index + 1}" data-title="${escape(slide.title)}" aria-label="${index + 1}. ${escape(slide.title)}">${slide.body}</section>`)
     .join("\n");
   const notes = deck.slides.map((slide) => `<div class="note">${slide.notes}</div>`).join("\n");
   return `<!doctype html>
@@ -259,17 +249,17 @@ export function render(deck: Deck): string {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>${escapeHtml(deck.title)}</title>
+<title>${escape(deck.title)}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="${FONTS}">
 <style>${STYLE}</style>
 <style>${deck.css}</style>
 </head>
-<body data-deck="${escapeHtml(deck.title)}">
+<body data-deck="${escape(deck.title)}">
 <header class="topbar">
 <button class="icon-button sidebar-toggle" type="button" aria-label="スライド一覧">${ICON.menu}</button>
-<div class="deck-title">${escapeHtml(deck.title)}</div>
+<div class="deck-title">${escape(deck.title)}</div>
 <span class="counter"></span>
 <button class="icon-button present" type="button" aria-label="発表">${ICON.play}</button>
 </header>

@@ -1,8 +1,8 @@
-import { spawnSync } from "node:child_process";
 import { chmodSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vite-plus/test";
+import { runScript } from "../../../lib/run-script.test.support.ts";
 
 const isolation = "--tools Bash,Write,Edit,Read --strict-mcp-config --disable-slash-commands --setting-sources project";
 const script = path.join(import.meta.dirname, "run.ts");
@@ -20,12 +20,8 @@ afterAll(() => {
   rmSync(work, { recursive: true, force: true });
 });
 
-function run(...args: string[]): { status: number | null; stdout: string; stderr: string } {
-  const { status, stdout, stderr } = spawnSync(process.execPath, [script, ...args], {
-    encoding: "utf8",
-    env: { ...process.env, PATH: `${work}${path.delimiter}${process.env.PATH}` },
-  });
-  return { status, stdout, stderr };
+function run(...args: string[]) {
+  return runScript(script, args, { ...process.env, PATH: `${work}${path.delimiter}${process.env.PATH}` });
 }
 
 describe("run", () => {

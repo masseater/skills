@@ -29,8 +29,8 @@ const TURN = {
   reason: 'answer',
 } as const
 
-function answered(kind: string, roles: readonly string[]) {
-  const answers = {
+function choiceAnswers(kind: string, roles: readonly string[]) {
+  return {
     kind: { type: 'choice', choice: kind, probabilities: { [kind]: CONFIDENT } },
     ...Object.fromEntries(
       roles.map((choice, index) => [
@@ -39,20 +39,16 @@ function answered(kind: string, roles: readonly string[]) {
       ]),
     ),
   }
+}
+
+function answered(kind: string, roles: readonly string[]) {
+  const answers = choiceAnswers(kind, roles)
 
   return { value: { ok: true, status: 200, text: JSON.stringify({ result: { answers } }) } as never }
 }
 
 function answeredByPortal(kind: string, roles: readonly string[]) {
-  const answers = {
-    kind: { type: 'choice', choice: kind, probabilities: { [kind]: CONFIDENT } },
-    ...Object.fromEntries(
-      roles.map((choice, index) => [
-        `s${index}`,
-        { type: 'choice', choice, probabilities: { [choice]: CONFIDENT } },
-      ]),
-    ),
-  }
+  const answers = choiceAnswers(kind, roles)
   const inner = [{ type: 'text', text: JSON.stringify({ answers }) }]
 
   return { value: { isError: false, content: [{ type: 'text', text: JSON.stringify(inner) }] } }

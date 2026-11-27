@@ -9,8 +9,8 @@ metadata:
 
 # skill-authoring
 
-- 構造とフロントマターについては、https://agentskills.io/specification を参照すること。
-- リーディングモデルの書き方については、https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices およびそこから参照可能なガイドを参照すること。
+- 構造とフロントマターについては、[Agent Skills の仕様](https://agentskills.io/specification) を参照すること。
+- リーディングモデルの書き方については、[Claude のプロンプトのベストプラクティス](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices) およびそこから参照可能なガイドを参照すること。
 
 ## なぜこのスキルが必要なのか、およびどのような状態を実現すべきか
 
