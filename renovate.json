@@ -4,7 +4,7 @@
     "config:recommended",
     "security:minimumReleaseAgeNpm",
     "group:allNonMajor",
-    "github>masseater/masseater.dev//libs/msch/renovate"
+    "github>masseater/ecosystems//libs/msch/renovate"
   ],
   "automerge": true,
   "ignoreTests": true,
