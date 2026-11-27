@@ -33,7 +33,7 @@ masseater のリポジトリで共通に使うエージェントスキルであ�
 - [scheduled-task-prompt](skills/scheduled-task-prompt/SKILL.md): Write or revise the instruction text that a scheduled task hands to Claude on every run, naming the information sources to read and the state that holds when the run is done, and leaving the procedure to Claude. Use when creating or editing a scheduled task's prompt, not for a one-off request made in the moment.。
 - [simplify-repo](skills/simplify-repo/SKILL.md): リポジトリ全体を簡素化する。
 - [skill-authoring](skills/skill-authoring/SKILL.md): Agent Skillsスキル（すなわち `SKILL.md` とそのディレクトリ）の作成、修正、または訂正時に読み込む。
-- [video-production](skills/video-production/SKILL.md): 解説・紹介動画を、決まった台本の型から縦（9:16）と横（16:9）の Remotion 動画として作る。
+- [video-production](skills/video-production/SKILL.md): 解説・紹介動画を、決まった構成の型と共通部品で、縦（9:16）と横（16:9）の Remotion 動画として作る。
 - [vite-plus](skills/vite-plus/SKILL.md): Vite+ の `vp` でインストール、実行、確認、テストを行う。
 - [writing](skills/writing/SKILL.md): 文章の執筆や修正時に読む。
 
