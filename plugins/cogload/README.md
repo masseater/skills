@@ -23,7 +23,7 @@ Claude Code の持ち主が読む量、覚えておく量、手で打つ量を�
 | `cloudflare_api_token` | Workers AI Read と AI Gateway Run の権限を持つ API トークン（安全な保存先に入る） |
 | `cloudflare_ai_gateway` | 使う AI Gateway の名前。既定は `default` |
 
-`/config` の代わりに環境変数 `CLOUDFLARE_ACCOUNT_ID`、`CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_AI_GATEWAY` でも渡せる。Claude Code のクラウド環境では、環境の環境変数に入れる。`/config` の値が先に使われる。
+`/config` の代わりに環境変数 `CLOUDFLARE_ACCOUNT_ID`、`CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_AI_GATEWAY` でも渡せる。アカウント ID とトークンは、無ければ `CF_PERSONAL_ACCOUNT_ID` と `CF_PERSONAL_API_TOKEN` も読む。Claude Code のクラウド環境では、環境の環境変数に入れる。`/config` の値が先に使われる。
 
 設定がないとき、呼び出しに失敗したとき、判定モデルが報告だと言い切らなかったときは、報告を元の文章のまま表示する。判定モデルは行を選ぶだけで、文章は書き換えない。
 

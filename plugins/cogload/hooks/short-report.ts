@@ -151,8 +151,8 @@ export function registerShortReport(on: On, options: Readonly<Record<string, unk
     }
 
     const short = await shorten($, gatewayOf(options, {
-        account: await $.env.get('CLOUDFLARE_ACCOUNT_ID'),
-        token: await $.env.get('CLOUDFLARE_API_TOKEN'),
+        account: (await $.env.get('CLOUDFLARE_ACCOUNT_ID')) ?? (await $.env.get('CF_PERSONAL_ACCOUNT_ID')),
+        token: (await $.env.get('CLOUDFLARE_API_TOKEN')) ?? (await $.env.get('CF_PERSONAL_API_TOKEN')),
         gateway: await $.env.get('CLOUDFLARE_AI_GATEWAY'),
       }), message)
     if (short !== message) {
