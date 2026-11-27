@@ -1,15 +1,8 @@
+import { markdownOf } from "@r_masseater/msch/lint";
 import { defineConfig } from "vite-plus";
 
 export default defineConfig({
-  y8: {
-    rules: {
-      "markdownlint/MD013": "off",
-      "markdownlint/MD034": "off",
-      "markdownlint/MD060": "off",
-      "markdownlint/MD024": ["error", { siblings_only: true }],
-      "markdownlint/MD026": ["error", { punctuation: ".,;:。，；：" }],
-    },
-  },
+  y8: markdownOf({ docs: { skills: { usecases: ["ユースケース"] } } }),
   test: {
     exclude: ["**/node_modules/**", "plugins/*/hooks/*.test.{ts,tsx}"],
   },

@@ -5,8 +5,7 @@ description: 解説・紹介動画を、決まった台本の型から縦（9:16
 
 # video-production
 
-- 作り方の手順は [`make-video`](usecases/make-video.md) に従う。
-- 動画を置くリポジトリ、コマンド、素材の取り先は [`masseater-dev`](references/masseater-dev.md) を読む。
+動画を置くリポジトリ、コマンド、素材の取り先は [`masseater-dev`](references/masseater-dev.md) を読む。
 
 ## なぜこのスキルが必要で、どのような状態を目指すべきか
 
@@ -76,3 +75,7 @@ description: 解説・紹介動画を、決まった台本の型から縦（9:16
 - 縦で、文字が画面の上 288px、下 672px、右 192px の帯に入っていない。アプリの UI に隠れる。
 
 持ち主には、プレビューの MP4 と、自己レビューで直した点を渡す。
+
+## ユースケース
+
+- [`make-video`](usecases/make-video.md)。台本の型から縦と横の動画を作る。
