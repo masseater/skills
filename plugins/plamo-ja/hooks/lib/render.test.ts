@@ -83,7 +83,12 @@ describe("進捗の印", () => {
 describe("translatableUnits", () => {
   it("訳す本文だけを返し、リンク先の URL は英字に数えない", () => {
     expect(translatableUnits("Merged.\n\nテストは通った\n")).toEqual(["Merged."]);
-    expect(looksBroken("[#1087](https://github.com/masseater/masseater.dev/pull/1087)", "[#1087](https://github.com/masseater/masseater.dev/pull/1087)")).toBe(false);
+    expect(
+      looksBroken(
+        "[#1087](https://github.com/masseater/masseater.dev/pull/1087)",
+        "[#1087](https://github.com/masseater/masseater.dev/pull/1087)",
+      ),
+    ).toBe(false);
   });
 });
 

@@ -3,7 +3,8 @@ import { emptyMessageState, type MessageState } from "./schema.ts";
 export type TranslateBatch = (sources: string[]) => Promise<string[]>;
 
 const FENCE = /^ {0,3}(`{3,}|~{3,})/;
-const BLOCK_PREFIX = /^(\s*(?:[-*+]|\d+[.)])\s+(?:\[[ xX]\]\s+)?|\s*[✓✱○]\s+|\s{0,3}#{1,6}\s+|\s*>\s?)/;
+const BLOCK_PREFIX =
+  /^(\s*(?:[-*+]|\d+[.)])\s+(?:\[[ xX]\]\s+)?|\s*[✓✱○]\s+|\s{0,3}#{1,6}\s+|\s*>\s?)/;
 const HEADING = /^\s{0,3}#{1,6}\s+$/;
 const LABEL = /^\s*(\*\*|__)[^*_]+\1:?\s*$/;
 const TABLE_ROW = /^\s*\|/;
