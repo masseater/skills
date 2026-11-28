@@ -12,6 +12,19 @@
           }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "^mcp__hearthbot__(update_progress_checklist|set_thread_resolved)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/task-graph.ts"],
+            "timeout": 15
+          }
+        ]
+      }
     ]
   }
 }
