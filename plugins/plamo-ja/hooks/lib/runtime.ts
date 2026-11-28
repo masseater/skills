@@ -1,9 +1,9 @@
 import { execFile, spawn } from "node:child_process";
 import { createHash } from "node:crypto";
 import { createReadStream, existsSync, mkdirSync, openSync, renameSync, rmSync } from "node:fs";
-import { homedir } from "node:os";
 import path from "node:path";
 import { promisify } from "node:util";
+import { cacheRootOf } from "@r_masseater/plugin-kit";
 import { MODEL_ALIAS } from "./plamo.ts";
 
 const run = promisify(execFile);
@@ -39,6 +39,8 @@ const MODEL_FILES: Pinned[] = [
 
 const LOCAL_HOSTS = new Set(["127.0.0.1", "localhost", "[::1]"]);
 
+const CACHE_SEGMENTS = ["plamo-ja", "runtime"];
+
 export type Runtime = { server: string; modelDir: string; root: string };
 
 export function serverArchive(platform: string, arch: string): Pinned | undefined {
@@ -47,11 +49,6 @@ export function serverArchive(platform: string, arch: string): Pinned | undefine
 
 export function isLocalUrl(url: string): boolean {
   return LOCAL_HOSTS.has(new URL(url).hostname);
-}
-
-export function runtimeRoot(env: NodeJS.ProcessEnv = process.env): string {
-  const cache = env.XDG_CACHE_HOME || path.join(homedir(), ".cache");
-  return path.join(cache, "plamo-ja", "runtime");
 }
 
 export function serverArgs(port: string): string[] {
@@ -130,12 +127,13 @@ async function installModel(root: string): Promise<string> {
   return dir;
 }
 
-export async function installRuntime(root: string = runtimeRoot()): Promise<Runtime | undefined> {
+export async function installRuntime(root?: string): Promise<Runtime | undefined> {
   const archive = serverArchive(process.platform, process.arch);
   if (!archive) return undefined;
-  mkdirSync(root, { recursive: true });
-  const [server, modelDir] = await Promise.all([installServer(root, archive), installModel(root)]);
-  return { server, modelDir, root };
+  const base = root ?? (await cacheRootOf(CACHE_SEGMENTS));
+  mkdirSync(base, { recursive: true });
+  const [server, modelDir] = await Promise.all([installServer(base, archive), installModel(base)]);
+  return { server, modelDir, root: base };
 }
 
 export function startRuntime(runtime: Runtime, port: string): void {

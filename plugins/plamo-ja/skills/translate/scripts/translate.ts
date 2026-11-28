@@ -32,7 +32,11 @@ async function main(args: string[]): Promise<number> {
     console.error(USAGE);
     return 2;
   }
-  const config = { ...loadConfig(resolveDataDir(parsed.values.data)), context: DOCUMENT_CONTEXT, form: loadConfig(resolveDataDir(parsed.values.data)).form ?? "plain" };
+  const config = {
+    ...loadConfig(resolveDataDir(parsed.values.data)),
+    context: DOCUMENT_CONTEXT,
+    form: loadConfig(resolveDataDir(parsed.values.data)).form ?? "plain",
+  };
   if (!(await ensureServer(config.url, process.env.PLAMO_JA_SERVER_COMMAND, SERVER_WAIT_MS))) {
     console.error(`No PLaMo server answers at ${config.url}. Run \`plamo-ja.ts install\` first.`);
     return 1;

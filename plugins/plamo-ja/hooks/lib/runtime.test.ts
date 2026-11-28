@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vite-plus/test";
-import { isLocalUrl, runtimeRoot, serverArchive, serverArgs } from "./runtime.ts";
+import { isLocalUrl, serverArchive, serverArgs } from "./runtime.ts";
 
 describe("serverArchive", () => {
   it("pins a llama.cpp build for Linux x64 and macOS arm64", () => {
@@ -19,12 +19,6 @@ describe("isLocalUrl", () => {
     expect(isLocalUrl("http://localhost:8000")).toBe(true);
     expect(isLocalUrl("http://[::1]:8000")).toBe(true);
     expect(isLocalUrl("http://translate.example.com")).toBe(false);
-  });
-});
-
-describe("runtimeRoot", () => {
-  it("follows XDG_CACHE_HOME", () => {
-    expect(runtimeRoot({ XDG_CACHE_HOME: "/cache" })).toBe("/cache/plamo-ja/runtime");
   });
 });
 

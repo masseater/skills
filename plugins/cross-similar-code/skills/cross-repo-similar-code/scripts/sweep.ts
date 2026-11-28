@@ -2,7 +2,8 @@ import { spawnSync } from "node:child_process";
 import { copyFileSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { isRecord, parseJson } from "@r_masseater/plugin-kit";
-import { ensureRuntime, runtimeRoot } from "../../../hooks/lib/runtime.ts";
+import { cacheRootOf } from "@r_masseater/plugin-kit";
+import { CACHE_SEGMENTS, ensureRuntime } from "../../../hooks/lib/runtime.ts";
 
 const SOURCE = /\.(?:[cm]?[jt]sx?|vue|svelte|astro)$/;
 const IGNORE = [
@@ -44,12 +45,20 @@ export function split(unit: Unit): Unit[] {
     const dir = unit.dir === "" ? rest.slice(0, slash) : `${unit.dir}/${rest.slice(0, slash)}`;
     children.set(dir, [...(children.get(dir) ?? []), file]);
   }
-  const subs = [...children].map(([dir, files]) => ({ repo: unit.repo, dir, shallow: false, files }));
+  const subs = [...children].map(([dir, files]) => ({
+    repo: unit.repo,
+    dir,
+    shallow: false,
+    files,
+  }));
   return loose.length > 0 ? [...subs, { ...unit, shallow: true, files: loose }] : subs;
 }
 
 export function splittable(unit: Unit): boolean {
-  return !unit.shallow && unit.files.some((file) => file.slice(unit.dir === "" ? 0 : unit.dir.length + 1).includes("/"));
+  return (
+    !unit.shallow &&
+    unit.files.some((file) => file.slice(unit.dir === "" ? 0 : unit.dir.length + 1).includes("/"))
+  );
 }
 
 function numberAt(value: unknown, key: string): number {
@@ -60,10 +69,13 @@ export function readCompletion(report: unknown): Completion {
   const completion = isRecord(report) ? report.completion : undefined;
   const phases = isRecord(completion) && Array.isArray(completion.phases) ? completion.phases : [];
   const phase = (name: string) => phases.find((p) => isRecord(p) && p.phase === name);
-  const status = (name: string) => (isRecord(phase(name)) ? (phase(name) as Record<string, unknown>).status : "missing");
+  const status = (name: string) =>
+    isRecord(phase(name)) ? (phase(name) as Record<string, unknown>).status : "missing";
   const limit = isRecord(completion) ? numberAt(completion.limits, "max_functions") : 0;
   const extracted = numberAt(phase("extraction"), "processed");
-  const reasons = ["embedding", "comparison"].filter((name) => status(name) !== "complete").map((n) => `${n} ${String(status(n))}`);
+  const reasons = ["embedding", "comparison"]
+    .filter((name) => status(name) !== "complete")
+    .map((n) => `${n} ${String(status(n))}`);
   return {
     capped: limit > 0 && extracted >= limit,
     embedded: status("embedding") === "complete",
@@ -73,8 +85,14 @@ export function readCompletion(report: unknown): Completion {
 }
 
 function sideOf(value: unknown): Side | undefined {
-  if (!isRecord(value) || typeof value.path !== "string" || typeof value.name !== "string") return undefined;
-  return { path: value.path, name: value.name, startLine: numberAt(value, "start_line"), endLine: numberAt(value, "end_line") };
+  if (!isRecord(value) || typeof value.path !== "string" || typeof value.name !== "string")
+    return undefined;
+  return {
+    path: value.path,
+    name: value.name,
+    startLine: numberAt(value, "start_line"),
+    endLine: numberAt(value, "end_line"),
+  };
 }
 
 export function readPairs(report: unknown): Pair[] {
@@ -82,7 +100,9 @@ export function readPairs(report: unknown): Pair[] {
   return candidates.flatMap((c) => {
     const left = isRecord(c) ? sideOf(c.left) : undefined;
     const right = isRecord(c) ? sideOf(c.right) : undefined;
-    return left && right && isRecord(c) ? [{ similarity: numberAt(c, "similarity"), left, right }] : [];
+    return left && right && isRecord(c)
+      ? [{ similarity: numberAt(c, "similarity"), left, right }]
+      : [];
   });
 }
 
@@ -121,7 +141,10 @@ class Work {
   materialize(units: Unit[], clones: Map<string, string>): void {
     rmSync(this.dir, { recursive: true, force: true });
     mkdirSync(this.dir, { recursive: true });
-    writeFileSync(path.join(this.dir, ".fallowrc.jsonc"), JSON.stringify({ similarCode: { ignore: IGNORE } }));
+    writeFileSync(
+      path.join(this.dir, ".fallowrc.jsonc"),
+      JSON.stringify({ similarCode: { ignore: IGNORE } }),
+    );
     for (const unit of units) {
       const from = clones.get(unit.repo) ?? "";
       for (const file of unit.files) {
@@ -134,7 +157,15 @@ class Work {
 
   run(files: string[]): { report: unknown; completion: Completion } {
     const out = path.join(this.dir, `.report-${this.counter++}.json`);
-    const args = ["similar-code", "--format", "json", "--quiet", "-o", out, ...files.flatMap((f) => ["--file", f])];
+    const args = [
+      "similar-code",
+      "--format",
+      "json",
+      "--quiet",
+      "-o",
+      out,
+      ...files.flatMap((f) => ["--file", f]),
+    ];
     spawnSync(this.bin, args, { cwd: this.dir, stdio: "ignore", timeout: 1_000_000 });
     const parsed = parseJson(readFileSync(out, "utf8"));
     const report = parsed._tag === "Some" ? parsed.value : undefined;
@@ -149,7 +180,12 @@ export function plan(units: Unit[], capped: (units: Unit[]) => boolean): Plan {
   if (repos.size < 2) return { roots: [], unresolved: [] };
   if (!capped(units)) return { roots: [units], unresolved: [] };
   if (units.length > 2) {
-    const pairs = units.flatMap((a, i) => units.slice(i + 1).filter((b) => b.repo !== a.repo).map((b) => [a, b]));
+    const pairs = units.flatMap((a, i) =>
+      units
+        .slice(i + 1)
+        .filter((b) => b.repo !== a.repo)
+        .map((b) => [a, b]),
+    );
     return merge(pairs.map((pair) => plan(pair, capped)));
   }
   const biggest = largest(units);
@@ -167,16 +203,21 @@ function seedsOf(units: Unit[]): string[] {
   return units.filter((u) => u !== skip).flatMap((u) => u.files.map((f) => `${u.repo}/${f}`));
 }
 
-function sweepRoot(work: Work, units: Unit[], clones: Map<string, string>): { pairs: Pair[]; failed: string[] } {
+function sweepRoot(
+  work: Work,
+  units: Unit[],
+  clones: Map<string, string>,
+): { pairs: Pair[]; failed: string[] } {
   work.materialize(units, clones);
   const seeds = seedsOf(units);
   const pairs: Pair[] = [];
   const failed: string[] = [];
   let size = SEED_BATCH;
-  for (let at = 0; at < seeds.length; ) {
+  for (let at = 0; at < seeds.length;) {
     const batch = seeds.slice(at, at + size);
     let result = work.run(batch);
-    for (let attempt = 1; attempt < EMBED_ATTEMPTS && !result.completion.embedded; attempt++) result = work.run(batch);
+    for (let attempt = 1; attempt < EMBED_ATTEMPTS && !result.completion.embedded; attempt++)
+      result = work.run(batch);
     const { completion, report } = result;
     if (!completion.embedded) {
       failed.push(...completion.reasons);
@@ -196,12 +237,16 @@ function parseArgs(argv: string[]): { reposDir: string; out: string } {
   const value = (flag: string) => argv[argv.indexOf(flag) + 1];
   const reposDir = value("--repos");
   const out = value("--out");
-  if (!reposDir || !out) throw new Error("usage: node sweep.ts --repos <directory of checkouts> --out <result.json>");
+  if (!reposDir || !out)
+    throw new Error("usage: node sweep.ts --repos <directory of checkouts> --out <result.json>");
   return { reposDir: path.resolve(reposDir), out: path.resolve(out) };
 }
 
 function listFiles(clone: string): string[] {
-  const result = spawnSync("git", ["-C", clone, "ls-files", "-z"], { encoding: "utf8", maxBuffer: 1 << 28 });
+  const result = spawnSync("git", ["-C", clone, "ls-files", "-z"], {
+    encoding: "utf8",
+    maxBuffer: 1 << 28,
+  });
   return sourceFiles(result.stdout);
 }
 
@@ -212,8 +257,13 @@ async function main(): Promise<void> {
       .filter((entry) => entry.isDirectory() && !entry.name.startsWith("."))
       .map((entry) => [entry.name, path.join(reposDir, entry.name)] as const),
   );
-  const units: Unit[] = [...clones].map(([repo, clone]) => ({ repo, dir: "", shallow: false, files: listFiles(clone) }));
-  const root = runtimeRoot();
+  const units: Unit[] = [...clones].map(([repo, clone]) => ({
+    repo,
+    dir: "",
+    shallow: false,
+    files: listFiles(clone),
+  }));
+  const root = await cacheRootOf(CACHE_SEGMENTS);
   const bin = await ensureRuntime(root);
   const work = new Work(path.join(root, "work"), bin);
   const capped = (candidate: Unit[]): boolean => {
@@ -229,7 +279,11 @@ async function main(): Promise<void> {
     failed.push(...result.failed);
   }
   const incomplete = failed.length > 0 || unresolved.length > 0;
-  const describe = (u: Unit[]) => u.map((x) => `${[x.repo, x.dir].filter((part) => part !== "").join("/")}${x.shallow ? " (top files)" : ""}`);
+  const describe = (u: Unit[]) =>
+    u.map(
+      (x) =>
+        `${[x.repo, x.dir].filter((part) => part !== "").join("/")}${x.shallow ? " (top files)" : ""}`,
+    );
   writeFileSync(
     out,
     JSON.stringify(

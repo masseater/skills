@@ -5,11 +5,11 @@
     "": {
       "name": "plamo-ja",
       "dependencies": {
-        "@r_masseater/plugin-kit": "0.1.0",
+        "@r_masseater/plugin-kit": "0.2.0",
       },
     },
   },
   "packages": {
-    "@r_masseater/plugin-kit": ["@r_masseater/plugin-kit@0.1.0", "", {}, "sha512-BDymxXRQFL3IYdzKLt3irDMWG5nUHk8LFoPrqkYt2DMlJ3eD9UB4iUad+0RGo7hOrUSYYoO2rIMbeDhehvVkcw=="],
+    "@r_masseater/plugin-kit": ["@r_masseater/plugin-kit@0.2.0", "", {}, "sha512-AyEj+4DaQ+HlQrFAyKxeBI2/jWNARuvGUyY212YGeJaw/+4gMCbpG+W/OMqJc5LVuz6vCNUrgVYPEU64G5IH/g=="],
   }
 }
