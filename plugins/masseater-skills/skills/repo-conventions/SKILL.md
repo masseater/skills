@@ -116,4 +116,4 @@ masseaterのリポジトリはすべて同一のテンプレートから作成�
 - [`sweep-repeated-corrections`](usecases/sweep-repeated-corrections.md)。毎日、すべてのリポジトリから、どのチェックにも引っかからない指摘を見つけ出し、修正して、チェックへと落とし込む。
 - [`land-parallel-prs`](usecases/land-parallel-prs.md)。複数のスレッドが同じリポジトリに出した PR を、verify のやり直しと衝突の解き直しを繰り返さずに main へ入れる。
 - [`move-workers-to-japan`](usecases/move-workers-to-japan.md)。Cloudflare Workers の処理を日本で動かし、日本から外部へ通信させる。
-- [`move-versions-to-catalog`](usecases/move-versions-to-catalog.md)。msch を上げて増えた検査（catalog にない依存、prepublishOnly）の指摘を、同じ PR の中で手で直す。
+- [`move-versions-to-catalog`](usecases/move-versions-to-catalog.md)。msch を上げて増えた検査（catalog にない依存）の指摘と、外れた検査の残り（prepublishOnly）を、同じ PR の中で手で直す。
