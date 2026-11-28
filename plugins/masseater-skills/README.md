@@ -29,6 +29,7 @@ masseater のリポジトリで共通に使うエージェントスキルであ�
 - [measure-everything](skills/measure-everything/SKILL.md): 何かを構築または修正する前に、どのように測定するかを決めておく。
 - [measure-postmortem](skills/measure-postmortem/SKILL.md): PRを読み、その修正が事前に計測されていれば防げた、あるいは検出できたのではないかと検討する。
 - [measure-readiness](skills/measure-readiness/SKILL.md): 後になって誰かが引きたいと思う事実が、記録され、呼び出し元に帰属され、保存されているかを監査する。
+- [memory-tidy](skills/memory-tidy/SKILL.md): Shorten and consolidate the project memory (MEMORY.md and its linked notes) without losing the owner's standing rules or their reasons. Use when the periodic memory-tidy scheduled task fires or the owner asks to tidy the memory.。
 - [project-checklist](skills/project-checklist/SKILL.md): プロジェクトの設計で考慮すべき項目が満たされているか、実機を確認することで判断する。
 - [push-idle-threads](skills/push-idle-threads/SKILL.md): Ask every idle thread of the project why it is idle and push it to continue or finish. Use when the periodic idle-thread check wakes the coordinator session.。
 - [repo-conventions](skills/repo-conventions/SKILL.md): masseaterのリポジトリに共通するルール。
