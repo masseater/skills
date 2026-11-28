@@ -19,7 +19,7 @@
 | 手順が順に進む | フロー（左から右） | 模式図 | [schematic.svg](../examples/schematic.svg) |
 | 条件で分かれる | 分岐つきのフロー | 模式図 | [branching-flow.svg](../examples/branching-flow.svg) |
 | 繰り返す | サイクル | 模式図 | [cycle.svg](../examples/cycle.svg) |
-| 段階で絞られる | 漏斗 | 模式図 | まだない |
+| 段階で絞られる | 漏斗 | 模式図 | [tako の funnel](../usecases/draw-with-tako.md) |
 | 日付に沿って並ぶ | タイムライン | 模式図 | [timeline.svg](../examples/timeline.svg) |
 
 ## つながりと構造
@@ -31,7 +31,7 @@
 | 誰が誰に何を渡すか | 構成図 | 模式図 | [system-map.svg](../examples/system-map.svg) |
 | 親と子 | ツリー | 模式図 | [tree.svg](../examples/tree.svg) |
 | 内と外、範囲 | 入れ子の箱 | 模式図 | [nested.svg](../examples/nested.svg) |
-| 2 つの軸での位置 | 2 軸の位置づけ図 | 模式図 | まだない |
+| 2 つの軸での位置 | 2 軸の位置づけ図 | 模式図 | [tako の quadrant](../usecases/draw-with-tako.md) |
 | 各部の名前と働き | 注記付きの絵 | 注記付きの図解 | [annotated.svg](../examples/annotated.svg) |
 
 ## 数値
