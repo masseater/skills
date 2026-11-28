@@ -50,18 +50,6 @@ function filled(value: unknown): string | null {
   return typeof value === 'string' && value.trim() !== '' ? value.trim() : null
 }
 
-export type CloudflareEnv = { account: unknown; token: unknown; gateway: unknown }
-
-export function gatewayOf(options: Readonly<Record<string, unknown>>, env: CloudflareEnv): Gateway | null {
-  const account = filled(options.cloudflare_account_id) ?? filled(env.account)
-  const token = filled(options.cloudflare_api_token) ?? filled(env.token)
-  if (account === null || token === null) {
-    return null
-  }
-
-  return { account, token, gateway: filled(options.cloudflare_ai_gateway) ?? filled(env.gateway) ?? 'default' }
-}
-
 export async function decide(
   $: HookContext,
   gateway: Gateway | null,
@@ -112,10 +100,16 @@ export async function decide(
   return { answers, ms: (await $.clock.now()) - startedAt, chars }
 }
 
-export async function gatewayFrom($: HookContext, options: Readonly<Record<string, unknown>>): Promise<Gateway | null> {
-  return gatewayOf(options, {
-    account: (await $.env.get('CLOUDFLARE_ACCOUNT_ID')) ?? (await $.env.get('CF_PERSONAL_ACCOUNT_ID')),
-    token: (await $.env.get('CLOUDFLARE_API_TOKEN')) ?? (await $.env.get('CF_PERSONAL_API_TOKEN')),
-    gateway: await $.env.get('CLOUDFLARE_AI_GATEWAY'),
-  })
+export async function gatewayFrom($: { env: Pick<HookContext['env'], 'get'> }, options: Readonly<Record<string, unknown>>): Promise<Gateway | null> {
+  const account = filled(options.cloudflare_account_id) ?? filled((await $.env.get('CLOUDFLARE_ACCOUNT_ID')) ?? (await $.env.get('CF_PERSONAL_ACCOUNT_ID')))
+  const token = filled(options.cloudflare_api_token) ?? filled((await $.env.get('CLOUDFLARE_API_TOKEN')) ?? (await $.env.get('CF_PERSONAL_API_TOKEN')))
+  if (account === null || token === null) {
+    return null
+  }
+
+  return { account, token, gateway: filled(options.cloudflare_ai_gateway) ?? filled(await $.env.get('CLOUDFLARE_AI_GATEWAY')) ?? 'default' }
+}
+
+export function choiceOf(instructions: string, criteria: Record<string, string>): ChoiceQuestion {
+  return { type: 'choice', instructions, criteria }
 }

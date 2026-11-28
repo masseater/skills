@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
 import { parseArgs } from "node:util";
-import { parseSummary } from "../../gitbook-pages/scripts/build.ts";
+import { parseSummary, placeEntries } from "../../gitbook-pages/scripts/build.ts";
 import { escape } from "../../gitbook-pages/scripts/components.ts";
 import { DARK, FONTS, LIGHT } from "../../gitbook-pages/scripts/theme.ts";
 
@@ -22,17 +22,6 @@ const MEDIA: Record<string, string> = {
   ".gif": "image/gif",
 };
 
-type Listed = { title: string; group: string | null; source: string };
-
-function listed(entries: ReturnType<typeof parseSummary>["groups"][number]["entries"], group: string | null): Listed[] {
-  return entries.flatMap(({ title, source, children }) => [{ title, group, source }, ...listed(children, group)]);
-}
-
-function readSummary(text: string): { title: string; entries: Listed[] } {
-  const { title, groups } = parseSummary(text);
-  return { title, entries: groups.flatMap(({ title: group, entries }) => listed(entries, group)) };
-}
-
 function inlineAssets(html: string, here: string, deckDir: string, source: string): string {
   return html.replace(/\b(src|href)="([^"]+)"/g, (whole, attr: string, ref: string) => {
     if (/^[a-z][a-z0-9+.-]*:|^#|^\//i.test(ref)) return whole;
@@ -47,8 +36,9 @@ function inlineAssets(html: string, here: string, deckDir: string, source: strin
 export function readDeck(deckDir: string): Deck {
   const summaryPath = path.join(deckDir, "SUMMARY.md");
   if (!existsSync(summaryPath)) throw new Error(`${summaryPath} does not exist`);
-  const { title, entries } = readSummary(readFileSync(summaryPath, "utf8"));
-  const slides = entries.map(({ title: slideTitle, group, source }) => {
+  const summary = parseSummary(readFileSync(summaryPath, "utf8"));
+  const { title } = summary;
+  const slides = placeEntries(summary).map(({ entry: { title: slideTitle, source }, group }) => {
     const file = path.join(deckDir, source);
     if (!existsSync(file)) throw new Error(`SUMMARY.md links ${source}, which does not exist`);
     const section = SECTION.exec(readFileSync(file, "utf8"));
