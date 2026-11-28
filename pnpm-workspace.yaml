@@ -4,7 +4,7 @@ packages:
 catalog:
   "@anthropic-ai/claude-code": 2.1.332
   "@commitlint/config-conventional": 21.2.4
-  "@r_masseater/msch": 0.61.0
+  "@r_masseater/msch": 0.61.2
   fallow: 3.48.0
   fallow-similar-code: 3.48.0
   skills-ref: 0.1.5
