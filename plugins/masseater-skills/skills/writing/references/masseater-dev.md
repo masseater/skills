@@ -1,6 +1,6 @@
 # masseater.dev の配置先
 
-また、masseater/masseater.dev の `apps/portfolio/AGENTS.md` にある「記事」セクションも参照すること。
+また、[`apps/portfolio/AGENTS.md`](github:masseater/masseater.dev/apps/portfolio/AGENTS.md) にある「記事」セクションも参照すること。
 
 | 種類 | 場所 |
 | --- | --- |

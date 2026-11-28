@@ -1,6 +1,6 @@
 # masseater.devでの置き場所とコマンド
 
-- 動画はmasseater/masseater.devの`apps/videos/src/pages/<名前>/`に1本1フォルダで置く。台詞は`script.ts`、カットごとの絵は`video.tsx`の`draw`。
+- 動画は[`apps/videos`](github:masseater/masseater.dev/apps/videos)の`src/pages/<名前>/`に1本1フォルダで置く。台詞は`script.ts`、カットごとの絵は`video.tsx`の`draw`。
 - 共通部品と`look`の層、尺の計算、字幕、立ち絵、検査は`libs/video-kit`にある。部品の使い方はそのREADMEを読む。素材のURLとキャッシュのパスは`apps/videos/src/shared/config/stock.ts`に並べる。
 - 書体はfontsourceのNoto Sans JP（300、500、700、900）とIBM Plex Monoを`libs/video-kit/src/app/video.css`で読み込む。
 - コマンドは`apps/videos`で`node bin/videos.ts <new|make|check|voice|assets|review|render> <名前>`を実行する。
