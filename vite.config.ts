@@ -1,7 +1,10 @@
+import { fileURLToPath } from "node:url";
+
 import { markdownOf } from "@r_masseater/msch/lint";
 import { defineConfig } from "vite-plus";
 
 export default defineConfig({
+  commitlint: { extends: [fileURLToPath(import.meta.resolve("@commitlint/config-conventional"))] },
   y8: markdownOf({ docs: { skills: { usecases: ["ユースケース"] } } }),
   test: {
     exclude: ["**/node_modules/**", "plugins/*/hooks/*.test.{ts,tsx}"],

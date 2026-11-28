@@ -186,6 +186,9 @@ catalogs:
     '@anthropic-ai/claude-code':
       specifier: 2.1.332
       version: 2.1.332
+    '@commitlint/config-conventional':
+      specifier: 21.2.4
+      version: 21.2.4
     '@r_masseater/msch':
       specifier: 0.60.1
       version: 0.60.1
@@ -215,6 +218,9 @@ importers:
       '@anthropic-ai/claude-code':
         specifier: 'catalog:'
         version: 2.1.332
+      '@commitlint/config-conventional':
+        specifier: 'catalog:'
+        version: 21.2.4
       '@r_masseater/msch':
         specifier: 'catalog:'
         version: 0.60.1(@andrewbranch/untar.js@1.0.4)(@effect/tsgo@0.73.7)(@loaderkit/resolve@1.0.6)(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(cjs-module-lexer@2.3.0)(effect@4.1.6)(eslint@10.14.0(jiti@2.7.0))(fflate@0.8.3)(markdownlint@0.42.1)(minimatch@11.0.9)(oxlint@1.94.0(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(validate-npm-package-name@8.0.0)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
