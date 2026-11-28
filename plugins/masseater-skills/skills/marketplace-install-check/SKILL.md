@@ -7,7 +7,7 @@ description: Check whether the masseater-skills plugin can be added from the cla
 
 ## Why this skill exists and the state it aims for
 
-This skill exists because `masseater-skills` is installed in the cloud environment 「個人・あすなろ」 by a line in its setup script, and that is a temporary workaround. The normal way is to add the plugin from the marketplace, but a bug in the Claude app made that impossible on 2026-11-28, so the setup script runs `claude plugin install masseater-skills@masseater` instead. A workaround that nobody checks becomes a second install path that stays forever: the plugin is then managed in two places, which `masseater-style` forbids, and a fix on the app side goes unnoticed.
+This skill exists because `masseater-skills` is installed in the cloud environment by a line in its setup script, and that is a temporary workaround. The normal way is to add the plugin from the marketplace, but a bug in the Claude app made that impossible on 2026-11-28, so the setup script runs `claude plugin install masseater-skills@masseater` instead. A workaround that nobody checks becomes a second install path that stays forever: the plugin is then managed in two places, which `masseater-style` forbids, and a fix on the app side goes unnoticed.
 
 The state this skill aims for is that `masseater-skills` comes from the marketplace alone, the setup script has no line that installs it, and no note says that a workaround is in place.
 
