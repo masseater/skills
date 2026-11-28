@@ -39,4 +39,4 @@ description: 確定したアート作品の定義から、3面図、表情や口
 
 ## ユースケース
 
-- [`match-style`](usecases/match-style.md)。確定した姿を保ったまま、絵柄だけを別の参考画像に寄せる。
+- [`match-style`](usecases/match-style.md)。確定した姿を保ったまま、絵柄だけを別の参考画像に寄せる。SVG で描いた図は、評価の前に必ず揺れの検査（[`scripts/lint-wobble.ts`](scripts/lint-wobble.ts)）を通す。
