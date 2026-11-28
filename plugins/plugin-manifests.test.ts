@@ -60,14 +60,17 @@ afterAll(() => {
 });
 
 describe("marketplace", () => {
-  it("passes claude plugin validate with no warning but the description msch does not generate", () => {
+  it("passes claude plugin validate with no warning but the description msch does not generate and the version plugins leave out", () => {
     const result = claude(["plugin", "validate", ".", "--json"]);
     expect(result.status, result.output).toBe(0);
     const report: { manifest: Finding; contents: Finding[] } = JSON.parse(result.output);
     const warnings = [report.manifest, ...report.contents].flatMap((entry) =>
       entry.warnings.map((warning) => `${warning.path}: ${warning.message}`),
     );
-    const unexpected = warnings.filter((warning) => !warning.startsWith("description: No marketplace description"));
+    const unexpected = warnings.filter(
+      (warning) =>
+        !warning.startsWith("description: No marketplace description") && !warning.includes("No version specified"),
+    );
     expect(unexpected, result.output).toEqual([]);
   });
 
@@ -80,9 +83,15 @@ describe("marketplace", () => {
   });
 
   describe.each(localPlugins)("$name", ({ name, source }) => {
-    it("passes claude plugin validate --strict", () => {
-      const result = claude(["plugin", "validate", "--strict", source]);
+    it("passes claude plugin validate with no warning but the missing version", () => {
+      const result = claude(["plugin", "validate", source, "--json"]);
       expect(result.status, result.output).toBe(0);
+      const report: { manifest: Finding; contents: Finding[] } = JSON.parse(result.output);
+      const warnings = [report.manifest, ...report.contents].flatMap((entry) =>
+        entry.warnings.map((warning) => `${warning.path}: ${warning.message}`),
+      );
+      const unexpected = warnings.filter((warning) => !warning.includes("No version specified"));
+      expect(unexpected, result.output).toEqual([]);
     });
 
     it("installs from the marketplace", () => {
@@ -97,6 +106,11 @@ describe("marketplace", () => {
         expect(files.filter((f) => f.endsWith(".claude-plugin/plugin.json"))).toEqual([
           ".claude-plugin/plugin.json",
         ]);
+      });
+
+      it("sets no version, so that every commit reaches installed copies", () => {
+        const manifest = JSON.parse(readFileSync(path.join(root, source, ".claude-plugin/plugin.json"), "utf8"));
+        expect(manifest.version).toBeUndefined();
       });
 
       it("names the plugin within the allowed form", () => {

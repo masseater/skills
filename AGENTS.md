@@ -35,7 +35,7 @@ Put each skill in its own `plugins/<plugin>/skills/<name>/`, with `name` equal t
 
 ### Plugins
 
-Put each plugin in its own `plugins/<plugin>/` with a `package.json`, a `README.md` and a `plugins/<plugin>/.claude-plugin/plugin.json`. msch generates the marketplace manifest from them, so do not edit it by hand. Hooks and scripts are written in TypeScript that Node.js runs as is (code that works once type annotations are stripped).
+Put each plugin in its own `plugins/<plugin>/` with a `package.json`, a `README.md` and a `plugins/<plugin>/.claude-plugin/plugin.json`. msch generates the marketplace manifest from them, so do not edit it by hand. Do not set `version` in `plugin.json`: Claude Code keys the installed copy and its updates on the version, so a fixed one leaves every installed copy, including cloud sessions, on the old skills and hooks forever, while without it the commit SHA is the version and each commit updates them (measured 2026-11-28). The tests check it. Hooks and scripts are written in TypeScript that Node.js runs as is (code that works once type annotations are stripped).
 
 #### Shared code
 

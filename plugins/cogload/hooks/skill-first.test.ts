@@ -1,6 +1,6 @@
 import { expect, test } from 'claude-code/testing'
 
-import { COMMAND_RULES, RULES } from './skill-first'
+import { COMMAND_RULES, FIGURE_SKILL, RULES } from './skill-first'
 
 const UI_SKILL = RULES[0].skill
 
@@ -63,5 +63,46 @@ test('other commands pass', async ($, on) => {
   on('tool.call', () => ({ result: {} }))
 
   const allowed = await $.tool.call({ tool: 'Bash', command: 'ls' })
+  expect(allowed.deny).toBeUndefined()
+})
+
+test('a page that draws an SVG with labels is refused until the infographic skill has been loaded', async ($, on) => {
+  on('command.list', () => ({ value: [{ name: `cogload:${FIGURE_SKILL}` }] as never }))
+  on('tool.call', () => ({ result: {} }))
+  const content = '<svg viewBox="0 0 10 10"><text x="1" y="1">a</text></svg>'
+
+  const refused = await $.tool.call({ tool: 'Write', file_path: '/app/notes.md', content })
+  expect(refused.deny).toContain(FIGURE_SKILL)
+
+  await $.tool.call({ tool: 'Skill', skill: `cogload:${FIGURE_SKILL}` })
+  const allowed = await $.tool.call({ tool: 'Write', file_path: '/app/notes.md', content })
+  expect(allowed.deny).toBeUndefined()
+})
+
+test('asking for a figure refuses the page write and the publish until the infographic skill has been loaded', async ($, on) => {
+  on('command.list', () => ({ value: [{ name: `cogload:${FIGURE_SKILL}` }] as never }))
+  on('tool.call', () => ({ result: {} }))
+  on('prompt.submit', (_, e) => ({ text: e.text, context: e.context }))
+
+  const submitted = await $.prompt.submit({ text: '構成をインフォグラフィックで見たい', wait: false, origin: 'user' } as never)
+  expect(submitted.context?.join('')).toContain(FIGURE_SKILL)
+
+  const write = await $.tool.call({ tool: 'Write', file_path: '/tmp/page.html', content: '<div></div>' })
+  expect(write.deny).toContain(FIGURE_SKILL)
+  const publish = await $.tool.call({ tool: 'Artifact', file_path: '/tmp/page.html' })
+  expect(publish.deny).toContain(FIGURE_SKILL)
+
+  await $.tool.call({ tool: 'Skill', skill: `cogload:${FIGURE_SKILL}` })
+  const after = await $.tool.call({ tool: 'Artifact', file_path: '/tmp/page.html' })
+  expect(after.deny).toBeUndefined()
+})
+
+test('a prompt without a figure request leaves page writes alone', async ($, on) => {
+  on('command.list', () => ({ value: [{ name: `cogload:${FIGURE_SKILL}` }] as never }))
+  on('tool.call', () => ({ result: {} }))
+  on('prompt.submit', (_, e) => ({ text: e.text, context: e.context }))
+
+  await $.prompt.submit({ text: 'ログイン画面を直して', wait: false, origin: 'user' } as never)
+  const allowed = await $.tool.call({ tool: 'Artifact', file_path: '/tmp/page.html' })
   expect(allowed.deny).toBeUndefined()
 })
