@@ -60,8 +60,9 @@ description: masseaterのリポジトリで作業する際のエントリーポ�
 - masseater.dev か ecosystems の main の verify が失敗したと CI から依頼が届いた際：`fix-red-main`。赤の原因を直す PR を失敗ごとに 1 つだけ出す。
 - プロジェクトのスレッドを横断して、作業の質、部分最適、スレッド間の矛盾を見直す統合監査を行う際：`integrated-audit`
 - コーディネーターが定期のアイドルスレッド点検に起こされた際：`push-idle-threads`。止まっているスレッドに理由を問い、続けるか終えるかを促す。
-- 曲やパートを作る際、既存曲をリファレンスとして分析する際、作ったものが意図どおりか音を聴かずに確かめる際：`compose-music`。DAW が LUNA（UA の DAW）なら、LUNA の中の操作は `luna-music` と UA 公式プラグイン ua-luna-builder のスキルに従う。
+- 曲やパートを作る際、既存曲をリファレンスとして分析する際、作ったものが意図どおりか音を聴かずに確かめる際：`compose-music`。持ち主に残す範囲は `human-judgment-line` に従う。DAW が LUNA（UA の DAW）なら、LUNA の中の操作は `luna-music` と UA 公式プラグイン ua-luna-builder のスキルに従う。
 - LUNA につなぐ際、LUNA のセッションにトラックやノートを置く際、ステムを書き出す際：`luna-music`。クラウドから SSH で持ち主の PC につなぐ。SDK の基本は UA 公式プラグイン ua-luna-builder のスキルに従う。
+- 成果物の一部を持ち主の判断に回そうとする際、AI で機械化するのが難しい部分に気づいた際、新しいモデルが出て持ち主に任せる範囲を減らせるか確かめる際：`human-judgment-line`。持ち主に回してよいのは合意した一覧の項目だけで、それ以外は AI が自分で評価する。
 - npm に新しい名前を出す際、Trusted Publisher を登録し直す際、古い版を deprecate する際、npm の承認リンクが届かない際：`npm-web-auth`。クラウドのセッションから持ち主の 2FA 承認を通す。公開そのものは `publish.yml` が行い、承認は要らない。
 - 前の週に何をしたかを週次の記録として残す際：`weekly-review`。スケジュールされたタスクの指示文は `scheduled-task-prompt` に従い、このスキルを実行するとだけ書く。
 - 定期のメモリ整理タスクが動いた際、持ち主にプロジェクトのメモリの整理を頼まれた際：`memory-tidy`。MEMORY.md とノートを短くまとめ直す。持ち主が述べた決まりとその理由は削らない。スケジュールされたタスクの指示文は `scheduled-task-prompt` に従い、このスキルを実行するとだけ書く。
