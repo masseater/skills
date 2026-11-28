@@ -190,8 +190,8 @@ catalogs:
       specifier: 21.2.4
       version: 21.2.4
     '@r_masseater/msch':
-      specifier: 0.63.0
-      version: 0.63.0
+      specifier: 0.64.0
+      version: 0.64.0
     fallow:
       specifier: 3.48.0
       version: 3.48.0
@@ -223,7 +223,7 @@ importers:
         version: 21.2.4
       '@r_masseater/msch':
         specifier: 'catalog:'
-        version: 0.63.0(@andrewbranch/untar.js@1.0.4)(@effect/tsgo@0.73.7)(@loaderkit/resolve@1.0.6)(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(cjs-module-lexer@2.3.0)(effect@4.1.6)(eslint@10.14.0(jiti@2.7.0))(fflate@0.8.3)(markdownlint@0.42.1)(minimatch@11.0.9)(oxlint@1.94.0(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(validate-npm-package-name@8.0.0)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
+        version: 0.64.0(@andrewbranch/untar.js@1.0.4)(@effect/tsgo@0.73.7)(@loaderkit/resolve@1.0.6)(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(cjs-module-lexer@2.3.0)(effect@4.1.6)(eslint@10.14.0(jiti@2.7.0))(fflate@0.8.3)(markdownlint@0.42.1)(minimatch@11.0.9)(oxlint@1.94.0(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(validate-npm-package-name@8.0.0)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
       fallow:
         specifier: 'catalog:'
         version: 3.48.0
@@ -1344,8 +1344,8 @@ packages:
       vite:
         optional: true
 
-  '@r_masseater/msch@0.63.0':
-    resolution: {integrity: sha512-EpICEm7Qldb8F9FGHaFXkdzeEaixYRhMGdtr1F/ksURRO7U432XrA04Ez8Dn4/hR3qNlXbWiC6wgjMVOixWfUw==}
+  '@r_masseater/msch@0.64.0':
+    resolution: {integrity: sha512-5YE3C+tgafCuWa0lvTTdCpLhiPRqLTpuakxCY4Xxos6/EDl/XSuVUf5Qz1nK0rSnuAyW6AL1rYR54LZm52Dv3A==}
     engines: {node: '>=26.13.1'}
     hasBin: true
     peerDependencies:
@@ -2513,12 +2513,6 @@ packages:
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
       eslint: '>=9.29.0'
-
-  eslint-plugin-no-comments@1.2.1:
-    resolution: {integrity: sha512-LsUTMY20oLw+fiu23c3ssBHqKXe7pWMHzaXNx2DM+anpmBwzKHclA3XLrY/YsYNqTipuDA0u28/Wxc2pxke6bA==}
-    engines: {node: '>=20.19.0'}
-    peerDependencies:
-      eslint: ^9.0.0 || ^10.0.0
 
   eslint-plugin-react-hooks@7.1.1:
     resolution: {integrity: sha512-f2I7Gw6JbvCexzIInuSbZpfdQ44D7iqdWX01FKLvrPgqxoE7oMj8clOfto8U6vYiz4yd5oKu39rRSVOe1zRu0g==}
@@ -5181,7 +5175,7 @@ snapshots:
       - redis
       - utf-8-validate
 
-  '@r_masseater/msch@0.63.0(@andrewbranch/untar.js@1.0.4)(@effect/tsgo@0.73.7)(@loaderkit/resolve@1.0.6)(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(cjs-module-lexer@2.3.0)(effect@4.1.6)(eslint@10.14.0(jiti@2.7.0))(fflate@0.8.3)(markdownlint@0.42.1)(minimatch@11.0.9)(oxlint@1.94.0(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(validate-npm-package-name@8.0.0)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))':
+  '@r_masseater/msch@0.64.0(@andrewbranch/untar.js@1.0.4)(@effect/tsgo@0.73.7)(@loaderkit/resolve@1.0.6)(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(cjs-module-lexer@2.3.0)(effect@4.1.6)(eslint@10.14.0(jiti@2.7.0))(fflate@0.8.3)(markdownlint@0.42.1)(minimatch@11.0.9)(oxlint@1.94.0(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(validate-npm-package-name@8.0.0)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))':
     dependencies:
       '@commitlint/config-conventional': 21.2.4
       '@effect/platform-node': 4.1.6(effect@4.1.6)(redis@6.3.1)
@@ -5210,7 +5204,6 @@ snapshots:
       domhandler: 6.0.1
       effect: 4.1.6
       eslint-plugin-baseline-js: 0.7.7(eslint@10.14.0(jiti@2.7.0))
-      eslint-plugin-no-comments: 1.2.1(eslint@10.14.0(jiti@2.7.0))
       eslint-plugin-react-hooks: 7.1.1(eslint@10.14.0(jiti@2.7.0))
       htmlparser2: 12.0.0
       modern-web-guidance: 1.0.2
@@ -6310,10 +6303,6 @@ snapshots:
       '@eslint-community/regexpp': 4.12.3
       eslint: 10.14.0(jiti@2.7.0)
       eslint-type-tracer: 0.5.2(eslint@10.14.0(jiti@2.7.0))
-
-  eslint-plugin-no-comments@1.2.1(eslint@10.14.0(jiti@2.7.0)):
-    dependencies:
-      eslint: 10.14.0(jiti@2.7.0)
 
   eslint-plugin-react-hooks@7.1.1(eslint@10.14.0(jiti@2.7.0)):
     dependencies:
