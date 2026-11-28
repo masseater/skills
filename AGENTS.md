@@ -2,25 +2,42 @@
 
 This repository holds the agent skills shared by masseater's repositories. The root is a Claude Code plugin marketplace.
 
-- Follow `skill-authoring` when creating or fixing a skill.
-- Follow `writing` for prose, and `humanity-and-humanness` for what to assume about human readers.
-- Write docs, commit messages and PR bodies in Japanese. AGENTS.md is the exception and is written in English.
+Follow `masseater-ecosystem`, which says which skills to load in each situation, including the ones for creating a skill and for writing prose.
 
-## Layout
+## Tech stack
+
+The base stack is Markdown skills, TypeScript that Node.js runs as is, and Vite+.
+
+## Commands
+
+```sh
+vp exec skills-ref validate plugins/<plugin>/skills/<name>   # validate frontmatter and layout
+vp dlx skills init <name>                   # scaffold a SKILL.md
+./node_modules/.bin/vp run test             # msch's checks, plugin tests and manifest validation
+```
+
+There is no build or lint. `vp run test` also runs on pre-push. msch needs Node.js 26 or later. After changing a skill, pass `skills-ref validate` and check that referenced files exist. Only `masseater-ecosystem` may name other skills, and every skill must be listed there. The tests check both.
+
+## Rules
+
+- Write docs, commit messages and PR bodies in Japanese. AGENTS.md is the exception and is written in English.
+- Create a branch, open a PR and squash-merge it. Do not use mergify. After merging, recreate the branch from main.
+
+### Skills
 
 Put each skill in its own `plugins/<plugin>/skills/<name>/`, with `name` equal to the directory name. One document holds one kind of content.
 
-- `SKILL.md` holds why the skill is needed, the state it aims for, and its rules.
+- `SKILL.md` holds why the skill is needed, the state it aims for, and its rules. It links each procedure from a `ユースケース` section.
 - `usecases/` holds procedures.
 - `references/` holds references specific to particular repositories or environments, and the details of rules.
 
 `metadata.derived-from` lists only the URLs of sources whose content was taken in and adapted, as permalinks pinned to a commit. Link sources that were only read or are cited as grounds from the body.
 
-## Plugins
+### Plugins
 
-Put each plugin in its own `plugins/<plugin>/` with a `package.json`, a `README.md` and a `.claude-plugin/plugin.json`. msch generates `.claude-plugin/marketplace.json` from them, so do not edit it by hand. Hooks take no dependencies, and hooks and scripts are written in TypeScript that Node.js runs as is (code that works once type annotations are stripped).
+Put each plugin in its own `plugins/<plugin>/` with a `package.json`, a `README.md` and a `plugins/<plugin>/.claude-plugin/plugin.json`. msch generates the marketplace manifest from them, so do not edit it by hand. Hooks take no dependencies, and hooks and scripts are written in TypeScript that Node.js runs as is (code that works once type annotations are stripped).
 
-### Shared code
+#### Shared code
 
 A plugin is installed on its own, and a symlink cannot reach outside it (claude.ai upload rejects symbolic links), so code that two plugins both need lives in `libs/plugin-kit/src/` and is copied into each plugin that imports it.
 
@@ -28,7 +45,7 @@ A plugin is installed on its own, and a symlink cannot reach outside it (claude.
 - `bin/build-kit.ts` copies exactly the kit files a plugin imports, and the files those import. The pre-commit hook runs it and stages the result; `vp run kit` runs it by hand. `plugins/kit.test.ts` fails when a copy is stale.
 - Put code in the kit when a second plugin needs it. Code that only one plugin uses stays in that plugin. When two functions in different plugins do the same job, move one to the kit and call it from both. Do not record a function as an intentional duplicate.
 
-### What a plugin is for
+#### What a plugin is for
 
 A plugin exists to lower the owner's cognitive load: what the owner has to read, keep in mind and type by hand.
 
@@ -40,22 +57,9 @@ A plugin exists to lower the owner's cognitive load: what the owner has to read,
 - A plugin calls models through two paths only: `claude -p`, and a decision model through Cloudflare AI Gateway. A decision model judges and a generating model writes, so do not substitute one for the other.
 - A plugin works for anyone who installs it. Do not make it depend on the owner's own MCP servers, Workers or accounts. A plugin that calls a decision model reads the user's own Cloudflare account ID and API token from its `userConfig`, with the token marked `sensitive`.
 
-### Mods
+#### Mods
 
-A plugin whose `hooks/hooks.json` lists `modules` is a mod: a hooks module that runs inside Claude Code. `cogload` is one. Read Claude Code's `plugin-authoring` skill before changing a mod, because the mod API changes between releases. Check a mod with `claude plugin validate plugins/<plugin>` and `claude plugin test plugins/<plugin>`. A mod's tests sit directly in its `hooks/` and run on Claude Code's own test runner, so `vp test run` skips them and `plugins/mods.test.ts` runs them.
+A plugin whose `plugins/<plugin>/hooks/hooks.json` lists `modules` is a mod: a hooks module that runs inside Claude Code. `cogload` is one. Read Claude Code's `plugin-authoring` skill before changing a mod, because the mod API changes between releases. Check a mod with `claude plugin validate plugins/<plugin>` and `claude plugin test plugins/<plugin>`. A mod's tests sit directly in its `hooks/` and run on Claude Code's own test runner, so `vp test run` skips them and `plugins/mods.test.ts` runs them.
 
 - A decision model in a mod selects and never rewrites, and the mod shows the original whenever the call fails, the token is missing or the model is unsure. A question the owner never sees costs more than an extra line.
 - Each file that reads or writes mod state defines its own `atom`, because `claude plugin validate` reads state keys from the file that uses them.
-
-## Commands
-
-```sh
-vp exec skills-ref validate plugins/<plugin>/skills/<name>   # validate frontmatter and layout
-vp dlx skills init <name>                   # scaffold a SKILL.md
-```
-
-There is no build or lint. `./node_modules/.bin/vp run test` runs msch's checks, the plugin tests and manifest validation, and also runs on pre-push. msch needs Node.js 26 or later. After changing a skill, pass `skills-ref validate` and check that referenced files exist. Only `masseater-ecosystem` may name other skills, and every skill must be listed there. The tests check both.
-
-## Workflow
-
-Create a branch, open a PR and squash-merge it. Do not use mergify. After merging, recreate the branch from main.
