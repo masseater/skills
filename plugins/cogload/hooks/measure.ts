@@ -1,6 +1,7 @@
 import type { HookContext } from './context'
 
 export type Measure = {
+  hook: 'short-report' | 'source-check'
   at: number
   ms: number
   chars: number

@@ -111,3 +111,11 @@ export async function decide(
 
   return { answers, ms: (await $.clock.now()) - startedAt, chars }
 }
+
+export async function gatewayFrom($: HookContext, options: Readonly<Record<string, unknown>>): Promise<Gateway | null> {
+  return gatewayOf(options, {
+    account: (await $.env.get('CLOUDFLARE_ACCOUNT_ID')) ?? (await $.env.get('CF_PERSONAL_ACCOUNT_ID')),
+    token: (await $.env.get('CLOUDFLARE_API_TOKEN')) ?? (await $.env.get('CF_PERSONAL_API_TOKEN')),
+    gateway: await $.env.get('CLOUDFLARE_AI_GATEWAY'),
+  })
+}

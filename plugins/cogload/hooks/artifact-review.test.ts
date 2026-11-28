@@ -9,6 +9,7 @@ test('a turn that published an Artifact page is sent back to review its copy onc
   on('command.list', () => ({ value: [{ name: `some-plugin:${REVIEW_SKILL}` }] as never }))
   on('tool.call', () => ({ result: {} }))
   on('classic.Stop', () => ({}))
+  on('session.messages', () => ({ value: [] }))
 
   await $.tool.call({ tool: 'Artifact', file_path: '/s/page.html' })
   const first = await $.classic.Stop(STOP)
@@ -26,6 +27,7 @@ test('reading, listing or uploading an asset does not ask for a review', async (
   on('command.list', () => ({ value: [{ name: REVIEW_SKILL }] as never }))
   on('tool.call', () => ({ result: {} }))
   on('classic.Stop', () => ({}))
+  on('session.messages', () => ({ value: [] }))
 
   await $.tool.call({ tool: 'Artifact', action: 'read', url: 'https://claude.ai/artifact/x' })
   await $.tool.call({ tool: 'Artifact', action: 'list' })
@@ -38,6 +40,7 @@ test('a turn passes where the skill is not installed', async ($, on) => {
   on('command.list', () => ({ value: [] }))
   on('tool.call', () => ({ result: {} }))
   on('classic.Stop', () => ({}))
+  on('session.messages', () => ({ value: [] }))
 
   await $.tool.call({ tool: 'Artifact', file_path: '/s/page.html' })
   const stop = await $.classic.Stop(STOP)

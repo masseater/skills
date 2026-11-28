@@ -5,6 +5,7 @@ Claude Code の持ち主が読む量、覚えておく量、手で打つ量を�
 - 作業報告を、ターンが終わった時点で開始状態、完了状態、確認事項だけの表示に描き直す。書いている途中は全文が流れる。確認事項は末尾に置き、入力欄の上にも出す。省いた行は「全文」ボタンで開ける。Claude 側の記録は元の文章のまま残る
 - UI のファイルや HTML の資料を書く前に、対応するスキルを Claude に読ませる。読むまで編集を止める
 - Artifact のページを公開したターンの終わりに、Claude に `stop-describing-ui` を読ませ、公開したページの説明的な文言を直して公開し直させる。直したあとのターンは止めない
+- ターンの終わりに、そのターンで読んだ Web ページと答えに書いた URL を判定モデルに見せ、公式でないものに頼っていたら止めて、公式の出典で確かめ直させる。ユーザーが自分で貼った URL と判定に自信がないものは通す。1 ターンの判定は 1 回の呼び出しで、Web ページに触れていないターンは呼ばない
 - 報告と資料の書き方を決める [cognitive-load](skills/cognitive-load/SKILL.md) と、Markdown から GitBook 風の複数ページ資料を作る [gitbook-pages](skills/gitbook-pages/SKILL.md) を同梱する
 
 ## 1 ターンの中で cogload がすること
@@ -15,7 +16,7 @@ Claude Code の持ち主が読む量、覚えておく量、手で打つ量を�
 
 `/plugin install cogload@masseater` でインストールする。
 
-報告を短くする判定には、Cloudflare Workers AI の判定モデル Clef Flash を AI Gateway 経由で使う。インストールの後、`/config` で cogload の次の 3 つを設定する。
+報告を短くする判定と出典の判定には、Cloudflare Workers AI の判定モデル Clef Flash を AI Gateway 経由で使う。インストールの後、`/config` で cogload の次の 3 つを設定する。
 
 | 項目 | 値 |
 | --- | --- |
