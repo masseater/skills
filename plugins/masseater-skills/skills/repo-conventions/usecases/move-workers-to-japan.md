@@ -18,10 +18,12 @@ Workers には選べるリージョンがない。ここでの各ステップは
 `alchemy.run.ts` で Worker または `Website.Vite` の props に `placement` を足し、スタック全体をデプロイする。段階的なロールアウト（バージョンだけを出す方式）では `placement` は反映されない。
 
 ```ts
-const worker = yield* Website.Vite("Api", {
-  name: "my-api",
-  placement: { region: "aws:ap-northeast-1" },
-});
+const worker =
+  yield *
+  Website.Vite("Api", {
+    name: "my-api",
+    placement: { region: "aws:ap-northeast-1" },
+  });
 ```
 
 - `region` は `{クラウド}:{リージョン}` の形である。`aws:ap-northeast-1` のほか、`gcp:asia-northeast1` や `azure:japaneast` でもよい。
