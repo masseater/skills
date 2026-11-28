@@ -6,6 +6,7 @@ metadata:
     https://github.com/cursor/plugins/blob/837067b75aa20ab58d7b2a2f6c0531e37118c596/pstack/skills/technical-writing/SKILL.md
     https://github.com/azukiazusa1/skills/tree/a7f996f1cd700a4a56827f6cf2a130ff5a9ceedf/skills/writing/write-blog-article
     https://github.com/artouc/stop-describe-ui/blob/251a859f6e40645030e1ae69fa4b501c851eac9c/skills/stop-describing-ui/SKILL.md
+    https://x.com/sibajun_obake/status/2125333135835427201
 ---
 
 # writing
@@ -83,6 +84,7 @@ metadata:
 - [`ai-context`](usecases/ai-context.md)。SKILL.md、AGENTS.md、CLAUDE.mdなど、AIが読み取る文書を記述する。
 - [`readme-md`](usecases/readme-md.md)。人間が利用するかどうかを判断し、利用を開始するためのREADME.mdを作成する。
 - [`novel`](usecases/novel.md)。小説を執筆する。
+- [`strip-conjunctions`](usecases/strip-conjunctions.md)。説明的な文章の下書きから、文頭の接続詞を外して読み直し、必要な箇所にだけ戻す。
 
 masseaterの名前で公開される記事については、以下の6種類から1つを選んで記述する。依頼文で種類が決まっていない場合は、下書きを書く前にオーナーに確認すること。種類を間違えた場合は、構成から書き直す必要がある。
 
