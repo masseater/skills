@@ -53,19 +53,27 @@ function fileNameOf(source: string, index: number, used: Set<string>): string {
   return `${name}.html`;
 }
 
-function flatten(summary: Summary): Flat[] {
-  const out: Flat[] = [];
-  const used = new Set<string>();
-  const walk = (entries: Entry[], trail: string[]) => {
+export type Placed = { entry: Entry; group: string | null; trail: string[] };
+
+export function placeEntries(summary: Summary): Placed[] {
+  const out: Placed[] = [];
+  const walk = (entries: Entry[], group: string | null, trail: string[]) => {
     for (const entry of entries) {
-      const file = fileNameOf(entry.source, out.length, used);
-      used.add(file);
-      out.push({ entry, file, trail });
-      walk(entry.children, [...trail, entry.title]);
+      out.push({ entry, group, trail });
+      walk(entry.children, group, [...trail, entry.title]);
     }
   };
-  for (const group of summary.groups) walk(group.entries, group.title === null ? [] : [group.title]);
+  for (const group of summary.groups) walk(group.entries, group.title, group.title === null ? [] : [group.title]);
   return out;
+}
+
+function flatten(summary: Summary): Flat[] {
+  const used = new Set<string>();
+  return placeEntries(summary).map(({ entry, trail }, index) => {
+    const file = fileNameOf(entry.source, index, used);
+    used.add(file);
+    return { entry, file, trail };
+  });
 }
 
 function slugger(): (text: string) => string {

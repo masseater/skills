@@ -1,7 +1,7 @@
 import { atom, read, update } from 'claude-code'
 
 import type { HookContext, On } from './context'
-import { decide, gatewayFrom } from './decision'
+import { choiceOf, decide, gatewayFrom } from './decision'
 import type { ChoiceQuestion, Gateway } from './decision'
 import { record } from './measure'
 import { compose, splitUnits } from './select-lines'
@@ -33,13 +33,8 @@ const ROLE_CRITERIA = {
   detail: 'An intermediate step, a finding along the way, or supporting detail',
 }
 
-function roleQuestion(ref: string): ChoiceQuestion {
-  return {
-    type: 'choice',
-    instructions: `state.snippets holds the lines of one work report from an AI coding agent to its owner, in order. Consider only snippet "${ref}". Which role does this line play in the report?`,
-    criteria: ROLE_CRITERIA,
-  }
-}
+const roleInstructions = (ref: string) =>
+  `state.snippets holds the lines of one work report from an AI coding agent to its owner, in order. Consider only snippet "${ref}". Which role does this line play in the report?`
 
 function isRole(value: string): value is Role {
   return value in ROLE_CRITERIA
@@ -58,7 +53,7 @@ async function shorten($: HookContext, gateway: Gateway | null, message: string)
   units.forEach((unit, index) => {
     if (unit.isJudged) {
       snippets[`s${index}`] = unit.text
-      questions[`s${index}`] = roleQuestion(`s${index}`)
+      questions[`s${index}`] = choiceOf(roleInstructions(`s${index}`), ROLE_CRITERIA)
     }
   })
 
