@@ -25,6 +25,7 @@ description: 解説・紹介動画を、決まった構成の型と共通部品�
 - 毎回の品質は共通部品と、この節以降の決まりでそろえる。共通部品にない見た目が要るときは、その動画の`video.tsx`にRemotionで書く。全部の動画に効かせたい見た目は共通部品に足す。
 - 見た目は既定で[`channel-styles`](references/channel-styles.md)の`blend`の型にする。持ち主が今後も使うと決めた型である。ほかの型は持ち主が指定したときだけ選び、`video.tsx`の`look`に写す。AIが自分で決めた配色や配置は学習データの平均になり、AIっぽく見える。実在の人気チャンネルの型は視聴者が見慣れた画面なので、その平均から外れる。
 - 型にない見た目を作るときは、先に[`analyze-channel`](usecases/analyze-channel.md)で参照チャンネルを分析して型を足す。
+- 台本は[`write-script`](usecases/write-script.md)の作劇の拍で書く。見る人は説明より、自分の場面が演じられる話に引き込まれる。
 - 中身・順番・尺は持ち主に聞かずに、次の型から決める。型にない構成を思いついても、型を変える提案として持ち主に出し、黙って変えない。
 
 ツール紹介のショート（縦、30秒前後）は次の6部を標準にする。
@@ -107,6 +108,7 @@ description: 解説・紹介動画を、決まった構成の型と共通部品�
 
 ## ユースケース
 
+- [`write-script`](usecases/write-script.md)。台本をつむぎの寸劇としてStory Spineの拍で書き、ナレーションと画面の文を分ける。
 - [`make-video`](usecases/make-video.md)。台本の型から縦と横の動画を作る。
 - [`analyze-channel`](usecases/analyze-channel.md)。型にない見た目を作る前に、参照チャンネルを分析する。
 - [`beat-sync`](usecases/beat-sync.md)。持ち主に拍のタイムラインで音ハメの位置を打ってもらい、台詞をその拍に置く。
