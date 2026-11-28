@@ -35,6 +35,7 @@
 ## ストレージ
 
 - 作業が足して残すものを測定する。チェックアウト、依存のストア、ビルドの出力、キャッシュである。コマンドの前後で、それぞれのディレクトリに `du -sh` を実行する。クラウドセッションの `df` は、そのセッションの割り当てを示さない。
+- コマンド実行中にディスクを追跡するには、同じ `metrics.jsonl` にある各マウントポイントの `system.filesystem.usage` と `system.filesystem.utilization` を読む。
 - クラウドセッションのディスクは約 30 GB である（[クラウド環境](https://code.claude.com/docs/en/cloud-environments)）。
 - GitHub ホスト型ランナーの SSD は 14 GB である（[ランナーの表](https://docs.github.com/en/actions/reference/runners/github-hosted-runners)）。
 
@@ -49,6 +50,7 @@
 ## ネットワーク
 
 - 実行ごとのバイト数とリクエスト数、インストールやキャッシュの復元といったダウンロードのステップごとの所要時間（`work-metrics ci`）を測定する。
+- コマンド実行中にマシンが送受信するバイト数は、同じ `metrics.jsonl` の `system.network.io` である。
 - Node.js プロセスの外向きのリクエストは OpenTelemetry のゼロコード計装から、Worker のサブリクエストは Workers tracing から取る。
 - クラウドセッションは、ネットワークポリシーが許可したホストにしか届かない（[クラウド環境](https://code.claude.com/docs/en/cloud-environments)）。
 - Paid プランの Worker は、1 リクエストあたり 10,000 件までサブリクエストを行える（[Workers の制限](https://developers.cloudflare.com/workers/platform/limits/)）。
