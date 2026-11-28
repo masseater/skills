@@ -1,7 +1,7 @@
 import { atom, read, update } from 'claude-code'
 
 import type { HookContext, On } from './context'
-import { decide, gatewayOf } from './decision'
+import { decide, gatewayFrom } from './decision'
 import type { ChoiceQuestion, Gateway } from './decision'
 import { record } from './measure'
 import { compose, splitUnits } from './select-lines'
@@ -86,6 +86,7 @@ async function shorten($: HookContext, gateway: Gateway | null, message: string)
   const composed = compose(units, roles)
   const isShortened = composed.dropped > 0 && composed.shown !== ''
   await record($, {
+    hook: 'short-report',
     at: await $.clock.now(),
     ms: decided.ms,
     chars: decided.chars,
@@ -150,11 +151,7 @@ export function registerShortReport(on: On, options: Readonly<Record<string, unk
       return result
     }
 
-    const short = await shorten($, gatewayOf(options, {
-        account: (await $.env.get('CLOUDFLARE_ACCOUNT_ID')) ?? (await $.env.get('CF_PERSONAL_ACCOUNT_ID')),
-        token: (await $.env.get('CLOUDFLARE_API_TOKEN')) ?? (await $.env.get('CF_PERSONAL_API_TOKEN')),
-        gateway: await $.env.get('CLOUDFLARE_AI_GATEWAY'),
-      }), message)
+    const short = await shorten($, await gatewayFrom($, options), message)
     if (short !== message) {
       await update($, shown, all => ({
         ...Object.fromEntries(Object.entries(all).slice(1 - KEPT)),

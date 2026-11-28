@@ -5,7 +5,12 @@ import { defineConfig } from "vite-plus";
 
 export default defineConfig({
   commitlint: { extends: [fileURLToPath(import.meta.resolve("@commitlint/config-conventional"))] },
-  y8: markdownOf({ docs: { skills: { usecases: ["ユースケース"] } } }),
+  y8: markdownOf({
+    docs: {
+      agents: { skillNames: { index: "masseater-style" } },
+      skills: { usecases: ["ユースケース"], skillNames: { index: "masseater-style" } },
+    },
+  }),
   test: {
     exclude: ["**/node_modules/**", "plugins/*/hooks/*.test.{ts,tsx}"],
   },
