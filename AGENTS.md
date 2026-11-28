@@ -54,8 +54,6 @@ vp exec skills-ref validate plugins/<plugin>/skills/<name>   # validate frontmat
 vp dlx skills init <name>                   # scaffold a SKILL.md
 ```
 
-The skill list in each plugin's README.md is rewritten from each `SKILL.md`'s `name` and `description` by `.vite-hooks/pre-commit` running `vp run readme` on every commit that includes a `SKILL.md`, and is included in the commit. Do not edit it by hand. `vp install` enables the hook.
-
 There is no build or lint. `./node_modules/.bin/vp run test` runs msch's checks, the plugin tests and manifest validation, and also runs on pre-push. msch needs Node.js 26 or later. After changing a skill, pass `skills-ref validate` and check that referenced files exist. Only `masseater-ecosystem` may name other skills, and every skill must be listed there. The tests check both.
 
 ## Workflow

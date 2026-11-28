@@ -1,8 +1,4 @@
 staged=$(git diff --cached --name-only)
-if echo "$staged" | grep -qE '^(plugins/masseater-skills/skills/[^/]+/SKILL\.md|plugins/masseater-skills/README\.md|bin/update-readme\.ts)$'; then
-  vp run readme
-  git add plugins/masseater-skills/README.md
-fi
 if echo "$staged" | grep -qE '^(libs/plugin-kit/src/|bin/build-kit\.ts|plugins/.*\.tsx?$)'; then
   node bin/build-kit.ts --stage
 fi
