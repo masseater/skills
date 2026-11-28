@@ -123,4 +123,4 @@ description: 説明に使う図を、主役を中心にした 1 つの場面と�
 
 ## ユースケース
 
-- フロー、分岐、サイクル、ツリー、入れ子、タイムライン、基準線つきの棒を描く：[`draw-with-tako`](usecases/draw-with-tako.md)
+- 16 の型のうち部品がある図を描く：[`draw-with-tako`](usecases/draw-with-tako.md)
