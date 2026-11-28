@@ -1,34 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" width="920" height="460" role="img" aria-label="masseater/skills の main へのコミット数を週ごとに並べた棒グラフ。10/12 の週から順に 56、17、26、32、52、61、17。最後の週は月曜の 1 日分" font-family="IBM Plex Sans JP, Hiragino Sans, Noto Sans JP, sans-serif">
-<rect width="920" height="460" fill="#f7f6f2"/>
-<line x1="72" x2="890" y1="360.0" y2="360.0" stroke="#1d2424" stroke-width="2"/>
-<text x="60" y="367.0" font-size="18" fill="#5b6868" text-anchor="end">0</text>
-<line x1="72" x2="890" y1="274.3" y2="274.3" stroke="#c9cfcb" stroke-width="1"/>
-<text x="60" y="281.3" font-size="18" fill="#5b6868" text-anchor="end">20</text>
-<line x1="72" x2="890" y1="188.6" y2="188.6" stroke="#c9cfcb" stroke-width="1"/>
-<text x="60" y="195.6" font-size="18" fill="#5b6868" text-anchor="end">40</text>
-<line x1="72" x2="890" y1="102.9" y2="102.9" stroke="#c9cfcb" stroke-width="1"/>
-<text x="60" y="109.9" font-size="18" fill="#5b6868" text-anchor="end">60</text>
-<rect x="96" y="120.0" width="70" height="240.0" fill="#1d2424"/>
-<text x="131.0" y="110.0" font-size="22" font-weight="700" text-anchor="middle" fill="#1d2424">56</text>
-<text x="131.0" y="390" font-size="18" text-anchor="middle" fill="#5b6868">10/12〜</text>
-<rect x="212" y="287.1" width="70" height="72.9" fill="#1d2424"/>
-<text x="247.0" y="277.1" font-size="22" font-weight="700" text-anchor="middle" fill="#1d2424">17</text>
-<text x="247.0" y="390" font-size="18" text-anchor="middle" fill="#5b6868">10/19〜</text>
-<rect x="328" y="248.6" width="70" height="111.4" fill="#1d2424"/>
-<text x="363.0" y="238.6" font-size="22" font-weight="700" text-anchor="middle" fill="#1d2424">26</text>
-<text x="363.0" y="390" font-size="18" text-anchor="middle" fill="#5b6868">10/26〜</text>
-<rect x="444" y="222.9" width="70" height="137.1" fill="#1d2424"/>
-<text x="479.0" y="212.9" font-size="22" font-weight="700" text-anchor="middle" fill="#1d2424">32</text>
-<text x="479.0" y="390" font-size="18" text-anchor="middle" fill="#5b6868">11/2〜</text>
-<rect x="560" y="137.1" width="70" height="222.9" fill="#1d2424"/>
-<text x="595.0" y="127.1" font-size="22" font-weight="700" text-anchor="middle" fill="#1d2424">52</text>
-<text x="595.0" y="390" font-size="18" text-anchor="middle" fill="#5b6868">11/9〜</text>
-<rect x="676" y="98.6" width="70" height="261.4" fill="#0d6a66"/>
-<text x="711.0" y="88.6" font-size="22" font-weight="700" text-anchor="middle" fill="#0d6a66">61</text>
-<text x="711.0" y="390" font-size="18" text-anchor="middle" fill="#5b6868">11/16〜</text>
-<rect x="792" y="287.1" width="70" height="72.9" fill="none" stroke="#1d2424" stroke-width="2" stroke-dasharray="6 5"/>
-<text x="827.0" y="277.1" font-size="22" font-weight="700" text-anchor="middle" fill="#1d2424">17</text>
-<text x="827.0" y="390" font-size="18" text-anchor="middle" fill="#5b6868">11/23〜</text>
-<text x="827.0" y="416" font-size="16" text-anchor="middle" fill="#1d2424">月曜の 1 日分</text>
-<text x="72" y="34" font-size="18" fill="#5b6868">main へのコミット数（週ごと）</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 460" width="1060" height="460" role="img" aria-label="1 日の書き込み費用は、約 56 サーバーまでは 0 のままで、そこから直線で増え、500 サーバーで約 $13 になる。" font-family="'Noto Sans JP','Noto Sans CJK JP','Hiragino Sans',sans-serif">
+<style>svg{--bg:#ffffff;--ink:#1f2933;--sub:#5b6672;--line:#c7d0d9;--mix:0.17;--person:#2151af;--personF:#d9e1f1;--system:#966cd7;--systemF:#ede6f8;--data:#179a8e;--dataF:#d8eeec;--money:#d16022;--moneyF:#f7e4d9;--decision:#942464;--decisionF:#eddae5;--outside:#6b7785;--outsideF:#f2f3f5;--good:#1a7f37;--goodF:#d8e9dd;--caution:#9a6700;--cautionF:#eee5d4;--fail:#cf222e;--failF:#f7d9db}@media (prefers-color-scheme:dark){svg{--bg:#14181c;--ink:#e8ecef;--sub:#a3adb8;--line:#3a444e;--mix:0.27;--person:#3769ca;--personF:#1d2e4b;--system:#ae84f2;--systemF:#3e3556;--data:#2da79b;--dataF:#1b3f3e;--money:#ed7940;--moneyF:#4f3226;--decision:#af3e7c;--decisionF:#3e2236;--outside:#8d99a6;--outsideF:#24292f;--good:#3fb950;--goodF:#20432a;--caution:#d29922;--cautionF:#473b1e;--fail:#f85149;--failF:#522728}}
+.bg{fill:var(--bg)}.t{fill:var(--ink)}.s{fill:var(--sub)}.n{fill:var(--f);stroke:var(--s);stroke-width:2;stroke-linejoin:round}.o{stroke-dasharray:6 5}
+.k-person{--s:var(--person);--f:var(--personF)}.k-system{--s:var(--system);--f:var(--systemF)}.k-data{--s:var(--data);--f:var(--dataF)}.k-money{--s:var(--money);--f:var(--moneyF)}.k-decision{--s:var(--decision);--f:var(--decisionF)}.k-outside{--s:var(--outside);--f:var(--outsideF)}.k-good{--s:var(--good);--f:var(--goodF)}.k-caution{--s:var(--caution);--f:var(--cautionF)}.k-fail{--s:var(--fail);--f:var(--failF)}.ln{stroke:var(--sub);stroke-width:2;fill:none}.cn{stroke:var(--decision);stroke-width:2;fill:none;stroke-dasharray:7 6}
+.halo{paint-order:stroke;stroke:var(--bg);stroke-width:7px;stroke-linejoin:round}
+.g{fill:none;stroke:var(--s);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.gf{fill:var(--f);stroke:var(--s);stroke-width:2}.gs{fill:var(--s)}</style>
+<defs><marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto"><path d="M0 0 10 5 0 10z" fill="context-stroke"/></marker><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="context-stroke"/></marker></defs>
+<rect class="bg" width="1060" height="460"/>
+<text x="30" y="34" font-size="24" text-anchor="start" dominant-baseline="central" font-weight="700" class="t">Durable Object の書き込み費用（1 日）</text><text x="30" y="66" font-size="17" text-anchor="start" dominant-baseline="central" font-weight="400" class="s">サーバー数ごと・各 1 日 2,000 件・1 件あたり 14.8 行</text><line x1="90" y1="390" x2="960" y2="390" style="stroke:var(--line);stroke-width:1.5"/><text x="76" y="390" font-size="15" text-anchor="end" dominant-baseline="central" font-weight="400" class="s">$0</text><line x1="90" y1="300" x2="960" y2="300" style="stroke:var(--line);stroke-width:1.5"/><text x="76" y="300" font-size="15" text-anchor="end" dominant-baseline="central" font-weight="400" class="s">$5</text><line x1="90" y1="210" x2="960" y2="210" style="stroke:var(--line);stroke-width:1.5"/><text x="76" y="210" font-size="15" text-anchor="end" dominant-baseline="central" font-weight="400" class="s">$10</text><line x1="90" y1="120" x2="960" y2="120" style="stroke:var(--line);stroke-width:1.5"/><text x="76" y="120" font-size="15" text-anchor="end" dominant-baseline="central" font-weight="400" class="s">$15</text><text x="90" y="414" font-size="15" text-anchor="middle" dominant-baseline="central" font-weight="400" class="s">0</text><text x="260" y="414" font-size="15" text-anchor="middle" dominant-baseline="central" font-weight="400" class="s">100</text><text x="430" y="414" font-size="15" text-anchor="middle" dominant-baseline="central" font-weight="400" class="s">200</text><text x="600" y="414" font-size="15" text-anchor="middle" dominant-baseline="central" font-weight="400" class="s">300</text><text x="770" y="414" font-size="15" text-anchor="middle" dominant-baseline="central" font-weight="400" class="s">400</text><text x="940" y="414" font-size="15" text-anchor="middle" dominant-baseline="central" font-weight="400" class="s">500</text><text x="960" y="436" font-size="16" text-anchor="end" dominant-baseline="central" font-weight="400" class="s">サーバー</text><path d="M90 390H163.7Q185.7 390 206.7 383.4L940 153.7" style="fill:none;stroke:var(--money);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round"/><circle cx="940" cy="153.7" r="8" style="fill:var(--money);stroke:var(--bg);stroke-width:3"/><text x="948" y="119.66" font-size="24" text-anchor="end" dominant-baseline="central" font-weight="700" class="t halo">500 サーバーで約 $13/日</text><circle cx="185.7" cy="390" r="6" style="fill:var(--money);stroke:var(--bg);stroke-width:3"/><text x="100" y="315.2" font-size="16" text-anchor="start" dominant-baseline="central" font-weight="400" class="t"><tspan x="100" dy="0">約 56 サーバーまでは</tspan><tspan x="100" dy="21.6">含まれる範囲に収まる</tspan></text>
 </svg>

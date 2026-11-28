@@ -50,7 +50,13 @@ Claude Code の持ち主が読む量、覚えておく量、手で打つ量を�
 | --- | --- |
 | アイソタイプ | ![プラグインごとのスキル数](skills/infographic/examples/isotype.svg) |
 | 模式図 | ![cogload の 1 ターン](skills/infographic/examples/schematic.svg) |
-| 注記付きの図解 | ![gitbook-slides の画面の各部](skills/infographic/examples/annotated.svg) |
-| エディトリアルのデータ図 | ![週ごとのコミット数](skills/infographic/examples/editorial-chart.svg) |
+| 注記付きの図解 | ![GitBook 風のページの各部](skills/infographic/examples/annotated.svg) |
+| エディトリアルのデータ図 | ![サーバー数ごとの書き込み費用](skills/infographic/examples/editorial-chart.svg) |
+
+要素は、種類ごとの色と形で描き分ける。
+
+![要素の種類ごとの色と形](skills/infographic/examples/palette.svg)
+
+見せたいことから図の型を選ぶカタログと、型ごとの見本は [catalog.md](skills/infographic/references/catalog.md) にある。色と形の決まりは [palette.md](skills/infographic/references/palette.md) にある。
 
 図で表すものと文字で書くものの良い例と悪い例は [figure-or-text.md](skills/infographic/references/figure-or-text.md) にある。

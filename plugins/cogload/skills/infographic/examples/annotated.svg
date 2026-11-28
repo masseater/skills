@@ -1,46 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1430 640" width="1430" height="640" role="img" aria-label="gitbook-slides で組み立てた画面の各部の名前と働き" font-family="IBM Plex Sans JP, Hiragino Sans, Noto Sans JP, sans-serif">
-<rect width="1430" height="640" fill="#f7f6f2"/>
-<g transform="translate(90 0)">
-<rect x="330" y="60" width="640" height="520" fill="#fff" stroke="#1d2424" stroke-width="2"/>
-<line x1="330" y1="100" x2="970" y2="100" stroke="#c9cfcb" stroke-width="2"/>
-<rect x="344" y="73" width="16" height="2.5" fill="#5b6868"/>
-<rect x="344" y="79" width="16" height="2.5" fill="#5b6868"/>
-<rect x="344" y="85" width="16" height="2.5" fill="#5b6868"/>
-<rect x="374" y="76" width="150" height="9" fill="#1d2424"/>
-<text x="850" y="86" font-size="13" fill="#5b6868">3 / 4</text>
-<path d="M905 72v16l13-8z" fill="#5b6868"/>
-<rect x="330" y="100" width="140" height="480" fill="#f3f5f4"/>
-<line x1="470" y1="100" x2="470" y2="580" stroke="#c9cfcb" stroke-width="2"/>
-<rect x="344" y="120" width="70" height="7" fill="#5b6868"/>
-<rect x="344" y="152" width="40" height="7" fill="#1d2424"/>
-<rect x="346" y="174" width="90" height="7" fill="#5b6868"/>
-<rect x="338" y="190" width="124" height="22" rx="3" fill="#e1eeec"/>
-<rect x="346" y="198" width="76" height="7" fill="#0d6a66"/>
-<rect x="344" y="230" width="40" height="7" fill="#1d2424"/>
-<rect x="346" y="252" width="84" height="7" fill="#5b6868"/>
-<rect x="490" y="120" width="460" height="259" fill="#f7f6f2" stroke="#c9cfcb" stroke-width="2"/>
-<rect x="520" y="154" width="230" height="16" fill="#1d2424"/>
-<rect x="530" y="210" width="100" height="40" fill="#fff" stroke="#1d2424" stroke-width="2"/>
-<line x1="630" y1="230" x2="660" y2="230" stroke="#1d2424" stroke-width="2"/>
-<rect x="660" y="210" width="100" height="40" fill="#fff" stroke="#1d2424" stroke-width="2"/>
-<line x1="760" y1="230" x2="790" y2="230" stroke="#1d2424" stroke-width="2"/>
-<rect x="790" y="210" width="100" height="40" fill="#fff" stroke="#1d2424" stroke-width="2"/>
-<rect x="490" y="395" width="224" height="40" rx="3" fill="#fff" stroke="#c9cfcb" stroke-width="2"/>
-<rect x="504" y="417" width="70" height="7" fill="#1d2424"/>
-<rect x="726" y="395" width="224" height="40" rx="3" fill="#fff" stroke="#c9cfcb" stroke-width="2"/>
-<rect x="870" y="417" width="70" height="7" fill="#1d2424"/>
-<line x1="490" y1="457" x2="950" y2="457" stroke="#c9cfcb" stroke-width="2"/>
-<rect x="490" y="471" width="90" height="6" fill="#5b6868"/>
-<rect x="490" y="489" width="420" height="6" fill="#aab3b0"/>
-<rect x="490" y="505" width="380" height="6" fill="#aab3b0"/>
-<rect x="490" y="521" width="300" height="6" fill="#aab3b0"/>
-<path d="M308 154H340L370 156" fill="none" stroke="#1d2424" stroke-width="1.5"/><circle cx="370" cy="156" r="5" fill="#0d6a66"/><text x="300" y="160" font-size="18" text-anchor="end" fill="#1d2424">グループ（SUMMARY.md の ##）</text>
-<path d="M308 224H370L400 202" fill="none" stroke="#1d2424" stroke-width="1.5"/><circle cx="400" cy="202" r="5" fill="#0d6a66"/><text x="300" y="230" font-size="18" text-anchor="end" fill="#1d2424">スライド一覧（SUMMARY.md の順）</text>
-<path d="M308 74H330L352 80" fill="none" stroke="#1d2424" stroke-width="1.5"/><circle cx="352" cy="80" r="5" fill="#0d6a66"/><text x="300" y="80" font-size="18" text-anchor="end" fill="#1d2424">一覧を開閉</text>
-<path d="M992 82H941L911 80" fill="none" stroke="#1d2424" stroke-width="1.5"/><circle cx="911" cy="80" r="5" fill="#0d6a66"/><text x="1000" y="88" font-size="18" text-anchor="start" fill="#1d2424">発表：スライドだけを全画面に</text>
-<path d="M992 224H960L930 249.5" fill="none" stroke="#1d2424" stroke-width="1.5"/><circle cx="930" cy="249.5" r="5" fill="#0d6a66"/><text x="1000" y="230" font-size="18" text-anchor="start" fill="#1d2424">スライド（1920×1080 px を縮小）</text>
-<path d="M992 415H966L936 415" fill="none" stroke="#1d2424" stroke-width="1.5"/><circle cx="936" cy="415" r="5" fill="#0d6a66"/><text x="1000" y="421" font-size="18" text-anchor="start" fill="#1d2424">前後のスライド</text>
-<path d="M992 497H940L910 497" fill="none" stroke="#1d2424" stroke-width="1.5"/><circle cx="910" cy="497" r="5" fill="#0d6a66"/><text x="1000" y="503" font-size="18" text-anchor="start" fill="#1d2424">スピーカーノート</text>
-<text x="1000" y="527" font-size="15" fill="#5b6868">発表の画面と PDF には出ない</text>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" width="1100" height="420" role="img" aria-label="GitBook 風のページの各部：開閉ボタン、サイドバー、パンくず、本文、このページの目次、前後のページへのリンク。" font-family="'Noto Sans JP','Noto Sans CJK JP','Hiragino Sans',sans-serif">
+<style>svg{--bg:#ffffff;--ink:#1f2933;--sub:#5b6672;--line:#c7d0d9;--mix:0.17;--person:#2151af;--personF:#d9e1f1;--system:#966cd7;--systemF:#ede6f8;--data:#179a8e;--dataF:#d8eeec;--money:#d16022;--moneyF:#f7e4d9;--decision:#942464;--decisionF:#eddae5;--outside:#6b7785;--outsideF:#f2f3f5;--good:#1a7f37;--goodF:#d8e9dd;--caution:#9a6700;--cautionF:#eee5d4;--fail:#cf222e;--failF:#f7d9db}@media (prefers-color-scheme:dark){svg{--bg:#14181c;--ink:#e8ecef;--sub:#a3adb8;--line:#3a444e;--mix:0.27;--person:#3769ca;--personF:#1d2e4b;--system:#ae84f2;--systemF:#3e3556;--data:#2da79b;--dataF:#1b3f3e;--money:#ed7940;--moneyF:#4f3226;--decision:#af3e7c;--decisionF:#3e2236;--outside:#8d99a6;--outsideF:#24292f;--good:#3fb950;--goodF:#20432a;--caution:#d29922;--cautionF:#473b1e;--fail:#f85149;--failF:#522728}}
+.bg{fill:var(--bg)}.t{fill:var(--ink)}.s{fill:var(--sub)}.n{fill:var(--f);stroke:var(--s);stroke-width:2;stroke-linejoin:round}.o{stroke-dasharray:6 5}
+.k-person{--s:var(--person);--f:var(--personF)}.k-system{--s:var(--system);--f:var(--systemF)}.k-data{--s:var(--data);--f:var(--dataF)}.k-money{--s:var(--money);--f:var(--moneyF)}.k-decision{--s:var(--decision);--f:var(--decisionF)}.k-outside{--s:var(--outside);--f:var(--outsideF)}.k-good{--s:var(--good);--f:var(--goodF)}.k-caution{--s:var(--caution);--f:var(--cautionF)}.k-fail{--s:var(--fail);--f:var(--failF)}.ln{stroke:var(--sub);stroke-width:2;fill:none}.cn{stroke:var(--decision);stroke-width:2;fill:none;stroke-dasharray:7 6}
+.halo{paint-order:stroke;stroke:var(--bg);stroke-width:7px;stroke-linejoin:round}
+.g{fill:none;stroke:var(--s);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.gf{fill:var(--f);stroke:var(--s);stroke-width:2}.gs{fill:var(--s)}</style>
+<defs><marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto"><path d="M0 0 10 5 0 10z" fill="context-stroke"/></marker><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="context-stroke"/></marker></defs>
+<rect class="bg" width="1100" height="420"/>
+<rect x="330" y="50" width="440" height="340" rx="10" style="fill:var(--bg);stroke:var(--line);stroke-width:2"/><rect class="n k-outside" x="338" y="58" width="424" height="30" rx="9"/><rect class="n k-person" x="346" y="64" width="18" height="18" rx="9"/><rect class="n k-system" x="338" y="96" width="110" height="286" rx="9"/><rect class="n k-outside" x="458" y="96" width="230" height="24" rx="9"/><rect class="n k-data" x="458" y="128" width="230" height="200" rx="9"/><rect class="n k-system" x="696" y="128" width="66" height="110" rx="9"/><rect class="n k-system" x="458" y="338" width="108" height="44" rx="9"/><rect class="n k-system" x="580" y="338" width="108" height="44" rx="9"/><line x1="270" y1="73" x2="355" y2="73" style="stroke:var(--sub);stroke-width:2"/><circle cx="355" cy="73" r="5" style="fill:var(--ink)"/><text x="262" y="62" font-size="20" text-anchor="end" dominant-baseline="central" font-weight="700" class="t">開閉ボタン</text><text x="262" y="87" font-size="16" text-anchor="end" dominant-baseline="central" font-weight="400" class="s">サイドバーを開閉する</text><line x1="270" y1="240" x2="390" y2="240" style="stroke:var(--sub);stroke-width:2"/><circle cx="390" cy="240" r="5" style="fill:var(--ink)"/><text x="262" y="229" font-size="20" text-anchor="end" dominant-baseline="central" font-weight="700" class="t">サイドバー</text><text x="262" y="254" font-size="16" text-anchor="end" dominant-baseline="central" font-weight="400" class="s">項目ごとに 1 ページ</text><line x1="620" y1="108" x2="830" y2="108" style="stroke:var(--sub);stroke-width:2"/><circle cx="620" cy="108" r="5" style="fill:var(--ink)"/><text x="840" y="97" font-size="20" text-anchor="start" dominant-baseline="central" font-weight="700" class="t">パンくず</text><text x="840" y="122" font-size="16" text-anchor="start" dominant-baseline="central" font-weight="400" class="s">現在地</text><line x1="729" y1="183" x2="830" y2="183" style="stroke:var(--sub);stroke-width:2"/><circle cx="729" cy="183" r="5" style="fill:var(--ink)"/><text x="840" y="172" font-size="20" text-anchor="start" dominant-baseline="central" font-weight="700" class="t">このページ</text><text x="840" y="197" font-size="16" text-anchor="start" dominant-baseline="central" font-weight="400" class="s">ページの見出し</text><line x1="630" y1="288" x2="830" y2="288" style="stroke:var(--sub);stroke-width:2"/><circle cx="630" cy="288" r="5" style="fill:var(--ink)"/><text x="840" y="277" font-size="20" text-anchor="start" dominant-baseline="central" font-weight="700" class="t">本文</text><text x="840" y="302" font-size="16" text-anchor="start" dominant-baseline="central" font-weight="400" class="s">ページの Markdown</text><line x1="634" y1="360" x2="830" y2="360" style="stroke:var(--sub);stroke-width:2"/><circle cx="634" cy="360" r="5" style="fill:var(--ink)"/><text x="840" y="349" font-size="20" text-anchor="start" dominant-baseline="central" font-weight="700" class="t">前後のページ</text><text x="840" y="374" font-size="16" text-anchor="start" dominant-baseline="central" font-weight="400" class="s">隣のページへのリンク</text>
 </svg>
