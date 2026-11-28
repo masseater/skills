@@ -181,6 +181,27 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@anthropic-ai/claude-code':
+      specifier: 2.1.332
+      version: 2.1.332
+    '@r_masseater/msch':
+      specifier: 0.59.1
+      version: 0.59.1
+    fallow:
+      specifier: 3.48.0
+      version: 3.48.0
+    fallow-similar-code:
+      specifier: 3.48.0
+      version: 3.48.0
+    skills-ref:
+      specifier: 0.1.5
+      version: 0.1.5
+    vite-plus:
+      specifier: 1.8.0
+      version: 1.8.0
+
 overrides:
   vite@*: npm:@voidzero-dev/vite-plus-core@8.3.8001
   glob@>=9.0.0 <=14.0.1: ^14.0.2
@@ -192,23 +213,25 @@ importers:
   .:
     devDependencies:
       '@anthropic-ai/claude-code':
-        specifier: 2.1.332
+        specifier: 'catalog:'
         version: 2.1.332
       '@r_masseater/msch':
-        specifier: 0.59.1
+        specifier: 'catalog:'
         version: 0.59.1(@andrewbranch/untar.js@1.0.4)(@effect/tsgo@0.73.7)(@loaderkit/resolve@1.0.6)(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(cjs-module-lexer@2.3.0)(effect@4.1.6)(eslint@10.14.0(jiti@2.7.0))(fflate@0.8.3)(markdownlint@0.42.1)(minimatch@11.0.9)(oxlint@1.94.0(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(validate-npm-package-name@8.0.0)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
       fallow:
-        specifier: 3.48.0
+        specifier: 'catalog:'
         version: 3.48.0
       fallow-similar-code:
-        specifier: 3.48.0
+        specifier: 'catalog:'
         version: 3.48.0
       skills-ref:
-        specifier: 0.1.5
+        specifier: 'catalog:'
         version: 0.1.5
       vite-plus:
-        specifier: 1.8.0
+        specifier: 'catalog:'
         version: 1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)
+
+  plugins/art-workflow: {}
 
   plugins/cogload: {}
 

@@ -10,12 +10,12 @@
     "prepare": "vp config --no-agent"
   },
   "devDependencies": {
-    "@anthropic-ai/claude-code": "2.1.332",
-    "@r_masseater/msch": "0.59.1",
-    "fallow": "3.48.0",
-    "fallow-similar-code": "3.48.0",
-    "skills-ref": "0.1.5",
-    "vite-plus": "1.8.0"
+    "@anthropic-ai/claude-code": "catalog:",
+    "@r_masseater/msch": "catalog:",
+    "fallow": "catalog:",
+    "fallow-similar-code": "catalog:",
+    "skills-ref": "catalog:",
+    "vite-plus": "catalog:"
   },
   "devEngines": {
     "packageManager": {
