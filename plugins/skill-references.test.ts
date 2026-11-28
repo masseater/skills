@@ -2,7 +2,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vite-plus/test";
 
-const hub = "masseater-ecosystem";
+const hub = "masseater-style";
 const roots = [
   path.resolve(import.meta.dirname, "masseater-skills", "skills"),
   path.resolve(import.meta.dirname, "cogload", "skills"),
