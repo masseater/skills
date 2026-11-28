@@ -44,6 +44,7 @@ description: masseaterのリポジトリで作業する際のエントリーポ�
 
 - 新しい処理、ヘルパー、ラッパー、ツール、または外部APIクライアントの記述を開始する前に：`find-before-build`
 - バグの原因や、2つの選択肢のうちどちらが速いかなど、推測で何かを解決しようとするとき：`measure-dont-guess`
+- リポジトリの分割、CIの高速化、依存関係の選定といった判断の前に何を測定すべきかを列挙するとき、および何かを改善するとき：`measure-dont-guess`
 - ライブラリや新しい実装方法を導入する際：`integrate`
 - ログインやAccessの背後にあるものを構築または調査する場合：`debug-like-a-human`
 - Cloudflareにデプロイするものを設計する際：`cloudflare-caution`
