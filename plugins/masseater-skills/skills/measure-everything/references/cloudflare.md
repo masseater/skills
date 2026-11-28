@@ -4,7 +4,7 @@
 
 `observability.issues.enabled` で [Workers Issues](https://developers.cloudflare.com/workers/observability/issues/) を有効にする。これにより、捕捉されなかった例外、5xx レスポンス、およびログに記録されたエラーが issue にまとめられ、本番環境での障害が報告前に記録される。デフォルトでは無効になっており、有効にした後のみトラフィックが記録される。`console.error()` で処理済みのエラーをログに記録し、issue として扱う。
 
-Effect、TanStack Start、および Elysia のアプリでは、[`@r_masseater/workers-tracing`](https://github.com/masseater/masseater.dev/tree/main/libs/workers-tracing) を追加する。これにより、Effect のスパン、リクエスト、サーバー関数、および Elysia ルートが、プラットフォーム独自のスパンに統合されて 1 つのトレースとなる。リポジトリごとに Effect トレーサーやスパンミドルウェアをビルドしてはならない。
+Effect、TanStack Start、および Elysia のアプリでは、[`@r_masseater/workers-tracing`](github:masseater/masseater.dev/libs/workers-tracing) を追加する。これにより、Effect のスパン、リクエスト、サーバー関数、および Elysia ルートが、プラットフォーム独自のスパンに統合されて 1 つのトレースとなる。リポジトリごとに Effect トレーサーやスパンミドルウェアをビルドしてはならない。
 
 Alchemy スタックでは、プロバイダーに `withWorkersTracing({ destinations })` を渡し、これにより Issues も有効になる。各 Worker に `observability` と互換性日を記述してはならない。後から追加された Worker は、誰も忘れずにトレースされる。すべての Effect を `run` または `runner` で実行し、そこから `Elysia` をインポートする。トレースをスキップするコードがリントに失敗するよう、oxlint プリセットを追加しておく。
 

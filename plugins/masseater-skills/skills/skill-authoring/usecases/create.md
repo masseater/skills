@@ -7,6 +7,6 @@
 5. 内容が構造的なものであればテストケースを記述する。主観的なものであれば記述しない
 6. リポジトリの手順に従って PR を開く
 
-複数のリポジトリで共通して使用されるスキルは masseater/skills の `skills/` に入る。そこに配置されたスキルは Claude Code プラグイン `masseater-skills` にも含まれる。
+複数のリポジトリで共通して使用されるスキルは [masseater/skills](github:masseater/skills/plugins/masseater-skills/skills) の `plugins/masseater-skills/skills/` に入る。そこに配置されたスキルは Claude Code プラグイン `masseater-skills` にも含まれる。
 
 返信にはスキルの概要、主な設計上の決定事項、検証結果を記述する。

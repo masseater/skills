@@ -72,6 +72,7 @@ metadata:
 - [`no-perishable-information`](references/no-perishable-information.md)。コードから導き出せる情報を文書にコピーしてはならない。
 - [`punctuation`](references/punctuation.md)。役割の境界や意味が定まる箇所に句読点を打つ。
 - [`purpose-before-means`](references/purpose-before-means.md)。手段よりも目的を先に置く。
+- [`source-references`](references/source-references.md)。リポジトリやパッケージを指すときは、msch が確かめられる `github:` と `npm:` のリンクで書く。
 - [`headings`](references/headings.md)。見出しや箇条書きは名詞で締めくくる。
 - [`show-dont-describe`](references/show-dont-describe.md)。手順書やリファレンス文書をUIとして扱い、説明せずに見出しやコードブロックで示す。
 

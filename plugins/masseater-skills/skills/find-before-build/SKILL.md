@@ -25,7 +25,7 @@ metadata:
 
 masseaterのツールは2か所に存在しており、npm検索ではどちらも確実に見つからない。
 
-- masseater/masseater.dev モノレポのワークスペース（`apps/`、`libs/`、`tools/`、`infra/`）。その多くは npm に公開されていない。どのワークスペースも `package.json` に1行の `description` を持つ。ツールを作る前や、ツールが存在しないと言う前に、リポジトリのルートで `grep -h '"description"' */*/package.json` などを使ってそれらを読むこと。kogane プラグインがプロンプトに `kogane:` の一覧を加えたときは、挙がったワークスペースを先に読むこと。
+- [masseater/masseater.dev](github:masseater/masseater.dev) モノレポのワークスペース（`apps/`、`libs/`、`tools/`、`infra/`）。その多くは npm に公開されていない。どのワークスペースも `package.json` に1行の `description` を持つ。ツールを作る前や、ツールが存在しないと言う前に、リポジトリのルートで `grep -h '"description"' */*/package.json` などを使ってそれらを読むこと。kogane プラグインがプロンプトに `kogane:` の一覧を加えたときは、挙がったワークスペースを先に読むこと。
 - masseaterがnpmに公開しているパッケージ。npm検索は人気順にソートするため埋もれてしまう。`vp pm search maintainer:r_masseater` で列挙する。条件に合うものがあれば、まだ依存関係になっていない場合でもインストールして使用すること。READMEは `https://unpkg.com/<name>/README.md` を参照すること。
 
 ## 一般的な状況では、決定事項を使用する
