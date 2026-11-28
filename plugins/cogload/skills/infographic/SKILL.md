@@ -37,7 +37,7 @@ description: 説明に使う図を、主役を中心にした 1 つの場面と�
 | 数値の変化や比較を、正確に | 時間軸、ゲージ | エディトリアルのデータ図 | [editorial-chart.md](references/editorial-chart.md) | [editorial-chart.svg](examples/editorial-chart.svg) |
 | 量の大小を、数えられる形で | 同じ記号の列 | アイソタイプ | [isotype.md](references/isotype.md) | [isotype.svg](examples/isotype.svg) |
 
-型は 16 種類あり、見せたいことから選ぶ。選び方、各型の系統、見本は [catalog.md](references/catalog.md) にある。
+型は 16 種類あり、見せたいことから選ぶ。選び方、各型の系統、見本は [catalog.md](references/catalog.md) に書いてある。
 
 ## 凡例なしで読める図にする
 

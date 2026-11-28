@@ -5,10 +5,10 @@ description: 解説・紹介動画を、決まった構成の型と共通部品�
 
 # video-production
 
-- AIが作ったと分かる動画の特徴と、それを避ける観点表は[`ai-slop`](references/ai-slop.md)にある。
-- 見た目の型にする参照チャンネルと、それぞれの型の特徴は[`channel-styles`](references/channel-styles.md)にある。
+- AIが作ったと分かる動画の特徴と、それを避ける観点表は[`ai-slop`](references/ai-slop.md)に書いてある。
+- 見た目の型にする参照チャンネルと、それぞれの型の特徴は[`channel-styles`](references/channel-styles.md)に書いてある。
 - 動画を置くリポジトリ、コマンド、素材の取り先は[`masseater-dev`](references/masseater-dev.md)を読む。
-- 登場人物の役、口調、知っていることは[`cast`](references/cast.md)にある。
+- 登場人物の役、口調、知っていることは[`cast`](references/cast.md)に書いてある。
 
 ## なぜこのスキルが必要で、どのような状態を目指すべきか
 

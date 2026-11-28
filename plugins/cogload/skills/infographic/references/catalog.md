@@ -51,7 +51,7 @@
 
 - 1 枚の図には 1 つの型だけを使う。2 つの関係を示したいときは、図を 2 枚に分ける。
 - 数値が 3 つ以下で、比べる相手がなければ、図にせず文字で書く。[figure-or-text.md](figure-or-text.md) を読む。
-- 色の使い方は [palette.md](palette.md)、各系統の描き方は [schematic.md](schematic.md)、[annotated.md](annotated.md)、[editorial-chart.md](editorial-chart.md)、[isotype.md](isotype.md) にある。
+- 色の使い方は [palette.md](palette.md)、各系統の描き方は [schematic.md](schematic.md)、[annotated.md](annotated.md)、[editorial-chart.md](editorial-chart.md)、[isotype.md](isotype.md) に書いてある。
 
 ## 見本の数値
 
