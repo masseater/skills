@@ -59,5 +59,5 @@ description: masseaterのリポジトリで作業する際のエントリーポ�
 - 日次監査（全リポジトリの日次点検）を行う際：`daily-check`。`daily-check` は次のスキルをこの順に読み込んで実行する：`check-cloudflare-cost`、`check-ci-duration`、`check-upstream-exits`、`check-similar-code`、`cross-repo-similar-code`、`check-repeated-corrections`、`check-repo-conventions`、`adopt-library-features`。`check-` で始まるスキルと `cross-repo-similar-code` は何も変更せず、`adopt-library-features` だけがコードを変更する。`check-similar-code` と `check-repeated-corrections` は `repo-conventions` の usecases/sweep-repeated-corrections.md の手順に従う。`check-cloudflare-cost` は `cloudflare-caution` に従う。`adopt-library-features` は `integrate` に従って導入する。
 - masseater.dev か ecosystems の main の verify が失敗したと CI から依頼が届いた際：`fix-red-main`。赤の原因を直す PR を失敗ごとに 1 つだけ出す。
 - プロジェクトのスレッドを横断して、作業の質、部分最適、スレッド間の矛盾を見直す統合監査を行う際：`integrated-audit`
-- 定期のアイドルスレッド点検の依頼が届いた際：`push-idle-threads`。止まっているスレッドに理由を問い、続けるか終えるかを促す。
+- コーディネーターが定期のアイドルスレッド点検に起こされた際：`push-idle-threads`。止まっているスレッドに理由を問い、続けるか終えるかを促す。
 - 前の週に何をしたかを週次の記録として残す際：`weekly-review`。スケジュールされたタスクの指示文は `scheduled-task-prompt` に従い、このスキルを実行するとだけ書く。
