@@ -6,6 +6,11 @@
   },
   "plugins": [
     {
+      "name": "art-workflow",
+      "source": "./plugins/art-workflow",
+      "description": "アート作品の設計を、参考から核の概念を抜き出し、複数案を探り、確定し、参照用の図を作り、チェックする流れで進める。画像は ChatGPT で生成する"
+    },
+    {
       "name": "cogload",
       "source": "./plugins/cogload",
       "description": "人間の認知負荷を下げる"

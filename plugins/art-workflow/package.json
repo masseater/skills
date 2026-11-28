@@ -1,0 +1,6 @@
+{
+  "name": "art-workflow",
+  "private": true,
+  "type": "module",
+  "description": "アート作品の設計を、参考から核の概念を抜き出し、複数案を探り、確定し、参照用の図を作り、チェックする流れで進める。画像は ChatGPT で生成する"
+}

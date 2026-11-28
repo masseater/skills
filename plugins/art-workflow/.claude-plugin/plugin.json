@@ -1,0 +1,11 @@
+{
+  "name": "art-workflow",
+  "description": "アート作品の設計を、参考から核の概念を抜き出し、複数案を探り、確定し、参照用の図を作り、チェックする流れで進める。画像は ChatGPT で生成する",
+  "author": {
+    "name": "masseater",
+    "url": "https://github.com/masseater"
+  },
+  "homepage": "https://github.com/masseater/skills#art-workflow",
+  "repository": "https://github.com/masseater/skills",
+  "license": "AGPL-3.0-only"
+}
