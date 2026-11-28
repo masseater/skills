@@ -9,4 +9,10 @@
 ## 2026-11-28
 
 - 人間の認知負荷を軽減する。つまり、人が読み、念頭に置き、手入力しなければならない内容のことである。
+  - スキル：`cognitive-load`、`infographic`、`gitbook-pages`、`slide-content`、`humanity-and-humanness`、`human-judgment-line`、`measure-dont-guess`、`masseater-style`。
+  - これらを強制するフック：[cogloadフック](https://github.com/masseater/skills/tree/main/plugins/cogload/hooks)（スキル優先、簡潔なレポート、非公式ソースの確認）および[Stopスタイルチェック](https://github.com/masseater/skills/blob/main/plugins/masseater-skills/hooks/stop-style-check.ts)。
+  - 計測：[lap](https://github.com/masseater/masseater.dev/tree/main/tools/lap)、[lapse](https://github.com/masseater/masseater.dev/tree/main/libs/lapse)、および[work-metrics](https://github.com/masseater/masseater.dev/tree/main/tools/work-metrics)。
 - 人が欲しいものを言葉にしやすくする。
+  - [Sashi](https://sashi.masseater.dev)は、masseater が欲しいものの代わりに指し示す参考例を集める。
+  - 判断モデルが選択式の問いに答える。[oxlint-plugin-decision](https://github.com/masseater/ecosystems/tree/main/libs/oxlint-plugin-decision)と cogload の判断フックがある。
+  - [intent-book](https://github.com/masseater/ecosystems/tree/main/libs/intent-book)は、エージェント向けのスキルを人間向けのドキュメントにし、どちらも同じ元を読む。
