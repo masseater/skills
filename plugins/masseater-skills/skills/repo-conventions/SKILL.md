@@ -102,7 +102,7 @@ masseaterのリポジトリはすべて同一のテンプレートから作成�
 
 - [`fsd`](references/fsd.md)。Feature-Sliced Design のスライスの分け方、UI のないコードのレイヤーの読み替え、パブリック API、コロケーション、列挙で合わせないためのルール（ファイルだけでなく、型名やシンボル名など手で保守する一覧も含む）。
 - [`cloudflare`](references/cloudflare.md)。Cloudflare にデプロイするリポジトリ向けのルール。すべてのリソースを日本で動かす規則を含む。
-- [`published-packages`](references/published-packages.md)。npm に公開するパッケージの対応範囲の宣言、パッケージの境界、重い依存関係の扱い。
+- [`published-packages`](references/published-packages.md)。npm に公開するパッケージのレビュー基準。他のリポジトリでも使えること、対応範囲の宣言、パッケージの境界、重い依存関係の扱い。
 - [`oxlint-plugin-decision`](references/oxlint-plugin-decision.md)。`vp check` で判定ルールを使用するリポジトリ向けのルール。
 - [`ci`](references/ci.md)。GitHub Actions ワークフローの追加・変更ルール。
 - [`model-calls`](references/model-calls.md)。モデルを呼び出すコードを書くためのルール。
