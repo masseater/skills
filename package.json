@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@anthropic-ai/claude-code": "catalog:",
+    "@commitlint/config-conventional": "catalog:",
     "@r_masseater/msch": "catalog:",
     "fallow": "catalog:",
     "fallow-similar-code": "catalog:",
