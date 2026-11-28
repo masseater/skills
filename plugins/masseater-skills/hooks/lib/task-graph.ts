@@ -137,10 +137,15 @@ export function applyChecklist(graph: Graph, input: { threadId: string; checklis
   });
 }
 
+export function isResolved(graph: Graph, threadId: string): boolean {
+  const task = graph.tasks.find((candidate) => candidate.threads.some((thread) => thread.id === threadId));
+  return task?.threads.find((thread) => thread.id === threadId)?.resolvedAt !== undefined;
+}
+
 export function applyResolved(graph: Graph, input: { threadId: string; result: string; at: string }): Graph | undefined {
   const { threadId, result, at } = input;
   const task = graph.tasks.find((candidate) => candidate.threads.some((thread) => thread.id === threadId));
-  if (task === undefined || task.status === "sched") return undefined;
+  if (task === undefined || task.status === "sched" || isResolved(graph, threadId)) return undefined;
   return withTask({ ...graph, generatedAt: at }, task.id, (current) => {
     const threads = current.threads.map((thread) => (thread.id === threadId ? { ...thread, resolvedAt: at } : thread));
     const finished = threads.every((thread) => thread.resolvedAt !== undefined);

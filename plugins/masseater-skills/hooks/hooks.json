@@ -13,15 +13,28 @@
         ]
       }
     ],
-    "PostToolUse": [
+    "PreToolUse": [
       {
-        "matcher": "^mcp__hearthbot__(update_progress_checklist|set_thread_resolved)$",
+        "matcher": "^mcp__hearthbot__set_thread_resolved$",
         "hooks": [
           {
             "type": "command",
             "command": "node",
             "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/task-graph.ts"],
-            "timeout": 15
+            "timeout": 45
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "^mcp__hearthbot__update_progress_checklist$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/task-graph.ts"],
+            "timeout": 20
           }
         ]
       }
