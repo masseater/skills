@@ -5,7 +5,6 @@ description: 解説・紹介動画を、決まった構成の型と共通部品�
 
 # video-production
 
-- 作り方の手順は[`make-video`](usecases/make-video.md)に従う。
 - AIが作ったと分かる動画の特徴と、それを避ける観点表は[`ai-slop`](references/ai-slop.md)にある。
 - 見た目の型にする参照チャンネルと、それぞれの型の特徴は[`channel-styles`](references/channel-styles.md)にある。
 - 動画を置くリポジトリ、コマンド、素材の取り先は[`masseater-dev`](references/masseater-dev.md)を読む。
@@ -91,3 +90,8 @@ description: 解説・紹介動画を、決まった構成の型と共通部品�
 - 白い画面写真の上に白い字幕を置いていない。
 
 持ち主には、プレビューのMP4と、品質チェックで直した点を渡す。
+
+## ユースケース
+
+- [`make-video`](usecases/make-video.md)。台本の型から縦と横の動画を作る。
+- [`analyze-channel`](usecases/analyze-channel.md)。型にない見た目を作る前に、参照チャンネルを分析する。

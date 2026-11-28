@@ -195,8 +195,8 @@ importers:
         specifier: 2.1.332
         version: 2.1.332
       '@r_masseater/msch':
-        specifier: 0.57.3
-        version: 0.57.3(@effect/tsgo@0.73.7)(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(eslint@10.14.0(jiti@2.7.0))(markdownlint@0.42.1)(oxlint@1.94.0(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
+        specifier: 0.58.0
+        version: 0.58.0(@effect/tsgo@0.73.7)(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(eslint@10.14.0(jiti@2.7.0))(markdownlint@0.42.1)(minimatch@11.0.9)(oxlint@1.94.0(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
       fallow:
         specifier: 3.48.0
         version: 3.48.0
@@ -1260,27 +1260,27 @@ packages:
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
 
-  '@r_masseater/fu4-linux-x64-gnu@0.2.0':
-    resolution: {integrity: sha512-Swdam9qGEycN6OWzlaJQGExvQPnJs6vpAe2IcgqjwBDcFNqmJ8o7x3XqaGbjWVLcXiRsutRYjsJh1vmtN9EErQ==}
-    engines: {node: v26.13.1}
+  '@r_masseater/fu4-linux-x64-gnu@0.3.0':
+    resolution: {integrity: sha512-MBMPUfbQ02WJJJBZ6c9yMxHxBRwjNM8dgMkl66kMHXnMyvO+jRhyomjFuqtqLk3Gg7q8gQBYSyslYZ3eTURlhw==}
+    engines: {node: '>=26.13.1'}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@r_masseater/fu4-win32-x64-msvc@0.2.0':
-    resolution: {integrity: sha512-7U9hf9kj6OPcd07+HYymf2IIuhIkVdlSvVfghozztfcVReBo8qN+OyGDp07BT5tYPkvmjzv+fZAATRxcG8+nXg==}
-    engines: {node: v26.13.1}
+  '@r_masseater/fu4-win32-x64-msvc@0.3.0':
+    resolution: {integrity: sha512-LQZ92U3G8Ep3gaRkWykxsqHJCf59KVKZovkfs0nzaptomK8DGHB/2p7hoyMfnzDQN1jzAlD8CMQEHG4h8mZuzA==}
+    engines: {node: '>=26.13.1'}
     cpu: [x64]
     os: [win32]
 
-  '@r_masseater/fu4@0.2.0':
-    resolution: {integrity: sha512-2CYB2RkzUsTSfNRMJTX/usPYCuiqySgSb5UCTVC/0twEgEkKwyqOwSM5VhPOvVmvwdcaNZTgt+eccmcbfLR7nA==}
-    engines: {node: v26.13.1}
+  '@r_masseater/fu4@0.3.0':
+    resolution: {integrity: sha512-3ZklNqZQuFOYMSo9ToZBnt4bSRm1dCNdrSiwGQGiO4ZqUtLDqNx+0ma4IH8bLhhswxddw2hjvjCwq6E+N4sebg==}
+    engines: {node: '>=26.13.1'}
     hasBin: true
     peerDependencies:
-      effect: ^4.1.2
+      effect: ^4.1.0
       vite: '*'
-      vite-plus: '>=1.5.0'
+      vite-plus: '>=1.8.0'
 
   '@r_masseater/h56m-linux-x64-gnu@0.2.0':
     resolution: {integrity: sha512-G/IFAZetPuHc3UOE2ppaxtXLfNb5mqp4ZgdKAcRdruroreidwIIHvrXLSfUnkw7xkXTsCSqpjLmDbcQ7LDlhdA==}
@@ -1289,9 +1289,22 @@ packages:
     os: [linux]
     libc: [glibc]
 
+  '@r_masseater/h56m-linux-x64-gnu@0.3.0':
+    resolution: {integrity: sha512-wINuFfR3+sQUN+fePy+F3cnULZ2VTN1nOIOmWKvDdFTp6ACzi8WePvmqNwf/SDoubqSD4eyapmRfME5TEpIujg==}
+    engines: {node: '>=26.13.1'}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
   '@r_masseater/h56m-win32-x64-msvc@0.2.0':
     resolution: {integrity: sha512-MjvgOrdUw5Oa62jVFy5FAS3pDGLC/x0crGEyH6c6eI1OjYTdSJDA90bx+jtBf94m73Ndnwo5nwjDtXgvztjB8g==}
     engines: {node: v26.13.1}
+    cpu: [x64]
+    os: [win32]
+
+  '@r_masseater/h56m-win32-x64-msvc@0.3.0':
+    resolution: {integrity: sha512-Q4XQaVc0v8Xl4PnH4eno1TOf2Y984usjDBnEbdyzj58+G4VoPWocc48kjCZo40Dz217Ki7kpIBMyGRbP/TeCRQ==}
+    engines: {node: '>=26.13.1'}
     cpu: [x64]
     os: [win32]
 
@@ -1309,8 +1322,20 @@ packages:
       vite-plus:
         optional: true
 
-  '@r_masseater/msch@0.57.3':
-    resolution: {integrity: sha512-HKWYUMypnbwS1trIPh6VQRGNMkpYGOf/ev67cHpVk++FSb2VXg/fXvqudZhzAjLUSn1EN8bUcfSx0S5rvxiBQQ==}
+  '@r_masseater/h56m@0.3.0':
+    resolution: {integrity: sha512-2W99Qih77K8KWVUfzKsquiItdnfxzuyciYnHziUfMwOUnI+tGgATENQGR1y2hRHU1kXsxfA6+OPo/oRNDqhfCQ==}
+    engines: {node: '>=26.13.1'}
+    hasBin: true
+    peerDependencies:
+      effect: ^4.1.0
+      vite: '*'
+      vite-plus: '>=1.8.0'
+    peerDependenciesMeta:
+      vite:
+        optional: true
+
+  '@r_masseater/msch@0.58.0':
+    resolution: {integrity: sha512-0MNf1UIRpkiA6T7VSNro0pOA0o4u45DS59NSSzToQpw7Uw133EyQ64hTIldNFQR++d24tQv1D2OjHaPir9V6DA==}
     engines: {node: '>=26.13.1'}
     hasBin: true
     peerDependencies:
@@ -1341,12 +1366,16 @@ packages:
       effect: ^4.1.2
       typescript: '>=7.1.0-beta'
 
-  '@r_masseater/textlint-rule-preset-ja@0.2.0':
-    resolution: {integrity: sha512-WMR8KEgBtqTA1YtgvpXZqC1BIwLhdWML6HBIhk4XCU0AHGfpvZK/CxzyXD4VLxxJtom/6+wbyw0fjqiHM1L0uA==}
-    engines: {node: '>=26'}
+  '@r_masseater/textlint-rule-preset-ja@0.2.1':
+    resolution: {integrity: sha512-B3S8Jv/T9cGgoRKT4CjmkJ/dQdeaKrwlvgIUOH2jq5jBUr3UY2pOEvWsb8uZz8lkvL+mQZxTJzbqsdY/lUML8A==}
+    engines: {node: '>=26.13.1'}
     peerDependencies:
-      '@r_masseater/y8': ^0.1.0
-      effect: ^4.0.0
+      '@r_masseater/y8': ^0.4.0
+      effect: ^4.1.0
+      minimatch: '>=11.0.9'
+    peerDependenciesMeta:
+      minimatch:
+        optional: true
 
   '@r_masseater/vite-plus-adopt@0.13.0':
     resolution: {integrity: sha512-FN8SPAlomGO31syWeZChx0oOq8awbH1Va6E9ru19nQO2SnPST39ajwUS64Fe+1OGovaIAINvdmSRjdlnnTGkXg==}
@@ -1361,56 +1390,57 @@ packages:
       typescript:
         optional: true
 
-  '@r_masseater/wism-linux-x64-gnu@0.3.0':
-    resolution: {integrity: sha512-rv1darXAVlgatT2IezKylfZgYW4nD5pldM+57isGz3N/kh7wph+2IUcO7aGrEeJ0XM5XxXopreW98ggYk+TskA==}
-    engines: {node: v26.13.1}
+  '@r_masseater/wism-linux-x64-gnu@0.4.0':
+    resolution: {integrity: sha512-ahviM56RahMa6i2ps3Fx00K4wD5Jt8VkfXroTU/O9YIghOIjf13HGQRHwiXV6o23D6Twx89930eRiE49doKy9A==}
+    engines: {node: '>=26.13.1'}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@r_masseater/wism-win32-x64-msvc@0.3.0':
-    resolution: {integrity: sha512-Moz4iqocslybADlfqgj/mhD66GIGQLpcvuBnYMhyh94jtkgrTvpVya3dV898mQmcukiZvJeETNzMZmtJMYSAWg==}
-    engines: {node: v26.13.1}
+  '@r_masseater/wism-win32-x64-msvc@0.4.0':
+    resolution: {integrity: sha512-eTR3dk7rOQNemImhYOtY0m7MBYiLYfggrOupiVPPAgi9RDqyvoOQdQwLO4eHMKY8qQSUM8FeFB4BE/0M9HqQ0g==}
+    engines: {node: '>=26.13.1'}
     cpu: [x64]
     os: [win32]
 
-  '@r_masseater/wism@0.3.0':
-    resolution: {integrity: sha512-LDefoCeIIbW0+nuVp6Vgu2fUlyArERK4o6E1iYjH0Jm/K2WaUwLvVFFibRoqNMEZHH5JCHooFv1uMLFGjdznkA==}
-    engines: {node: v26.13.1}
+  '@r_masseater/wism@0.4.0':
+    resolution: {integrity: sha512-wblV7m6fal8qnGQTzIcr22eNOV3SnnScrtBevfCMOCbiP+hUGrDoWHuwZmpXAtPdRe7rouxOOhNR2B0h5zWgoA==}
+    engines: {node: '>=26.13.1'}
     hasBin: true
     peerDependencies:
-      effect: ^4.1.2
+      effect: ^4.1.0
       vite: '*'
-      vite-plus: '>=1.5.0'
+      vite-plus: '>=1.8.0'
 
-  '@r_masseater/y8-linux-x64-gnu@0.3.0':
-    resolution: {integrity: sha512-6P90U9r3UuLWvtMHAZ00bZBs99z4FdDx6TYfop1dqfnGwjOh9hMZg4gvdm6JjNuAW+lL8/cHNmcneRy0X0EHYA==}
-    engines: {node: v26.13.1}
+  '@r_masseater/y8-linux-x64-gnu@0.4.0':
+    resolution: {integrity: sha512-mmj/5WIaJkwREy0eBUb2tHYG6hvj+TvEtls3YwDs8y/JySO/qSlePL6jHkU0ws9PDoUDKx6CxmrrgXmbncD+oA==}
+    engines: {node: '>=26.13.1'}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@r_masseater/y8-win32-x64-msvc@0.3.0':
-    resolution: {integrity: sha512-KNeHwd0aQMpPNce2u0KtTxnnvZLrJWSvUuAxvLt0P2Ba39p7cECyKIojvVB1TCrm97MYW3s72f2kXXzYmMT1ng==}
-    engines: {node: v26.13.1}
+  '@r_masseater/y8-win32-x64-msvc@0.4.0':
+    resolution: {integrity: sha512-4cXu6+PRe9lv+a7t5o4irO2wJwNIWwcDirnwGZD1J5mdvdWZ94X6jO56ojJ04FK7xp0uNeYDK8doS3zlyIgxMA==}
+    engines: {node: '>=26.13.1'}
     cpu: [x64]
     os: [win32]
 
-  '@r_masseater/y8@0.3.0':
-    resolution: {integrity: sha512-+JfblZQHGneGzsfNw8QAzfH8BCy+q1U8qJw4FQsaQLjTjRHLP48a/VOgAjDx+kqggbuwzHvpukHLbOa4bP71ng==}
-    engines: {node: v26.13.1}
+  '@r_masseater/y8@0.4.0':
+    resolution: {integrity: sha512-ylp03rU8xMaIxVuJlElam5midRBPB60xwMjsWP103aNqX/C317NK1+J2LEK90a0d6N+xfBbDXnh/8KuQ6wagXg==}
+    engines: {node: '>=26.13.1'}
     hasBin: true
     peerDependencies:
-      effect: ^4.1.2
+      effect: ^4.1.0
       markdownlint: '>=0.42.0'
+      minimatch: '>=11.0.9'
       vite: '*'
-      vite-plus: '>=1.5.0'
+      vite-plus: '>=1.8.0'
     peerDependenciesMeta:
       markdownlint:
         optional: true
-      vite:
+      minimatch:
         optional: true
-      vite-plus:
+      vite:
         optional: true
 
   '@redis/bloom@6.3.1':
@@ -5079,22 +5109,21 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
-  '@r_masseater/fu4-linux-x64-gnu@0.2.0':
+  '@r_masseater/fu4-linux-x64-gnu@0.3.0':
     optional: true
 
-  '@r_masseater/fu4-win32-x64-msvc@0.2.0':
+  '@r_masseater/fu4-win32-x64-msvc@0.3.0':
     optional: true
 
-  '@r_masseater/fu4@0.2.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))':
+  '@r_masseater/fu4@0.3.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))':
     dependencies:
       '@effect/platform-node': 4.1.6(effect@4.1.6)(redis@6.3.1)
       effect: 4.1.6
-      minimatch: 11.0.9
       vite: '@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)'
       vite-plus: 1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)
     optionalDependencies:
-      '@r_masseater/fu4-linux-x64-gnu': 0.2.0
-      '@r_masseater/fu4-win32-x64-msvc': 0.2.0
+      '@r_masseater/fu4-linux-x64-gnu': 0.3.0
+      '@r_masseater/fu4-win32-x64-msvc': 0.3.0
     transitivePeerDependencies:
       - bufferutil
       - redis
@@ -5103,7 +5132,13 @@ snapshots:
   '@r_masseater/h56m-linux-x64-gnu@0.2.0':
     optional: true
 
+  '@r_masseater/h56m-linux-x64-gnu@0.3.0':
+    optional: true
+
   '@r_masseater/h56m-win32-x64-msvc@0.2.0':
+    optional: true
+
+  '@r_masseater/h56m-win32-x64-msvc@0.3.0':
     optional: true
 
   '@r_masseater/h56m@0.2.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))':
@@ -5120,7 +5155,21 @@ snapshots:
       - redis
       - utf-8-validate
 
-  '@r_masseater/msch@0.57.3(@effect/tsgo@0.73.7)(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(eslint@10.14.0(jiti@2.7.0))(markdownlint@0.42.1)(oxlint@1.94.0(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))':
+  '@r_masseater/h56m@0.3.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))':
+    dependencies:
+      '@effect/platform-node': 4.1.6(effect@4.1.6)(redis@6.3.1)
+      effect: 4.1.6
+      vite-plus: 1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)
+    optionalDependencies:
+      '@r_masseater/h56m-linux-x64-gnu': 0.3.0
+      '@r_masseater/h56m-win32-x64-msvc': 0.3.0
+      vite: '@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)'
+    transitivePeerDependencies:
+      - bufferutil
+      - redis
+      - utf-8-validate
+
+  '@r_masseater/msch@0.58.0(@effect/tsgo@0.73.7)(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(eslint@10.14.0(jiti@2.7.0))(markdownlint@0.42.1)(minimatch@11.0.9)(oxlint@1.94.0(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))':
     dependencies:
       '@commitlint/config-conventional': 21.2.4
       '@effect/platform-node': 4.1.6(effect@4.1.6)(redis@6.3.1)
@@ -5133,14 +5182,14 @@ snapshots:
       '@pnpm/workspace.projects-reader': 1101.1.9(@pnpm/logger@1100.0.0)
       '@pnpm/workspace.workspace-manifest-reader': 1100.3.4
       '@pnpm/workspace.workspace-manifest-writer': 1100.2.13
-      '@r_masseater/fu4': 0.2.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
-      '@r_masseater/h56m': 0.2.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
+      '@r_masseater/fu4': 0.3.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
+      '@r_masseater/h56m': 0.3.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
       '@r_masseater/oxlint-plugin-decision': 0.8.0(@effect/platform-node-shared@4.1.6(effect@4.1.6))(effect@4.1.6)(oxlint@1.94.0(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))
       '@r_masseater/oxlint-typed-rules': 0.5.0(effect@4.1.6)(typescript@7.1.0-beta)
-      '@r_masseater/textlint-rule-preset-ja': 0.2.0(@r_masseater/y8@0.3.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(effect@4.1.6)
+      '@r_masseater/textlint-rule-preset-ja': 0.2.1(@r_masseater/y8@0.4.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(minimatch@11.0.9)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(effect@4.1.6)(minimatch@11.0.9)
       '@r_masseater/vite-plus-adopt': 0.13.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(redis@6.3.1)(typescript@7.1.0-beta)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
-      '@r_masseater/wism': 0.3.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
-      '@r_masseater/y8': 0.3.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
+      '@r_masseater/wism': 0.4.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
+      '@r_masseater/y8': 0.4.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(minimatch@11.0.9)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
       '@shadcn/lint': 0.2.5(eslint@10.14.0(jiti@2.7.0))
       '@tanstack/intent': 0.5.6
       '@textlint-ja/textlint-rule-preset-ai-writing': 1.7.2
@@ -5168,6 +5217,7 @@ snapshots:
       - bufferutil
       - eslint
       - markdownlint
+      - minimatch
       - oxlint
       - redis
       - supports-color
@@ -5194,11 +5244,13 @@ snapshots:
       effect: 4.1.6
       typescript: 7.1.0-beta
 
-  '@r_masseater/textlint-rule-preset-ja@0.2.0(@r_masseater/y8@0.3.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(effect@4.1.6)':
+  '@r_masseater/textlint-rule-preset-ja@0.2.1(@r_masseater/y8@0.4.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(minimatch@11.0.9)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(effect@4.1.6)(minimatch@11.0.9)':
     dependencies:
-      '@r_masseater/y8': 0.3.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
+      '@r_masseater/y8': 0.4.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(minimatch@11.0.9)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
       effect: 4.1.6
       sentence-splitter: 5.1.0
+    optionalDependencies:
+      minimatch: 11.0.9
 
   '@r_masseater/vite-plus-adopt@0.13.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(redis@6.3.1)(typescript@7.1.0-beta)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))':
     dependencies:
@@ -5234,44 +5286,44 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@r_masseater/wism-linux-x64-gnu@0.3.0':
+  '@r_masseater/wism-linux-x64-gnu@0.4.0':
     optional: true
 
-  '@r_masseater/wism-win32-x64-msvc@0.3.0':
+  '@r_masseater/wism-win32-x64-msvc@0.4.0':
     optional: true
 
-  '@r_masseater/wism@0.3.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))':
+  '@r_masseater/wism@0.4.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))':
     dependencies:
       '@effect/platform-node': 4.1.6(effect@4.1.6)(redis@6.3.1)
       effect: 4.1.6
       vite: '@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)'
       vite-plus: 1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)
     optionalDependencies:
-      '@r_masseater/wism-linux-x64-gnu': 0.3.0
-      '@r_masseater/wism-win32-x64-msvc': 0.3.0
+      '@r_masseater/wism-linux-x64-gnu': 0.4.0
+      '@r_masseater/wism-win32-x64-msvc': 0.4.0
     transitivePeerDependencies:
       - bufferutil
       - redis
       - utf-8-validate
 
-  '@r_masseater/y8-linux-x64-gnu@0.3.0':
+  '@r_masseater/y8-linux-x64-gnu@0.4.0':
     optional: true
 
-  '@r_masseater/y8-win32-x64-msvc@0.3.0':
+  '@r_masseater/y8-win32-x64-msvc@0.4.0':
     optional: true
 
-  '@r_masseater/y8@0.3.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))':
+  '@r_masseater/y8@0.4.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(minimatch@11.0.9)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))':
     dependencies:
       '@effect/platform-node': 4.1.6(effect@4.1.6)(redis@6.3.1)
       effect: 4.1.6
-      minimatch: 11.0.9
+      vite-plus: 1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)
       yaml: 2.9.1
     optionalDependencies:
-      '@r_masseater/y8-linux-x64-gnu': 0.3.0
-      '@r_masseater/y8-win32-x64-msvc': 0.3.0
+      '@r_masseater/y8-linux-x64-gnu': 0.4.0
+      '@r_masseater/y8-win32-x64-msvc': 0.4.0
       markdownlint: 0.42.1
+      minimatch: 11.0.9
       vite: '@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)'
-      vite-plus: 1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)
     transitivePeerDependencies:
       - bufferutil
       - redis

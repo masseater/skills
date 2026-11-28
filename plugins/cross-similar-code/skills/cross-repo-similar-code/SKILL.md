@@ -20,3 +20,7 @@ The state this skill aims for is that every pair of similar functions in differe
 - For each pair, read both functions, name the missing abstraction, and say where it belongs and what API fits both callers. A pair at similarity 1 is a copy: one side is deleted and imports the other. Do not propose a verdict and do not call a similarity intentional. If where the abstraction belongs is unclear, report the pair to the coordinator with the facts and draw no conclusion.
 - Change nothing. Return the pairs as concrete consolidation requests for the owner; the daily audit routes them to the owning threads and writes the report.
 - Public output (a public repository, a pull request on one, a commit message, a public CI log) refers to a private repository by its repository ID and never by name, and the run never happens in public CI, because its logs and artifacts would expose private code. A report to the coordinator may use names.
+
+## ユースケース
+
+- [`sweep`](usecases/sweep.md). Run fallow similar-code over every checked-out repository and return the pairs that cross repositories.

@@ -1,6 +1,6 @@
 ---
 name: check-cloudflare-cost
-description: Find designs that raise the Cloudflare bill and pay-as-you-go usage with no cap across all masseater repositories, using production usage as well as code. Use when running the Cloudflare cost check of the daily audit.
+description: Find designs that raise the Cloudflare bill and metered usage with no cap across all masseater repositories, using production usage as well as code. Use when running the Cloudflare cost check of the daily audit.
 ---
 
 # check-cloudflare-cost
