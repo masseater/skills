@@ -33,3 +33,4 @@ description: クラウドから SSH で持ち主の Windows PC につなぎ、UA
 - LUNA Builder SDK のドキュメントに書かれていない事実：[`luna-facts`](references/luna-facts.md)
 - 検証の指標と合格の基準：[`verification-metrics`](references/verification-metrics.md)
 - 音声を入力できるモデルで聴くときの扱いと、試した結果：[`listening-models`](references/listening-models.md)
+- ドラムを分離してスウィングとハットの並びを測る手順：[`separate-drums`](references/separate-drums.md)
