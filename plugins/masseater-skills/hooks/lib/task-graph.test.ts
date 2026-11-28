@@ -2,6 +2,7 @@ import { describe, expect, it } from "vite-plus/test";
 import {
   applyChecklist,
   applyResolved,
+  isResolved,
   lastReportLine,
   parseChecklist,
   threadIdFromResponse,
@@ -138,6 +139,12 @@ describe("applyResolved", () => {
   it("closes the task when the last open thread resolves", () => {
     const shared = task({ threads: [{ id: THREAD, title: "a" }, { id: "cmsg_other", title: "b", resolvedAt: "2026-11-28T09:00:00Z" }] });
     expect(applyResolved(graph([shared]), { threadId: THREAD, result: "できた", at: AT })?.tasks[0]?.status).toBe("done");
+  });
+
+  it("does nothing when the thread is already marked resolved", () => {
+    const first = applyResolved(graph([task()]), { threadId: THREAD, result: "できた", at: AT });
+    expect(first && isResolved(first, THREAD)).toBe(true);
+    expect(first && applyResolved(first, { threadId: THREAD, result: "もう一度", at: "2026-11-28T14:00:00Z" })).toBeUndefined();
   });
 
   it("does nothing for a thread no task holds or a recurring task", () => {
