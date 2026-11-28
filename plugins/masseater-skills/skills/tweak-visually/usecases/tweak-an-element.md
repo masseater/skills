@@ -2,7 +2,7 @@
 
 1. 対象が Vite の React アプリか確かめる。違えば、このスキルは使わない。
 2. 作業用のブランチを作り、made-refine と `vite-plugin-singlefile` を、そのリポジトリの流儀で `devDependencies` に足す。
-3. 作業用のブランチで、`App` に `<DirectEdit />` を常に描画させ、`vite.config.ts` に `viteSingleFile()` と `build: { minify: false }` を足す。`init` は使わない。理由は [`made-refine`](../references/made-refine.md) にある。
+3. 作業用のブランチで、`App` に `<DirectEdit />` を常に描画させ、`vite.config.ts` に `viteSingleFile()` と `build: { minify: false }` を足す。`init` は使わない。理由は [`made-refine`](../references/made-refine.md) に書いてある。
 4. ビルドし、[`wrap-artifact.ts`](../scripts/wrap-artifact.ts) でアーティファクト用の HTML にして公開する。`node scripts/wrap-artifact.ts dist/index.html artifact.html "<名前>"` を実行し、できた `artifact.html` を Artifact ツールで公開する。名前はアプリの名前にする。
 5. 白紙でないことを、ローカルで `vite preview` を開いて自分で確かめてから、URL を持ち主に伝える。
 6. 持ち主に、`Ctrl + .`（Mac は `Cmd + .`）で編集画面を開き、要素をクリックして動かし、右下のコピーボタンで差分をコピーしてチャットに貼るよう伝える。

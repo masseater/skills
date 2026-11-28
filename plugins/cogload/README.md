@@ -57,6 +57,6 @@ Claude Code の持ち主が読む量、覚えておく量、手で打つ量を�
 
 ![要素の種類ごとの色と形](skills/infographic/examples/palette.svg)
 
-見せたいことから図の型を選ぶカタログと、型ごとの見本は [catalog.md](skills/infographic/references/catalog.md) にある。色と形の決まりは [palette.md](skills/infographic/references/palette.md) にある。
+見せたいことから図の型を選ぶカタログと、型ごとの見本は [catalog.md](skills/infographic/references/catalog.md) に書いてある。色と形の決まりは [palette.md](skills/infographic/references/palette.md) に書いてある。
 
-図で表すものと文字で書くものの良い例と悪い例は [figure-or-text.md](skills/infographic/references/figure-or-text.md) にある。
+図で表すものと文字で書くものの良い例と悪い例は [figure-or-text.md](skills/infographic/references/figure-or-text.md) に書いてある。
