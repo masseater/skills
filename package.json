@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@anthropic-ai/claude-code": "2.1.332",
-    "@r_masseater/msch": "0.59.0",
+    "@r_masseater/msch": "0.59.1",
     "fallow": "3.48.0",
     "fallow-similar-code": "3.48.0",
     "skills-ref": "0.1.5",
