@@ -1,6 +1,6 @@
 # 参照チャンネルの型
 
-masseater.devの`apps/videos/src/pages/pnpm-<型>/`に、各型でpnpmを紹介した動画がある。新しい動画は近い型のフォルダを写して始める。
+masseater.devの`apps/videos/src/pages/pnpm-<型>/`に、各型でpnpmを紹介した動画がある。`blend`の手本は`pnpm-blend`。新しい動画は近い型のフォルダを写して始める。
 
 | 型 | チャンネル | 字幕 | 題名と背景 | 立ち絵と素材 |
 | --- | --- | --- | --- | --- |
@@ -13,6 +13,7 @@ masseater.devの`apps/videos/src/pages/pnpm-<型>/`に、各型でpnpmを紹介�
 | `akiya` | [AKIYAMOVIE](https://www.youtube.com/@AKIYAMOVIE) | 下寄りの細い白字、影だけ | なし。実写を全面 | 立ち絵なし。製品名は大きい斜めの英字、アイコンの札 |
 | `yota` | [ようたす](https://www.youtube.com/@yotaszk) | 細い白字、影だけ | 黄色の背景、細い大きな英字の見出しと「ポイント1」 | 立ち絵なし。手に持った端末の画面 |
 | `gadgetomo` | [ガジェットモ](https://www.youtube.com/@gadgetomo) | 画面中央に白抜きの太字、黒ふち | なし。実写を全面 | 立ち絵なし。落ちで極太の一言を叩きつける |
+| `blend` | `gadgetomo`を土台に、[参考のショート](https://www.youtube.com/shorts/W2fcQ-gffMQ)の配置にしたもの | 画面写真の枠の上に、白抜きの太字、細い黒ふち。決め所だけ`shiitama`の赤い極太字 | 一番上に黒い帯でツール名とURL。その下は木の枠の付いた緑の黒板 | 中央に横いっぱいの画面写真か端末の枠を置き、要の所に寄せる。つむぎを右下に。切り替えに`yota`の橙の明滅、`akiya`のように製品名の札と効果音 |
 | `fireship` | [Fireship](https://www.youtube.com/@Fireship) | YouTube版は字幕なし、TikTok版は1語ずつ | 上半分に黒地の英単語やコード、下半分に反応の絵 | 立ち絵なし。1秒前後で切り替える |
 
 YouTubeの再生数の多いショート3本ずつ（しいたまは2本）から測った値。ショットは0.3で10秒に1回未満しか切れない動画だけ0.08で数えた。
