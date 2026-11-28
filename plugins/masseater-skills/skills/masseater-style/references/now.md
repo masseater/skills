@@ -16,3 +16,11 @@
   - [Sashi](https://sashi.masseater.dev)は、masseater が欲しいものの代わりに指し示す参考例を集める。
   - 判断モデルが選択式の問いに答える。[oxlint-plugin-decision](https://github.com/masseater/ecosystems/tree/main/libs/oxlint-plugin-decision)と cogload の判断フックがある。
   - [intent-book](https://github.com/masseater/ecosystems/tree/main/libs/intent-book)は、エージェント向けのスキルを人間向けのドキュメントにし、どちらも同じ元を読む。
+- リポジトリに残らない運用：
+  - [タスクグラフ](https://claude.ai/artifact/6TcZa8WS9sPpaxqHyyM9Ug)のアーティファクトで、作業の状況を視覚的に示す。
+  - 図のアーティファクトで、スケジュール済みタスクの台帳を示す。
+  - GitBook形式の提案ページと解説のアーティファクトで、長いチャットの文章の代わりにする。
+  - コーディネーターは、masseater の判断が要ることだけを、短い投稿で伝える。
+  - 選択肢は判断カードで示す。
+  - masseater に判断を求める前に、インフォグラフィックを描く。
+  - インフォグラフィックのツール kata は開発中である。
