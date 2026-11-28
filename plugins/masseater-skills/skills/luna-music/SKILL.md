@@ -25,6 +25,7 @@ description: クラウドから SSH で持ち主の Windows PC につなぎ、UA
 
 - クラウドから LUNA につなぐ：[`connect-to-luna`](usecases/connect-to-luna.md)
 - セッションにパターンを組む：[`make-pattern`](usecases/make-pattern.md)
+- パターンに楽器を足して曲にする：[`make-song`](usecases/make-song.md)
 - 聴かずに出来を確かめる：[`verify-audio`](usecases/verify-audio.md)
 - パターンをリファレンス曲に寄せる：[`match-reference`](usecases/match-reference.md)
 

@@ -13,3 +13,14 @@
 - トラックの `gain.real` の設定は正確である。変更後にバウンスしたステムが、変更分そのままの値になる。
 - 既定のパンの法則は、モノラルのトラックをステム上で 3 dB 下げる。
 - セッションのパッケージは `%USERPROFILE%\Documents\LUNA Sessions\<名前>` に保存される。
+
+## Polymax のプリセットとノート
+
+2026-11-28 に確かめた。
+
+- `luna.presets.trackSelection({ category: 'Instrument', includeInstrumentPresets: true })` の `presets.items` から `isInstrumentPreset` のものを名前で選び、`session.newTrackFromPreset(preset, { name })` で MIDI トラックを作る。作ったあとに `await track.loadStrip()` を呼ぶ。
+- ノートは `session.playlistFor(track).createNotes([{ pitch, startTick, stopTick, velocity }])` で置く。`session.transaction` の中で呼ぶと `busy` で失敗する。トラックごとに順に呼び、間に 600 ms 待つ。
+- 1 ステップ（16 分）は `Luna.TICKS_PER_BEAT / 4` ティックである。
+- プリセットが鳴らす音域は、書いた音高と一致するとは限らない。ベースの `Dusty Sub Bass` は 1〜2 オクターブ低く鳴り、`Eighties Bass` は 1 オクターブ低く鳴る（F2 を書くと 43 Hz）。実際に鳴る音高は、単音を 1 つ置いてバウンスし、スペクトルのピークで測る。
+- `FM Piano 2` は FM の倍音が主になり、和音の構成音が全エネルギーの 20% しか占めない。`Curious Poses`、`Ever Explain`、`And Again`、`Cosmos` は 96〜99% が構成音に乗る。`Piano` と `Synth Bass` は無音でバウンスされた。
+- ノートを入れたトラックのステムは、トラックのゲインの値がそのまま反映される。
