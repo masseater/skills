@@ -210,6 +210,8 @@ importers:
         specifier: 1.8.0
         version: 1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)
 
+  plugins/art-workflow: {}
+
   plugins/cogload: {}
 
   plugins/cross-similar-code:
