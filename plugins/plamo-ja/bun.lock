@@ -1,0 +1,15 @@
+{
+  "lockfileVersion": 2,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "plamo-ja",
+      "dependencies": {
+        "@r_masseater/plugin-kit": "0.1.0",
+      },
+    },
+  },
+  "packages": {
+    "@r_masseater/plugin-kit": ["@r_masseater/plugin-kit@0.1.0", "", {}, "sha512-BDymxXRQFL3IYdzKLt3irDMWG5nUHk8LFoPrqkYt2DMlJ3eD9UB4iUad+0RGo7hOrUSYYoO2rIMbeDhehvVkcw=="],
+  }
+}

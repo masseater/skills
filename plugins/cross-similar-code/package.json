@@ -2,5 +2,8 @@
   "name": "cross-similar-code",
   "private": true,
   "type": "module",
-  "description": "リポジトリ横断の類似コード検出。セッション開始時に fallow とローカルモデルを用意し、複数のリポジトリにまたがる似た関数を、足りない抽象化として見つける"
+  "description": "リポジトリ横断の類似コード検出。セッション開始時に fallow とローカルモデルを用意し、複数のリポジトリにまたがる似た関数を、足りない抽象化として見つける",
+  "dependencies": {
+    "@r_masseater/plugin-kit": "0.1.0"
+  }
 }

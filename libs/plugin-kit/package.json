@@ -1,6 +1,0 @@
-{
-  "name": "@masseater/plugin-kit",
-  "private": true,
-  "type": "module",
-  "description": "プラグインどうしで共有するコード。bin/build-kit.ts が各プラグインの dist/kit/ に写す"
-}

@@ -1,7 +1,7 @@
 import { spawnSync } from "node:child_process";
 import { copyFileSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { isRecord, parseJson } from "../../../dist/kit/record.ts";
+import { isRecord, parseJson } from "@r_masseater/plugin-kit";
 import { ensureRuntime, runtimeRoot } from "../../../hooks/lib/runtime.ts";
 
 const SOURCE = /\.(?:[cm]?[jt]sx?|vue|svelte|astro)$/;
@@ -136,7 +136,8 @@ class Work {
     const out = path.join(this.dir, `.report-${this.counter++}.json`);
     const args = ["similar-code", "--format", "json", "--quiet", "-o", out, ...files.flatMap((f) => ["--file", f])];
     spawnSync(this.bin, args, { cwd: this.dir, stdio: "ignore", timeout: 1_000_000 });
-    const report = parseJson(readFileSync(out, "utf8"));
+    const parsed = parseJson(readFileSync(out, "utf8"));
+    const report = parsed._tag === "Some" ? parsed.value : undefined;
     return { report, completion: readCompletion(report) };
   }
 }

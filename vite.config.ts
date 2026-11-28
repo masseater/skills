@@ -8,7 +8,6 @@ export default defineConfig({
   },
   run: {
     tasks: {
-      kit: { command: "node bin/build-kit.ts", cache: false },
       msch: { command: "msch", cache: false },
       test: { command: "vp test run", dependsOn: ["msch"] },
     },
