@@ -14,6 +14,7 @@ Markdown のリンク、リンク定義、自動リンクの宛先に次の形�
 | リポジトリ内のパス | `[msch](github:masseater/ecosystems/libs/msch)` | 既定ブランチにそのファイルかディレクトリがあること |
 | ファイル内の宣言 | `[Config](github:owner/repo/src/config.ts#Config)` | そのファイルがその名前を宣言していること。`Config.validate` のように `.` でつなげる |
 | npm のパッケージ | `[effect](npm:effect)` | 公開されていて、最新版が deprecated でないこと |
+| npm のパッケージの版 | `[effect](npm:effect@4.0.0)`、`[effect](npm:effect@beta)` | その版か dist-tag があり、deprecated でないこと。範囲（`^4`）は書けない |
 
 - 行番号のアンカー（`#L10`）は、ファイルが変わるとすぐにずれるので書けない。宣言名で指す。
 - パスに末尾のスラッシュ、`.`、`..`、空のセグメントは書けない。
@@ -28,4 +29,4 @@ Markdown のリンク、リンク定義、自動リンクの宛先に次の形�
 
 ## 検査
 
-構文の誤りは `msch` の `reference-link` 規則が、検査のたびに指摘する。リンク先の実在は `msch-refs` が毎日確かめる。非公開のリポジトリは `GH_TOKEN` か `GITHUB_TOKEN` がないと読めず、実在しないものとして報告される。詳細は `msch-checks` スキルの「Reference links」にある。
+構文の誤りは y8 の `docs/source-reference` 規則が、検査のたびに指摘する。リンク先の実在は `msch-refs` が毎日確かめる。非公開のリポジトリは `GH_TOKEN` か `GITHUB_TOKEN` がないと読めず、実在しないものとして報告される。詳細は `msch-checks` スキルの「Reference links」にある。
