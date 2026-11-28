@@ -1,7 +1,6 @@
 {
   "name": "masseater-skills",
   "description": "masseater のリポジトリで共通に使うエージェントスキル",
-  "version": "0.1.0",
   "author": {
     "name": "masseater",
     "url": "https://github.com/masseater"

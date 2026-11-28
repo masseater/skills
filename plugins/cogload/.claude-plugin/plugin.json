@@ -1,7 +1,6 @@
 {
   "name": "cogload",
   "description": "人間の認知負荷を下げる",
-  "version": "0.1.0",
   "types": "./types/index.d.ts",
   "author": {
     "name": "masseater",
