@@ -5,7 +5,7 @@
 - 書体はfontsourceのNoto Sans JP（300、500、700、900）とIBM Plex Monoを`libs/video-kit/src/app/video.css`で読み込む。
 - コマンドは`apps/videos`で`node bin/videos.ts <new|make|check|voice|assets|review|render> <名前>`を実行する。
 - ナレーションはVOICEVOXエンジンを使う。手元にないときは`podman run --rm -d --name voicevox -p 127.0.0.1:50021:50021 docker.io/voicevox/voicevox_engine:cpu-latest`で起動する。クラウドのセッションでもPodmanを使い、`dockerd`は起動しない（セッションの権限確認で止められる）。イメージは2.4 GBあり、初回のpullに数分かかる。
-- 立ち絵は、春日部つむぎの[公式立ち絵](https://kasukabe294.booth.pm/items/3474402)（[規約](https://tsumugi-official.studio.site/rule)：映像での商用利用と加工は可、二次配布は不可）を使う。持ち主が渡した公式立ち絵v2.0のPNGを`public/cache/tachie/tsumugi.png`に置いて使う。BOOTHの取得にはpixivのログインが要るので、手元にないときはVOICEVOXエンジンが返す話者の立ち絵を`voice`と`make`がキャッシュに置いて代わりに使う。
+- 立ち絵は、春日部つむぎの[公式立ち絵](https://kasukabe294.booth.pm/items/3474402)（[規約](https://tsumugi-official.studio.site/rule)：映像での商用利用と加工は可、二次配布は不可）を使う。持ち主が渡した立ち絵素材3.0のPSDから服を着た表情差分を書き出し、`public/cache/tachie/tsumugi3.png`に置いて使う。BOOTHの取得にはpixivのログインが要るので、手元にないときはVOICEVOXエンジンが返す話者の立ち絵を`voice`と`make`がキャッシュに置いて代わりに使う。
 - ずんだもんの立ち絵は[zunko.jpの公式イラスト](https://zunko.jp/con_illust.html)（[規約](https://zunko.jp/guideline.html)：広告付きの個人のYouTubeは非商用として使える）を落とし、余白を切ってキャッシュに置く。
 - いらすとやの絵は、検索ページから記事を開き、記事の中の`blogger.googleusercontent.com`の画像URLを`stock.ts`に書く。URLの`s800`を`s1600`に替えると大きい絵が取れる。
 - 画面写真はPlaywrightで紹介するツールのサイトをスマホの幅（1080×1920）で撮り、`public/cache/shots/`に置く。
