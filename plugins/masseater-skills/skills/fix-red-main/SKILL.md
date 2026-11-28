@@ -1,6 +1,6 @@
 ---
 name: fix-red-main
-description: Bring the main branch of masseater.dev or ecosystems back to a green verify after the CI failure notice arrives, with one fix per failure. Use when a request says that a repository's main verify failed.
+description: Bring the main branch of masseater.dev, ecosystems or ai-produced back to a green verify after the CI failure notice arrives, with one fix per failure. Use when a request says that a repository's main verify failed.
 ---
 
 # fix-red-main
