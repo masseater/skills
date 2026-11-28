@@ -1,6 +1,5 @@
 import { execFile } from "node:child_process";
 import { existsSync, mkdirSync, rmSync, statSync, writeFileSync } from "node:fs";
-import { homedir } from "node:os";
 import path from "node:path";
 import { promisify } from "node:util";
 
@@ -10,10 +9,7 @@ export const FALLOW_VERSION = "3.49.0";
 
 const LOCK_STALE_MS = 30 * 60 * 1000;
 
-export function runtimeRoot(env: NodeJS.ProcessEnv = process.env): string {
-  const cache = env.XDG_CACHE_HOME || path.join(homedir(), ".cache");
-  return path.join(cache, "cross-similar-code");
-}
+export const CACHE_SEGMENTS = ["cross-similar-code"];
 
 export function fallowDir(root: string): string {
   return path.join(root, `fallow-${FALLOW_VERSION}`);
@@ -36,7 +32,7 @@ async function modelReady(bin: string): Promise<boolean> {
   }
 }
 
-export async function ensureRuntime(root: string = runtimeRoot()): Promise<string> {
+export async function ensureRuntime(root: string): Promise<string> {
   const dir = fallowDir(root);
   const bin = fallowBin(root);
   if (!existsSync(bin)) {

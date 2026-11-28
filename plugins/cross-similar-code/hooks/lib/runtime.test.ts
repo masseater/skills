@@ -2,17 +2,13 @@ import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vite-plus/test";
-import { FALLOW_VERSION, fallowBin, isModelReady, runtimeRoot, takeLock } from "./runtime.ts";
-
-describe("runtimeRoot", () => {
-  it("follows XDG_CACHE_HOME", () => {
-    expect(runtimeRoot({ XDG_CACHE_HOME: "/cache" })).toBe("/cache/cross-similar-code");
-  });
-});
+import { FALLOW_VERSION, fallowBin, isModelReady, takeLock } from "./runtime.ts";
 
 describe("fallowBin", () => {
   it("sits under a directory named after the pinned version", () => {
-    expect(fallowBin("/cache/x")).toBe(`/cache/x/fallow-${FALLOW_VERSION}/node_modules/.bin/fallow`);
+    expect(fallowBin("/cache/x")).toBe(
+      `/cache/x/fallow-${FALLOW_VERSION}/node_modules/.bin/fallow`,
+    );
   });
 });
 

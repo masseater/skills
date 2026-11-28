@@ -1,9 +1,9 @@
 {
   "name": "plamo-ja",
   "private": true,
-  "type": "module",
   "description": "日本語表示モード。Claude に英語で書かせ、ローカルの PLaMo 3 Translate で訳した日本語を画面に出す",
+  "type": "module",
   "dependencies": {
-    "@r_masseater/plugin-kit": "0.1.0"
+    "@r_masseater/plugin-kit": "0.2.0"
   }
 }
