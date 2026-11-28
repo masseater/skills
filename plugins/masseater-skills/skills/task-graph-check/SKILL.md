@@ -21,6 +21,7 @@ The state this skill aims for is that every unresolved thread of the project app
 - Drop a `done` task whose `updatedAt` is over 24 hours old. Do not change a task that is current.
 - Write every line in English and translate it with PLaMo, fixing only clear mistranslations. Set `generatedAt` to the time of the write, even when nothing else changed.
 - Do not report a repaired difference to the coordinator.
+- The `masseater-skills` PostToolUse hook already adds a task when a thread posts its first progress checklist and closes it when the last thread of the task is resolved, marking each resolved thread with `resolvedAt`. It cannot choose the goal (it uses `g-ops`), merge threads into one task, set `you`, `wait` or `prs`, or notice a thread that the coordinator or the owner resolved. Repair those: move a new task to its goal, merge tasks that do the same work, and close a task whose threads are all resolved even when `resolvedAt` is missing.
 
 ## Finished state
 
