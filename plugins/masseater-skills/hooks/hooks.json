@@ -1,0 +1,17 @@
+{
+  "description": "masseater-skills plugin hooks",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/stop-style-check.ts"],
+            "timeout": 20
+          }
+        ]
+      }
+    ]
+  }
+}

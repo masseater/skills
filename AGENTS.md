@@ -2,7 +2,7 @@
 
 This repository holds the agent skills shared by masseater's repositories. The root is a Claude Code plugin marketplace.
 
-Follow `masseater-ecosystem`, which says which skills to load in each situation, including the ones for creating a skill and for writing prose.
+Follow `masseater-style`, which says which skills to load in each situation, including the ones for creating a skill and for writing prose.
 
 ## Tech stack
 
@@ -16,7 +16,7 @@ vp dlx skills init <name>                   # scaffold a SKILL.md
 ./node_modules/.bin/vp run test             # msch's checks, plugin tests and manifest validation
 ```
 
-There is no build or lint. `vp run test` also runs on pre-push. msch needs Node.js 26 or later. After changing a skill, pass `skills-ref validate` and check that referenced files exist. Only `masseater-ecosystem` may name other skills, and every skill must be listed there. The tests check both.
+There is no build or lint. `vp run test` also runs on pre-push. msch needs Node.js 26 or later. After changing a skill, pass `skills-ref validate` and check that referenced files exist. Only `masseater-style` may name other skills, and every skill must be listed there. The tests check both.
 
 ## Rules
 
