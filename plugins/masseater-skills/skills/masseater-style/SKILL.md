@@ -7,6 +7,7 @@ description: masseaterのリポジトリで作業する際のエントリーポ�
 
 - テックスタックの完成形と、開発と借用の境界については、[`tech-stack`](references/tech-stack.md)を参照すること。
 - 基本の開発フロー、masseater.dev と ecosystems のどちらにコードを置くか、独立したリポジトリに分けるときについては、[`development-flow`](references/development-flow.md)を参照すること。
+- 選択肢を比べるときは、masseater の今の関心を記した [`now`](references/now.md) の最新のエントリを読むこと。これは規則ではなく文脈である。古いエントリは履歴で、今は当てはまらない。
 
 ## なぜこのスキルが必要で、どのような状態を目指すべきか
 
