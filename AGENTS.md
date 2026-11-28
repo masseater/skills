@@ -35,15 +35,15 @@ Put each skill in its own `plugins/<plugin>/skills/<name>/`, with `name` equal t
 
 ### Plugins
 
-Put each plugin in its own `plugins/<plugin>/` with a `package.json`, a `README.md` and a `plugins/<plugin>/.claude-plugin/plugin.json`. msch generates the marketplace manifest from them, so do not edit it by hand. Hooks take no dependencies, and hooks and scripts are written in TypeScript that Node.js runs as is (code that works once type annotations are stripped).
+Put each plugin in its own `plugins/<plugin>/` with a `package.json`, a `README.md` and a `plugins/<plugin>/.claude-plugin/plugin.json`. msch generates the marketplace manifest from them, so do not edit it by hand. Hooks and scripts are written in TypeScript that Node.js runs as is (code that works once type annotations are stripped).
 
 #### Shared code
 
-A plugin is installed on its own, and a symlink cannot reach outside it (claude.ai upload rejects symbolic links), so code that two plugins both need lives in `libs/plugin-kit/src/` and is copied into each plugin that imports it.
+A plugin is installed on its own, and a symlink cannot reach outside it (claude.ai upload rejects symbolic links), so code that two plugins both need is the npm package `@r_masseater/plugin-kit`, which masseater/ecosystems publishes from `libs/plugin-kit`.
 
-- Import it from the plugin as `<relative path>/dist/kit/<name>` (with `.ts` in scripts that Node runs as is). Do not edit `plugins/<plugin>/dist/kit/`.
-- `bin/build-kit.ts` copies exactly the kit files a plugin imports, and the files those import. The pre-commit hook runs it and stages the result; `vp run kit` runs it by hand. `plugins/kit.test.ts` fails when a copy is stale.
-- Put code in the kit when a second plugin needs it. Code that only one plugin uses stays in that plugin. When two functions in different plugins do the same job, move one to the kit and call it from both. Do not record a function as an intentional duplicate.
+- List it in the plugin's `package.json` `dependencies` with an exact version and commit the text `bun.lock` that `vp exec bun install` writes in the plugin directory. When Claude Code caches a plugin, it installs the dependencies from `package.json` and a supported lockfile (`bun.lock` or an npm lockfile; not `bun.lockb`, `pnpm-lock.yaml` or `yarn.lock`). Only registry packages at exact versions install.
+- Put code in plugin-kit when a second plugin needs it. Code that only one plugin uses stays in that plugin. When two functions in different plugins do the same job, move one to plugin-kit and call it from both. Do not record a function as an intentional duplicate.
+- A mod's hooks module can import only its own files by relative path and `claude-code`, so a mod cannot use plugin-kit. Code a mod needs stays in the mod.
 
 #### What a plugin is for
 

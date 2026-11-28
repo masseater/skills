@@ -1,5 +1,5 @@
 import { readFileSync } from "node:fs";
-import { isRecord } from "../../dist/kit/record.ts";
+import { isRecord } from "@r_masseater/plugin-kit";
 
 export function readHookInput(): Record<string, unknown> {
   const value: unknown = JSON.parse(readFileSync(0, "utf8"));

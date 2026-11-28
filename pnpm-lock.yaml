@@ -212,13 +212,21 @@ importers:
 
   plugins/cogload: {}
 
-  plugins/cross-similar-code: {}
+  plugins/cross-similar-code:
+    dependencies:
+      '@r_masseater/plugin-kit':
+        specifier: 0.1.0
+        version: 0.1.0
 
   plugins/masseater-skills: {}
 
   plugins/oneshot-prompts: {}
 
-  plugins/plamo-ja: {}
+  plugins/plamo-ja:
+    dependencies:
+      '@r_masseater/plugin-kit':
+        specifier: 0.1.0
+        version: 0.1.0
 
 packages:
 
@@ -1338,6 +1346,10 @@ packages:
     peerDependencies:
       effect: ^4.1.2
       typescript: '>=7.1.0-beta'
+
+  '@r_masseater/plugin-kit@0.1.0':
+    resolution: {integrity: sha512-BDymxXRQFL3IYdzKLt3irDMWG5nUHk8LFoPrqkYt2DMlJ3eD9UB4iUad+0RGo7hOrUSYYoO2rIMbeDhehvVkcw==}
+    engines: {node: '>=26.13.1'}
 
   '@r_masseater/textlint-rule-preset-ja@0.2.1':
     resolution: {integrity: sha512-B3S8Jv/T9cGgoRKT4CjmkJ/dQdeaKrwlvgIUOH2jq5jBUr3UY2pOEvWsb8uZz8lkvL+mQZxTJzbqsdY/lUML8A==}
@@ -5219,6 +5231,8 @@ snapshots:
     dependencies:
       effect: 4.1.6
       typescript: 7.1.0-beta
+
+  '@r_masseater/plugin-kit@0.1.0': {}
 
   '@r_masseater/textlint-rule-preset-ja@0.2.1(@r_masseater/y8@0.4.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(minimatch@11.0.9)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(effect@4.1.6)(minimatch@11.0.9)':
     dependencies:

@@ -1,4 +1,4 @@
-import { isRecord } from "../../dist/kit/record.ts";
+import { isRecord } from "@r_masseater/plugin-kit";
 
 export const TRANSLATED_FIELDS: Record<string, string[]> = {
   AskUserQuestion: [
