@@ -1,9 +1,26 @@
 import { describe, expect, it } from "vite-plus/test";
-import { crossRepo, plan, readCompletion, split, sourceFiles, type Pair, type Unit } from "./sweep.ts";
+import {
+  crossRepo,
+  plan,
+  readCompletion,
+  split,
+  sourceFiles,
+  type Pair,
+  type Unit,
+} from "./sweep.ts";
 
-const unit = (repo: string, files: string[], dir = "", shallow = false): Unit => ({ repo, dir, shallow, files });
+const unit = (repo: string, files: string[], dir = "", shallow = false): Unit => ({
+  repo,
+  dir,
+  shallow,
+  files,
+});
 const side = (path: string, line = 1) => ({ path, name: "f", startLine: line, endLine: line + 3 });
-const pair = (left: string, right: string, similarity = 0.9): Pair => ({ similarity, left: side(left), right: side(right) });
+const pair = (left: string, right: string, similarity = 0.9): Pair => ({
+  similarity,
+  left: side(left),
+  right: side(right),
+});
 
 describe("sourceFiles", () => {
   it("keeps tracked script sources and drops everything else", () => {
