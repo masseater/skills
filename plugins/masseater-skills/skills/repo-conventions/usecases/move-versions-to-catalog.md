@@ -8,7 +8,7 @@ msch は検査を増やした版で、利用側のリポジトリが新しい検
 2. `uncataloged-dependency` の指摘ごとに、次の順で直す。
    - 依存の名前と版を、ルートの `pnpm-workspace.yaml` の `catalog:` の末尾に 1 行足す。足す前に、同じ名前がすでに `catalog:` にないか確かめる。ある場合、版が同じなら足さない。版が違うなら、どちらに揃えるかを決めてから、すべての package.json を揃える。黙って片方に寄せない。
    - package.json の版を `catalog:` に書き換える。
-3. `prepublish-script` の指摘ごとに、公開パッケージの `scripts.prepublishOnly` を、指摘文の書かれたコマンドそのものにする。
+3. msch 0.64.0 は `msch-publish prepublish` を外した。公開パッケージの `scripts.prepublishOnly` に `vp exec msch-publish prepublish .` が残っていたら、その行を消す。公開は OIDC の Trusted Publishing だけで、tarball の `npm publish` は `prepublishOnly` を実行しない。
 4. `vp install`、`vp exec msch`、`vp run verify` の順に実行し、指摘が 0 になったことを確かめる。
 
 ## してはいけないこと

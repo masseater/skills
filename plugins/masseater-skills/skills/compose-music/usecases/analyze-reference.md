@@ -1,6 +1,6 @@
 # リファレンス曲を分析する
 
-使うモデルとそのライセンス、動かす場所は [`reference-tools`](../references/reference-tools.md) にある。成果物は PC の `%USERPROFILE%\sandbox\music\<曲名>\reference\` に置き、持ち主がそのまま開けるようにする。
+使うモデルとそのライセンス、動かす場所は [`reference-tools`](../references/reference-tools.md) に書いてある。成果物は PC の `%USERPROFILE%\sandbox\music\<曲名>\reference\` に置き、持ち主がそのまま開けるようにする。
 
 1. リファレンスは PC 上で `yt-dlp` でダウンロードする（クラウドからは YouTube に届かない）。音声（`-x --audio-format wav`）と動画の両方を取る。
 2. 先に動画を見る。解説動画には DAW のノートエディターが映っていることが多い。`ffmpeg` でフレームを抜き、ノートエディターを切り出して拡大し、画面からテンポと音の位置を読む。グリッド上の印は正確なので、ここで読めた値は以降の推定より優先する。

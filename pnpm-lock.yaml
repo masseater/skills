@@ -190,8 +190,8 @@ catalogs:
       specifier: 21.2.4
       version: 21.2.4
     '@r_masseater/msch':
-      specifier: 0.64.0
-      version: 0.64.0
+      specifier: 0.65.1
+      version: 0.65.1
     fallow:
       specifier: 3.48.0
       version: 3.48.0
@@ -223,7 +223,7 @@ importers:
         version: 21.2.4
       '@r_masseater/msch':
         specifier: 'catalog:'
-        version: 0.64.0(@andrewbranch/untar.js@1.0.4)(@effect/tsgo@0.73.7)(@loaderkit/resolve@1.0.6)(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(cjs-module-lexer@2.3.0)(effect@4.1.6)(eslint@10.14.0(jiti@2.7.0))(fflate@0.8.3)(markdownlint@0.42.1)(minimatch@11.0.9)(oxlint@1.94.0(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(validate-npm-package-name@8.0.0)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
+        version: 0.65.1(@andrewbranch/untar.js@1.0.4)(@effect/tsgo@0.73.7)(@loaderkit/resolve@1.0.6)(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(cjs-module-lexer@2.3.0)(effect@4.1.6)(eslint@10.14.0(jiti@2.7.0))(fflate@0.8.3)(markdownlint@0.42.1)(minimatch@11.0.9)(oxlint@1.94.0(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(validate-npm-package-name@8.0.0)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
       fallow:
         specifier: 'catalog:'
         version: 3.48.0
@@ -1344,8 +1344,8 @@ packages:
       vite:
         optional: true
 
-  '@r_masseater/msch@0.64.0':
-    resolution: {integrity: sha512-5YE3C+tgafCuWa0lvTTdCpLhiPRqLTpuakxCY4Xxos6/EDl/XSuVUf5Qz1nK0rSnuAyW6AL1rYR54LZm52Dv3A==}
+  '@r_masseater/msch@0.65.1':
+    resolution: {integrity: sha512-2HpAF+jSmSGhwBreyw0HjUVmXSIf9OALh88vKQ4FIgMIQDj5nqSM/hBT3sLEW6fsClKIhCKCoYZVHEJE3GWhBQ==}
     engines: {node: '>=26.13.1'}
     hasBin: true
     peerDependencies:
@@ -1441,21 +1441,21 @@ packages:
       vite: '*'
       vite-plus: '>=1.8.0'
 
-  '@r_masseater/y8-linux-x64-gnu@0.4.0':
-    resolution: {integrity: sha512-mmj/5WIaJkwREy0eBUb2tHYG6hvj+TvEtls3YwDs8y/JySO/qSlePL6jHkU0ws9PDoUDKx6CxmrrgXmbncD+oA==}
+  '@r_masseater/y8-linux-x64-gnu@0.5.0':
+    resolution: {integrity: sha512-7Bnx5KM8365ZVpdB4Bh7tx9bcvYudC4SvXiH3r0aeKvCh9KgT28StKNCysR/FqynSifCNmtx/LUDjo4FNCEFUw==}
     engines: {node: '>=26.13.1'}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@r_masseater/y8-win32-x64-msvc@0.4.0':
-    resolution: {integrity: sha512-4cXu6+PRe9lv+a7t5o4irO2wJwNIWwcDirnwGZD1J5mdvdWZ94X6jO56ojJ04FK7xp0uNeYDK8doS3zlyIgxMA==}
+  '@r_masseater/y8-win32-x64-msvc@0.5.0':
+    resolution: {integrity: sha512-GT5fULymvzg/R3S6+SjEirHDYxyVVOO1NFOsskeOPrlF6zkpSD5cQ8mVKlYl+rESq3WXz7LxwvPPtaaXOsvgJg==}
     engines: {node: '>=26.13.1'}
     cpu: [x64]
     os: [win32]
 
-  '@r_masseater/y8@0.4.0':
-    resolution: {integrity: sha512-ylp03rU8xMaIxVuJlElam5midRBPB60xwMjsWP103aNqX/C317NK1+J2LEK90a0d6N+xfBbDXnh/8KuQ6wagXg==}
+  '@r_masseater/y8@0.5.0':
+    resolution: {integrity: sha512-8s4O1kn9292YCnUs4y0YR08t2QhgN2B2nW/U2xyRpGxegQMUoDVZCEgaPU81WBXkzOcJpqsY8CgDlKNSgroyQw==}
     engines: {node: '>=26.13.1'}
     hasBin: true
     peerDependencies:
@@ -5175,7 +5175,7 @@ snapshots:
       - redis
       - utf-8-validate
 
-  '@r_masseater/msch@0.64.0(@andrewbranch/untar.js@1.0.4)(@effect/tsgo@0.73.7)(@loaderkit/resolve@1.0.6)(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(cjs-module-lexer@2.3.0)(effect@4.1.6)(eslint@10.14.0(jiti@2.7.0))(fflate@0.8.3)(markdownlint@0.42.1)(minimatch@11.0.9)(oxlint@1.94.0(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(validate-npm-package-name@8.0.0)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))':
+  '@r_masseater/msch@0.65.1(@andrewbranch/untar.js@1.0.4)(@effect/tsgo@0.73.7)(@loaderkit/resolve@1.0.6)(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(cjs-module-lexer@2.3.0)(effect@4.1.6)(eslint@10.14.0(jiti@2.7.0))(fflate@0.8.3)(markdownlint@0.42.1)(minimatch@11.0.9)(oxlint@1.94.0(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(redis@6.3.1)(typescript@7.1.0-beta)(validate-npm-package-name@8.0.0)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))':
     dependencies:
       '@commitlint/config-conventional': 21.2.4
       '@effect/platform-node': 4.1.6(effect@4.1.6)(redis@6.3.1)
@@ -5192,10 +5192,10 @@ snapshots:
       '@r_masseater/h56m': 0.3.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
       '@r_masseater/oxlint-plugin-decision': 0.8.0(@effect/platform-node-shared@4.1.6(effect@4.1.6))(effect@4.1.6)(oxlint@1.94.0(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))
       '@r_masseater/oxlint-typed-rules': 0.5.0(effect@4.1.6)(typescript@7.1.0-beta)
-      '@r_masseater/textlint-rule-preset-ja': 0.2.1(@r_masseater/y8@0.4.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(minimatch@11.0.9)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(effect@4.1.6)(minimatch@11.0.9)
+      '@r_masseater/textlint-rule-preset-ja': 0.2.1(@r_masseater/y8@0.5.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(minimatch@11.0.9)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(effect@4.1.6)(minimatch@11.0.9)
       '@r_masseater/vite-plus-adopt': 0.14.0(@andrewbranch/untar.js@1.0.4)(@loaderkit/resolve@1.0.6)(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(cjs-module-lexer@2.3.0)(effect@4.1.6)(fflate@0.8.3)(redis@6.3.1)(typescript@7.1.0-beta)(validate-npm-package-name@8.0.0)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
       '@r_masseater/wism': 0.4.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
-      '@r_masseater/y8': 0.4.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(minimatch@11.0.9)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
+      '@r_masseater/y8': 0.5.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(minimatch@11.0.9)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
       '@shadcn/lint': 0.2.5(eslint@10.14.0(jiti@2.7.0))
       '@tanstack/intent': 0.5.6
       '@textlint-ja/textlint-rule-preset-ai-writing': 1.7.2
@@ -5256,9 +5256,9 @@ snapshots:
 
   '@r_masseater/plugin-kit@0.2.0': {}
 
-  '@r_masseater/textlint-rule-preset-ja@0.2.1(@r_masseater/y8@0.4.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(minimatch@11.0.9)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(effect@4.1.6)(minimatch@11.0.9)':
+  '@r_masseater/textlint-rule-preset-ja@0.2.1(@r_masseater/y8@0.5.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(minimatch@11.0.9)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)))(effect@4.1.6)(minimatch@11.0.9)':
     dependencies:
-      '@r_masseater/y8': 0.4.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(minimatch@11.0.9)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
+      '@r_masseater/y8': 0.5.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(minimatch@11.0.9)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))
       effect: 4.1.6
       sentence-splitter: 5.1.0
     optionalDependencies:
@@ -5318,21 +5318,21 @@ snapshots:
       - redis
       - utf-8-validate
 
-  '@r_masseater/y8-linux-x64-gnu@0.4.0':
+  '@r_masseater/y8-linux-x64-gnu@0.5.0':
     optional: true
 
-  '@r_masseater/y8-win32-x64-msvc@0.4.0':
+  '@r_masseater/y8-win32-x64-msvc@0.5.0':
     optional: true
 
-  '@r_masseater/y8@0.4.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(minimatch@11.0.9)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))':
+  '@r_masseater/y8@0.5.0(@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))(effect@4.1.6)(markdownlint@0.42.1)(minimatch@11.0.9)(redis@6.3.1)(vite-plus@1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1))':
     dependencies:
       '@effect/platform-node': 4.1.6(effect@4.1.6)(redis@6.3.1)
       effect: 4.1.6
       vite-plus: 1.8.0(@types/node@26.6.6)(@vitest/ui@5.1.1)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)
       yaml: 2.9.1
     optionalDependencies:
-      '@r_masseater/y8-linux-x64-gnu': 0.4.0
-      '@r_masseater/y8-win32-x64-msvc': 0.4.0
+      '@r_masseater/y8-linux-x64-gnu': 0.5.0
+      '@r_masseater/y8-win32-x64-msvc': 0.5.0
       markdownlint: 0.42.1
       minimatch: 11.0.9
       vite: '@voidzero-dev/vite-plus-core@8.3.8001(@types/node@26.6.6)(jiti@2.7.0)(typescript@7.1.0-beta)(yaml@2.9.1)'

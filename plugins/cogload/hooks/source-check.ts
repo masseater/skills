@@ -1,7 +1,7 @@
 import type { SessionMessage } from 'claude-code'
 
 import type { HookContext } from './context'
-import { decide, gatewayFrom } from './decision'
+import { choiceOf, decide, gatewayFrom } from './decision'
 import type { ChoiceQuestion } from './decision'
 import { record } from './measure'
 
@@ -66,18 +66,15 @@ export function candidatesOf(turn: Turn): { url: string; excerpt: string }[] {
     .map(([url, excerpt]) => ({ url, excerpt }))
 }
 
-function question(ref: string): ChoiceQuestion {
-  return {
-    type: 'choice',
-    instructions: `state.snippets.request is what the owner asked an AI coding agent to do. state.snippets.${ref} is a web page the agent read or cited while working: its URL, then the start of its content when the agent fetched it. Is this page written and published by the organization or project that makes or governs what it describes?`,
-    criteria: {
-      official:
-        "Yes: vendor documentation, a specification or standard, the project's own repository or release notes, the vendor's own blog or announcement, or the primary source of a paper, a law or a dataset",
-      third_party:
-        'No: anyone else, such as a personal or company blog post, a tutorial, a news site reporting on it, a Q&A site or forum where any user can post, an aggregator, a mirror, a content farm, or an AI-generated summary',
-    },
-  }
+const SOURCE_CRITERIA = {
+  official:
+    "Yes: vendor documentation, a specification or standard, the project's own repository or release notes, the vendor's own blog or announcement, or the primary source of a paper, a law or a dataset",
+  third_party:
+    'No: anyone else, such as a personal or company blog post, a tutorial, a news site reporting on it, a Q&A site or forum where any user can post, an aggregator, a mirror, a content farm, or an AI-generated summary',
 }
+
+const sourceInstructions = (ref: string) =>
+  `state.snippets.request is what the owner asked an AI coding agent to do. state.snippets.${ref} is a web page the agent read or cited while working: its URL, then the start of its content when the agent fetched it. Is this page written and published by the organization or project that makes or governs what it describes?`
 
 export async function unofficialOf($: HookContext, options: Readonly<Record<string, unknown>>, turn: Turn): Promise<string[]> {
   const candidates = candidatesOf(turn)
@@ -88,7 +85,7 @@ export async function unofficialOf($: HookContext, options: Readonly<Record<stri
   const questions: Record<string, ChoiceQuestion> = {}
   candidates.forEach(({ url, excerpt }, index) => {
     snippets[`u${index}`] = excerpt === '' ? url : `${url}\n${excerpt}`
-    questions[`u${index}`] = question(`u${index}`)
+    questions[`u${index}`] = choiceOf(sourceInstructions(`u${index}`), SOURCE_CRITERIA)
   })
 
   const decided = await decide($, await gatewayFrom($, options), snippets, questions)
