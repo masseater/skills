@@ -6,15 +6,20 @@
 
 `npx made-refine@latest init` は対話式で、Vite の設定に Vite プラグイン `madeRefine()` と Babel の設定を足す。Vite 8 と `@vitejs/plugin-react` 6 のアプリでは、`madeRefine()` が先に読み込むスクリプトが原因で、ページが白紙になる（`@vitejs/plugin-react can't detect preamble`）。また plugin-react 6 は `babel` オプションを受け付けない。
 
-そのため `init` を使わず、次の 2 つだけを足す。
+そのため `init` を使わず、`App` に次の 1 行を足すだけにする。`vite.config.ts` の made-refine 向けの変更は要らない。
 
 ```tsx
 import { DirectEdit } from "made-refine";
 
-{import.meta.env.DEV && <DirectEdit />}
+<DirectEdit />
 ```
 
-`vite.config.ts` は変えない。この構成で、編集画面が開き、要素を選んで値を動かし、コピーできることを確かめてある。
+## アーティファクトとして公開する
+
+- アーティファクトは、スクリプト・スタイル・画像をページに埋め込み、外部への通信を禁じる。ビルドは `vite-plugin-singlefile` で 1 つの HTML にする。
+- `minify: false` にする。縮めると、コピーに入るコンポーネント名が `z6` のようになる。
+- 本番ビルドでは `source` が `(file not available)` になる。要素は `selector` と `context` で探す。
+- ローカルで、アーティファクトと同じ制限（サンドボックスの iframe、スクリプトとスタイルはインラインのみ、通信なし）を再現し、編集画面が開き、角丸を動かしてコピーでき、クリップボードに差分が入ることを確かめた。claude.ai 上の実物では、持ち主が開いて確かめるまで未確認である。
 
 ## 使い方
 
@@ -34,7 +39,7 @@ edits:
 border-radius: 42px (rounded-[42px])
 ```
 
-冒頭には、既存のスタイルの書き方に合わせて反映するよう求める指示が付く。
+冒頭には、既存のスタイルの書き方に合わせて反映するよう求める指示が付く。開発サーバーで動かしたときの `source` の行番号は実ファイルとずれた（25 行目付近が 81 行目と出た）ので、探す手がかりにだけ使う。
 
 ## 版
 
