@@ -1,3 +1,5 @@
+import type { SessionMessage } from 'claude-code'
+
 import type { HookContext } from './context'
 import { decide, gatewayFrom } from './decision'
 import type { ChoiceQuestion } from './decision'
@@ -16,8 +18,6 @@ export type Turn = {
   fetched: { url: string; excerpt: string }[]
 }
 
-type Message = Awaited<ReturnType<HookContext['session']['messages']>>
-
 export function urlsIn(text: string): string[] {
   return (text.match(URL_PATTERN) ?? []).map(url => url.replace(TRAILING, ''))
 }
@@ -30,7 +30,7 @@ function isRemote(url: string): boolean {
   }
 }
 
-export function turnOf(messages: Exclude<Message, { deny: string }>, lastAnswer: string | undefined): Turn {
+export function turnOf(messages: readonly SessionMessage[], lastAnswer: string | undefined): Turn {
   const start = messages.findLastIndex(message => message.role === 'user' && message.text !== '')
   const turn = start < 0 ? messages : messages.slice(start)
   const request = turn[0]?.role === 'user' ? turn[0].text : ''
@@ -115,9 +115,6 @@ export async function unofficialOf($: HookContext, options: Readonly<Record<stri
 
 export async function sourceBlock($: HookContext, options: Readonly<Record<string, unknown>>, lastAnswer: string | undefined): Promise<string | undefined> {
   const messages = await $.session.messages()
-  if ('deny' in messages) {
-    return undefined
-  }
   const unofficial = await unofficialOf($, options, turnOf(messages, lastAnswer))
   if (unofficial.length === 0) {
     return undefined
